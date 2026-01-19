@@ -1,7 +1,7 @@
 project:
   type: website
   output-dir: docs
-#  resources: pdfs
+  resources: pdfs
 website:
   page-navigation: true
   title: "DATA 100"
