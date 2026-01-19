@@ -1,0 +1,39 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:300&display=swap);
+
+
+.pull-rightish {
+  float: right;
+  width: 85%;
+}
+
+.pull-right2 {
+  float: right;
+  width: 65%;
+}
+
+blockquote {
+  font-style: italic;
+	background-color: #19647E;
+	padding: 1em;
+	color: #FFFFFF;
+	border-left: solid 5px #1F2041;
+	font-family: Montserrat;
+	font-size: 0.9em;
+}
+
+.pull-right-red { 
+  background-color: red;
+  float: right;
+  width: 45%;
+}
+
+
+.fullish-width {
+  display: flex;
+  width: 95%;
+  flex: 1 1 auto;
+}
+
+.tiny .remark-code { /*Change made here*/
+  font-size: 105% !important;
+}

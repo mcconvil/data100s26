@@ -1,0 +1,34 @@
+project:
+  type: website
+  output-dir: docs
+#  resources: pdfs
+website:
+  page-navigation: true
+  title: "DATA 100"
+  site-url: "https://mcconvil.github.io/data100s26"
+  search: 
+    type: overlay
+  navbar:
+    background: "#D1495B" 
+    search: true
+    style: "docked"
+  # navbar:
+  #   left:
+  #   - text: "Homepage"
+  #     icon: fa-home
+  #     href: index.qmd
+  #   - text: "Slides (First Half)"
+  #     icon: fa-chart-area
+  #     menu: 
+  #       - text: "Week 1 Wed"
+  #         icon: fa-file
+  #         href: stat100_wk01wed.qmd
+
+format:
+  html:
+    theme: yeti
+    css: ["styles.css", "more.css"]
+    toc: true
+
+editor: visual
+
