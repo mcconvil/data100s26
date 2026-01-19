@@ -8,7 +8,7 @@ The lecture slides (both in HTML and PDF) will be posted here.
 ::: column-screen-inset-right
 | Class Period | HTML Slides                                                                      | PDF Slides                                                                            |
 |------------------|--------------------------|----------------------------|
-| Week 1, Wed  | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk01wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100s24/pdfs/stat100_wk01wed.pdf) |
+| Week 1, Wed  | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk01wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk01wed.pdf) |
 <!-- | Week 2, Mon  | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk02mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk02mon.pdf) | -->
 <!-- | Week 2, Wed  | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk02wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk02wed.pdf) | -->
 <!-- | Week 3, Mon  | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk03mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk03mon.pdf) | -->
