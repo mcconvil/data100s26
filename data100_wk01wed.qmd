@@ -5,7 +5,7 @@ format:
     chalkboard: true
     incremental: true
     theme: [default, custom.scss]
-    multiplex: true
+#    multiplex: true
     height: 900
     width: 1600
     slide-number: c
@@ -42,12 +42,9 @@ Before we get started...
 :::
 
 ::: {style="margin-top: 80px; font-size: 1.2em; color: #19647E;"}
-Go to [bit.ly/stat-100-think](https://bit.ly/stat-100-think) to provide the words or phrases you think of when you hear ["statistical thinking."]{.mauve}
+Go to [burl.live/stat](https://burl.live/stat) to provide the words or phrases you think of when you hear ["statistical thinking."]{.mauve}
 :::
 
-::: {style="margin-top: 80px; font-size: 1.2em; color: #19647E;"}
-Waitlisters: Go to [bit.ly/stat-100-wait](https://bit.ly/stat-100-wait) to sign-in.
-:::
 
 ------------------------------------------------------------------------
 
@@ -65,35 +62,34 @@ Waitlisters: Go to [bit.ly/stat-100-wait](https://bit.ly/stat-100-wait) to sign-
 
 [Kelly McConville]{.custom-subtitle}
 
-[Stat 100 <br> Week 1 \| Spring 2024]{.custom-subtitle}
+[DATA 100 <br> Week 1 \| Spring 2026]{.custom-subtitle}
 :::
 :::
 
 ------------------------------------------------------------------------
 
-## Getting Started in Stat 100
+## Getting Started in DATA 100
 
-#### Step 1: Getting Started Module in Canvas
+#### Step 1: Check out the links in the "Useful Information" section on Moodle
 
-![](img/Canvas_getting_started.png){width="85%"}
+![](img/moodle_useful_information.png){width="85%"}
 
 ------------------------------------------------------------------------
 
-## Stat 100 Tech & Materials {.center}
+## DATA 100 Tech & Materials {.center}
 
-![](img/structures.001.jpeg){width="55%"}
+![](img/structures.png){width="55%"}
 
 ------------------------------------------------------------------------
 
 ## Announcements
 
--   Lecture slide decks will be posted and linked to a Canvas Module the day before lecture.
+-   Lecture slide decks will be posted and linked to a Moodle Module the day before lecture.
 
     -   Will also bring printed versions for those who prefer paper copies.
 
--   Section starts this week! Make sure you are enrolled in a specific section.
+-   Lab starts this week: Fridays 3 - 3:50pm
 
--   Office hours start on Wednesday.
 
 -   **If able, please bring a laptop or tablet to the next lecture.**
 
@@ -123,7 +119,7 @@ Waitlisters: Go to [bit.ly/stat-100-wait](https://bit.ly/stat-100-wait) to sign-
 
 ------------------------------------------------------------------------
 
-### Let's start with my path to Harvard...
+### Let's start with my path to Bucknell...
 
 ```{r, echo = FALSE, dev.args = list(bg = 'transparent'), fig.asp = .6, out.width = '80%'}
 
@@ -189,7 +185,7 @@ knitr::include_graphics("img/data.jpeg")
 
 ------------------------------------------------------------------------
 
-### Advising Undergraduate Forestry Data Science Research
+### Advising Undergraduate Research
 
 ::: {layout-ncol="2"}
 ![](img/Forest_and_IceCream_Lovers.jpeg)
@@ -224,11 +220,10 @@ knitr::include_graphics("img/data.jpeg")
 :::
 :::
 
-# Also, the Stat 100 Teaching Team are so excited to support your learning!
 
 ------------------------------------------------------------------------
 
-## Stat 100 is about developing our **statistical thinking** skills. {.center}
+## DATA 100 is about developing our **statistical thinking** and **coding** skills. {.center}
 
 <br>
 
@@ -250,7 +245,7 @@ Let's discover what **statistical thinking** is through some examples.
 
 ------------------------------------------------------------------------
 
-## Data in Stat 100
+## Data in DATA 100
 
 Will use a wide-range of **real** and **relevant** data examples
 
@@ -266,7 +261,7 @@ Will use a wide-range of **real** and **relevant** data examples
 
 ------------------------------------------------------------------------
 
-## Data in Stat 100
+## Data in DATA 100
 
 ::: columns
 ::: {.column .center width="50%"}
@@ -680,7 +675,7 @@ Example questions:
 
 -   For quantitative variables, what values are possible? Were the data rounded or binned? Are those values actually encoding categories? What are the units of measurement?
 
-# Goal: Start collecting data from your life so that you can visualize it on P-Set 1.
+# Goal: Start collecting data from your life so that you can visualize it on P-Set 01.
 
 ------------------------------------------------------------------------
 
@@ -710,13 +705,13 @@ Example questions:
 
 ### Dear Data Examples
 
-![](img/complaints.png){width="100%" fig-align="center"}
+![](img/complaints.jpg){width="100%" fig-align="center"}
 
 ------------------------------------------------------------------------
 
 ### Dear Data Examples
 
-![](img/time.png){width="100%" fig-align="center"}
+![](img/time.jpg){width="100%" fig-align="center"}
 
 ------------------------------------------------------------------------
 
@@ -746,7 +741,7 @@ Example questions:
 
 ------------------------------------------------------------------------
 
-## Goal: Over the next few days, collect data from your life so that you can visualize it on P-Set 1.
+## Goal: Tomorrow, collect data from your life so that you can visualize it on P-Set 1.
 
 <br>
 
@@ -761,7 +756,7 @@ Example questions:
 -   Collect data on **more** variables than you will likely visualize. It is hard to know beforehand what the interesting relationships will be.
 
 ::: fragment
-#### In Section
+#### In Lab
 
 -   Will get a blank postcard and further guidance on the visualization with P-Set 1.
 :::
@@ -786,10 +781,9 @@ Come back to the recording if need help with the steps.
 
 -   **If able, please bring a laptop or tablet to the next lecture.**
 
--   Make sure to go through the syllabus, which can be found on Canvas.
+-   Make sure to go through the syllabus, which can be found on Moodle.
 
     -   Will discuss assessments and course policies on Monday.
 
--   Section starts this week! Make sure you are enrolled in a specific section.
+-   Lab starts on Friday!
 
--   Office hours start on Wednesday.
