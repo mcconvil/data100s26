@@ -45,10 +45,9 @@ Before we get started...
 Go to [burl.live/stat](https://burl.live/stat) to provide the words or phrases you think of when you hear ["statistical thinking."]{.mauve}
 :::
 
-
 ------------------------------------------------------------------------
 
-::: columns
+::::: columns
 ::: {.column .center width="60%"}
 ![](img/DAW.png){width="90%"}
 :::
@@ -64,7 +63,7 @@ Go to [burl.live/stat](https://burl.live/stat) to provide the words or phrases y
 
 [DATA 100 <br> Week 1 \| Spring 2026]{.custom-subtitle}
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -89,7 +88,6 @@ Go to [burl.live/stat](https://burl.live/stat) to provide the words or phrases y
     -   Will also bring printed versions for those who prefer paper copies.
 
 -   Lab starts this week: Fridays 3 - 3:50pm
-
 
 -   **If able, please bring a laptop or tablet to the next lecture.**
 
@@ -119,9 +117,54 @@ Go to [burl.live/stat](https://burl.live/stat) to provide the words or phrases y
 
 ------------------------------------------------------------------------
 
-### Let's start with my path to Bucknell...
+### My path to Bucknell...
 
-```{r, echo = FALSE, dev.args = list(bg = 'transparent'), fig.asp = .6, out.width = '80%'}
+
+![](img/my_path-1.jpg)
+
+
+-------------------------------------------------------------
+
+### My path to Bucknell...
+
+![](img/my_path-2.jpg)
+
+
+
+------------------------------------------------------------------------
+
+### My path to Bucknell...
+
+![](img/my_path-3.jpg)
+
+------------------------------------------------------------------------
+
+### My path to Bucknell...
+
+![](img/my_path-4.jpg)
+
+------------------------------------------------------------------------
+
+### My path to Bucknell...
+
+![](img/my_path-5.jpg)
+
+------------------------------------------------------------------------
+
+### My path to Bucknell...
+
+![](img/my_path-6.jpg)
+
+------------------------------------------------------------------------
+
+### My path to Bucknell...
+
+
+![](img/my_path-7.jpg)
+
+
+
+```{r, echo = FALSE, dev.args = list(bg = 'transparent'), fig.asp = .6, out.width = '80%', eval = FALSE}
 
 library(tidyverse)
 
@@ -195,7 +238,7 @@ knitr::include_graphics("img/data.jpeg")
 
 ------------------------------------------------------------------------
 
-::: columns
+::::: columns
 ::: {.column .center width="40%"}
 ![](img/seedlings.jpg){width="80%"}
 :::
@@ -218,8 +261,7 @@ knitr::include_graphics("img/data.jpeg")
 
 -   And mistakes are part of the learning process. They don't imply that you are bad at stats.
 :::
-:::
-
+:::::
 
 ------------------------------------------------------------------------
 
@@ -249,7 +291,7 @@ Let's discover what **statistical thinking** is through some examples.
 
 Will use a wide-range of **real** and **relevant** data examples
 
-::: columns
+::::: columns
 ::: {.column .center width="50%"}
 ![](img/bls_ce_graph.png){width="100%"}
 :::
@@ -257,13 +299,13 @@ Will use a wide-range of **real** and **relevant** data examples
 ::: {.column .center width="50%"}
 ![](img/cambridge_trees.png){width="80%"}
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
 ## Data in DATA 100
 
-::: columns
+::::: columns
 ::: {.column .center width="50%"}
 ![](img/nytimes_opp_insights.png){width="100%"}
 :::
@@ -271,7 +313,7 @@ Will use a wide-range of **real** and **relevant** data examples
 ::: {.column .center width="50%"}
 ![](img/kate_petrova_candles.jpg){width="80%"}
 :::
-:::
+:::::
 
 -   I understand that some of these topics have likely had profound impacts on your lives.
 
@@ -486,53 +528,53 @@ ggplot(
 
 ## Statistical Thinking
 
-::: columns
+:::::: columns
 ::: column
 -   Understanding the importance of **context**.
 :::
 
-::: column
+:::: column
 ::: fragment
 {{< fa arrow-right >}} Context explains the Monday jumps in the COVID counts.
 :::
-:::
-:::
+::::
+::::::
 
-::: columns
+:::::: columns
 ::: column
 -   How we **encode** information in a graph should be driven by our research question.
 :::
 
-::: column
+:::: column
 ::: fragment
 {{< fa arrow-right >}} **Design choices** impact the conclusions the viewer draws.
 :::
-:::
-:::
+::::
+::::::
 
-::: columns
+:::::: columns
 ::: column
 -   How the data are **collected** impacts the conclusions we can draw.
 :::
 
-::: column
+:::: column
 ::: fragment
 {{< fa arrow-right >}} Voluntary COVID test results likely don't provide good estimates of COVID prevalence.
 :::
-:::
-:::
+::::
+::::::
 
-::: columns
+:::::: columns
 ::: column
 -   Often we are using a **sample** of data to say something about a larger group. In this case, we should measure how certain our estimates are!
 :::
 
-::: column
+:::: column
 ::: fragment
 {{< fa arrow-right >}} We will learn to **compute** and **interpret** certainty estimates (like those in the wastewater graph) later in the course!
 :::
-:::
-:::
+::::
+::::::
 
 ------------------------------------------------------------------------
 
@@ -786,4 +828,3 @@ Come back to the recording if need help with the steps.
     -   Will discuss assessments and course policies on Monday.
 
 -   Lab starts on Friday!
-
