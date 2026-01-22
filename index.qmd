@@ -2,33 +2,53 @@
 title: "DATA 100: Introduction to Data Science"
 ---
 
-The lecture slides (both in HTML and PDF) will be posted here. 
-<!-- Additionally, [this page](https://mcconvil.github.io/stat100f23/inference_summary.html) contains summary information on various inference procedures. -->
+The lecture slides (both in HTML and PDF) will be posted here. <!-- Additionally, [this page](https://mcconvil.github.io/data100s26/inference_summary.html) contains summary information on various inference procedures. -->
 
 ::: column-screen-inset-right
-| Class Period | HTML Slides                                                                      | PDF Slides                                                                            |
+| Class Period | HTML Slides | PDF Slides |
 |------------------|--------------------------|----------------------------|
-| Week 1, Wed  | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk01wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk01wed.pdf) |
-<!-- | Week 2, Mon  | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk02mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk02mon.pdf) | -->
-<!-- | Week 2, Wed  | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk02wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk02wed.pdf) | -->
-<!-- | Week 3, Mon  | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk03mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk03mon.pdf) | -->
-<!-- | Week 3, Wed  | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk03wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk03wed.pdf) | -->
-<!-- | Week 4, Mon  | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk04mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk04mon.pdf) | -->
-<!-- | Week 4, Wed  | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk04wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk04wed.pdf) | -->
-<!-- | Week 5, Mon  | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk05mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk05mon.pdf) | -->
-<!-- | Week 5, Wed  | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk05wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk05wed.pdf) | -->
-<!-- | Week 7, Mon  | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk07mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk07mon.pdf) | -->
-<!-- | Week 7, Wed  | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk07wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk07wed.pdf) | -->
-<!-- | Week 8, Mon  | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk08mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk08mon.pdf) | -->
-<!-- | Week 8, Wed  | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk08wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk08wed.pdf) | -->
-<!-- | Week 9, Mon  | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk09mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk09mon.pdf) | -->
-<!-- | Week 9, Wed  | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk09wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk09wed.pdf) | -->
-<!-- | Week 10, Mon | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk10mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk10mon.pdf) | -->
-<!-- | Week 10, Wed | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk10wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk10wed.pdf) | -->
-<!-- | Week 11, Mon | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk11mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk11mon.pdf) | -->
-<!-- | Week 11, Wed | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk11wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk11wed.pdf) | -->
-<!-- | Week 12, Mon | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk12mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk12mon.pdf) | -->
-<!-- | Week 13, Mon | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk13mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk13mon.pdf) | -->
-<!-- | Week 13, Wed | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk13wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk13wed.pdf) | -->
-<!-- | Week 14, Mon | [{{< fa display >}}](https://mcconvil.github.io/stat100f23/stat100_wk14mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/stat100f23/pdfs/stat100_wk14mon.pdf) | -->
+| Week 1, Wed | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk01wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk01wed.pdf) |
+| Week 2, Mon  | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk02mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk02mon.pdf) |
+
+<!-- | Week 2, Wed  | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk02wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk02wed.pdf) | -->
+
+<!-- | Week 3, Mon  | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk03mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk03mon.pdf) | -->
+
+<!-- | Week 3, Wed  | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk03wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk03wed.pdf) | -->
+
+<!-- | Week 4, Mon  | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk04mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk04mon.pdf) | -->
+
+<!-- | Week 4, Wed  | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk04wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk04wed.pdf) | -->
+
+<!-- | Week 5, Mon  | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk05mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk05mon.pdf) | -->
+
+<!-- | Week 5, Wed  | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk05wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk05wed.pdf) | -->
+
+<!-- | Week 7, Mon  | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk07mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk07mon.pdf) | -->
+
+<!-- | Week 7, Wed  | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk07wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk07wed.pdf) | -->
+
+<!-- | Week 8, Mon  | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk08mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk08mon.pdf) | -->
+
+<!-- | Week 8, Wed  | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk08wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk08wed.pdf) | -->
+
+<!-- | Week 9, Mon  | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk09mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk09mon.pdf) | -->
+
+<!-- | Week 9, Wed  | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk09wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk09wed.pdf) | -->
+
+<!-- | Week 10, Mon | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk10mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk10mon.pdf) | -->
+
+<!-- | Week 10, Wed | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk10wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk10wed.pdf) | -->
+
+<!-- | Week 11, Mon | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk11mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk11mon.pdf) | -->
+
+<!-- | Week 11, Wed | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk11wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk11wed.pdf) | -->
+
+<!-- | Week 12, Mon | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk12mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk12mon.pdf) | -->
+
+<!-- | Week 13, Mon | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk13mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk13mon.pdf) | -->
+
+<!-- | Week 13, Wed | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk13wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk13wed.pdf) | -->
+
+<!-- | Week 14, Mon | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk14mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk14mon.pdf) | -->
 :::

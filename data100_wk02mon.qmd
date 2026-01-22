@@ -1,0 +1,488 @@
+---
+pagetitle: "Computing in DATA 100"
+format: 
+  revealjs:
+    chalkboard: true
+    incremental: true
+    theme: [default, custom.scss]
+#    multiplex: true
+    height: 900
+    width: 1600
+    slide-number: c
+    auto-stretch: false
+    callout-appearance: simple
+    pdf-max-pages-per-slide: 2
+    menu: 
+      side: right
+      numbers: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, 
+                      fig.retina = 3, fig.align = 'center')
+library(knitr)
+library(tidyverse)
+
+# set width of code output
+# options(width = 65)
+```
+
+::: columns
+::: {.column .center width="60%"}
+![](img/DAW.png){width="70%"}
+:::
+
+::: {.column .center width="40%"}
+<br>
+
+[Computing in DATA 100]{.custom-title}
+
+<br> <br> <br>
+
+[Kelly McConville]{.custom-subtitle}
+
+[DATA 100 <br> Week 2 \| Spring 2026]{.custom-subtitle}
+
+:::
+:::
+
+## Announcements
+
+-   Class in full swing:
+    -   Office hours:
+        - Mine: Tuesdays 2:30 - 4pm, Wednesdays 2-3pm, Taylor 212
+        - Rebecca: Mondays and Wednesdays 4:30 - 6pm, Taylor 210
+        - [General Data Science Office Hours](https://docs.google.com/spreadsheets/d/16LP0-RmLoCnmAIRcaJ1uEsogMEFfPVfXbmhZY5FleVo/edit?gid=0#gid=0)
+    -   The first problem set is due at noon on Thursday in Gradescope.
+
+------------------------------------------------------------------------
+
+## Day 2 Goals
+
+-   Discuss course structure & goals (lecture, lab, office hours, assessments...)
+
+-   Present important course policies (engagement, code of conduct, chatGPT, ...)
+
+-   Get started in `RStudio` and with `Quarto` documents
+
+# Overarching Goal: Learn how to [extract knowledge]{.orange} from data.
+
+------------------------------------------------------------------------
+
+::: columns
+::: {.column .center width="60%"}
+![](img/DAW.png){width="80%"}
+:::
+
+::: {.column width="40%"}
+### Course Learning Objectives
+
+-   Learn how to **analyze** data with **code**.
+
+\
+
+-   Acquire good data **habits**.
+
+\
+
+-   Develop **statistical thinking** and **problem-solving** skills.
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Data Analysis Workflow
+
+::: r-stack
+![](img/flowchart.001.png){.fragment}
+
+![](img/flowchart.002.png){.fragment width="800" height="700"} ![](img/flowchart.003.png){.fragment width="600" height="800"}
+:::
+
+------------------------------------------------------------------------
+
+::: columns
+::: {.column .center width="60%"}
+![](img/DAW.png){width="70%"}
+:::
+
+::: {.column width="40%"}
+### Workflow
+
+-   Not a strict set of guidelines.
+
+-   General structure for **extracting knowledge from data**.
+
+-   Consider **iteration**, **context**, **reproduciblity**, and **ethics** throughout.
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Forms of Assessment
+
+::: columns
+::: {.column .center width="50%"}
+-   **Weekly quizzes:**
+    -   Address important concepts covered.
+    -   Find out what is still confusing.
+    -   Can drop one quiz grade.
+:::
+
+::: {.column .center width="50%"}
+-   **Weekly problem sets:**
+    -   Practice concepts.
+    -   Time during lab will be devoted to starting the next p-set.
+    -   Can drop one p-set grade and get 4 extension days.
+:::
+:::
+
+::: columns
+::: {.column .center width="50%"}
+-   **Exams:**
+    -   Format: In-class Exam & Oral Exam.
+    -   Will have two Mid-terms and Final.
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Forms of Assessment
+
+-   **Participation/Engagement:**
+    -   In lecture and lab.
+    -   By March 6th, must:
+        -   Attend at least one [office hour](https://moodle.bucknell.edu/mod/lti/view.php?id=1813712).
+        -   Post at least two messages on Slack.
+    -   By the end of the semester, must attend at least one data science event and reflect on the experience in [this form](https://moodle.bucknell.edu/mod/lti/view.php?id=1815465)
+
+
+
+------------------------------------------------------------------------
+
+::: columns
+::: {.column .center width="30%"}
+![](img/slack.001.jpeg){width="70%" fig-align="center"}
+:::
+
+::: {.column width="70%"}
+### What Slack posts count?
+
+-   Asking a question about course content
+
+-   Answering someone else's question
+
+-   Posting a useful resource and why you found it helpful
+
+-   Creating an example that illustrates a recent concept
+
+-   Sharing an article and talking about the stats discussed in the article
+
+-   Answering our start-of-term ice breaker!
+
+-   If you have never used Slack before, don't worry. We are here to help!
+:::
+:::
+
+------------------------------------------------------------------------
+
+## This Week's Assessments
+
+-   Take the weekly quiz in lab.
+-   Turn in Problem Set 01 by noon on Thursday.
+-   Will receive Problem Set 02 in lab.
+
+
+# And, now let's talk about ChatGPT...
+
+<br> <br> <br> <br>
+
+::: aside
+I will refer to ChatGPT but I generally mean the various generative AI tools.
+:::
+
+------------------------------------------------------------------------
+
+## Professor McConville in Spring 2023
+
+![BBC Science Focus](img/science_focus.jpg){width="80%"}
+
+------------------------------------------------------------------------
+
+## Professor McConville after Spring 2023
+
+::: columns
+::: {.column .center width="50%"}
+![Ricardo IV Tamayo](img/ricardo-iv-tamayo-v7eSywdZMRg-unsplash.jpg){width="70%" fig-align="center"}
+:::
+
+::: {.column width="\"60%"}
+### Generative AI Engagements
+
+-   Went to looooots of talks on generative AI
+
+-   Talked to ChatGPT, Gemini, and others
+
+-   Attended a workshop on data analysis with AI
+
+:::
+:::
+
+------------------------------------------------------------------------
+
+##  {#chatgpt data-menu-title="ChatGPT"}
+
+::: columns
+::: {.column width="50%"}
+### ChatGPT Strengths
+
+-   Impressive but dangerous **automated** data analysis.
+    -   Hard to determine if its conclusions are based on the data at hand or the data the large language model was built on.
+:::
+
+::: {.column width="50%"}
+### DATA 100 Goals
+
+-   Learn that data analysis is a **humanistic** endeavor where context drives the data analysis process.
+    -   Still need to be careful about biases and data quality.
+:::
+:::
+
+::: columns
+::: {.column width="50%"}
+-   A **personalized** tutor (especially for coding) that tells you the answers.
+:::
+
+::: {.column width="50%"}
+-   For you to **learn** to code and to **think** statistically.
+    -   The DATA 100 Teaching Team will help support that learning.
+:::
+:::
+
+::: columns
+::: {.column width="50%"}
+-   Instantly generating written blurbs.
+:::
+
+::: {.column width="50%"}
+-   For you to learn how to communicate about your data work and data ethics.
+:::
+:::
+
+------------------------------------------------------------------------
+
+## My View on the (Current) Role of ChatGPT in Data Work
+
+-   To generate code to realize **fully conceived** ideas that aren't novel or advanced.
+
+-   **Seasoned data scientist** can/should:
+
+    -   Verify the correctness of the code.
+    -   Identify any assumptions or defaults ChatGPT is employing.
+    -   Run the code in `R` and draw conclusions based on the data to reduce risk of perpetuating biases that exist in ChatGPT's training data.
+
+-   So, ChatGPT might be useful to you **near the end of** DATA 100 but will be detrimental to your learning **during most of** DATA 100.
+
+------------------------------------------------------------------------
+
+## AI Policy for DATA 100
+
+We are going to take a two-pronged approach to AI in the course:
+
+* (No AI) For the first 13 weeks of the course, you are not to use AI tools.  Therefore, we expect that all work students submit during this period will be their own. This includes code, written work, and oral assessments. During this period, we specifically forbid the use of ChatGPT or any other generative artificial intelligence (AI) tools at all stages of the work process, including preliminary ones, unless the assignment specifically states that it is allowed.
+
+* (AI) Near the end of the course, we will address the question of how AI can help in data work. At that point in the semester, you are free to experiment with various AI tools on assignments.  
+
+In lecture and on individual assignments, we will make it clear which approach to AI students can take.  If it is unclear, make sure to ask.  
+
+
+------------------------------------------------------------------------
+
+## Engagement
+
+::: columns
+::: {.column width="50%"}
+<br> <br>
+
+![](img/jessica-knowlden--AvRbJOVUKA-unsplash.jpg){width="90%" fig-align="center"}
+
+-   Being **actively present** is key.
+:::
+
+::: {.column width="50%"}
+-   During lecture and lab, remove distractions.
+    -   When we are on our computers, close email, social media, news, etc.
+    -   If you will be using a computer/tablet for taking notes, please sit in the second row **starting next lecture** so as not to distract classmates.
+    -   Hide your phone.
+-   I have high expectations but know that all of you (regardless of your stats or computing background) have the ability to meet them.
+:::
+:::
+
+
+------------------------------------------------------------------------
+
+## Code of Conduct
+
+> We expect all members of DATA 100 to make participation a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.
+
+> We expect everyone to act and interact in ways that contribute to an open, welcoming diverse, inclusive, and healthy community of learners. You can contribute to a positive learning environment by demonstrating empathy and kindness, being respectful of differing viewpoints and experiences, and giving and gracefully accepting constructive feedback.
+
+This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org/version/2/0/code_of_conduct.html), version 2.0.
+
+------------------------------------------------------------------------
+
+## Ways to Get Support
+
+-   **Attend, attend, attend** when you don't feel ill
+
+-   **Participate** in the DATA 100 Slack Workspace
+
+-   **Come** to Office Hours
+
+-   **Create** study groups with your classmates
+    -   Don't know anyone in the course?
+        -   Use Slack or lab to each to know other students in the course!
+
+# Computation in DATA 100
+
+------------------------------------------------------------------------
+
+## ![](img/packages.jpeg){width="100%"}
+
+------------------------------------------------------------------------
+
+### Getting Help with `R`
+
+![](img/rhelp001.jpg)
+
+::: columns
+::: {.column width="50%"}
+-   Novices asking the internet for `R` help = `r emo::ji("cold_sweat")`
+
+-   **Get help from the DATA 100 teaching staff or classmates!**
+
+    -   Will start p-sets in lab each week.
+    -   Use the Slack `#q-and-a` channel.
+:::
+
+::: {.column width="50%"}
+-   Get help **early** before `r emo::ji("rage")` sets in!
+    -   Be prepared for missing commas and quotes, capitalization issues, etc...
+-   Later in the semester, will learn tricks for effectively getting `R` help online.
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Language: `R`-This, `R`-That, `Q`-What? {.smaller}
+
+::: columns
+::: {.column .center width="33%"}
+<br>
+
+![](img/Rlogo.png){width="90%"} <br>
+
+<br>
+
+<br>
+
+`R` is the name of the programming language.
+:::
+
+::: {.column .center width="33%"}
+![](img/RStudio.png){width="85%"}
+
+<br>
+
+`RStudio` is the pretty interface and is hosted on a Posit Cloud Server.
+
+<br>
+:::
+
+::: {.column .center width="33%"}
+![](img/quarto.png){width="80%"}
+
+<br>
+
+`Quarto` is the type of file where we will record all of our work (code, output, narrative).
+
+<br>
+:::
+:::
+
+# Let's Get Started with `R`! Hop into our Posit Cloud site now.
+
+------------------------------------------------------------------------
+
+## Main Components of RStudio Lay-Out
+
+![](img/layout.png){width="\"95%"}
+
+------------------------------------------------------------------------
+
+### Main Components of RStudio Lay-Out
+
+::: columns
+::: {.column width="50%"}
+::: fragment
+**Console**
+:::
+
+-   Sideways caret called **prompt**.
+
+-   Where you run code.
+
+-   Let's try it:
+
+::: fragment
+```{r}
+6 * 2/ 3
+```
+:::
+:::
+
+::: {.column width="50%"}
+::: fragment
+**Environment**
+
+-   Lists items stored in your session.
+
+-   Will add some items soon!
+:::
+:::
+:::
+
+::: fragment
+**Files et. al.**
+
+-   **Files**: Accesses files in that project.
+
+-   **Plots**: Contains graphs we create.
+
+-   **Packages**: Installs and loads packages.
+
+-   **Help**: Displays help files.
+:::
+
+# What questions do we have so far?
+
+# Let's get started on the introductory Quarto document.
+
+------------------------------------------------------------------------
+
+## Reminders
+
+-   Class in full swing:
+    -   Office hours:
+        - Mine: Tuesdays 2:30 - 4pm, Wednesdays 2-3pm, Taylor 212
+        - Rebecca: Mondays and Wednesdays 4:30 - 6pm, Taylor 210
+        - [General Data Science Office Hours](https://docs.google.com/spreadsheets/d/16LP0-RmLoCnmAIRcaJ1uEsogMEFfPVfXbmhZY5FleVo/edit?gid=0#gid=0)
+    -   The first problem set is due at noon on Thursday in Gradescope.

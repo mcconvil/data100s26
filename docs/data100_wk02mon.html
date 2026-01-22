@@ -10,7 +10,7 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.57">
 
-  <title>DATA 100 – Statistical Thinking</title>
+  <title>DATA 100 – Computing in DATA 100</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -28,6 +28,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -329,13 +394,451 @@
 
 <section class="slide level2">
 
+<div class="columns">
+<div class="column center" style="width:60%;">
+<p><img data-src="img/DAW.png" style="width:70.0%"></p>
+</div><div class="column center" style="width:40%;">
+<p><br></p>
+<p><span class="custom-title">Computing in DATA 100</span></p>
+<p><br> <br> <br></p>
+<p><span class="custom-subtitle">Kelly McConville</span></p>
+<p><span class="custom-subtitle">DATA 100 <br> Week 2 | Spring 2026</span></p>
+</div></div>
+</section>
+<section id="announcements" class="slide level2">
+<h2>Announcements</h2>
+<ul>
+<li class="fragment">Class in full swing:
+<ul>
+<li class="fragment">Office hours:
+<ul>
+<li class="fragment">Mine: Tuesdays 2:30 - 4pm, Wednesdays 2-3pm, Taylor 212</li>
+<li class="fragment">Rebecca: Mondays and Wednesdays 4:30 - 6pm, Taylor 210</li>
+<li class="fragment"><a href="https://docs.google.com/spreadsheets/d/16LP0-RmLoCnmAIRcaJ1uEsogMEFfPVfXbmhZY5FleVo/edit?gid=0#gid=0">General Data Science Office Hours</a></li>
+</ul></li>
+<li class="fragment">The first problem set is due at noon on Thursday in Gradescope.</li>
+</ul></li>
+</ul>
+</section>
+<section id="day-2-goals" class="slide level2">
+<h2>Day 2 Goals</h2>
+<ul>
+<li class="fragment"><p>Discuss course structure &amp; goals (lecture, lab, office hours, assessments…)</p></li>
+<li class="fragment"><p>Present important course policies (engagement, code of conduct, chatGPT, …)</p></li>
+<li class="fragment"><p>Get started in <code>RStudio</code> and with <code>Quarto</code> documents</p></li>
+</ul>
+</section>
+<section>
+<section id="overarching-goal-learn-how-to-extract-knowledge-from-data." class="title-slide slide level1 center">
+<h1>Overarching Goal: Learn how to <span class="orange">extract knowledge</span> from data.</h1>
+
+</section>
+<section class="slide level2">
+
+<div class="columns">
+<div class="column center" style="width:60%;">
+<p><img data-src="img/DAW.png" style="width:80.0%"></p>
+</div><div class="column" style="width:40%;">
+<h3 id="course-learning-objectives">Course Learning Objectives</h3>
+<ul>
+<li class="fragment">Learn how to <strong>analyze</strong> data with <strong>code</strong>.</li>
+</ul>
+<p><br>
+</p>
+<ul>
+<li class="fragment">Acquire good data <strong>habits</strong>.</li>
+</ul>
+<p><br>
+</p>
+<ul>
+<li class="fragment">Develop <strong>statistical thinking</strong> and <strong>problem-solving</strong> skills.</li>
+</ul>
+</div></div>
+</section>
+<section id="data-analysis-workflow" class="slide level2">
+<h2>Data Analysis Workflow</h2>
+<div class="r-stack">
+<p><img data-src="img/flowchart.001.png" class="fragment"></p>
+<p><img data-src="img/flowchart.002.png" class="fragment" width="800" height="700"> <img data-src="img/flowchart.003.png" class="fragment" width="600" height="800"></p>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="columns">
+<div class="column center" style="width:60%;">
+<p><img data-src="img/DAW.png" style="width:70.0%"></p>
+</div><div class="column" style="width:40%;">
+<h3 id="workflow">Workflow</h3>
+<ul>
+<li class="fragment"><p>Not a strict set of guidelines.</p></li>
+<li class="fragment"><p>General structure for <strong>extracting knowledge from data</strong>.</p></li>
+<li class="fragment"><p>Consider <strong>iteration</strong>, <strong>context</strong>, <strong>reproduciblity</strong>, and <strong>ethics</strong> throughout.</p></li>
+</ul>
+</div></div>
+</section>
+<section id="forms-of-assessment" class="slide level2">
+<h2>Forms of Assessment</h2>
+<div class="columns">
+<div class="column center" style="width:50%;">
+<ul>
+<li class="fragment"><strong>Weekly quizzes:</strong>
+<ul>
+<li class="fragment">Address important concepts covered.</li>
+<li class="fragment">Find out what is still confusing.</li>
+<li class="fragment">Can drop one quiz grade.</li>
+</ul></li>
+</ul>
+</div><div class="column center" style="width:50%;">
+<ul>
+<li class="fragment"><strong>Weekly problem sets:</strong>
+<ul>
+<li class="fragment">Practice concepts.</li>
+<li class="fragment">Time during lab will be devoted to starting the next p-set.</li>
+<li class="fragment">Can drop one p-set grade and get 4 extension days.</li>
+</ul></li>
+</ul>
+</div></div>
+<div class="columns">
+<div class="column center" style="width:50%;">
+<ul>
+<li class="fragment"><strong>Exams:</strong>
+<ul>
+<li class="fragment">Format: In-class Exam &amp; Oral Exam.</li>
+<li class="fragment">Will have two Mid-terms and Final.</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section id="forms-of-assessment-1" class="slide level2">
+<h2>Forms of Assessment</h2>
+<ul>
+<li class="fragment"><strong>Participation/Engagement:</strong>
+<ul>
+<li class="fragment">In lecture and lab.</li>
+<li class="fragment">By March 6th, must:
+<ul>
+<li class="fragment">Attend at least one <a href="https://moodle.bucknell.edu/mod/lti/view.php?id=1813712">office hour</a>.</li>
+<li class="fragment">Post at least two messages on Slack.</li>
+</ul></li>
+<li class="fragment">By the end of the semester, must attend at least one data science event and reflect on the experience in <a href="https://moodle.bucknell.edu/mod/lti/view.php?id=1815465">this form</a></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<div class="columns">
+<div class="column center" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/slack.001.jpeg" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
+</figure>
+</div>
+</div><div class="column" style="width:70%;">
+<h3 id="what-slack-posts-count">What Slack posts count?</h3>
+<ul>
+<li class="fragment"><p>Asking a question about course content</p></li>
+<li class="fragment"><p>Answering someone else’s question</p></li>
+<li class="fragment"><p>Posting a useful resource and why you found it helpful</p></li>
+<li class="fragment"><p>Creating an example that illustrates a recent concept</p></li>
+<li class="fragment"><p>Sharing an article and talking about the stats discussed in the article</p></li>
+<li class="fragment"><p>Answering our start-of-term ice breaker!</p></li>
+<li class="fragment"><p>If you have never used Slack before, don’t worry. We are here to help!</p></li>
+</ul>
+</div></div>
+</section>
+<section id="this-weeks-assessments" class="slide level2">
+<h2>This Week’s Assessments</h2>
+<ul>
+<li class="fragment">Take the weekly quiz in lab.</li>
+<li class="fragment">Turn in Problem Set 01 by noon on Thursday.</li>
+<li class="fragment">Will receive Problem Set 02 in lab.</li>
+</ul>
+</section></section>
+<section>
+<section id="and-now-lets-talk-about-chatgpt" class="title-slide slide level1 center">
+<h1>And, now let’s talk about ChatGPT…</h1>
+<p><br> <br> <br> <br></p>
+
+<aside><div>
+<p>I will refer to ChatGPT but I generally mean the various generative AI tools.</p>
+</div></aside></section>
+<section id="professor-mcconville-in-spring-2023" class="slide level2">
+<h2>Professor McConville in Spring 2023</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/science_focus.jpg" style="width:80.0%"></p>
+<figcaption>BBC Science Focus</figcaption>
+</figure>
+</div>
+</section>
+<section id="professor-mcconville-after-spring-2023" class="slide level2">
+<h2>Professor McConville after Spring 2023</h2>
+<div class="columns">
+<div class="column center" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/ricardo-iv-tamayo-v7eSywdZMRg-unsplash.jpg" style="width:70.0%"></p>
+<figcaption>Ricardo IV Tamayo</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:&quot;60%;">
+<h3 id="generative-ai-engagements">Generative AI Engagements</h3>
+<ul>
+<li class="fragment"><p>Went to looooots of talks on generative AI</p></li>
+<li class="fragment"><p>Talked to ChatGPT, Gemini, and others</p></li>
+<li class="fragment"><p>Attended a workshop on data analysis with AI</p></li>
+</ul>
+</div></div>
+</section>
+<section id="chatgpt" class="slide level2" data-menu-title="ChatGPT">
+<h2></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="chatgpt-strengths">ChatGPT Strengths</h3>
+<ul>
+<li class="fragment">Impressive but dangerous <strong>automated</strong> data analysis.
+<ul>
+<li class="fragment">Hard to determine if its conclusions are based on the data at hand or the data the large language model was built on.</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="data-100-goals">DATA 100 Goals</h3>
+<ul>
+<li class="fragment">Learn that data analysis is a <strong>humanistic</strong> endeavor where context drives the data analysis process.
+<ul>
+<li class="fragment">Still need to be careful about biases and data quality.</li>
+</ul></li>
+</ul>
+</div></div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li class="fragment">A <strong>personalized</strong> tutor (especially for coding) that tells you the answers.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li class="fragment">For you to <strong>learn</strong> to code and to <strong>think</strong> statistically.
+<ul>
+<li class="fragment">The DATA 100 Teaching Team will help support that learning.</li>
+</ul></li>
+</ul>
+</div></div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li class="fragment">Instantly generating written blurbs.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li class="fragment">For you to learn how to communicate about your data work and data ethics.</li>
+</ul>
+</div></div>
+</section>
+<section id="my-view-on-the-current-role-of-chatgpt-in-data-work" class="slide level2">
+<h2>My View on the (Current) Role of ChatGPT in Data Work</h2>
+<ul>
+<li class="fragment"><p>To generate code to realize <strong>fully conceived</strong> ideas that aren’t novel or advanced.</p></li>
+<li class="fragment"><p><strong>Seasoned data scientist</strong> can/should:</p>
+<ul>
+<li class="fragment">Verify the correctness of the code.</li>
+<li class="fragment">Identify any assumptions or defaults ChatGPT is employing.</li>
+<li class="fragment">Run the code in <code>R</code> and draw conclusions based on the data to reduce risk of perpetuating biases that exist in ChatGPT’s training data.</li>
+</ul></li>
+<li class="fragment"><p>So, ChatGPT might be useful to you <strong>near the end of</strong> DATA 100 but will be detrimental to your learning <strong>during most of</strong> DATA 100.</p></li>
+</ul>
+</section>
+<section id="ai-policy-for-data-100" class="slide level2">
+<h2>AI Policy for DATA 100</h2>
+<p>We are going to take a two-pronged approach to AI in the course:</p>
+<ul>
+<li class="fragment"><p>(No AI) For the first 13 weeks of the course, you are not to use AI tools. Therefore, we expect that all work students submit during this period will be their own. This includes code, written work, and oral assessments. During this period, we specifically forbid the use of ChatGPT or any other generative artificial intelligence (AI) tools at all stages of the work process, including preliminary ones, unless the assignment specifically states that it is allowed.</p></li>
+<li class="fragment"><p>(AI) Near the end of the course, we will address the question of how AI can help in data work. At that point in the semester, you are free to experiment with various AI tools on assignments.</p></li>
+</ul>
+<p>In lecture and on individual assignments, we will make it clear which approach to AI students can take. If it is unclear, make sure to ask.</p>
+</section>
+<section id="engagement" class="slide level2">
+<h2>Engagement</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><br> <br></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/jessica-knowlden--AvRbJOVUKA-unsplash.jpg" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+</figure>
+</div>
+<ul>
+<li class="fragment">Being <strong>actively present</strong> is key.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li class="fragment">During lecture and lab, remove distractions.
+<ul>
+<li class="fragment">When we are on our computers, close email, social media, news, etc.</li>
+<li class="fragment">If you will be using a computer/tablet for taking notes, please sit in the second row <strong>starting next lecture</strong> so as not to distract classmates.</li>
+<li class="fragment">Hide your phone.</li>
+</ul></li>
+<li class="fragment">I have high expectations but know that all of you (regardless of your stats or computing background) have the ability to meet them.</li>
+</ul>
+</div></div>
+</section>
+<section id="code-of-conduct" class="slide level2">
+<h2>Code of Conduct</h2>
+<blockquote>
+<p>We expect all members of DATA 100 to make participation a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.</p>
+</blockquote>
+<blockquote>
+<p>We expect everyone to act and interact in ways that contribute to an open, welcoming diverse, inclusive, and healthy community of learners. You can contribute to a positive learning environment by demonstrating empathy and kindness, being respectful of differing viewpoints and experiences, and giving and gracefully accepting constructive feedback.</p>
+</blockquote>
+<p>This Code of Conduct is adapted from the <a href="https://www.contributor-covenant.org/version/2/0/code_of_conduct.html">Contributor Covenant</a>, version 2.0.</p>
+</section>
+<section id="ways-to-get-support" class="slide level2">
+<h2>Ways to Get Support</h2>
+<ul>
+<li class="fragment"><p><strong>Attend, attend, attend</strong> when you don’t feel ill</p></li>
+<li class="fragment"><p><strong>Participate</strong> in the DATA 100 Slack Workspace</p></li>
+<li class="fragment"><p><strong>Come</strong> to Office Hours</p></li>
+<li class="fragment"><p><strong>Create</strong> study groups with your classmates</p>
+<ul>
+<li class="fragment">Don’t know anyone in the course?
+<ul>
+<li class="fragment">Use Slack or lab to each to know other students in the course!</li>
+</ul></li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="computation-in-data-100" class="title-slide slide level1 center">
+<h1>Computation in DATA 100</h1>
+
+</section>
+<section id="section" class="slide level2">
+<h2><img data-src="img/packages.jpeg" style="width:100.0%"></h2>
+</section>
+<section class="slide level2">
+
+<h3 id="getting-help-with-r">Getting Help with <code>R</code></h3>
+<p><img data-src="img/rhelp001.jpg"></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li class="fragment"><p>Novices asking the internet for <code>R</code> help = 😰</p></li>
+<li class="fragment"><p><strong>Get help from the DATA 100 teaching staff or classmates!</strong></p>
+<ul>
+<li class="fragment">Will start p-sets in lab each week.</li>
+<li class="fragment">Use the Slack <code>#q-and-a</code> channel.</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li class="fragment">Get help <strong>early</strong> before 😡 sets in!
+<ul>
+<li class="fragment">Be prepared for missing commas and quotes, capitalization issues, etc…</li>
+</ul></li>
+<li class="fragment">Later in the semester, will learn tricks for effectively getting <code>R</code> help online.</li>
+</ul>
+</div></div>
+</section>
+<section id="language-r-this-r-that-q-what" class="slide level2 smaller">
+<h2>Language: <code>R</code>-This, <code>R</code>-That, <code>Q</code>-What?</h2>
+<div class="columns">
+<div class="column center" style="width:33%;">
+<p><br></p>
+<p><img data-src="img/Rlogo.png" style="width:90.0%"> <br></p>
+<p><br></p>
+<p><br></p>
+<p><code>R</code> is the name of the programming language.</p>
+</div><div class="column center" style="width:33%;">
+<p><img data-src="img/RStudio.png" style="width:85.0%"></p>
+<p><br></p>
+<p><code>RStudio</code> is the pretty interface and is hosted on a Posit Cloud Server.</p>
+<p><br></p>
+</div><div class="column center" style="width:33%;">
+<p><img data-src="img/quarto.png" style="width:80.0%"></p>
+<p><br></p>
+<p><code>Quarto</code> is the type of file where we will record all of our work (code, output, narrative).</p>
+<p><br></p>
+</div></div>
+</section></section>
+<section>
+<section id="lets-get-started-with-r-hop-into-our-posit-cloud-site-now." class="title-slide slide level1 center">
+<h1>Let’s Get Started with <code>R</code>! Hop into our Posit Cloud site now.</h1>
+
+</section>
+<section id="main-components-of-rstudio-lay-out" class="slide level2">
+<h2>Main Components of RStudio Lay-Out</h2>
+<p><img data-src="img/layout.png"></p>
+</section>
+<section class="slide level2">
+
+<h3 id="main-components-of-rstudio-lay-out-1">Main Components of RStudio Lay-Out</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment">
+<p><strong>Console</strong></p>
+</div>
+<ul>
+<li class="fragment"><p>Sideways caret called <strong>prompt</strong>.</p></li>
+<li class="fragment"><p>Where you run code.</p></li>
+<li class="fragment"><p>Let’s try it:</p></li>
+</ul>
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="dv">6</span> <span class="sc">*</span> <span class="dv">2</span><span class="sc">/</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<p><strong>Environment</strong></p>
+<ul>
+<li class="fragment"><p>Lists items stored in your session.</p></li>
+<li class="fragment"><p>Will add some items soon!</p></li>
+</ul>
+</div>
+</div></div>
+<div class="fragment">
+<p><strong>Files et. al.</strong></p>
+<ul>
+<li class="fragment"><p><strong>Files</strong>: Accesses files in that project.</p></li>
+<li class="fragment"><p><strong>Plots</strong>: Contains graphs we create.</p></li>
+<li class="fragment"><p><strong>Packages</strong>: Installs and loads packages.</p></li>
+<li class="fragment"><p><strong>Help</strong>: Displays help files.</p></li>
+</ul>
+</div>
+</section></section>
+<section id="what-questions-do-we-have-so-far" class="title-slide slide level1 center">
+<h1>What questions do we have so far?</h1>
+
+</section>
+
+<section>
+<section id="lets-get-started-on-the-introductory-quarto-document." class="title-slide slide level1 center">
+<h1>Let’s get started on the introductory Quarto document.</h1>
+
+</section>
+<section id="reminders" class="slide level2">
+<h2>Reminders</h2>
+<ul>
+<li class="fragment">Class in full swing:
+<ul>
+<li class="fragment">Office hours:
+<ul>
+<li class="fragment">Mine: Tuesdays 2:30 - 4pm, Wednesdays 2-3pm, Taylor 212</li>
+<li class="fragment">Rebecca: Mondays and Wednesdays 4:30 - 6pm, Taylor 210</li>
+<li class="fragment"><a href="https://docs.google.com/spreadsheets/d/16LP0-RmLoCnmAIRcaJ1uEsogMEFfPVfXbmhZY5FleVo/edit?gid=0#gid=0">General Data Science Office Hours</a></li>
+</ul></li>
+<li class="fragment">The first problem set is due at noon on Thursday in Gradescope.</li>
+</ul></li>
+</ul>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 

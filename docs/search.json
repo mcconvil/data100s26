@@ -4,188 +4,125 @@
     "href": "index.html",
     "title": "DATA 100: Introduction to Data Science",
     "section": "",
-    "text": "The lecture slides (both in HTML and PDF) will be posted here. \n\n\n\n\nClass Period\nHTML Slides\nPDF Slides\n\n\n\n\nWeek 1, Wed"
+    "text": "The lecture slides (both in HTML and PDF) will be posted here. \n\n\n\n\nClass Period\nHTML Slides\nPDF Slides\n\n\n\n\nWeek 1, Wed\n\n\n\n\nWeek 2, Mon"
   },
   {
-    "objectID": "data100_wk01wed.html#keyword",
-    "href": "data100_wk01wed.html#keyword",
-    "title": "DATA 100",
-    "section": "",
-    "text": "Before we get started…\n\n\nGo to burl.live/stat to provide the words or phrases you think of when you hear “statistical thinking.”"
-  },
-  {
-    "objectID": "data100_wk01wed.html#getting-started-in-data-100",
-    "href": "data100_wk01wed.html#getting-started-in-data-100",
-    "title": "DATA 100",
-    "section": "Getting Started in DATA 100",
-    "text": "Getting Started in DATA 100\nStep 1: Check out the links in the “Useful Information” section on Moodle"
-  },
-  {
-    "objectID": "data100_wk01wed.html#data-100-tech-materials",
-    "href": "data100_wk01wed.html#data-100-tech-materials",
-    "title": "DATA 100",
-    "section": "DATA 100 Tech & Materials",
-    "text": "DATA 100 Tech & Materials"
-  },
-  {
-    "objectID": "data100_wk01wed.html#announcements",
-    "href": "data100_wk01wed.html#announcements",
+    "objectID": "data100_wk02mon.html#announcements",
+    "href": "data100_wk02mon.html#announcements",
     "title": "DATA 100",
     "section": "Announcements",
-    "text": "Announcements\n\nLecture slide decks will be posted and linked to a Moodle Module the day before lecture.\n\nWill also bring printed versions for those who prefer paper copies.\n\nLab starts this week: Fridays 3 - 3:50pm\nIf able, please bring a laptop or tablet to the next lecture."
+    "text": "Announcements\n\nClass in full swing:\n\nOffice hours:\n\nMine: Tuesdays 2:30 - 4pm, Wednesdays 2-3pm, Taylor 212\nRebecca: Mondays and Wednesdays 4:30 - 6pm, Taylor 210\nGeneral Data Science Office Hours\n\nThe first problem set is due at noon on Thursday in Gradescope."
   },
   {
-    "objectID": "data100_wk01wed.html#day-1-goals",
-    "href": "data100_wk01wed.html#day-1-goals",
+    "objectID": "data100_wk02mon.html#day-2-goals",
+    "href": "data100_wk02mon.html#day-2-goals",
     "title": "DATA 100",
-    "section": "Day 1 Goals",
-    "text": "Day 1 Goals\n\nStart engaging in statistical thinking\nIntroduce data\nConsider hand-drawn visualizations as a way to tell stories with data\nHop into the RStudio Server using Posit Cloud"
+    "section": "Day 2 Goals",
+    "text": "Day 2 Goals\n\nDiscuss course structure & goals (lecture, lab, office hours, assessments…)\nPresent important course policies (engagement, code of conduct, chatGPT, …)\nGet started in RStudio and with Quarto documents"
   },
   {
-    "objectID": "data100_wk01wed.html#looking-ahead-to-day-2",
-    "href": "data100_wk01wed.html#looking-ahead-to-day-2",
+    "objectID": "data100_wk02mon.html#data-analysis-workflow",
+    "href": "data100_wk02mon.html#data-analysis-workflow",
     "title": "DATA 100",
-    "section": "Looking Ahead to Day 2…",
-    "text": "Looking Ahead to Day 2…\n\nDiscuss course structure (lecture, section, wrap-ups, office hours, assessments…)\nPresent important course policies (engagement, code of conduct, chatGPT, …)\nGet started in RStudio and with Quarto documents"
+    "section": "Data Analysis Workflow",
+    "text": "Data Analysis Workflow"
   },
   {
-    "objectID": "data100_wk01wed.html#research-interests",
-    "href": "data100_wk01wed.html#research-interests",
+    "objectID": "data100_wk02mon.html#forms-of-assessment",
+    "href": "data100_wk02mon.html#forms-of-assessment",
     "title": "DATA 100",
-    "section": "Research Interests",
-    "text": "Research Interests\nSurvey statistics and collaborate with"
+    "section": "Forms of Assessment",
+    "text": "Forms of Assessment\n\n\n\nWeekly quizzes:\n\nAddress important concepts covered.\nFind out what is still confusing.\nCan drop one quiz grade.\n\n\n\n\nWeekly problem sets:\n\nPractice concepts.\nTime during lab will be devoted to starting the next p-set.\nCan drop one p-set grade and get 4 extension days.\n\n\n\n\n\n\nExams:\n\nFormat: In-class Exam & Oral Exam.\nWill have two Mid-terms and Final."
   },
   {
-    "objectID": "data100_wk01wed.html#research-interests-1",
-    "href": "data100_wk01wed.html#research-interests-1",
+    "objectID": "data100_wk02mon.html#forms-of-assessment-1",
+    "href": "data100_wk02mon.html#forms-of-assessment-1",
     "title": "DATA 100",
-    "section": "Research Interests",
-    "text": "Research Interests\nWhere survey statistics meets data science"
+    "section": "Forms of Assessment",
+    "text": "Forms of Assessment\n\nParticipation/Engagement:\n\nIn lecture and lab.\nBy March 6th, must:\n\nAttend at least one office hour.\nPost at least two messages on Slack.\n\nBy the end of the semester, must attend at least one data science event and reflect on the experience in this form"
   },
   {
-    "objectID": "data100_wk01wed.html#data-100-is-about-developing-our-statistical-thinking-and-coding-skills.",
-    "href": "data100_wk01wed.html#data-100-is-about-developing-our-statistical-thinking-and-coding-skills.",
+    "objectID": "data100_wk02mon.html#this-weeks-assessments",
+    "href": "data100_wk02mon.html#this-weeks-assessments",
     "title": "DATA 100",
-    "section": "DATA 100 is about developing our statistical thinking and coding skills.",
-    "text": "DATA 100 is about developing our statistical thinking and coding skills.\n\n\nWhat is statistical thinking?\n\n\n\nIt is not the same as mathematical thinking.\n\n\n\nLet’s discover what statistical thinking is through some examples."
+    "section": "This Week’s Assessments",
+    "text": "This Week’s Assessments\n\nTake the weekly quiz in lab.\nTurn in Problem Set 01 by noon on Thursday.\nWill receive Problem Set 02 in lab."
   },
   {
-    "objectID": "data100_wk01wed.html#data-in-data-100",
-    "href": "data100_wk01wed.html#data-in-data-100",
+    "objectID": "data100_wk02mon.html#professor-mcconville-in-spring-2023",
+    "href": "data100_wk02mon.html#professor-mcconville-in-spring-2023",
     "title": "DATA 100",
-    "section": "Data in DATA 100",
-    "text": "Data in DATA 100\nWill use a wide-range of real and relevant data examples"
+    "section": "Professor McConville in Spring 2023",
+    "text": "Professor McConville in Spring 2023\n\n\n\nBBC Science Focus"
   },
   {
-    "objectID": "data100_wk01wed.html#data-in-data-100-1",
-    "href": "data100_wk01wed.html#data-in-data-100-1",
+    "objectID": "data100_wk02mon.html#professor-mcconville-after-spring-2023",
+    "href": "data100_wk02mon.html#professor-mcconville-after-spring-2023",
     "title": "DATA 100",
-    "section": "Data in DATA 100",
-    "text": "Data in DATA 100\n\n\n\n\n\n\n\nI understand that some of these topics have likely had profound impacts on your lives.\nWe will focus class time on the key course objectives but will use these current topics to empower ourselves and to see how we can productively participate with data."
+    "section": "Professor McConville after Spring 2023",
+    "text": "Professor McConville after Spring 2023\n\n\n\n\n\nRicardo IV Tamayo\n\n\n\nGenerative AI Engagements\n\nWent to looooots of talks on generative AI\nTalked to ChatGPT, Gemini, and others\nAttended a workshop on data analysis with AI"
   },
   {
-    "objectID": "data100_wk01wed.html#example-visualizing-covid-prevalence-1",
-    "href": "data100_wk01wed.html#example-visualizing-covid-prevalence-1",
-    "title": "DATA 100",
-    "section": "Example: Visualizing COVID Prevalence",
-    "text": "Example: Visualizing COVID Prevalence\n\nIn May of 2020, the Georgia Department of Public Health posted the following graph:\n\n\n\n\n\n\n\n\n\nAt a quick first glance, what story does the Georgia Department of Public Health graph appear to be telling?\nWhat is misleading about the Georgia Department of Public Health graph? How could we fix this issue?"
-  },
-  {
-    "objectID": "data100_wk01wed.html#example-visualizing-covid-prevalence-2",
-    "href": "data100_wk01wed.html#example-visualizing-covid-prevalence-2",
-    "title": "DATA 100",
-    "section": "Example: Visualizing COVID Prevalence",
-    "text": "Example: Visualizing COVID Prevalence\n\nAfter public outcry, the Georgia Department of Public Health said they made a mistake and posted the following updated graph:\n\n\n\n\n\n\n\n\n\nHow do your conclusions about COVID-19 cases in Georgia change when now interpreting this new graph?"
-  },
-  {
-    "objectID": "data100_wk01wed.html#example-visualizing-covid-prevalence-3",
-    "href": "data100_wk01wed.html#example-visualizing-covid-prevalence-3",
-    "title": "DATA 100",
-    "section": "Example: Visualizing COVID Prevalence",
-    "text": "Example: Visualizing COVID Prevalence\nAlberto Cairo, a journalist and designer, created the second graph of the Georgia COVID-19 data:\n\n \n\n\nA key principle of data visualization is to “help the viewer make meaningful comparisons”.\nWhat comparisons are made easy by the lefthand graph? What about by the righthand graph?\nFrom these graphs, can we get an accurate estimate of the COVID prevalence in these Georgian counties over this two week period?"
-  },
-  {
-    "objectID": "data100_wk01wed.html#example-visualizing-covid-prevalence-4",
-    "href": "data100_wk01wed.html#example-visualizing-covid-prevalence-4",
-    "title": "DATA 100",
-    "section": "Example: Visualizing COVID Prevalence",
-    "text": "Example: Visualizing COVID Prevalence\n\n\nThe Massachusetts Water Resources Authority (MWRA) graph tracks the presence of COVID-19 in the Boston-area wastewater.\n\n\n\n\n\n\n\n\n\n\n\n\nWhat are the pros of using wastewater over nasal swabs to assess COVID prevalence? What are the cons?\nOne more note: The graph also incorporates uncertainty measures, a key statistical thinking idea that we will learn more about later in the semester!"
-  },
-  {
-    "objectID": "data100_wk01wed.html#statistical-thinking",
-    "href": "data100_wk01wed.html#statistical-thinking",
-    "title": "DATA 100",
-    "section": "Statistical Thinking",
-    "text": "Statistical Thinking\n\n\n\nUnderstanding the importance of context.\n\n\n\n Context explains the Monday jumps in the COVID counts.\n\n\n\n\n\nHow we encode information in a graph should be driven by our research question.\n\n\n\n Design choices impact the conclusions the viewer draws.\n\n\n\n\n\nHow the data are collected impacts the conclusions we can draw.\n\n\n\n Voluntary COVID test results likely don’t provide good estimates of COVID prevalence.\n\n\n\n\n\nOften we are using a sample of data to say something about a larger group. In this case, we should measure how certain our estimates are!\n\n\n\n We will learn to compute and interpret certainty estimates (like those in the wastewater graph) later in the course!"
-  },
-  {
-    "objectID": "data100_wk01wed.html#statistical-thinking-1",
-    "href": "data100_wk01wed.html#statistical-thinking-1",
-    "title": "DATA 100",
-    "section": "Statistical Thinking",
-    "text": "Statistical Thinking\n\nAbout developing reasoning (not just learning definitions and formulae).\nStatistical thinking requires judgment that takes time to develop.\n\nWill see examples and practice applying statistical thinking throughout the course.\n\nDeveloping our statistical thinking skills will allow us to soundly extract knowledge from data!"
-  },
-  {
-    "objectID": "data100_wk01wed.html#what-areis-data",
-    "href": "data100_wk01wed.html#what-areis-data",
-    "title": "DATA 100",
-    "section": "What are/is Data?",
-    "text": "What are/is Data?\n\n\n\n“‘Raw data’ is an oxymoron.” – Lisa Gitelman\n\n\n\n“Data … is information made tractable.” – Catherine D’Ignazio and Lauren Klein"
-  },
-  {
-    "objectID": "data100_wk01wed.html#data-frames",
-    "href": "data100_wk01wed.html#data-frames",
-    "title": "DATA 100",
-    "section": "Data Frames",
-    "text": "Data Frames\nData in spreadsheet-like format where:\n\nRows = Observations/cases\nColumns = Variables\n\n\n\n\n\n\n\nID\nkind\n.pred_AI\n.pred_class\ndetector\nnative\nname\nmodel\n\n\n\n\n1\nHuman\n0.9999942\nAI\nSapling\nNo\nReal TOEFL\nHuman\n\n\n2\nHuman\n0.8281448\nAI\nCrossplag\nNo\nReal TOEFL\nHuman\n\n\n3\nHuman\n0.0002137\nHuman\nCrossplag\nYes\nReal College Essays\nHuman\n\n\n4\nAI\n0.0000000\nHuman\nZeroGPT\nNA\nFake CS224N - GPT3\nGPT3\n\n\n5\nAI\n0.0017841\nHuman\nOriginalityAI\nNA\nFake CS224N - GPT3, PE\nGPT4\n\n\n6\nHuman\n0.0001783\nHuman\nHFOpenAI\nYes\nReal CS224N\nHuman\n\n\n\n\n\n\n\n\n\nData from GPT Detectors Are Biased Against Non-Native English Writers. Weixin Liang, Mert Yuksekgonul, Yining Mao, Eric Wu, James Zou. CellPress Patterns and available in the R package detectors."
-  },
-  {
-    "objectID": "data100_wk01wed.html#data-frames-1",
-    "href": "data100_wk01wed.html#data-frames-1",
-    "title": "DATA 100",
-    "section": "Data Frames",
-    "text": "Data Frames\n\n\n\n\n\n\nID\nkind\n.pred_AI\n.pred_class\ndetector\nnative\nname\nmodel\n\n\n\n\n1\nHuman\n0.9999942\nAI\nSapling\nNo\nReal TOEFL\nHuman\n\n\n2\nHuman\n0.8281448\nAI\nCrossplag\nNo\nReal TOEFL\nHuman\n\n\n3\nHuman\n0.0002137\nHuman\nCrossplag\nYes\nReal College Essays\nHuman\n\n\n4\nAI\n0.0000000\nHuman\nZeroGPT\nNA\nFake CS224N - GPT3\nGPT3\n\n\n5\nAI\n0.0017841\nHuman\nOriginalityAI\nNA\nFake CS224N - GPT3, PE\nGPT4\n\n\n6\nHuman\n0.0001783\nHuman\nHFOpenAI\nYes\nReal CS224N\nHuman\n\n\n\n\n\n\n\n\nRows = Observations/cases\nWhat are the cases? What does each row represent?"
-  },
-  {
-    "objectID": "data100_wk01wed.html#data-frames-2",
-    "href": "data100_wk01wed.html#data-frames-2",
-    "title": "DATA 100",
-    "section": "Data Frames",
-    "text": "Data Frames\n\n\n\n\n\n\nID\nkind\n.pred_AI\n.pred_class\ndetector\nnative\nname\nmodel\n\n\n\n\n1\nHuman\n0.9999942\nAI\nSapling\nNo\nReal TOEFL\nHuman\n\n\n2\nHuman\n0.8281448\nAI\nCrossplag\nNo\nReal TOEFL\nHuman\n\n\n3\nHuman\n0.0002137\nHuman\nCrossplag\nYes\nReal College Essays\nHuman\n\n\n4\nAI\n0.0000000\nHuman\nZeroGPT\nNA\nFake CS224N - GPT3\nGPT3\n\n\n5\nAI\n0.0017841\nHuman\nOriginalityAI\nNA\nFake CS224N - GPT3, PE\nGPT4\n\n\n6\nHuman\n0.0001783\nHuman\nHFOpenAI\nYes\nReal CS224N\nHuman\n\n\n\n\n\n\n\n\nColumns = Variables\nVariables: Describe characteristics of the observations\n\nQuantitative: Numerical in nature\nCategorical: Values are categories\nIdentification: Uniquely identify each case"
-  },
-  {
-    "objectID": "data100_wk01wed.html#hand-drawn-data-viz",
-    "href": "data100_wk01wed.html#hand-drawn-data-viz",
-    "title": "DATA 100",
-    "section": "Hand-Drawn Data Viz",
-    "text": "Hand-Drawn Data Viz\n\nOnce we have collected data, a common next step is to visualize it.\nTwo key aspects of data visualization:\n\nDetermining how you want to display the data.\nFiguring out how to tell the computer to do that mapping.\n\nHand-drawn data visualizations allow us to focus on the first part with full control over the creative process!"
-  },
-  {
-    "objectID": "data100_wk01wed.html#hand-drawn-data-viz-examples",
-    "href": "data100_wk01wed.html#hand-drawn-data-viz-examples",
-    "title": "DATA 100",
-    "section": "Hand-Drawn Data Viz Examples",
-    "text": "Hand-Drawn Data Viz Examples\nDear Data\n\n“Each week, and for a year, we collected and measured a particular type of data about our lives, used this data to make a drawing on a postcard-sized sheet of paper, and then dropped the postcard in an English”postbox” (Stefanie) or an American “mailbox” (Giorgia)!“"
-  },
-  {
-    "objectID": "data100_wk01wed.html#goal-tomorrow-collect-data-from-your-life-so-that-you-can-visualize-it-on-p-set-1.",
-    "href": "data100_wk01wed.html#goal-tomorrow-collect-data-from-your-life-so-that-you-can-visualize-it-on-p-set-1.",
-    "title": "DATA 100",
-    "section": "Goal: Tomorrow, collect data from your life so that you can visualize it on P-Set 1.",
-    "text": "Goal: Tomorrow, collect data from your life so that you can visualize it on P-Set 1.\n\n\n\nRecommendations\n\n\nStore the data in your favorite spreadsheet program (Google Sheets, Numbers, Excel).\nDetermine what your cases/observations will be.\nCollect data on more variables than you will likely visualize. It is hard to know beforehand what the interesting relationships will be.\n\n\n\nIn Lab\n\nWill get a blank postcard and further guidance on the visualization with P-Set 1."
-  },
-  {
-    "objectID": "data100_wk01wed.html#section",
-    "href": "data100_wk01wed.html#section",
+    "objectID": "data100_wk02mon.html#chatgpt",
+    "href": "data100_wk02mon.html#chatgpt",
     "title": "DATA 100",
     "section": "",
-    "text": "Demo of accessing the RStudio Server on Posit Cloud\n\n\nTry to access the RStudio Server between now and next lecture.\nCome back to the recording if need help with the steps."
+    "text": "ChatGPT Strengths\n\nImpressive but dangerous automated data analysis.\n\nHard to determine if its conclusions are based on the data at hand or the data the large language model was built on.\n\n\n\nDATA 100 Goals\n\nLearn that data analysis is a humanistic endeavor where context drives the data analysis process.\n\nStill need to be careful about biases and data quality.\n\n\n\n\n\n\nA personalized tutor (especially for coding) that tells you the answers.\n\n\n\nFor you to learn to code and to think statistically.\n\nThe DATA 100 Teaching Team will help support that learning.\n\n\n\n\n\n\nInstantly generating written blurbs.\n\n\n\nFor you to learn how to communicate about your data work and data ethics."
   },
   {
-    "objectID": "data100_wk01wed.html#reminders",
-    "href": "data100_wk01wed.html#reminders",
+    "objectID": "data100_wk02mon.html#my-view-on-the-current-role-of-chatgpt-in-data-work",
+    "href": "data100_wk02mon.html#my-view-on-the-current-role-of-chatgpt-in-data-work",
+    "title": "DATA 100",
+    "section": "My View on the (Current) Role of ChatGPT in Data Work",
+    "text": "My View on the (Current) Role of ChatGPT in Data Work\n\nTo generate code to realize fully conceived ideas that aren’t novel or advanced.\nSeasoned data scientist can/should:\n\nVerify the correctness of the code.\nIdentify any assumptions or defaults ChatGPT is employing.\nRun the code in R and draw conclusions based on the data to reduce risk of perpetuating biases that exist in ChatGPT’s training data.\n\nSo, ChatGPT might be useful to you near the end of DATA 100 but will be detrimental to your learning during most of DATA 100."
+  },
+  {
+    "objectID": "data100_wk02mon.html#ai-policy-for-data-100",
+    "href": "data100_wk02mon.html#ai-policy-for-data-100",
+    "title": "DATA 100",
+    "section": "AI Policy for DATA 100",
+    "text": "AI Policy for DATA 100\nWe are going to take a two-pronged approach to AI in the course:\n\n(No AI) For the first 13 weeks of the course, you are not to use AI tools. Therefore, we expect that all work students submit during this period will be their own. This includes code, written work, and oral assessments. During this period, we specifically forbid the use of ChatGPT or any other generative artificial intelligence (AI) tools at all stages of the work process, including preliminary ones, unless the assignment specifically states that it is allowed.\n(AI) Near the end of the course, we will address the question of how AI can help in data work. At that point in the semester, you are free to experiment with various AI tools on assignments.\n\nIn lecture and on individual assignments, we will make it clear which approach to AI students can take. If it is unclear, make sure to ask."
+  },
+  {
+    "objectID": "data100_wk02mon.html#engagement",
+    "href": "data100_wk02mon.html#engagement",
+    "title": "DATA 100",
+    "section": "Engagement",
+    "text": "Engagement\n\n\n \n\n\n\n\n\n\nBeing actively present is key.\n\n\n\nDuring lecture and lab, remove distractions.\n\nWhen we are on our computers, close email, social media, news, etc.\nIf you will be using a computer/tablet for taking notes, please sit in the second row starting next lecture so as not to distract classmates.\nHide your phone.\n\nI have high expectations but know that all of you (regardless of your stats or computing background) have the ability to meet them."
+  },
+  {
+    "objectID": "data100_wk02mon.html#code-of-conduct",
+    "href": "data100_wk02mon.html#code-of-conduct",
+    "title": "DATA 100",
+    "section": "Code of Conduct",
+    "text": "Code of Conduct\n\nWe expect all members of DATA 100 to make participation a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.\n\n\nWe expect everyone to act and interact in ways that contribute to an open, welcoming diverse, inclusive, and healthy community of learners. You can contribute to a positive learning environment by demonstrating empathy and kindness, being respectful of differing viewpoints and experiences, and giving and gracefully accepting constructive feedback.\n\nThis Code of Conduct is adapted from the Contributor Covenant, version 2.0."
+  },
+  {
+    "objectID": "data100_wk02mon.html#ways-to-get-support",
+    "href": "data100_wk02mon.html#ways-to-get-support",
+    "title": "DATA 100",
+    "section": "Ways to Get Support",
+    "text": "Ways to Get Support\n\nAttend, attend, attend when you don’t feel ill\nParticipate in the DATA 100 Slack Workspace\nCome to Office Hours\nCreate study groups with your classmates\n\nDon’t know anyone in the course?\n\nUse Slack or lab to each to know other students in the course!"
+  },
+  {
+    "objectID": "data100_wk02mon.html#language-r-this-r-that-q-what",
+    "href": "data100_wk02mon.html#language-r-this-r-that-q-what",
+    "title": "DATA 100",
+    "section": "Language: R-This, R-That, Q-What?",
+    "text": "Language: R-This, R-That, Q-What?\n\n\n\n \n\n\nR is the name of the programming language.\n\n\n\nRStudio is the pretty interface and is hosted on a Posit Cloud Server.\n\n\n\n\nQuarto is the type of file where we will record all of our work (code, output, narrative)."
+  },
+  {
+    "objectID": "data100_wk02mon.html#main-components-of-rstudio-lay-out",
+    "href": "data100_wk02mon.html#main-components-of-rstudio-lay-out",
+    "title": "DATA 100",
+    "section": "Main Components of RStudio Lay-Out",
+    "text": "Main Components of RStudio Lay-Out"
+  },
+  {
+    "objectID": "data100_wk02mon.html#reminders",
+    "href": "data100_wk02mon.html#reminders",
     "title": "DATA 100",
     "section": "Reminders",
-    "text": "Reminders\n\nIf able, please bring a laptop or tablet to the next lecture.\nMake sure to go through the syllabus, which can be found on Moodle.\n\nWill discuss assessments and course policies on Monday.\n\nLab starts on Friday!"
+    "text": "Reminders\n\nClass in full swing:\n\nOffice hours:\n\nMine: Tuesdays 2:30 - 4pm, Wednesdays 2-3pm, Taylor 212\nRebecca: Mondays and Wednesdays 4:30 - 6pm, Taylor 210\nGeneral Data Science Office Hours\n\nThe first problem set is due at noon on Thursday in Gradescope."
   }
 ]
