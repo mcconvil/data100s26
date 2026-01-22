@@ -45,7 +45,7 @@ library(tidyverse)
 
 [Computing in DATA 100]{.custom-title}
 
-<br> <br> <br>
+<br>
 
 [Kelly McConville]{.custom-subtitle}
 
