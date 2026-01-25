@@ -1,10 +1,248 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "DATA 100: Introduction to Data Science",
-    "section": "",
-    "text": "The lecture slides (both in HTML and PDF) will be posted here. \n\n\n\n\nClass Period\nHTML Slides\nPDF Slides\n\n\n\n\nWeek 1, Wed\n\n\n\n\nWeek 2, Mon"
+    "objectID": "data100_wk02wed.html#announcements",
+    "href": "data100_wk02wed.html#announcements",
+    "title": "DATA 100",
+    "section": "Announcements",
+    "text": "Announcements\n\n\nClass in full swing:\n\nP-set 1 due on Gradescope by noon on Thursday.\nVisit office hours and then fill out this form\nPanel on careers in data science and public health on Thursday at noon in Taylor 210."
+  },
+  {
+    "objectID": "data100_wk02wed.html#announcements-1",
+    "href": "data100_wk02wed.html#announcements-1",
+    "title": "DATA 100",
+    "section": "Announcements",
+    "text": "Announcements"
+  },
+  {
+    "objectID": "data100_wk02wed.html#goals-for-today",
+    "href": "data100_wk02wed.html#goals-for-today",
+    "title": "DATA 100",
+    "section": "Goals for Today",
+    "text": "Goals for Today\n\n\nFirst Segment:\n\n\nMotivate data visualizations.\nDevelop language to talk about the components of a graphic.\nPractice deconstructing graphics.\nDiscuss good graphical practices.\n\n\n\nSecond Segment:\n\n\nLearn the general structure of ggplot2.\nLearn a few standard graphs for numerical/quantitative data:\n\nHistogram: one numerical variable\nSide-by-side boxplot: one numerical variable and one categorical variable\nSide-by-side violin plot: one numerical variable and one categorical variable"
+  },
+  {
+    "objectID": "data100_wk02wed.html#why-construct-a-graph",
+    "href": "data100_wk02wed.html#why-construct-a-graph",
+    "title": "DATA 100",
+    "section": "Why construct a graph?",
+    "text": "Why construct a graph?\n\n\nTo explore the data.\n\n\nTo summarize the data.\n\n\nTo showcase trends and make comparisons.\n\n\nTo tell a compelling story."
+  },
+  {
+    "objectID": "data100_wk02wed.html#challenger",
+    "href": "data100_wk02wed.html#challenger",
+    "title": "DATA 100",
+    "section": "Challenger",
+    "text": "Challenger\n\nOn January 27th, 1986, engineers from Morton Thiokol recommended NASA delay launch of space shuttle Challenger due to cold weather.\n\nBelieved cold weather impacted the o-rings that held the rockets together.\nUsed 13 charts in their argument.\n\nAfter a two hour conference call, the engineer’s recommendation was overruled due to lack of persuasive evidence and the launch proceeded.\nThe Challenger exploded 73 seconds into launch."
+  },
+  {
+    "objectID": "data100_wk02wed.html#challenger-1",
+    "href": "data100_wk02wed.html#challenger-1",
+    "title": "DATA 100",
+    "section": "Challenger",
+    "text": "Challenger\nHere’s one of those charts."
+  },
+  {
+    "objectID": "data100_wk02wed.html#challenger-2",
+    "href": "data100_wk02wed.html#challenger-2",
+    "title": "DATA 100",
+    "section": "Challenger",
+    "text": "Challenger\nHere’s another one of those charts."
+  },
+  {
+    "objectID": "data100_wk02wed.html#challenger-3",
+    "href": "data100_wk02wed.html#challenger-3",
+    "title": "DATA 100",
+    "section": "Challenger",
+    "text": "Challenger\nHere’s a graphic I created from Edward Tufte’s data."
+  },
+  {
+    "objectID": "data100_wk02wed.html#challenger-4",
+    "href": "data100_wk02wed.html#challenger-4",
+    "title": "DATA 100",
+    "section": "Challenger",
+    "text": "Challenger\nThis adaptation is a recreation of Edward Tufte’s graphic.\n\n\n\n\n\n\n\n\n\n\n\nFor more information on this example and other examples, check out Tufte’s book."
+  },
+  {
+    "objectID": "data100_wk02wed.html#now-lets-learn-the-grammar-of-graphics.",
+    "href": "data100_wk02wed.html#now-lets-learn-the-grammar-of-graphics.",
+    "title": "DATA 100",
+    "section": "Now let’s learn the Grammar of Graphics.",
+    "text": "Now let’s learn the Grammar of Graphics.\n\nWe will use this grammar to:\n\n\nDecompose and understand existing graphs.\n\n\nCreate our own graphs with the R package ggplot2."
+  },
+  {
+    "objectID": "data100_wk02wed.html#grammar-of-graphics",
+    "href": "data100_wk02wed.html#grammar-of-graphics",
+    "title": "DATA 100",
+    "section": "Grammar of Graphics",
+    "text": "Grammar of Graphics\n\ndata: Data frame that contains the raw data\n\nVariables used in the graph\n\ngeom: Geometric shape that the data are mapped to.\n\nEX: Point, line, bar, text, …\n\naesthetic: Visual properties of the geom\n\nEX: X (horizontal) position, y (vertical) position, color, fill, shape\n\nscale: Controls how data are mapped to the visual values of the aesthetic.\n\nEX: particular colors, log scale\n\nguide: Legend/key to help user convert visual display back to the data\n\n\nFor right now, we won’t focus on the names of particular types of graphs (e.g., scatterplot) but on the elements of graphs."
+  },
+  {
+    "objectID": "data100_wk02wed.html#many-ways-to-visually-tell-a-story",
+    "href": "data100_wk02wed.html#many-ways-to-visually-tell-a-story",
+    "title": "DATA 100",
+    "section": "Many Ways To Visually Tell A Story",
+    "text": "Many Ways To Visually Tell A Story\nWashington Post’s Approach:\n\n\n\n\n\nPeriscopic’s Approach"
+  },
+  {
+    "objectID": "data100_wk02wed.html#bad-graphics",
+    "href": "data100_wk02wed.html#bad-graphics",
+    "title": "DATA 100",
+    "section": "Bad Graphics",
+    "text": "Bad Graphics\nBecause of all the design choices, it is much easier to make a bad graph than a good graph."
+  },
+  {
+    "objectID": "data100_wk02wed.html#misleading-graphics",
+    "href": "data100_wk02wed.html#misleading-graphics",
+    "title": "DATA 100",
+    "section": "Misleading Graphics",
+    "text": "Misleading Graphics\nBe careful that your design choices don’t cause your viewer to draw incorrect conclusions about the data:\n\n\n\n\n\n\nJust letting the software make all the design choices can still lead to misleading graphs (recall the Georgia COVID graph)."
+  },
+  {
+    "objectID": "data100_wk02wed.html#summary-thoughts-on-graphical-considerations",
+    "href": "data100_wk02wed.html#summary-thoughts-on-graphical-considerations",
+    "title": "DATA 100",
+    "section": "Summary Thoughts on Graphical Considerations",
+    "text": "Summary Thoughts on Graphical Considerations\n\nGood graphics are one’s where the findings and insights are obvious to the viewer.\n\nAdd information and key context.\n\nFacilitate the comparisons that correspond to the research question.\n\nRecall the three Georgia COVID counts graphs from Day 1!\n\nData visualizations are not neutral.\nIt is easier to see the differences and similarities between different types of graphics if we learn the grammar of graphics.\nPracticing decomposing graphics should make it easier for us to compose our own graphics."
+  },
+  {
+    "objectID": "data100_wk02wed.html#load-necessary-packages",
+    "href": "data100_wk02wed.html#load-necessary-packages",
+    "title": "DATA 100",
+    "section": "Load Necessary Packages",
+    "text": "Load Necessary Packages\n\n\n\n\n\nggplot2 is part of this collection of data science packages.\n\n# Load necessary packages\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "data100_wk02wed.html#data-setting-eco-totem-broadway-bicycle-count",
+    "href": "data100_wk02wed.html#data-setting-eco-totem-broadway-bicycle-count",
+    "title": "DATA 100",
+    "section": "Data Setting: Eco-Totem Broadway Bicycle Count",
+    "text": "Data Setting: Eco-Totem Broadway Bicycle Count"
+  },
+  {
+    "objectID": "data100_wk02wed.html#import-the-data",
+    "href": "data100_wk02wed.html#import-the-data",
+    "title": "DATA 100",
+    "section": "Import the Data",
+    "text": "Import the Data\n\njuly_2019 &lt;- read_csv(\"data/july_2019.csv\")\n\n# Inspect the data\nglimpse(july_2019)\n\nRows: 192\nColumns: 8\n$ DateTime  &lt;chr&gt; \"07/04/2019 12:00:00 AM\", \"07/04/2019 12:15:00 AM\", \"07/04/2…\n$ Day       &lt;chr&gt; \"Thursday\", \"Thursday\", \"Thursday\", \"Thursday\", \"Thursday\", …\n$ Date      &lt;date&gt; 2019-07-04, 2019-07-04, 2019-07-04, 2019-07-04, 2019-07-04,…\n$ Time      &lt;time&gt; 00:00:00, 00:15:00, 00:30:00, 00:45:00, 01:00:00, 01:15:00,…\n$ Total     &lt;dbl&gt; 2, 3, 2, 0, 3, 2, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, …\n$ Westbound &lt;dbl&gt; 2, 3, 1, 0, 2, 2, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, …\n$ Eastbound &lt;dbl&gt; 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, …\n$ Occasion  &lt;chr&gt; \"Fourth of July\", \"Fourth of July\", \"Fourth of July\", \"Fourt…"
+  },
+  {
+    "objectID": "data100_wk02wed.html#inspect-the-data",
+    "href": "data100_wk02wed.html#inspect-the-data",
+    "title": "DATA 100",
+    "section": "Inspect the Data",
+    "text": "Inspect the Data\n\n# Look at first few rows\nhead(july_2019)\n\n# A tibble: 6 × 8\n  DateTime             Day   Date       Time  Total Westbound Eastbound Occasion\n  &lt;chr&gt;                &lt;chr&gt; &lt;date&gt;     &lt;tim&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   \n1 07/04/2019 12:00:00… Thur… 2019-07-04 00:00     2         2         0 Fourth …\n2 07/04/2019 12:15:00… Thur… 2019-07-04 00:15     3         3         0 Fourth …\n3 07/04/2019 12:30:00… Thur… 2019-07-04 00:30     2         1         1 Fourth …\n4 07/04/2019 12:45:00… Thur… 2019-07-04 00:45     0         0         0 Fourth …\n5 07/04/2019 01:00:00… Thur… 2019-07-04 01:00     3         2         1 Fourth …\n6 07/04/2019 01:15:00… Thur… 2019-07-04 01:15     2         2         0 Fourth …\n\n\nWhat does a row represent here?"
+  },
+  {
+    "objectID": "data100_wk02wed.html#inspect-the-data-1",
+    "href": "data100_wk02wed.html#inspect-the-data-1",
+    "title": "DATA 100",
+    "section": "Inspect the Data",
+    "text": "Inspect the Data\n\n# Determine type\n# To access one variable: dataset$variable\nclass(july_2019$Day)\n\n[1] \"character\"\n\nclass(july_2019$Total)\n\n[1] \"numeric\"\n\nclass(july_2019)\n\n[1] \"spec_tbl_df\" \"tbl_df\"      \"tbl\"         \"data.frame\""
+  },
+  {
+    "objectID": "data100_wk02wed.html#grammar-of-graphics-1",
+    "href": "data100_wk02wed.html#grammar-of-graphics-1",
+    "title": "DATA 100",
+    "section": "Grammar of Graphics",
+    "text": "Grammar of Graphics\n\n\ndata: Data frame that contains the raw data\n\nVariables used in the graph\n\ngeom: Geometric shape that the data are mapped to.\n\nEX: Point, line, bar, text, …\n\naesthetic: Visual properties of the geom\n\nEX: X (horizontal) position, y (vertical) position, color, fill, shape\n\nscale: Controls how data are mapped to the visual values of the aesthetic.\n\nEX: particular colors, log scale\n\nguide: Legend/key to help user convert visual display back to the data"
+  },
+  {
+    "objectID": "data100_wk02wed.html#ggplot2-example-code",
+    "href": "data100_wk02wed.html#ggplot2-example-code",
+    "title": "DATA 100",
+    "section": "ggplot2 example code",
+    "text": "ggplot2 example code\nGuiding Principle: We will map variables from the data to the aesthetic attributes (e.g. location, size, shape, color) of geometric objects (e.g. points, lines, bars).\n\nggplot(data = ---, mapping = aes(---)) +\n  geom_---(---) \n\n\nThere are other layers, such as scales_---_---() and labs(), but we will wait on those."
+  },
+  {
+    "objectID": "data100_wk02wed.html#histograms",
+    "href": "data100_wk02wed.html#histograms",
+    "title": "DATA 100",
+    "section": "Histograms",
+    "text": "Histograms\n\n\n\nBinned counts of data.\nGreat for assessing shape."
+  },
+  {
+    "objectID": "data100_wk02wed.html#data-shapes",
+    "href": "data100_wk02wed.html#data-shapes",
+    "title": "DATA 100",
+    "section": "Data Shapes",
+    "text": "Data Shapes"
+  },
+  {
+    "objectID": "data100_wk02wed.html#histograms-1",
+    "href": "data100_wk02wed.html#histograms-1",
+    "title": "DATA 100",
+    "section": "Histograms",
+    "text": "Histograms\n\n\n# Create histogram\nggplot(data = july_2019, \n       mapping = aes(x = Total)) +\n  geom_histogram()"
+  },
+  {
+    "objectID": "data100_wk02wed.html#histograms-2",
+    "href": "data100_wk02wed.html#histograms-2",
+    "title": "DATA 100",
+    "section": "Histograms",
+    "text": "Histograms\n\n\n# Create histogram\nggplot(data = july_2019, \n       mapping = aes(x = Total)) +\n  geom_histogram(color = \"white\",\n                 fill = \"violetred1\",\n                 bins = 50)\n\n\n\n\n\n\n\n\n\n\n\nmapping to a variable goes in aes()\nsetting to a specific value goes in the geom_---()"
+  },
+  {
+    "objectID": "data100_wk02wed.html#boxplots",
+    "href": "data100_wk02wed.html#boxplots",
+    "title": "DATA 100",
+    "section": "Boxplots",
+    "text": "Boxplots\n\n\n\nFive number summary:\n\nMinimum\nFirst quartile (Q1)\nMedian\nThird quartile (Q3)\nMaximum\n\nInterquartile range (IQR) \\(=\\) Q3 \\(-\\) Q1\nOutliers: unusual points\n\nBoxplot defines unusual as being beyond \\(1.5*IQR\\) from \\(Q1\\) or \\(Q3\\).\n\nWhiskers: reach out to the furthest point that is NOT an outlier"
+  },
+  {
+    "objectID": "data100_wk02wed.html#boxplots-1",
+    "href": "data100_wk02wed.html#boxplots-1",
+    "title": "DATA 100",
+    "section": "Boxplots",
+    "text": "Boxplots\n\n\n# Create boxplot\nggplot(data = july_2019, \n       mapping = aes(x = Occasion, \n                     y = Total)) +\n  geom_boxplot()"
+  },
+  {
+    "objectID": "data100_wk02wed.html#boxplots-2",
+    "href": "data100_wk02wed.html#boxplots-2",
+    "title": "DATA 100",
+    "section": "Boxplots",
+    "text": "Boxplots\n\n\nggplot(data = july_2019, \n       mapping = aes(x = Occasion, \n                     y = Total)) +\n  geom_boxplot(fill = \"springgreen3\")"
+  },
+  {
+    "objectID": "data100_wk02wed.html#boxplots-3",
+    "href": "data100_wk02wed.html#boxplots-3",
+    "title": "DATA 100",
+    "section": "Boxplots",
+    "text": "Boxplots\n\n\nggplot(data = july_2019, \n       mapping = aes(x = Occasion, \n                     y = Total,\n                     fill = Occasion)) +\n  geom_boxplot()"
+  },
+  {
+    "objectID": "data100_wk02wed.html#boxplots-4",
+    "href": "data100_wk02wed.html#boxplots-4",
+    "title": "DATA 100",
+    "section": "Boxplots",
+    "text": "Boxplots\n\n\nggplot(data = july_2019, \n       mapping = aes(x = Occasion, \n                     y = Total,\n                     fill = Occasion)) +\n  geom_boxplot() +\n  guides(fill = \"none\")"
+  },
+  {
+    "objectID": "data100_wk02wed.html#violin-plots",
+    "href": "data100_wk02wed.html#violin-plots",
+    "title": "DATA 100",
+    "section": "Violin Plots",
+    "text": "Violin Plots\n\n\nggplot(data = july_2019, \n       mapping = aes(x = Occasion, \n                     y = Total,\n                     fill = Occasion)) +\n  geom_violin() +\n  guides(fill = \"none\")"
+  },
+  {
+    "objectID": "data100_wk02wed.html#boxplot-versus-violin-plots",
+    "href": "data100_wk02wed.html#boxplot-versus-violin-plots",
+    "title": "DATA 100",
+    "section": "Boxplot Versus Violin Plots",
+    "text": "Boxplot Versus Violin Plots"
+  },
+  {
+    "objectID": "data100_wk02wed.html#recap-ggplot2",
+    "href": "data100_wk02wed.html#recap-ggplot2",
+    "title": "DATA 100",
+    "section": "Recap: ggplot2",
+    "text": "Recap: ggplot2\n\nlibrary(tidyverse)\nggplot(data = ---, mapping = aes(---)) +\n  geom_---(---)"
+  },
+  {
+    "objectID": "data100_wk02wed.html#reminders",
+    "href": "data100_wk02wed.html#reminders",
+    "title": "DATA 100",
+    "section": "Reminders",
+    "text": "Reminders\n\n\nClass in full swing:\n\nP-set 1 due on Gradescope by noon on Thursday.\nVisit office hours and then fill out this form\nPanel on careers in data science and public health on Thursday at noon in Taylor 210."
   },
   {
     "objectID": "data100_wk02mon.html#announcements",
@@ -124,5 +362,12 @@
     "title": "DATA 100",
     "section": "Reminders",
     "text": "Reminders\n\nClass in full swing:\n\nOffice hours:\n\nMine: Tuesdays 2:30 - 4pm, Wednesdays 2-3pm, Taylor 212\nRebecca: Mondays and Wednesdays 4:30 - 6pm, Taylor 210\nGeneral Data Science Office Hours\n\nThe first problem set is due at noon on Thursday in Gradescope."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "DATA 100: Introduction to Data Science",
+    "section": "",
+    "text": "The lecture slides (both in HTML and PDF) will be posted here. \n\n\n\n\nClass Period\nHTML Slides\nPDF Slides\n\n\n\n\nWeek 1, Wed\n\n\n\n\nWeek 2, Mon\n\n\n\n\nWeek 2, Wed"
   }
 ]
