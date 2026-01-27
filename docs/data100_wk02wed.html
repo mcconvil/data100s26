@@ -8,9 +8,9 @@
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.450">
+  <meta name="generator" content="quarto-1.5.57">
 
-  <title>Data Viz</title>
+  <title>DATA 100 – Data Viz</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -30,7 +30,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -41,7 +41,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -69,7 +69,7 @@
     code span.at { color: #657422; } /* Attribute */
     code span.bn { color: #ad0000; } /* BaseN */
     code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
     code span.ch { color: #20794d; } /* Char */
     code span.cn { color: #8f5902; } /* Constant */
     code span.co { color: #5e5e5e; } /* Comment */
@@ -83,7 +83,7 @@
     code span.fu { color: #4758ab; } /* Function */
     code span.im { color: #00769e; } /* Import */
     code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
     code span.op { color: #5e5e5e; } /* Operator */
     code span.ot { color: #003b4f; } /* Other */
     code span.pp { color: #ad0000; } /* Preprocessor */
@@ -222,7 +222,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -402,8 +403,7 @@
 <p><br> <br></p>
 <p><span class="custom-subtitle">Kelly McConville</span></p>
 <p><span class="custom-subtitle">DATA 100 <br> Week 2 | Spring 2026</span></p>
-</div>
-</div>
+</div></div>
 </section>
 <section id="announcements" class="slide level2">
 <h2>Announcements</h2>
@@ -449,8 +449,7 @@
 </ul></li>
 </ul>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="why-construct-a-graph" class="slide level2 center">
 <h2>Why construct a graph?</h2>
@@ -485,7 +484,7 @@
 <p>Here’s one of those charts.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/table_o_rings.jpg" style="width:90.0%"></p>
+<p><img data-src="img/table_o_rings.jpg" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
 </figure>
 </div>
 </section>
@@ -494,18 +493,18 @@
 <p>Here’s another one of those charts.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/o_ring_rockets.jpg" style="width:30.0%"></p>
+<p><img data-src="img/o_ring_rockets.jpg" class="quarto-figure quarto-figure-center" style="width:30.0%"></p>
 </figure>
 </div>
 </section>
 <section id="challenger-3" class="slide level2">
 <h2>Challenger</h2>
 <p>Here’s a graphic I created from <a href="https://en.wikipedia.org/wiki/Edward_Tufte">Edward Tufte</a>’s data.</p>
-<div class="cell" data-layout-align="center" data-fig.asp="0.6">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk02wed_files/figure-revealjs/unnamed-chunk-2-1.png" style="width:60.0%"></p>
+<p><img data-src="data100_wk02wed_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
 </figure>
 </div>
 </div>
@@ -515,11 +514,11 @@
 <h2>Challenger</h2>
 <p>This adaptation is a recreation of Edward Tufte’s graphic.</p>
 
-<div class="cell" data-layout-align="center" data-fig.asp="0.6">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk02wed_files/figure-revealjs/unnamed-chunk-3-1.png" style="width:60.0%"></p>
+<p><img data-src="data100_wk02wed_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
 </figure>
 </div>
 </div>
@@ -582,11 +581,10 @@
 </div><div class="column" style="width:70%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/anne_hathaway.png" style="width:85.0%"></p>
+<p><img data-src="img/anne_hathaway.png" class="quarto-figure quarto-figure-center" style="width:85.0%" data-fig-dpi="200"></p>
 </figure>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section class="slide level2">
 
@@ -606,11 +604,10 @@
 </div><div class="column center" style="width:70%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/harassment_graphic.png" style="width:75.0%"></p>
+<p><img data-src="img/harassment_graphic.png" class="quarto-figure quarto-figure-center" style="width:75.0%" data-fig-dpi="200"></p>
 </figure>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section>
 <section id="visualization-considerations" class="title-slide slide level1 center">
@@ -643,7 +640,7 @@
 <h3 id="context-example">Context Example</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/moma_size.png" style="width:70.0%"></p>
+<p><img data-src="img/moma_size.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
 </figure>
 </div>
 </section>
@@ -652,7 +649,7 @@
 <h3 id="what-visual-cues-are-easier-to-compare">What visual cues are easier to compare?</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/visual_cues.png" style="width:35.0%"></p>
+<p><img data-src="img/visual_cues.png" class="quarto-figure quarto-figure-center" style="width:35.0%"></p>
 </figure>
 </div>
 </section>
@@ -660,11 +657,11 @@
 
 <h3 id="what-to-consider-with-color">What to consider with color?</h3>
 <p>Consider color blindness.</p>
-<div class="cell" data-layout-align="center" data-fig.asp="0.4">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk02wed_files/figure-revealjs/unnamed-chunk-4-1.png" width="4000"></p>
+<p><img data-src="data100_wk02wed_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
 </div>
@@ -675,7 +672,7 @@
 <h3 id="color-palettes-sequential">Color Palettes – Sequential</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/dude.png" style="width:60.0%"></p>
+<p><img data-src="img/dude.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
 </figure>
 </div>
 <div class="{aside}">
@@ -687,7 +684,7 @@
 <h3 id="color-palettes-diverging">Color Palettes – Diverging</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/nba_2015.png" style="width:60.0%"></p>
+<p><img data-src="img/nba_2015.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
 </figure>
 </div>
 <div class="{aside}">
@@ -699,7 +696,7 @@
 <h3 id="color-palettes-qualitative">Color Palettes – Qualitative</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/dogs.png" style="width:60.0%"></p>
+<p><img data-src="img/dogs.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
 </figure>
 </div>
 <div class="{aside}">
@@ -711,7 +708,7 @@
 <p>Washington Post’s Approach:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/wp_shooter.png" style="width:50.0%"></p>
+<p><img data-src="img/wp_shooter.png" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
 </figure>
 </div>
 <p><a href="https://guns.periscopic.com/?year=2013">Periscopic’s Approach</a></p>
@@ -721,7 +718,7 @@
 <p>Because of all the design choices, it is much easier to make a bad graph than a good graph.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/pizza_pie.png" style="width:40.0%"></p>
+<p><img data-src="img/pizza_pie.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
 </figure>
 </div>
 </section>
@@ -730,7 +727,7 @@
 <p>Be careful that your design choices don’t cause your viewer to draw incorrect conclusions about the data:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/FLguns.jpg" style="width:40.0%"></p>
+<p><img data-src="img/FLguns.jpg" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
 </figure>
 </div>
 <ul>
@@ -757,13 +754,13 @@
 <h2>Load Necessary Packages</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/ggplot2.png" style="width:15.0%"></p>
+<p><img data-src="img/ggplot2.png" class="quarto-figure quarto-figure-center" style="width:15.0%"></p>
 </figure>
 </div>
 <p><code>ggplot2</code> is part of this collection of data science packages.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Load necessary packages</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># Load necessary packages</span></span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="data-setting-eco-totem-broadway-bicycle-count" class="slide level2">
@@ -773,16 +770,15 @@
 <p><img data-src="img/counter.jpg" style="width:100.0%"></p>
 </div><div class="column" data-fig-align="center" style="width:60%;">
 <p><img data-src="img/bike_counter_map.png" style="width:100.0%"></p>
-</div>
-</div>
+</div></div>
 </section>
 <section id="import-the-data" class="slide level2">
 <h2>Import the <a href="https://data.cambridgema.gov/Transportation-Planning/Eco-Totem-Broadway-Bicycle-Count/q8v9-mcfg">Data</a></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>july_2019 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/july_2019.csv"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># Inspect the data</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">glimpse</span>(july_2019)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>july_2019 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/july_2019.csv"</span>)</span>
+<span id="cb2-2"><a></a></span>
+<span id="cb2-3"><a></a><span class="co"># Inspect the data</span></span>
+<span id="cb2-4"><a></a><span class="fu">glimpse</span>(july_2019)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 192
 Columns: 8
@@ -800,8 +796,8 @@ $ Occasion  &lt;chr&gt; "Fourth of July", "Fourth of July", "Fourth of July", "F
 <section id="inspect-the-data" class="slide level2">
 <h2>Inspect the Data</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Look at first few rows</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">head</span>(july_2019)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co"># Look at first few rows</span></span>
+<span id="cb4-2"><a></a><span class="fu">head</span>(july_2019)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 8
   DateTime             Day   Date       Time  Total Westbound Eastbound Occasion
@@ -819,17 +815,17 @@ $ Occasion  &lt;chr&gt; "Fourth of July", "Fourth of July", "Fourth of July", "F
 <section id="inspect-the-data-1" class="slide level2">
 <h2>Inspect the Data</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Determine type</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co"># To access one variable: dataset$variable</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">class</span>(july_2019<span class="sc">$</span>Day)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co"># Determine type</span></span>
+<span id="cb6-2"><a></a><span class="co"># To access one variable: dataset$variable</span></span>
+<span id="cb6-3"><a></a><span class="fu">class</span>(july_2019<span class="sc">$</span>Day)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "character"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">class</span>(july_2019<span class="sc">$</span>Total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">class</span>(july_2019<span class="sc">$</span>Total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "numeric"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">class</span>(july_2019)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">class</span>(july_2019)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "spec_tbl_df" "tbl_df"      "tbl"         "data.frame" </code></pre>
 </div>
@@ -863,8 +859,8 @@ $ Occasion  &lt;chr&gt; "Fourth of July", "Fourth of July", "Fourth of July", "F
 <h2><code>ggplot2</code> example code</h2>
 <p><strong>Guiding Principle</strong>: We will map variables from the <strong>data</strong> to the <strong>aes</strong>thetic attributes (e.g.&nbsp;location, size, shape, color) of <strong>geom</strong>etric objects (e.g.&nbsp;points, lines, bars).</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">---</span>, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">---</span>)) <span class="sc">+</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>  geom_<span class="sc">---</span>(<span class="sc">---</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">---</span>, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">---</span>)) <span class="sc">+</span></span>
+<span id="cb12-2"><a></a>  geom_<span class="sc">---</span>(<span class="sc">---</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li class="fragment">There are other layers, such as <code>scales_---_---()</code> and <code>labs()</code>, but we will wait on those.</li>
@@ -883,21 +879,20 @@ $ Occasion  &lt;chr&gt; "Fourth of July", "Fourth of July", "Fourth of July", "F
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk02wed_files/figure-revealjs/unnamed-chunk-11-1.png" width="4000"></p>
+<p><img data-src="data100_wk02wed_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="data-shapes" class="slide level2">
 <h2>Data Shapes</h2>
-<div class="cell" data-layout-align="center" data-fig.asp="0.4">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk02wed_files/figure-revealjs/unnamed-chunk-12-1.png" width="6000"></p>
+<p><img data-src="data100_wk02wed_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center" width="6000"></p>
 </figure>
 </div>
 </div>
@@ -907,41 +902,39 @@ $ Occasion  &lt;chr&gt; "Fourth of July", "Fourth of July", "Fourth of July", "F
 <h2>Histograms</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Create histogram</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">ggplot</span>(<span class="at">data =</span> july_2019, </span>
-<span id="cb13-3"><a href="#cb13-3"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Total)) <span class="sc">+</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># Create histogram</span></span>
+<span id="cb13-2"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> july_2019, </span>
+<span id="cb13-3"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Total)) <span class="sc">+</span></span>
+<span id="cb13-4"><a></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk02wed_files/figure-revealjs/hist-1.png" width="4000"></p>
+<p><img data-src="data100_wk02wed_files/figure-revealjs/hist-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="histograms-2" class="slide level2">
 <h2>Histograms</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="4-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Create histogram</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">ggplot</span>(<span class="at">data =</span> july_2019, </span>
-<span id="cb14-3"><a href="#cb14-3"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Total)) <span class="sc">+</span></span>
-<span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">"white"</span>,</span>
-<span id="cb14-5"><a href="#cb14-5"></a>                 <span class="at">fill =</span> <span class="st">"violetred1"</span>,</span>
-<span id="cb14-6"><a href="#cb14-6"></a>                 <span class="at">bins =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="4-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co"># Create histogram</span></span>
+<span id="cb14-2"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> july_2019, </span>
+<span id="cb14-3"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Total)) <span class="sc">+</span></span>
+<span id="cb14-4"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb14-5"><a></a>                 <span class="at">fill =</span> <span class="st">"violetred1"</span>,</span>
+<span id="cb14-6"><a></a>                 <span class="at">bins =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk02wed_files/figure-revealjs/hist2-1.png" width="4000"></p>
+<p><img data-src="data100_wk02wed_files/figure-revealjs/hist2-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 <ul>
 <li class="fragment"><strong>mapping</strong> to a variable goes in <code>aes()</code></li>
 <li class="fragment"><strong>setting</strong> to a specific value goes in the <code>geom_---()</code></li>
@@ -972,114 +965,108 @@ $ Occasion  &lt;chr&gt; "Fourth of July", "Fourth of July", "Fourth of July", "F
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk02wed_files/figure-revealjs/unnamed-chunk-13-1.png" width="4000"></p>
+<p><img data-src="data100_wk02wed_files/figure-revealjs/unnamed-chunk-13-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="boxplots-1" class="slide level2">
 <h2>Boxplots</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Create boxplot</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">ggplot</span>(<span class="at">data =</span> july_2019, </span>
-<span id="cb15-3"><a href="#cb15-3"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Occasion, </span>
-<span id="cb15-4"><a href="#cb15-4"></a>                     <span class="at">y =</span> Total)) <span class="sc">+</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="co"># Create boxplot</span></span>
+<span id="cb15-2"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> july_2019, </span>
+<span id="cb15-3"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Occasion, </span>
+<span id="cb15-4"><a></a>                     <span class="at">y =</span> Total)) <span class="sc">+</span></span>
+<span id="cb15-5"><a></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk02wed_files/figure-revealjs/unnamed-chunk-14-1.png" width="4000"></p>
+<p><img data-src="data100_wk02wed_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="boxplots-2" class="slide level2">
 <h2>Boxplots</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> july_2019, </span>
-<span id="cb16-2"><a href="#cb16-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Occasion, </span>
-<span id="cb16-3"><a href="#cb16-3"></a>                     <span class="at">y =</span> Total)) <span class="sc">+</span></span>
-<span id="cb16-4"><a href="#cb16-4"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"springgreen3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> july_2019, </span>
+<span id="cb16-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Occasion, </span>
+<span id="cb16-3"><a></a>                     <span class="at">y =</span> Total)) <span class="sc">+</span></span>
+<span id="cb16-4"><a></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"springgreen3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk02wed_files/figure-revealjs/box2-1.png" width="4000"></p>
+<p><img data-src="data100_wk02wed_files/figure-revealjs/box2-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="boxplots-3" class="slide level2">
 <h2>Boxplots</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> july_2019, </span>
-<span id="cb17-2"><a href="#cb17-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Occasion, </span>
-<span id="cb17-3"><a href="#cb17-3"></a>                     <span class="at">y =</span> Total,</span>
-<span id="cb17-4"><a href="#cb17-4"></a>                     <span class="at">fill =</span> Occasion)) <span class="sc">+</span></span>
-<span id="cb17-5"><a href="#cb17-5"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> july_2019, </span>
+<span id="cb17-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Occasion, </span>
+<span id="cb17-3"><a></a>                     <span class="at">y =</span> Total,</span>
+<span id="cb17-4"><a></a>                     <span class="at">fill =</span> Occasion)) <span class="sc">+</span></span>
+<span id="cb17-5"><a></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk02wed_files/figure-revealjs/box3-1.png" width="4000"></p>
+<p><img data-src="data100_wk02wed_files/figure-revealjs/box3-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="boxplots-4" class="slide level2">
 <h2>Boxplots</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> july_2019, </span>
-<span id="cb18-2"><a href="#cb18-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Occasion, </span>
-<span id="cb18-3"><a href="#cb18-3"></a>                     <span class="at">y =</span> Total,</span>
-<span id="cb18-4"><a href="#cb18-4"></a>                     <span class="at">fill =</span> Occasion)) <span class="sc">+</span></span>
-<span id="cb18-5"><a href="#cb18-5"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb18-6"><a href="#cb18-6"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> july_2019, </span>
+<span id="cb18-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Occasion, </span>
+<span id="cb18-3"><a></a>                     <span class="at">y =</span> Total,</span>
+<span id="cb18-4"><a></a>                     <span class="at">fill =</span> Occasion)) <span class="sc">+</span></span>
+<span id="cb18-5"><a></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb18-6"><a></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk02wed_files/figure-revealjs/box4-1.png" width="4000"></p>
+<p><img data-src="data100_wk02wed_files/figure-revealjs/box4-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="violin-plots" class="slide level2">
 <h2>Violin Plots</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> july_2019, </span>
-<span id="cb19-2"><a href="#cb19-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Occasion, </span>
-<span id="cb19-3"><a href="#cb19-3"></a>                     <span class="at">y =</span> Total,</span>
-<span id="cb19-4"><a href="#cb19-4"></a>                     <span class="at">fill =</span> Occasion)) <span class="sc">+</span></span>
-<span id="cb19-5"><a href="#cb19-5"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb19-6"><a href="#cb19-6"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> july_2019, </span>
+<span id="cb19-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Occasion, </span>
+<span id="cb19-3"><a></a>                     <span class="at">y =</span> Total,</span>
+<span id="cb19-4"><a></a>                     <span class="at">fill =</span> Occasion)) <span class="sc">+</span></span>
+<span id="cb19-5"><a></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb19-6"><a></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk02wed_files/figure-revealjs/vio-1.png" width="4000"></p>
+<p><img data-src="data100_wk02wed_files/figure-revealjs/vio-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="boxplot-versus-violin-plots" class="slide level2">
 <h2>Boxplot Versus Violin Plots</h2>
@@ -1089,7 +1076,7 @@ $ Occasion  &lt;chr&gt; "Fourth of July", "Fourth of July", "Fourth of July", "F
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk02wed_files/figure-revealjs/unnamed-chunk-15-1.png" width="4000"></p>
+<p><img data-src="data100_wk02wed_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
 </div>
@@ -1099,20 +1086,19 @@ $ Occasion  &lt;chr&gt; "Fourth of July", "Fourth of July", "Fourth of July", "F
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk02wed_files/figure-revealjs/unnamed-chunk-16-1.png" width="4000"></p>
+<p><img data-src="data100_wk02wed_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="recap-ggplot2" class="slide level2">
 <h2>Recap: <code>ggplot2</code></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">---</span>, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">---</span>)) <span class="sc">+</span></span>
-<span id="cb20-3"><a href="#cb20-3"></a>  geom_<span class="sc">---</span>(<span class="sc">---</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb20-2"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">---</span>, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">---</span>)) <span class="sc">+</span></span>
+<span id="cb20-3"><a></a>  geom_<span class="sc">---</span>(<span class="sc">---</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="reminders" class="slide level2">
@@ -1129,8 +1115,10 @@ $ Occasion  &lt;chr&gt; "Fourth of July", "Fourth of July", "Fourth of July", "F
 </ul>
 </div>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
+</div>
 </div>
 </section></section>
     </div>
@@ -1160,11 +1148,11 @@ $ Occasion  &lt;chr&gt; "Fourth of July", "Fourth of July", "Fourth of July", "F
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
+'pdfMaxPagesPerSlide': 1,
 'menu': {"side":"right","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true,"numbers":true},
 'chalkboard': {"buttons":true},
 'smaller': false,
@@ -1416,18 +1404,7 @@ $ Occasion  &lt;chr&gt; "Fourth of July", "Fourth of July", "Fourth of July", "F
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -1459,11 +1436,50 @@ $ Occasion  &lt;chr&gt; "Fourth of July", "Fourth of July", "Fourth of July", "F
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
-      function tippyHover(el, contentFn) {
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp("https:\/\/mcconvil\.github\.io\/data100s26");
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1473,8 +1489,17 @@ $ Occasion  &lt;chr&gt; "Fourth of July", "Fourth of July", "Fourth of July", "F
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -1488,7 +1513,11 @@ $ Occasion  &lt;chr&gt; "Fourth of July", "Fourth of July", "Fourth of July", "F
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {
