@@ -245,6 +245,132 @@
     "text": "Reminders\n\n\nClass in full swing:\n\nP-set 1 due on Gradescope by noon on Thursday.\nVisit office hours and then fill out this form\nPanel on careers in data science and public health on Thursday at noon in Taylor 210."
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "DATA 100: Introduction to Data Science",
+    "section": "",
+    "text": "The lecture slides (both in HTML and PDF) will be posted here. \n\n\n\n\nClass Period\nHTML Slides\nPDF Slides\n\n\n\n\nWeek 1, Wed\n\n\n\n\nWeek 2, Mon\n\n\n\n\nWeek 2, Wed\n\n\n\n\nWeek 3, Mon"
+  },
+  {
+    "objectID": "data100_wk02mon.html#announcements",
+    "href": "data100_wk02mon.html#announcements",
+    "title": "DATA 100",
+    "section": "Announcements",
+    "text": "Announcements\n\nClass in full swing:\n\nOffice hours:\n\nMine: Tuesdays 2:30 - 4pm, Wednesdays 2-3pm, Taylor 212\nRebecca: Mondays and Wednesdays 4:30 - 6pm, Taylor 210\nGeneral Data Science Office Hours\n\nThe first problem set is due at noon on Thursday in Gradescope."
+  },
+  {
+    "objectID": "data100_wk02mon.html#day-2-goals",
+    "href": "data100_wk02mon.html#day-2-goals",
+    "title": "DATA 100",
+    "section": "Day 2 Goals",
+    "text": "Day 2 Goals\n\nDiscuss course structure & goals (lecture, lab, office hours, assessments…)\nPresent important course policies (engagement, code of conduct, chatGPT, …)\nGet started in RStudio and with Quarto documents"
+  },
+  {
+    "objectID": "data100_wk02mon.html#data-analysis-workflow",
+    "href": "data100_wk02mon.html#data-analysis-workflow",
+    "title": "DATA 100",
+    "section": "Data Analysis Workflow",
+    "text": "Data Analysis Workflow"
+  },
+  {
+    "objectID": "data100_wk02mon.html#forms-of-assessment",
+    "href": "data100_wk02mon.html#forms-of-assessment",
+    "title": "DATA 100",
+    "section": "Forms of Assessment",
+    "text": "Forms of Assessment\n\n\n\nWeekly quizzes:\n\nAddress important concepts covered.\nFind out what is still confusing.\nCan drop one quiz grade.\n\n\n\n\nWeekly problem sets:\n\nPractice concepts.\nTime during lab will be devoted to starting the next p-set.\nCan drop one p-set grade and get 4 extension days.\n\n\n\n\n\n\nExams:\n\nFormat: In-class Exam & Oral Exam.\nWill have two Mid-terms and Final."
+  },
+  {
+    "objectID": "data100_wk02mon.html#forms-of-assessment-1",
+    "href": "data100_wk02mon.html#forms-of-assessment-1",
+    "title": "DATA 100",
+    "section": "Forms of Assessment",
+    "text": "Forms of Assessment\n\nParticipation/Engagement:\n\nIn lecture and lab.\nBy March 6th, must:\n\nAttend at least one office hour.\nPost at least two messages on Slack.\n\nBy the end of the semester, must attend at least one data science event and reflect on the experience in this form"
+  },
+  {
+    "objectID": "data100_wk02mon.html#this-weeks-assessments",
+    "href": "data100_wk02mon.html#this-weeks-assessments",
+    "title": "DATA 100",
+    "section": "This Week’s Assessments",
+    "text": "This Week’s Assessments\n\nTake the weekly quiz in lab.\nTurn in Problem Set 01 by noon on Thursday.\nWill receive Problem Set 02 in lab."
+  },
+  {
+    "objectID": "data100_wk02mon.html#professor-mcconville-in-spring-2023",
+    "href": "data100_wk02mon.html#professor-mcconville-in-spring-2023",
+    "title": "DATA 100",
+    "section": "Professor McConville in Spring 2023",
+    "text": "Professor McConville in Spring 2023\n\n\n\nBBC Science Focus"
+  },
+  {
+    "objectID": "data100_wk02mon.html#professor-mcconville-after-spring-2023",
+    "href": "data100_wk02mon.html#professor-mcconville-after-spring-2023",
+    "title": "DATA 100",
+    "section": "Professor McConville after Spring 2023",
+    "text": "Professor McConville after Spring 2023\n\n\n\n\n\nRicardo IV Tamayo\n\n\n\nGenerative AI Engagements\n\nWent to looooots of talks on generative AI\nTalked to ChatGPT, Gemini, and others\nAttended a workshop on data analysis with AI"
+  },
+  {
+    "objectID": "data100_wk02mon.html#chatgpt",
+    "href": "data100_wk02mon.html#chatgpt",
+    "title": "DATA 100",
+    "section": "",
+    "text": "ChatGPT Strengths\n\nImpressive but dangerous automated data analysis.\n\nHard to determine if its conclusions are based on the data at hand or the data the large language model was built on.\n\n\n\nDATA 100 Goals\n\nLearn that data analysis is a humanistic endeavor where context drives the data analysis process.\n\nStill need to be careful about biases and data quality.\n\n\n\n\n\n\nA personalized tutor (especially for coding) that tells you the answers.\n\n\n\nFor you to learn to code and to think statistically.\n\nThe DATA 100 Teaching Team will help support that learning.\n\n\n\n\n\n\nInstantly generating written blurbs.\n\n\n\nFor you to learn how to communicate about your data work and data ethics."
+  },
+  {
+    "objectID": "data100_wk02mon.html#my-view-on-the-current-role-of-chatgpt-in-data-work",
+    "href": "data100_wk02mon.html#my-view-on-the-current-role-of-chatgpt-in-data-work",
+    "title": "DATA 100",
+    "section": "My View on the (Current) Role of ChatGPT in Data Work",
+    "text": "My View on the (Current) Role of ChatGPT in Data Work\n\nTo generate code to realize fully conceived ideas that aren’t novel or advanced.\nSeasoned data scientist can/should:\n\nVerify the correctness of the code.\nIdentify any assumptions or defaults ChatGPT is employing.\nRun the code in R and draw conclusions based on the data to reduce risk of perpetuating biases that exist in ChatGPT’s training data.\n\nSo, ChatGPT might be useful to you near the end of DATA 100 but will be detrimental to your learning during most of DATA 100."
+  },
+  {
+    "objectID": "data100_wk02mon.html#ai-policy-for-data-100",
+    "href": "data100_wk02mon.html#ai-policy-for-data-100",
+    "title": "DATA 100",
+    "section": "AI Policy for DATA 100",
+    "text": "AI Policy for DATA 100\nWe are going to take a two-pronged approach to AI in the course:\n\n(No AI) For the first 13 weeks of the course, you are not to use AI tools. Therefore, we expect that all work students submit during this period will be their own. This includes code, written work, and oral assessments. During this period, we specifically forbid the use of ChatGPT or any other generative artificial intelligence (AI) tools at all stages of the work process, including preliminary ones, unless the assignment specifically states that it is allowed.\n(AI) Near the end of the course, we will address the question of how AI can help in data work. At that point in the semester, you are free to experiment with various AI tools on assignments.\n\nIn lecture and on individual assignments, we will make it clear which approach to AI students can take. If it is unclear, make sure to ask."
+  },
+  {
+    "objectID": "data100_wk02mon.html#engagement",
+    "href": "data100_wk02mon.html#engagement",
+    "title": "DATA 100",
+    "section": "Engagement",
+    "text": "Engagement\n\n\n \n\n\n\n\n\n\nBeing actively present is key.\n\n\n\nDuring lecture and lab, remove distractions.\n\nWhen we are on our computers, close email, social media, news, etc.\nIf you will be using a computer/tablet for taking notes, please sit in the second row starting next lecture so as not to distract classmates.\nHide your phone.\n\nI have high expectations but know that all of you (regardless of your stats or computing background) have the ability to meet them."
+  },
+  {
+    "objectID": "data100_wk02mon.html#code-of-conduct",
+    "href": "data100_wk02mon.html#code-of-conduct",
+    "title": "DATA 100",
+    "section": "Code of Conduct",
+    "text": "Code of Conduct\n\nWe expect all members of DATA 100 to make participation a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.\n\n\nWe expect everyone to act and interact in ways that contribute to an open, welcoming diverse, inclusive, and healthy community of learners. You can contribute to a positive learning environment by demonstrating empathy and kindness, being respectful of differing viewpoints and experiences, and giving and gracefully accepting constructive feedback.\n\nThis Code of Conduct is adapted from the Contributor Covenant, version 2.0."
+  },
+  {
+    "objectID": "data100_wk02mon.html#ways-to-get-support",
+    "href": "data100_wk02mon.html#ways-to-get-support",
+    "title": "DATA 100",
+    "section": "Ways to Get Support",
+    "text": "Ways to Get Support\n\nAttend, attend, attend when you don’t feel ill\nParticipate in the DATA 100 Slack Workspace\nCome to Office Hours\nCreate study groups with your classmates\n\nDon’t know anyone in the course?\n\nUse Slack or lab to each to know other students in the course!"
+  },
+  {
+    "objectID": "data100_wk02mon.html#language-r-this-r-that-q-what",
+    "href": "data100_wk02mon.html#language-r-this-r-that-q-what",
+    "title": "DATA 100",
+    "section": "Language: R-This, R-That, Q-What?",
+    "text": "Language: R-This, R-That, Q-What?\n\n\n\n \n\n\nR is the name of the programming language.\n\n\n\nRStudio is the pretty interface and is hosted on a Posit Cloud Server.\n\n\n\n\nQuarto is the type of file where we will record all of our work (code, output, narrative)."
+  },
+  {
+    "objectID": "data100_wk02mon.html#main-components-of-rstudio-lay-out",
+    "href": "data100_wk02mon.html#main-components-of-rstudio-lay-out",
+    "title": "DATA 100",
+    "section": "Main Components of RStudio Lay-Out",
+    "text": "Main Components of RStudio Lay-Out"
+  },
+  {
+    "objectID": "data100_wk02mon.html#reminders",
+    "href": "data100_wk02mon.html#reminders",
+    "title": "DATA 100",
+    "section": "Reminders",
+    "text": "Reminders\n\nClass in full swing:\n\nOffice hours:\n\nMine: Tuesdays 2:30 - 4pm, Wednesdays 2-3pm, Taylor 212\nRebecca: Mondays and Wednesdays 4:30 - 6pm, Taylor 210\nGeneral Data Science Office Hours\n\nThe first problem set is due at noon on Thursday in Gradescope."
+  },
+  {
     "objectID": "data100_wk01wed.html#keyword",
     "href": "data100_wk01wed.html#keyword",
     "title": "DATA 100",
@@ -427,129 +553,353 @@
     "text": "Reminders\n\nIf able, please bring a laptop or tablet to the next lecture.\nMake sure to go through the syllabus, which can be found on Moodle.\n\nWill discuss assessments and course policies on Monday.\n\nLab starts on Friday!"
   },
   {
-    "objectID": "data100_wk02mon.html#announcements",
-    "href": "data100_wk02mon.html#announcements",
+    "objectID": "data100_wk03mon.html#announcements",
+    "href": "data100_wk03mon.html#announcements",
     "title": "DATA 100",
     "section": "Announcements",
-    "text": "Announcements\n\nClass in full swing:\n\nOffice hours:\n\nMine: Tuesdays 2:30 - 4pm, Wednesdays 2-3pm, Taylor 212\nRebecca: Mondays and Wednesdays 4:30 - 6pm, Taylor 210\nGeneral Data Science Office Hours\n\nThe first problem set is due at noon on Thursday in Gradescope."
+    "text": "Announcements\n\nP-Set 2 will take you longer than P-Set 1 did. Make sure to come by office hours with any questions."
   },
   {
-    "objectID": "data100_wk02mon.html#day-2-goals",
-    "href": "data100_wk02mon.html#day-2-goals",
+    "objectID": "data100_wk03mon.html#goals-for-today",
+    "href": "data100_wk03mon.html#goals-for-today",
     "title": "DATA 100",
-    "section": "Day 2 Goals",
-    "text": "Day 2 Goals\n\nDiscuss course structure & goals (lecture, lab, office hours, assessments…)\nPresent important course policies (engagement, code of conduct, chatGPT, …)\nGet started in RStudio and with Quarto documents"
+    "section": "Goals for Today",
+    "text": "Goals for Today\n\n\n\nCome back to the general structure of ggplot2.\nLearn a few standard graphs for numerical/quantitative data:\n\nHistogram: one numerical variable\nSide-by-side boxplot: one numerical variable and one categorical variable\nSide-by-side violin plot: one numerical variable and one categorical variable\nScatterplot: two numerical variables\nLinegraph: two numerical variables\n\n\n\n\nAnd, learn the standard graphic for categorical data:\n\nBarplot: one categorical variable\nSegmented barplot: two categorical variables\n\nAlso cover some common extensions and customizations."
   },
   {
-    "objectID": "data100_wk02mon.html#data-analysis-workflow",
-    "href": "data100_wk02mon.html#data-analysis-workflow",
+    "objectID": "data100_wk03mon.html#load-necessary-packages",
+    "href": "data100_wk03mon.html#load-necessary-packages",
     "title": "DATA 100",
-    "section": "Data Analysis Workflow",
-    "text": "Data Analysis Workflow"
+    "section": "Load Necessary Packages",
+    "text": "Load Necessary Packages\n\n\n\n\n\nggplot2 is part of this collection of data science packages.\n\n# Load necessary packages\nlibrary(tidyverse)"
   },
   {
-    "objectID": "data100_wk02mon.html#forms-of-assessment",
-    "href": "data100_wk02mon.html#forms-of-assessment",
+    "objectID": "data100_wk03mon.html#data-setting-eco-totem-broadway-bicycle-count",
+    "href": "data100_wk03mon.html#data-setting-eco-totem-broadway-bicycle-count",
     "title": "DATA 100",
-    "section": "Forms of Assessment",
-    "text": "Forms of Assessment\n\n\n\nWeekly quizzes:\n\nAddress important concepts covered.\nFind out what is still confusing.\nCan drop one quiz grade.\n\n\n\n\nWeekly problem sets:\n\nPractice concepts.\nTime during lab will be devoted to starting the next p-set.\nCan drop one p-set grade and get 4 extension days.\n\n\n\n\n\n\nExams:\n\nFormat: In-class Exam & Oral Exam.\nWill have two Mid-terms and Final."
+    "section": "Data Setting: Eco-Totem Broadway Bicycle Count",
+    "text": "Data Setting: Eco-Totem Broadway Bicycle Count"
   },
   {
-    "objectID": "data100_wk02mon.html#forms-of-assessment-1",
-    "href": "data100_wk02mon.html#forms-of-assessment-1",
+    "objectID": "data100_wk03mon.html#import-the-data",
+    "href": "data100_wk03mon.html#import-the-data",
     "title": "DATA 100",
-    "section": "Forms of Assessment",
-    "text": "Forms of Assessment\n\nParticipation/Engagement:\n\nIn lecture and lab.\nBy March 6th, must:\n\nAttend at least one office hour.\nPost at least two messages on Slack.\n\nBy the end of the semester, must attend at least one data science event and reflect on the experience in this form"
+    "section": "Import the Data",
+    "text": "Import the Data\n\njuly_2019 &lt;- read_csv(\"data/july_2019.csv\")\n\n# Inspect the data\nglimpse(july_2019)\n\nRows: 192\nColumns: 8\n$ DateTime  &lt;chr&gt; \"07/04/2019 12:00:00 AM\", \"07/04/2019 12:15:00 AM\", \"07/04/2…\n$ Day       &lt;chr&gt; \"Thursday\", \"Thursday\", \"Thursday\", \"Thursday\", \"Thursday\", …\n$ Date      &lt;date&gt; 2019-07-04, 2019-07-04, 2019-07-04, 2019-07-04, 2019-07-04,…\n$ Time      &lt;time&gt; 00:00:00, 00:15:00, 00:30:00, 00:45:00, 01:00:00, 01:15:00,…\n$ Total     &lt;dbl&gt; 2, 3, 2, 0, 3, 2, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, …\n$ Westbound &lt;dbl&gt; 2, 3, 1, 0, 2, 2, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, …\n$ Eastbound &lt;dbl&gt; 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, …\n$ Occasion  &lt;chr&gt; \"Fourth of July\", \"Fourth of July\", \"Fourth of July\", \"Fourt…"
   },
   {
-    "objectID": "data100_wk02mon.html#this-weeks-assessments",
-    "href": "data100_wk02mon.html#this-weeks-assessments",
+    "objectID": "data100_wk03mon.html#ggplot2-example-code",
+    "href": "data100_wk03mon.html#ggplot2-example-code",
     "title": "DATA 100",
-    "section": "This Week’s Assessments",
-    "text": "This Week’s Assessments\n\nTake the weekly quiz in lab.\nTurn in Problem Set 01 by noon on Thursday.\nWill receive Problem Set 02 in lab."
+    "section": "ggplot2 example code",
+    "text": "ggplot2 example code\nGuiding Principle: We will map variables from the data to the aesthetic attributes (e.g. location, size, shape, color) of geometric objects (e.g. points, lines, bars).\n\n\nggplot(data = ---, mapping = aes(---)) +\n  geom_---(---) \n\n\nWill add in other layers today, such as:\n\nscales_---_---()\nlabs()"
   },
   {
-    "objectID": "data100_wk02mon.html#professor-mcconville-in-spring-2023",
-    "href": "data100_wk02mon.html#professor-mcconville-in-spring-2023",
+    "objectID": "data100_wk03mon.html#histograms",
+    "href": "data100_wk03mon.html#histograms",
     "title": "DATA 100",
-    "section": "Professor McConville in Spring 2023",
-    "text": "Professor McConville in Spring 2023\n\n\n\nBBC Science Focus"
+    "section": "Histograms",
+    "text": "Histograms\n\nggplot(data = ---, mapping = aes(---)) +\n  geom_---(---) \n\n\n\n# Create histogram\nggplot(data = july_2019, \n       mapping = aes(x = Total)) +\n  geom_histogram(color = \"white\",\n                 fill = \"violetred1\",\n                 bins = 50)\n\n\n\n\n\n\n\n\n\n\nmapping to a variable goes in aes() and setting to a specific value goes in the geom_---()"
   },
   {
-    "objectID": "data100_wk02mon.html#professor-mcconville-after-spring-2023",
-    "href": "data100_wk02mon.html#professor-mcconville-after-spring-2023",
+    "objectID": "data100_wk03mon.html#boxplots",
+    "href": "data100_wk03mon.html#boxplots",
     "title": "DATA 100",
-    "section": "Professor McConville after Spring 2023",
-    "text": "Professor McConville after Spring 2023\n\n\n\n\n\nRicardo IV Tamayo\n\n\n\nGenerative AI Engagements\n\nWent to looooots of talks on generative AI\nTalked to ChatGPT, Gemini, and others\nAttended a workshop on data analysis with AI"
+    "section": "Boxplots",
+    "text": "Boxplots\n\n\n\nFive number summary:\n\nMinimum\nFirst quartile (Q1)\nMedian\nThird quartile (Q3)\nMaximum\n\nInterquartile range (IQR) \\(=\\) Q3 \\(-\\) Q1\nOutliers: unusual points\n\nBoxplot defines unusual as being beyond \\(1.5*IQR\\) from \\(Q1\\) or \\(Q3\\).\n\nWhiskers: reach out to the furthest point that is NOT an outlier"
   },
   {
-    "objectID": "data100_wk02mon.html#chatgpt",
-    "href": "data100_wk02mon.html#chatgpt",
+    "objectID": "data100_wk03mon.html#boxplots-1",
+    "href": "data100_wk03mon.html#boxplots-1",
     "title": "DATA 100",
-    "section": "",
-    "text": "ChatGPT Strengths\n\nImpressive but dangerous automated data analysis.\n\nHard to determine if its conclusions are based on the data at hand or the data the large language model was built on.\n\n\n\nDATA 100 Goals\n\nLearn that data analysis is a humanistic endeavor where context drives the data analysis process.\n\nStill need to be careful about biases and data quality.\n\n\n\n\n\n\nA personalized tutor (especially for coding) that tells you the answers.\n\n\n\nFor you to learn to code and to think statistically.\n\nThe DATA 100 Teaching Team will help support that learning.\n\n\n\n\n\n\nInstantly generating written blurbs.\n\n\n\nFor you to learn how to communicate about your data work and data ethics."
+    "section": "Boxplots",
+    "text": "Boxplots\n\nggplot(data = ---, mapping = aes(---)) +\n  geom_---(---) \n\n\n\n# Create boxplot\nggplot(data = july_2019, \n       mapping = aes(x = Occasion, \n                     y = Total)) +\n  geom_boxplot()"
   },
   {
-    "objectID": "data100_wk02mon.html#my-view-on-the-current-role-of-chatgpt-in-data-work",
-    "href": "data100_wk02mon.html#my-view-on-the-current-role-of-chatgpt-in-data-work",
+    "objectID": "data100_wk03mon.html#boxplots-2",
+    "href": "data100_wk03mon.html#boxplots-2",
     "title": "DATA 100",
-    "section": "My View on the (Current) Role of ChatGPT in Data Work",
-    "text": "My View on the (Current) Role of ChatGPT in Data Work\n\nTo generate code to realize fully conceived ideas that aren’t novel or advanced.\nSeasoned data scientist can/should:\n\nVerify the correctness of the code.\nIdentify any assumptions or defaults ChatGPT is employing.\nRun the code in R and draw conclusions based on the data to reduce risk of perpetuating biases that exist in ChatGPT’s training data.\n\nSo, ChatGPT might be useful to you near the end of DATA 100 but will be detrimental to your learning during most of DATA 100."
+    "section": "Boxplots",
+    "text": "Boxplots\n\n\nggplot(data = july_2019, \n       mapping = aes(x = Occasion, \n                     y = Total)) +\n  geom_boxplot(color = \"springgreen3\")"
   },
   {
-    "objectID": "data100_wk02mon.html#ai-policy-for-data-100",
-    "href": "data100_wk02mon.html#ai-policy-for-data-100",
+    "objectID": "data100_wk03mon.html#boxplots-3",
+    "href": "data100_wk03mon.html#boxplots-3",
     "title": "DATA 100",
-    "section": "AI Policy for DATA 100",
-    "text": "AI Policy for DATA 100\nWe are going to take a two-pronged approach to AI in the course:\n\n(No AI) For the first 13 weeks of the course, you are not to use AI tools. Therefore, we expect that all work students submit during this period will be their own. This includes code, written work, and oral assessments. During this period, we specifically forbid the use of ChatGPT or any other generative artificial intelligence (AI) tools at all stages of the work process, including preliminary ones, unless the assignment specifically states that it is allowed.\n(AI) Near the end of the course, we will address the question of how AI can help in data work. At that point in the semester, you are free to experiment with various AI tools on assignments.\n\nIn lecture and on individual assignments, we will make it clear which approach to AI students can take. If it is unclear, make sure to ask."
+    "section": "Boxplots",
+    "text": "Boxplots\n\n\nggplot(data = july_2019, \n       mapping = aes(x = Occasion, \n                     y = Total,\n                     fill = Occasion)) +\n  geom_boxplot()"
   },
   {
-    "objectID": "data100_wk02mon.html#engagement",
-    "href": "data100_wk02mon.html#engagement",
+    "objectID": "data100_wk03mon.html#boxplots-4",
+    "href": "data100_wk03mon.html#boxplots-4",
     "title": "DATA 100",
-    "section": "Engagement",
-    "text": "Engagement\n\n\n \n\n\n\n\n\n\nBeing actively present is key.\n\n\n\nDuring lecture and lab, remove distractions.\n\nWhen we are on our computers, close email, social media, news, etc.\nIf you will be using a computer/tablet for taking notes, please sit in the second row starting next lecture so as not to distract classmates.\nHide your phone.\n\nI have high expectations but know that all of you (regardless of your stats or computing background) have the ability to meet them."
+    "section": "Boxplots",
+    "text": "Boxplots\n\n\nggplot(data = july_2019, \n       mapping = aes(x = Occasion, \n                     y = Total,\n                     fill = Occasion)) +\n  geom_boxplot() +\n  guides(fill = \"none\")"
   },
   {
-    "objectID": "data100_wk02mon.html#code-of-conduct",
-    "href": "data100_wk02mon.html#code-of-conduct",
+    "objectID": "data100_wk03mon.html#violin-plots",
+    "href": "data100_wk03mon.html#violin-plots",
     "title": "DATA 100",
-    "section": "Code of Conduct",
-    "text": "Code of Conduct\n\nWe expect all members of DATA 100 to make participation a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.\n\n\nWe expect everyone to act and interact in ways that contribute to an open, welcoming diverse, inclusive, and healthy community of learners. You can contribute to a positive learning environment by demonstrating empathy and kindness, being respectful of differing viewpoints and experiences, and giving and gracefully accepting constructive feedback.\n\nThis Code of Conduct is adapted from the Contributor Covenant, version 2.0."
+    "section": "Violin Plots",
+    "text": "Violin Plots\n\n\nggplot(data = july_2019, \n       mapping = aes(x = Occasion, \n                     y = Total,\n                     fill = Occasion)) +\n  geom_violin() +\n  guides(fill = \"none\")"
   },
   {
-    "objectID": "data100_wk02mon.html#ways-to-get-support",
-    "href": "data100_wk02mon.html#ways-to-get-support",
+    "objectID": "data100_wk03mon.html#boxplot-versus-violin-plots",
+    "href": "data100_wk03mon.html#boxplot-versus-violin-plots",
     "title": "DATA 100",
-    "section": "Ways to Get Support",
-    "text": "Ways to Get Support\n\nAttend, attend, attend when you don’t feel ill\nParticipate in the DATA 100 Slack Workspace\nCome to Office Hours\nCreate study groups with your classmates\n\nDon’t know anyone in the course?\n\nUse Slack or lab to each to know other students in the course!"
+    "section": "Boxplot Versus Violin Plots",
+    "text": "Boxplot Versus Violin Plots"
   },
   {
-    "objectID": "data100_wk02mon.html#language-r-this-r-that-q-what",
-    "href": "data100_wk02mon.html#language-r-this-r-that-q-what",
+    "objectID": "data100_wk03mon.html#scatterplots",
+    "href": "data100_wk03mon.html#scatterplots",
     "title": "DATA 100",
-    "section": "Language: R-This, R-That, Q-What?",
-    "text": "Language: R-This, R-That, Q-What?\n\n\n\n \n\n\nR is the name of the programming language.\n\n\n\nRStudio is the pretty interface and is hosted on a Posit Cloud Server.\n\n\n\n\nQuarto is the type of file where we will record all of our work (code, output, narrative)."
+    "section": "Scatterplots",
+    "text": "Scatterplots\n\nExplore relationships between numerical variables.\n\nWe will be especially interested in linear relationships.\n\n\n\n\n\nggplot(data = july_2019,\n       mapping = aes(x = Time,\n                     y = Total)) +\n  geom_point(size = 2)"
   },
   {
-    "objectID": "data100_wk02mon.html#main-components-of-rstudio-lay-out",
-    "href": "data100_wk02mon.html#main-components-of-rstudio-lay-out",
+    "objectID": "data100_wk03mon.html#scatterplots-1",
+    "href": "data100_wk03mon.html#scatterplots-1",
     "title": "DATA 100",
-    "section": "Main Components of RStudio Lay-Out",
-    "text": "Main Components of RStudio Lay-Out"
+    "section": "Scatterplots",
+    "text": "Scatterplots\n\n\nggplot(data = july_2019,\n       mapping = aes(x = Time,\n                     y = Total)) +\n  geom_point(size = 2, alpha = 0.6)\n\n\n\n\n\n\n\n\n\n\nFix over-plotting\nWhy the weird pattern??"
   },
   {
-    "objectID": "data100_wk02mon.html#reminders",
-    "href": "data100_wk02mon.html#reminders",
+    "objectID": "data100_wk03mon.html#scatterplots-2",
+    "href": "data100_wk03mon.html#scatterplots-2",
+    "title": "DATA 100",
+    "section": "Scatterplots",
+    "text": "Scatterplots\n\n\nggplot(data = july_2019,\n       mapping = aes(x = Time,\n                     y = Total,\n                     color = Occasion)) +\n  geom_point(size = 2, alpha = 0.6)"
+  },
+  {
+    "objectID": "data100_wk03mon.html#linegraphs",
+    "href": "data100_wk03mon.html#linegraphs",
+    "title": "DATA 100",
+    "section": "Linegraphs",
+    "text": "Linegraphs\nAlso called time series plot when time is represented on the x axis.\n\n\nggplot(data = july_2019,\n       mapping = aes(x = Time,\n                     y = Total,\n                     color = Occasion)) +\n  geom_line(alpha = 0.6)"
+  },
+  {
+    "objectID": "data100_wk03mon.html#linegraphs-1",
+    "href": "data100_wk03mon.html#linegraphs-1",
+    "title": "DATA 100",
+    "section": "Linegraphs",
+    "text": "Linegraphs\nAlso called time series plot when time is represented on the x axis.\n\n\nggplot(data = july_2019,\n       mapping = aes(x = Time,\n                     y = Total,\n                     color = Occasion)) +\n  geom_line(alpha = 0.6) +\n  theme(legend.position= \"bottom\")"
+  },
+  {
+    "objectID": "data100_wk03mon.html#new-data-setting-nfl-2018-game-outcomes",
+    "href": "data100_wk03mon.html#new-data-setting-nfl-2018-game-outcomes",
+    "title": "DATA 100",
+    "section": "New Data Setting: NFL 2018 Game Outcomes",
+    "text": "New Data Setting: NFL 2018 Game Outcomes\n\nnfl_outcomes_2018 &lt;- read_csv(\"https://data.scorenetwork.org/data/nfl_mahomes_era_games.csv\")\nglimpse(nfl_outcomes_2018)\n\nRows: 1,657\nColumns: 10\n$ season       &lt;dbl&gt; 2018, 2018, 2018, 2018, 2018, 2018, 2018, 2018, 2018, 201…\n$ game_id      &lt;chr&gt; \"2018_01_ATL_PHI\", \"2018_01_BUF_BAL\", \"2018_01_PIT_CLE\", …\n$ game_type    &lt;chr&gt; \"REG\", \"REG\", \"REG\", \"REG\", \"REG\", \"REG\", \"REG\", \"REG\", \"…\n$ week         &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, …\n$ home_team    &lt;chr&gt; \"PHI\", \"BAL\", \"CLE\", \"IND\", \"MIA\", \"MIN\", \"NE\", \"NO\", \"NY…\n$ away_team    &lt;chr&gt; \"ATL\", \"BUF\", \"PIT\", \"CIN\", \"TEN\", \"SF\", \"HOU\", \"TB\", \"JA…\n$ home_score   &lt;dbl&gt; 18, 47, 21, 23, 27, 24, 27, 40, 15, 28, 6, 16, 27, 24, 17…\n$ away_score   &lt;dbl&gt; 12, 3, 21, 34, 20, 16, 20, 48, 20, 38, 24, 8, 24, 23, 48,…\n$ game_outcome &lt;dbl&gt; 1.0, 1.0, 0.5, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.…\n$ score_diff   &lt;dbl&gt; 6, 44, 0, -11, 7, 8, 7, -8, -5, -10, -18, 8, 3, 1, -31, -…"
+  },
+  {
+    "objectID": "data100_wk03mon.html#data-wrangling",
+    "href": "data100_wk03mon.html#data-wrangling",
+    "title": "DATA 100",
+    "section": "Data Wrangling",
+    "text": "Data Wrangling\nWe haven’t learned this topic yet.\nI only included this code for completeness/transparency.\nWith your postcards, I learned that one of you likes the Buffalo Bills so I filtered down to just them.\n\nbuf &lt;- filter(nfl_outcomes_2018, home_team == \"BUF\" | away_team == \"BUF\") %&gt;%\n  mutate(where = if_else(home_team == \"BUF\", \"home\", \"away\"))"
+  },
+  {
+    "objectID": "data100_wk03mon.html#barplots",
+    "href": "data100_wk03mon.html#barplots",
+    "title": "DATA 100",
+    "section": "Barplots",
+    "text": "Barplots\n\n\nDisplays the frequency for each category."
+  },
+  {
+    "objectID": "data100_wk03mon.html#barplots-1",
+    "href": "data100_wk03mon.html#barplots-1",
+    "title": "DATA 100",
+    "section": "Barplots",
+    "text": "Barplots\n\n\n# Create barplot\nggplot(data = buf, \n       mapping = aes(x = game_type)) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\nHow could we make this graph better?"
+  },
+  {
+    "objectID": "data100_wk03mon.html#barplots-2",
+    "href": "data100_wk03mon.html#barplots-2",
+    "title": "DATA 100",
+    "section": "Barplots",
+    "text": "Barplots\n\n\n# Create barplot\nggplot(data = buf, \n       mapping = aes(x = fct_infreq(game_type))) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\nBut did they win or loss more games??"
+  },
+  {
+    "objectID": "data100_wk03mon.html#barplots-3",
+    "href": "data100_wk03mon.html#barplots-3",
+    "title": "DATA 100",
+    "section": "Barplots",
+    "text": "Barplots\n\n\n# Create barplot\nggplot(data = buf, \n       mapping = aes(x = game_outcome)) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\nHow do we get R to treat game_outcome as a categorical variable?"
+  },
+  {
+    "objectID": "data100_wk03mon.html#barplots-4",
+    "href": "data100_wk03mon.html#barplots-4",
+    "title": "DATA 100",
+    "section": "Barplots",
+    "text": "Barplots\n\n\n# Create barplot\nggplot(data = buf, \n       mapping = aes(x = as.factor(game_outcome))) +\n  geom_bar()"
+  },
+  {
+    "objectID": "data100_wk03mon.html#segmented-barplots",
+    "href": "data100_wk03mon.html#segmented-barplots",
+    "title": "DATA 100",
+    "section": "Segmented Barplots",
+    "text": "Segmented Barplots\n\n\n# Create segmented barplot\nggplot(data = buf, \n       mapping = aes(x = where,\n                     fill = as.factor(game_outcome))) +\n  geom_bar() +\n  theme(legend.position = \"bottom\")\n\n\n\n\n\n\n\n\n\n\nEach bar is divided into the frequencies of the fill variable.\nHard to make comparisons across categories."
+  },
+  {
+    "objectID": "data100_wk03mon.html#segmented-barplots-1",
+    "href": "data100_wk03mon.html#segmented-barplots-1",
+    "title": "DATA 100",
+    "section": "Segmented Barplots",
+    "text": "Segmented Barplots\n\n\n# Create segmented barplot\nggplot(data = buf, \n       mapping = aes(x = where,\n                     fill = as.factor(game_outcome))) +\n  geom_bar(position = \"dodge\") +\n  theme(legend.position = \"bottom\")\n\n\n\n\n\n\n\n\n\n\nCan add the position argument into the geom_bar()."
+  },
+  {
+    "objectID": "data100_wk03mon.html#segmented-barplots-2",
+    "href": "data100_wk03mon.html#segmented-barplots-2",
+    "title": "DATA 100",
+    "section": "Segmented Barplots",
+    "text": "Segmented Barplots\n\n\n# Create segmented barplot\nggplot(data = buf, \n       mapping = aes(x = where,\n                     fill = as.factor(game_outcome))) +\n  geom_bar(position = \"fill\") +\n  theme(legend.position = \"bottom\")\n\n\n\n\n\n\n\n\n\n\nNow each bar is divided into proportions based on the fill variable."
+  },
+  {
+    "objectID": "data100_wk03mon.html#segmented-barplots-3",
+    "href": "data100_wk03mon.html#segmented-barplots-3",
+    "title": "DATA 100",
+    "section": "Segmented Barplots",
+    "text": "Segmented Barplots\n\n\n# Create segmented barplot\nggplot(data = buf, \n       mapping = aes(fill = where,\n                     x = as.factor(game_outcome))) +\n  geom_bar(position = \"fill\") +\n  theme(legend.position = \"bottom\")\n\n\n\n\n\n\n\n\n\n\nHow does our interpretation of the segmented change when we swap the variable mappings?"
+  },
+  {
+    "objectID": "data100_wk03mon.html#adding-more-variables",
+    "href": "data100_wk03mon.html#adding-more-variables",
+    "title": "DATA 100",
+    "section": "Adding More Variables",
+    "text": "Adding More Variables\n\nTwo main approaches:\n\nUtilize other aesthetics of the geom\nFacet: Create multiple plots across the categories of a categorical variable."
+  },
+  {
+    "objectID": "data100_wk03mon.html#utilize-other-aesthetics",
+    "href": "data100_wk03mon.html#utilize-other-aesthetics",
+    "title": "DATA 100",
+    "section": "Utilize other aesthetics",
+    "text": "Utilize other aesthetics\nThe basic geom_boxplot() needs an x and a y aesthetic:\n\n\nggplot(data = buf,\n       mapping = aes(x = as.factor(game_outcome),\n                     y = score_diff)) +\n  geom_boxplot() \n\n\n\n\n\n\n\n\n\nBut you can also add color to get another categorical variable on the graph."
+  },
+  {
+    "objectID": "data100_wk03mon.html#utilize-other-aesthetics-1",
+    "href": "data100_wk03mon.html#utilize-other-aesthetics-1",
+    "title": "DATA 100",
+    "section": "Utilize other aesthetics",
+    "text": "Utilize other aesthetics\nThe basic geom_boxplot() needs an x and a y aesthetic:\n\n\nggplot(data = buf,\n       mapping = aes(x = as.factor(game_outcome),\n                     y = score_diff, \n                     fill = where)) +\n  geom_boxplot() \n\n\n\n\n\n\n\n\n\nBut you can also add color to get another categorical variable on the graph."
+  },
+  {
+    "objectID": "data100_wk03mon.html#facet",
+    "href": "data100_wk03mon.html#facet",
+    "title": "DATA 100",
+    "section": "Facet",
+    "text": "Facet\n\n\nggplot(data = buf, \n       mapping = aes(x = where,\n                     fill = as.factor(game_outcome))) +\n  geom_bar(position = \"dodge\") +\n  theme(legend.position = \"bottom\") +\n  facet_wrap(~game_type)"
+  },
+  {
+    "objectID": "data100_wk03mon.html#facet-1",
+    "href": "data100_wk03mon.html#facet-1",
+    "title": "DATA 100",
+    "section": "Facet",
+    "text": "Facet\n\n\nggplot(data = buf, \n       mapping = aes(x = where,\n                     fill = as.factor(game_outcome))) +\n  geom_bar(position = \"dodge\") +\n  theme(legend.position = \"bottom\") +\n  facet_grid(week~game_type)\n\n\n\n\n\n\n\n\n\nLet’s fix the over-crowded y axis tick marks!"
+  },
+  {
+    "objectID": "data100_wk03mon.html#facet-2",
+    "href": "data100_wk03mon.html#facet-2",
+    "title": "DATA 100",
+    "section": "Facet",
+    "text": "Facet\n\n\nggplot(data = buf, \n       mapping = aes(x = where,\n                     fill = as.factor(game_outcome))) +\n  geom_bar(position = \"dodge\") +\n  theme(legend.position = \"bottom\") +\n  facet_grid(week~game_type) +\n  scale_y_continuous(breaks = c(0, 3))"
+  },
+  {
+    "objectID": "data100_wk03mon.html#adding-some-context",
+    "href": "data100_wk03mon.html#adding-some-context",
+    "title": "DATA 100",
+    "section": "Adding Some Context",
+    "text": "Adding Some Context\n\n\nbuf &lt;- mutate(buf, \n              outcome = if_else(game_outcome == 1,\n                                \"Won\", \"Lost\"))\n\nggplot(data = buf,\n       mapping = aes(x = outcome,\n                     y = score_diff, \n                     fill = where)) +\n  geom_boxplot()  +\n  labs(x = \"Outcome of the Game\",\n       y = \"Difference in Score Between \\nWinner and Loser\",\n       color = \"Where was the Game?\",\n       caption = \"Data from the nflreadr Package\",\n       title = \"The Buffalo Bills Should Only Play At Home.\")"
+  },
+  {
+    "objectID": "data100_wk03mon.html#customizing-your-ggplot2-plots",
+    "href": "data100_wk03mon.html#customizing-your-ggplot2-plots",
+    "title": "DATA 100",
+    "section": "Customizing your ggplot2 Plots",
+    "text": "Customizing your ggplot2 Plots\n\nThere are so many ways you can customize the look of your ggplot2 plots.\nLet’s look at some common changes:\n\nFussing with labels\nRemoving the legend\nZooming in\nUsing multiple geoms\nColor!\nThemes"
+  },
+  {
+    "objectID": "data100_wk03mon.html#fussing-with-labels-rotate",
+    "href": "data100_wk03mon.html#fussing-with-labels-rotate",
+    "title": "DATA 100",
+    "section": "Fussing with Labels: Rotate",
+    "text": "Fussing with Labels: Rotate\n\n\n# Focus on games outside the regular season\nbuf_not_reg &lt;- filter(buf, game_type != \"REG\")\n\nggplot(data = buf_not_reg,\n       mapping = aes(x = game_id,\n                     y = score_diff)) +\n  geom_col()"
+  },
+  {
+    "objectID": "data100_wk03mon.html#fussing-with-labels-rotate-1",
+    "href": "data100_wk03mon.html#fussing-with-labels-rotate-1",
+    "title": "DATA 100",
+    "section": "Fussing with Labels: Rotate",
+    "text": "Fussing with Labels: Rotate\n\n\n# Focus on games outside the regular season\nbuf_not_reg &lt;- filter(buf, game_type != \"REG\")\n\nggplot(data = buf_not_reg,\n       mapping = aes(x = game_id,\n                     y = score_diff)) +\n  geom_col() + \n  theme(axis.text.x =\n          element_text(angle = 45,\n                       vjust = 1,\n                       hjust = 1))"
+  },
+  {
+    "objectID": "data100_wk03mon.html#not-including-a-legend",
+    "href": "data100_wk03mon.html#not-including-a-legend",
+    "title": "DATA 100",
+    "section": "Not Including a Legend",
+    "text": "Not Including a Legend\n\n\n# Focus on games outside the regular season\nbuf_not_reg &lt;- filter(buf, game_type != \"REG\")\n\nggplot(data = buf_not_reg,\n       mapping = aes(x = game_id,\n                     y = score_diff,\n                     fill = outcome)) +\n  geom_col() + \n  theme(axis.text.x =\n          element_text(angle = 45,\n                       vjust = 1,\n                       hjust = 1)) +\n  guides(fill = \"none\")"
+  },
+  {
+    "objectID": "data100_wk03mon.html#zooming-in",
+    "href": "data100_wk03mon.html#zooming-in",
+    "title": "DATA 100",
+    "section": "Zooming In",
+    "text": "Zooming In\n\n\nggplot(data = july_2019, \n       mapping = aes(x = Occasion, \n                     y = Total,\n                     fill = Occasion)) +\n  geom_boxplot() +\n  guides(fill = \"none\")"
+  },
+  {
+    "objectID": "data100_wk03mon.html#zooming-in-1",
+    "href": "data100_wk03mon.html#zooming-in-1",
+    "title": "DATA 100",
+    "section": "Zooming In",
+    "text": "Zooming In\n\n\nggplot(data = july_2019, \n       mapping = aes(x = Occasion, \n                     y = Total,\n                     fill = Occasion)) +\n  geom_boxplot() +\n  guides(fill = \"none\") +\n  coord_cartesian(ylim = c(0, 40))"
+  },
+  {
+    "objectID": "data100_wk03mon.html#including-multiple-geoms",
+    "href": "data100_wk03mon.html#including-multiple-geoms",
+    "title": "DATA 100",
+    "section": "Including Multiple geoms",
+    "text": "Including Multiple geoms\n\n\nggplot(data = july_2019, \n       mapping = aes(x = Occasion, \n                     y = Total,\n                     fill = Occasion)) +\n  geom_boxplot() +\n  guides(fill = \"none\") +\n  coord_cartesian(ylim = c(0, 40)) +\n  geom_jitter(width = 0.1,\n              height = 0, \n              alpha = 0.6)"
+  },
+  {
+    "objectID": "data100_wk03mon.html#including-multiple-geoms-1",
+    "href": "data100_wk03mon.html#including-multiple-geoms-1",
+    "title": "DATA 100",
+    "section": "Including Multiple geoms",
+    "text": "Including Multiple geoms\n\n\nggplot(data = july_2019,\n       mapping = aes(x = Time,\n                     y = Total,\n                     color = Occasion)) +\n  geom_line(size = 2) +\n  theme(legend.position= \"bottom\") +\n  geom_point(size = 3)"
+  },
+  {
+    "objectID": "data100_wk03mon.html#changing-the-color",
+    "href": "data100_wk03mon.html#changing-the-color",
+    "title": "DATA 100",
+    "section": "Changing the Color",
+    "text": "Changing the Color\n\ncolors()\n\n  [1] \"white\"                \"aliceblue\"            \"antiquewhite\"        \n  [4] \"antiquewhite1\"        \"antiquewhite2\"        \"antiquewhite3\"       \n  [7] \"antiquewhite4\"        \"aquamarine\"           \"aquamarine1\"         \n [10] \"aquamarine2\"          \"aquamarine3\"          \"aquamarine4\"         \n [13] \"azure\"                \"azure1\"               \"azure2\"              \n [16] \"azure3\"               \"azure4\"               \"beige\"               \n [19] \"bisque\"               \"bisque1\"              \"bisque2\"             \n [22] \"bisque3\"              \"bisque4\"              \"black\"               \n [25] \"blanchedalmond\"       \"blue\"                 \"blue1\"               \n [28] \"blue2\"                \"blue3\"                \"blue4\"               \n [31] \"blueviolet\"           \"brown\"                \"brown1\"              \n [34] \"brown2\"               \"brown3\"               \"brown4\"              \n [37] \"burlywood\"            \"burlywood1\"           \"burlywood2\"          \n [40] \"burlywood3\"           \"burlywood4\"           \"cadetblue\"           \n [43] \"cadetblue1\"           \"cadetblue2\"           \"cadetblue3\"          \n [46] \"cadetblue4\"           \"chartreuse\"           \"chartreuse1\"         \n [49] \"chartreuse2\"          \"chartreuse3\"          \"chartreuse4\"         \n [52] \"chocolate\"            \"chocolate1\"           \"chocolate2\"          \n [55] \"chocolate3\"           \"chocolate4\"           \"coral\"               \n [58] \"coral1\"               \"coral2\"               \"coral3\"              \n [61] \"coral4\"               \"cornflowerblue\"       \"cornsilk\"            \n [64] \"cornsilk1\"            \"cornsilk2\"            \"cornsilk3\"           \n [67] \"cornsilk4\"            \"cyan\"                 \"cyan1\"               \n [70] \"cyan2\"                \"cyan3\"                \"cyan4\"               \n [73] \"darkblue\"             \"darkcyan\"             \"darkgoldenrod\"       \n [76] \"darkgoldenrod1\"       \"darkgoldenrod2\"       \"darkgoldenrod3\"      \n [79] \"darkgoldenrod4\"       \"darkgray\"             \"darkgreen\"           \n [82] \"darkgrey\"             \"darkkhaki\"            \"darkmagenta\"         \n [85] \"darkolivegreen\"       \"darkolivegreen1\"      \"darkolivegreen2\"     \n [88] \"darkolivegreen3\"      \"darkolivegreen4\"      \"darkorange\"          \n [91] \"darkorange1\"          \"darkorange2\"          \"darkorange3\"         \n [94] \"darkorange4\"          \"darkorchid\"           \"darkorchid1\"         \n [97] \"darkorchid2\"          \"darkorchid3\"          \"darkorchid4\"         \n[100] \"darkred\"              \"darksalmon\"           \"darkseagreen\"        \n[103] \"darkseagreen1\"        \"darkseagreen2\"        \"darkseagreen3\"       \n[106] \"darkseagreen4\"        \"darkslateblue\"        \"darkslategray\"       \n[109] \"darkslategray1\"       \"darkslategray2\"       \"darkslategray3\"      \n[112] \"darkslategray4\"       \"darkslategrey\"        \"darkturquoise\"       \n[115] \"darkviolet\"           \"deeppink\"             \"deeppink1\"           \n[118] \"deeppink2\"            \"deeppink3\"            \"deeppink4\"           \n[121] \"deepskyblue\"          \"deepskyblue1\"         \"deepskyblue2\"        \n[124] \"deepskyblue3\"         \"deepskyblue4\"         \"dimgray\"             \n[127] \"dimgrey\"              \"dodgerblue\"           \"dodgerblue1\"         \n[130] \"dodgerblue2\"          \"dodgerblue3\"          \"dodgerblue4\"         \n[133] \"firebrick\"            \"firebrick1\"           \"firebrick2\"          \n[136] \"firebrick3\"           \"firebrick4\"           \"floralwhite\"         \n[139] \"forestgreen\"          \"gainsboro\"            \"ghostwhite\"          \n[142] \"gold\"                 \"gold1\"                \"gold2\"               \n[145] \"gold3\"                \"gold4\"                \"goldenrod\"           \n[148] \"goldenrod1\"           \"goldenrod2\"           \"goldenrod3\"          \n[151] \"goldenrod4\"           \"gray\"                 \"gray0\"               \n[154] \"gray1\"                \"gray2\"                \"gray3\"               \n[157] \"gray4\"                \"gray5\"                \"gray6\"               \n[160] \"gray7\"                \"gray8\"                \"gray9\"               \n[163] \"gray10\"               \"gray11\"               \"gray12\"              \n[166] \"gray13\"               \"gray14\"               \"gray15\"              \n[169] \"gray16\"               \"gray17\"               \"gray18\"              \n[172] \"gray19\"               \"gray20\"               \"gray21\"              \n[175] \"gray22\"               \"gray23\"               \"gray24\"              \n[178] \"gray25\"               \"gray26\"               \"gray27\"              \n[181] \"gray28\"               \"gray29\"               \"gray30\"              \n[184] \"gray31\"               \"gray32\"               \"gray33\"              \n[187] \"gray34\"               \"gray35\"               \"gray36\"              \n[190] \"gray37\"               \"gray38\"               \"gray39\"              \n[193] \"gray40\"               \"gray41\"               \"gray42\"              \n[196] \"gray43\"               \"gray44\"               \"gray45\"              \n[199] \"gray46\"               \"gray47\"               \"gray48\"              \n[202] \"gray49\"               \"gray50\"               \"gray51\"              \n[205] \"gray52\"               \"gray53\"               \"gray54\"              \n[208] \"gray55\"               \"gray56\"               \"gray57\"              \n[211] \"gray58\"               \"gray59\"               \"gray60\"              \n[214] \"gray61\"               \"gray62\"               \"gray63\"              \n[217] \"gray64\"               \"gray65\"               \"gray66\"              \n[220] \"gray67\"               \"gray68\"               \"gray69\"              \n[223] \"gray70\"               \"gray71\"               \"gray72\"              \n[226] \"gray73\"               \"gray74\"               \"gray75\"              \n[229] \"gray76\"               \"gray77\"               \"gray78\"              \n[232] \"gray79\"               \"gray80\"               \"gray81\"              \n[235] \"gray82\"               \"gray83\"               \"gray84\"              \n[238] \"gray85\"               \"gray86\"               \"gray87\"              \n[241] \"gray88\"               \"gray89\"               \"gray90\"              \n[244] \"gray91\"               \"gray92\"               \"gray93\"              \n[247] \"gray94\"               \"gray95\"               \"gray96\"              \n[250] \"gray97\"               \"gray98\"               \"gray99\"              \n[253] \"gray100\"              \"green\"                \"green1\"              \n[256] \"green2\"               \"green3\"               \"green4\"              \n[259] \"greenyellow\"          \"grey\"                 \"grey0\"               \n[262] \"grey1\"                \"grey2\"                \"grey3\"               \n[265] \"grey4\"                \"grey5\"                \"grey6\"               \n[268] \"grey7\"                \"grey8\"                \"grey9\"               \n[271] \"grey10\"               \"grey11\"               \"grey12\"              \n[274] \"grey13\"               \"grey14\"               \"grey15\"              \n[277] \"grey16\"               \"grey17\"               \"grey18\"              \n[280] \"grey19\"               \"grey20\"               \"grey21\"              \n[283] \"grey22\"               \"grey23\"               \"grey24\"              \n[286] \"grey25\"               \"grey26\"               \"grey27\"              \n[289] \"grey28\"               \"grey29\"               \"grey30\"              \n[292] \"grey31\"               \"grey32\"               \"grey33\"              \n[295] \"grey34\"               \"grey35\"               \"grey36\"              \n[298] \"grey37\"               \"grey38\"               \"grey39\"              \n[301] \"grey40\"               \"grey41\"               \"grey42\"              \n[304] \"grey43\"               \"grey44\"               \"grey45\"              \n[307] \"grey46\"               \"grey47\"               \"grey48\"              \n[310] \"grey49\"               \"grey50\"               \"grey51\"              \n[313] \"grey52\"               \"grey53\"               \"grey54\"              \n[316] \"grey55\"               \"grey56\"               \"grey57\"              \n[319] \"grey58\"               \"grey59\"               \"grey60\"              \n[322] \"grey61\"               \"grey62\"               \"grey63\"              \n[325] \"grey64\"               \"grey65\"               \"grey66\"              \n[328] \"grey67\"               \"grey68\"               \"grey69\"              \n[331] \"grey70\"               \"grey71\"               \"grey72\"              \n[334] \"grey73\"               \"grey74\"               \"grey75\"              \n[337] \"grey76\"               \"grey77\"               \"grey78\"              \n[340] \"grey79\"               \"grey80\"               \"grey81\"              \n[343] \"grey82\"               \"grey83\"               \"grey84\"              \n[346] \"grey85\"               \"grey86\"               \"grey87\"              \n[349] \"grey88\"               \"grey89\"               \"grey90\"              \n[352] \"grey91\"               \"grey92\"               \"grey93\"              \n[355] \"grey94\"               \"grey95\"               \"grey96\"              \n[358] \"grey97\"               \"grey98\"               \"grey99\"              \n[361] \"grey100\"              \"honeydew\"             \"honeydew1\"           \n[364] \"honeydew2\"            \"honeydew3\"            \"honeydew4\"           \n[367] \"hotpink\"              \"hotpink1\"             \"hotpink2\"            \n[370] \"hotpink3\"             \"hotpink4\"             \"indianred\"           \n[373] \"indianred1\"           \"indianred2\"           \"indianred3\"          \n[376] \"indianred4\"           \"ivory\"                \"ivory1\"              \n[379] \"ivory2\"               \"ivory3\"               \"ivory4\"              \n[382] \"khaki\"                \"khaki1\"               \"khaki2\"              \n[385] \"khaki3\"               \"khaki4\"               \"lavender\"            \n[388] \"lavenderblush\"        \"lavenderblush1\"       \"lavenderblush2\"      \n[391] \"lavenderblush3\"       \"lavenderblush4\"       \"lawngreen\"           \n[394] \"lemonchiffon\"         \"lemonchiffon1\"        \"lemonchiffon2\"       \n[397] \"lemonchiffon3\"        \"lemonchiffon4\"        \"lightblue\"           \n[400] \"lightblue1\"           \"lightblue2\"           \"lightblue3\"          \n[403] \"lightblue4\"           \"lightcoral\"           \"lightcyan\"           \n[406] \"lightcyan1\"           \"lightcyan2\"           \"lightcyan3\"          \n[409] \"lightcyan4\"           \"lightgoldenrod\"       \"lightgoldenrod1\"     \n[412] \"lightgoldenrod2\"      \"lightgoldenrod3\"      \"lightgoldenrod4\"     \n[415] \"lightgoldenrodyellow\" \"lightgray\"            \"lightgreen\"          \n[418] \"lightgrey\"            \"lightpink\"            \"lightpink1\"          \n[421] \"lightpink2\"           \"lightpink3\"           \"lightpink4\"          \n[424] \"lightsalmon\"          \"lightsalmon1\"         \"lightsalmon2\"        \n[427] \"lightsalmon3\"         \"lightsalmon4\"         \"lightseagreen\"       \n[430] \"lightskyblue\"         \"lightskyblue1\"        \"lightskyblue2\"       \n[433] \"lightskyblue3\"        \"lightskyblue4\"        \"lightslateblue\"      \n[436] \"lightslategray\"       \"lightslategrey\"       \"lightsteelblue\"      \n[439] \"lightsteelblue1\"      \"lightsteelblue2\"      \"lightsteelblue3\"     \n[442] \"lightsteelblue4\"      \"lightyellow\"          \"lightyellow1\"        \n[445] \"lightyellow2\"         \"lightyellow3\"         \"lightyellow4\"        \n[448] \"limegreen\"            \"linen\"                \"magenta\"             \n[451] \"magenta1\"             \"magenta2\"             \"magenta3\"            \n[454] \"magenta4\"             \"maroon\"               \"maroon1\"             \n[457] \"maroon2\"              \"maroon3\"              \"maroon4\"             \n[460] \"mediumaquamarine\"     \"mediumblue\"           \"mediumorchid\"        \n[463] \"mediumorchid1\"        \"mediumorchid2\"        \"mediumorchid3\"       \n[466] \"mediumorchid4\"        \"mediumpurple\"         \"mediumpurple1\"       \n[469] \"mediumpurple2\"        \"mediumpurple3\"        \"mediumpurple4\"       \n[472] \"mediumseagreen\"       \"mediumslateblue\"      \"mediumspringgreen\"   \n[475] \"mediumturquoise\"      \"mediumvioletred\"      \"midnightblue\"        \n[478] \"mintcream\"            \"mistyrose\"            \"mistyrose1\"          \n[481] \"mistyrose2\"           \"mistyrose3\"           \"mistyrose4\"          \n[484] \"moccasin\"             \"navajowhite\"          \"navajowhite1\"        \n[487] \"navajowhite2\"         \"navajowhite3\"         \"navajowhite4\"        \n[490] \"navy\"                 \"navyblue\"             \"oldlace\"             \n[493] \"olivedrab\"            \"olivedrab1\"           \"olivedrab2\"          \n[496] \"olivedrab3\"           \"olivedrab4\"           \"orange\"              \n[499] \"orange1\"              \"orange2\"              \"orange3\"             \n[502] \"orange4\"              \"orangered\"            \"orangered1\"          \n[505] \"orangered2\"           \"orangered3\"           \"orangered4\"          \n[508] \"orchid\"               \"orchid1\"              \"orchid2\"             \n[511] \"orchid3\"              \"orchid4\"              \"palegoldenrod\"       \n[514] \"palegreen\"            \"palegreen1\"           \"palegreen2\"          \n[517] \"palegreen3\"           \"palegreen4\"           \"paleturquoise\"       \n[520] \"paleturquoise1\"       \"paleturquoise2\"       \"paleturquoise3\"      \n[523] \"paleturquoise4\"       \"palevioletred\"        \"palevioletred1\"      \n[526] \"palevioletred2\"       \"palevioletred3\"       \"palevioletred4\"      \n[529] \"papayawhip\"           \"peachpuff\"            \"peachpuff1\"          \n[532] \"peachpuff2\"           \"peachpuff3\"           \"peachpuff4\"          \n[535] \"peru\"                 \"pink\"                 \"pink1\"               \n[538] \"pink2\"                \"pink3\"                \"pink4\"               \n[541] \"plum\"                 \"plum1\"                \"plum2\"               \n[544] \"plum3\"                \"plum4\"                \"powderblue\"          \n[547] \"purple\"               \"purple1\"              \"purple2\"             \n[550] \"purple3\"              \"purple4\"              \"red\"                 \n[553] \"red1\"                 \"red2\"                 \"red3\"                \n[556] \"red4\"                 \"rosybrown\"            \"rosybrown1\"          \n[559] \"rosybrown2\"           \"rosybrown3\"           \"rosybrown4\"          \n[562] \"royalblue\"            \"royalblue1\"           \"royalblue2\"          \n[565] \"royalblue3\"           \"royalblue4\"           \"saddlebrown\"         \n[568] \"salmon\"               \"salmon1\"              \"salmon2\"             \n[571] \"salmon3\"              \"salmon4\"              \"sandybrown\"          \n[574] \"seagreen\"             \"seagreen1\"            \"seagreen2\"           \n[577] \"seagreen3\"            \"seagreen4\"            \"seashell\"            \n[580] \"seashell1\"            \"seashell2\"            \"seashell3\"           \n[583] \"seashell4\"            \"sienna\"               \"sienna1\"             \n[586] \"sienna2\"              \"sienna3\"              \"sienna4\"             \n[589] \"skyblue\"              \"skyblue1\"             \"skyblue2\"            \n[592] \"skyblue3\"             \"skyblue4\"             \"slateblue\"           \n[595] \"slateblue1\"           \"slateblue2\"           \"slateblue3\"          \n[598] \"slateblue4\"           \"slategray\"            \"slategray1\"          \n[601] \"slategray2\"           \"slategray3\"           \"slategray4\"          \n[604] \"slategrey\"            \"snow\"                 \"snow1\"               \n[607] \"snow2\"                \"snow3\"                \"snow4\"               \n[610] \"springgreen\"          \"springgreen1\"         \"springgreen2\"        \n[613] \"springgreen3\"         \"springgreen4\"         \"steelblue\"           \n[616] \"steelblue1\"           \"steelblue2\"           \"steelblue3\"          \n[619] \"steelblue4\"           \"tan\"                  \"tan1\"                \n[622] \"tan2\"                 \"tan3\"                 \"tan4\"                \n[625] \"thistle\"              \"thistle1\"             \"thistle2\"            \n[628] \"thistle3\"             \"thistle4\"             \"tomato\"              \n[631] \"tomato1\"              \"tomato2\"              \"tomato3\"             \n[634] \"tomato4\"              \"turquoise\"            \"turquoise1\"          \n[637] \"turquoise2\"           \"turquoise3\"           \"turquoise4\"          \n[640] \"violet\"               \"violetred\"            \"violetred1\"          \n[643] \"violetred2\"           \"violetred3\"           \"violetred4\"          \n[646] \"wheat\"                \"wheat1\"               \"wheat2\"              \n[649] \"wheat3\"               \"wheat4\"               \"whitesmoke\"          \n[652] \"yellow\"               \"yellow1\"              \"yellow2\"             \n[655] \"yellow3\"              \"yellow4\"              \"yellowgreen\""
+  },
+  {
+    "objectID": "data100_wk03mon.html#changing-the-color-1",
+    "href": "data100_wk03mon.html#changing-the-color-1",
+    "title": "DATA 100",
+    "section": "Changing the Color",
+    "text": "Changing the Color\n\n\nggplot(data = july_2019,\n       mapping = aes(x = Time,\n                     y = Total,\n                     color = Occasion)) +\n  geom_line(size = 2) +\n  theme(legend.position= \"bottom\") +\n  scale_color_manual(values = c(\"violetred2\",\n                                \"steelblue4\"))"
+  },
+  {
+    "objectID": "data100_wk03mon.html#changing-the-color-2",
+    "href": "data100_wk03mon.html#changing-the-color-2",
+    "title": "DATA 100",
+    "section": "Changing the Color",
+    "text": "Changing the Color\n\n\nggplot(data = july_2019,\n       mapping = aes(x = Time,\n                     y = Total,\n                     color = Occasion)) +\n  geom_line(size = 2) +\n  theme(legend.position= \"bottom\") +\n  scale_color_manual(values = c(\"#0D6759\",\n                                \"#E4844A\"))"
+  },
+  {
+    "objectID": "data100_wk03mon.html#using-a-different-theme",
+    "href": "data100_wk03mon.html#using-a-different-theme",
+    "title": "DATA 100",
+    "section": "Using a Different Theme",
+    "text": "Using a Different Theme\n\n\nggplot(data = july_2019,\n       mapping = aes(x = Time,\n                     y = Total,\n                     color = Occasion)) +\n  geom_line(size = 2) +\n  scale_color_manual(values = c(\"#0D6759\",\n                                \"#E4844A\")) +\n  theme_bw() +\n  theme(legend.position= \"bottom\")"
+  },
+  {
+    "objectID": "data100_wk03mon.html#reminders",
+    "href": "data100_wk03mon.html#reminders",
     "title": "DATA 100",
     "section": "Reminders",
-    "text": "Reminders\n\nClass in full swing:\n\nOffice hours:\n\nMine: Tuesdays 2:30 - 4pm, Wednesdays 2-3pm, Taylor 212\nRebecca: Mondays and Wednesdays 4:30 - 6pm, Taylor 210\nGeneral Data Science Office Hours\n\nThe first problem set is due at noon on Thursday in Gradescope."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "DATA 100: Introduction to Data Science",
-    "section": "",
-    "text": "The lecture slides (both in HTML and PDF) will be posted here. \n\n\n\n\nClass Period\nHTML Slides\nPDF Slides\n\n\n\n\nWeek 1, Wed\n\n\n\n\nWeek 2, Mon\n\n\n\n\nWeek 2, Wed"
+    "text": "Reminders\n\nCome by office hours with any questions you have on ggplot2 or the current problem set!"
   }
 ]

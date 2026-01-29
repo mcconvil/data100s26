@@ -1,0 +1,977 @@
+---
+pagetitle: "ggplot2"
+format: 
+  revealjs:
+    chalkboard: true
+#    incremental: true
+    theme: [default, custom.scss]
+#    multiplex: true
+    height: 900
+    width: 1600
+    slide-number: c
+    auto-stretch: false
+    callout-appearance: simple
+    pdf-max-pages-per-slide: 1
+    menu: 
+      side: right
+      numbers: true
+    code-overflow: wrap
+execute:
+  echo: true
+  warning: false
+  message: false
+  fig-asp: 0.75
+  fig-width: 8
+#  fig-align: center
+  fig-dpi: 500
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+# Some global options still not available in quarto
+ knitr::opts_chunk$set(fig.align = 'center')
+library(knitr)
+library(tidyverse)
+theme_update(text = element_text(size = 20))
+```
+
+::: columns
+::: {.column .center width="55%"}
+![](img/DAW.png){width="80%"}
+:::
+
+::: {.column .center width="45%"}
+[Graphing with `ggplot2`]{.custom-title}
+
+<br>
+
+[Kelly McConville]{.custom-subtitle}
+
+[DATA 100 <br> Week 3 \| Spring 2026]{.custom-subtitle}
+:::
+:::
+
+## Announcements
+
+-   P-Set 2 will take you longer than P-Set 1 did.  Make sure to come by office hours with any questions.
+
+------------------------------------------------------------------------
+
+## Goals for Today
+
+::: columns
+::: {.column width="\"50%"}
+-   Come back to the general structure of `ggplot2`.
+-   Learn a few standard graphs for numerical/quantitative data:
+    -   **Histogram**: one numerical variable
+    -   **Side-by-side boxplot**: one numerical variable and one categorical variable
+    -   **Side-by-side violin plot**: one numerical variable and one categorical variable
+    -   **Scatterplot**: two numerical variables
+    -   **Linegraph**: two numerical variables
+:::
+
+::: {.column width="\"50%"}
+-   And, learn the standard graphic for categorical data:
+    -   **Barplot**: one categorical variable
+    -   **Segmented barplot**: two categorical variables
+-   Also cover some common extensions and customizations.
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Load Necessary Packages
+
+![](img/ggplot2.png){width="15%" fig-align="center"}
+
+`ggplot2` is part of this collection of data science packages.
+
+```{r}
+#| message: true
+#| warning: true
+# Load necessary packages
+library(tidyverse)
+```
+
+------------------------------------------------------------------------
+
+## Data Setting: [Eco-Totem Broadway Bicycle Count](https://data.cambridgema.gov/Transportation-Planning/Eco-Totem-Broadway-Bicycle-Count/q8v9-mcfg)
+
+::: columns
+::: {.column width="40%" fig-align="center"}
+![](img/counter.jpg){width="100%"}
+:::
+
+::: {.column width="60%" fig-align="center"}
+![](img/bike_counter_map.png){width="100%"}
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Import the [Data](https://data.cambridgema.gov/Transportation-Planning/Eco-Totem-Broadway-Bicycle-Count/q8v9-mcfg)
+
+```{r}
+july_2019 <- read_csv("data/july_2019.csv")
+
+# Inspect the data
+glimpse(july_2019)
+```
+
+------------------------------------------------------------------------
+
+## `ggplot2` example code
+
+**Guiding Principle**: We will map variables from the **data** to the **aes**thetic attributes (e.g. location, size, shape, color) of **geom**etric objects (e.g. points, lines, bars).
+
+<br>
+
+```{r, eval = FALSE, tidy = FALSE}
+ggplot(data = ---, mapping = aes(---)) +
+  geom_---(---) 
+```
+
+<br>
+
+Will add in other layers today, such as:
+
+-   `scales_---_---()`
+
+-   `labs()`
+
+------------------------------------------------------------------------
+
+## Histograms
+
+```{r, eval = FALSE, tidy = FALSE}
+ggplot(data = ---, mapping = aes(---)) +
+  geom_---(---) 
+```
+
+```{r hist2}
+#| output-location: column
+
+# Create histogram
+ggplot(data = july_2019, 
+       mapping = aes(x = Total)) +
+  geom_histogram(color = "white",
+                 fill = "violetred1",
+                 bins = 50)
+```
+
+-   **mapping** to a variable goes in `aes()` and **setting** to a specific value goes in the `geom_---()`
+
+------------------------------------------------------------------------
+
+## Boxplots {.smaller}
+
+::: columns
+::: {.column width="50%"}
+-   **Five number summary**:
+    -   Minimum
+    -   First quartile (Q1)
+    -   Median
+    -   Third quartile (Q3)
+    -   Maximum
+-   Interquartile range (IQR) $=$ Q3 $-$ Q1
+-   Outliers: **unusual** points
+    -   Boxplot defines unusual as being beyond $1.5*IQR$ from $Q1$ or $Q3$.
+-   Whiskers: reach out to the furthest point that is NOT an outlier
+:::
+
+::: {.column width="50%"}
+```{r echo = FALSE}
+ggplot(data = july_2019, 
+       mapping = aes(x = Occasion, 
+                     y = Total)) +
+  geom_boxplot()
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Boxplots
+
+```{r, eval = FALSE, tidy = FALSE}
+ggplot(data = ---, mapping = aes(---)) +
+  geom_---(---) 
+```
+
+```{r}
+#| output-location: column
+# Create boxplot
+ggplot(data = july_2019, 
+       mapping = aes(x = Occasion, 
+                     y = Total)) +
+  geom_boxplot()
+```
+
+------------------------------------------------------------------------
+
+## Boxplots
+
+```{r box2}
+#| output-location: column
+
+ggplot(data = july_2019, 
+       mapping = aes(x = Occasion, 
+                     y = Total)) +
+  geom_boxplot(color = "springgreen3")
+```
+
+------------------------------------------------------------------------
+
+## Boxplots
+
+```{r box3}
+#| output-location: column
+
+ggplot(data = july_2019, 
+       mapping = aes(x = Occasion, 
+                     y = Total,
+                     fill = Occasion)) +
+  geom_boxplot()
+```
+
+------------------------------------------------------------------------
+
+## Boxplots
+
+```{r box4}
+#| output-location: column
+
+ggplot(data = july_2019, 
+       mapping = aes(x = Occasion, 
+                     y = Total,
+                     fill = Occasion)) +
+  geom_boxplot() +
+  guides(fill = "none")
+```
+
+------------------------------------------------------------------------
+
+## Violin Plots
+
+```{r vio}
+#| output-location: column
+ggplot(data = july_2019, 
+       mapping = aes(x = Occasion, 
+                     y = Total,
+                     fill = Occasion)) +
+  geom_violin() +
+  guides(fill = "none")
+```
+
+------------------------------------------------------------------------
+
+## Boxplot Versus Violin Plots
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| echo: false
+ggplot(data = july_2019, 
+       mapping = aes(x = Occasion, 
+                     y = Total,
+                     fill = Occasion)) +
+  geom_boxplot() +
+  guides(fill = "none")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+ggplot(data = july_2019, 
+       mapping = aes(x = Occasion, 
+                     y = Total,
+                     fill = Occasion)) +
+  geom_violin() +
+  guides(fill = "none")
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Scatterplots
+
+-   Explore relationships between numerical variables.
+    -   We will be especially interested in **linear** relationships.
+
+::: fragment
+```{r}
+#| output-location: column
+
+ggplot(data = july_2019,
+       mapping = aes(x = Time,
+                     y = Total)) +
+  geom_point(size = 2)
+```
+:::
+
+------------------------------------------------------------------------
+
+## Scatterplots
+
+```{r}
+#| output-location: column
+
+
+ggplot(data = july_2019,
+       mapping = aes(x = Time,
+                     y = Total)) +
+  geom_point(size = 2, alpha = 0.6)
+```
+
+-   Fix over-plotting
+-   Why the weird pattern??
+
+------------------------------------------------------------------------
+
+## Scatterplots
+
+```{r}
+#| output-location: column
+
+
+ggplot(data = july_2019,
+       mapping = aes(x = Time,
+                     y = Total,
+                     color = Occasion)) +
+  geom_point(size = 2, alpha = 0.6)
+```
+
+------------------------------------------------------------------------
+
+## Linegraphs
+
+Also called **time series plot** when time is represented on the x axis.
+
+```{r}
+#| output-location: column
+
+ggplot(data = july_2019,
+       mapping = aes(x = Time,
+                     y = Total,
+                     color = Occasion)) +
+  geom_line(alpha = 0.6)
+```
+
+------------------------------------------------------------------------
+
+## Linegraphs
+
+Also called **time series plot** when time is represented on the x axis.
+
+```{r}
+#| output-location: column
+
+
+ggplot(data = july_2019,
+       mapping = aes(x = Time,
+                     y = Total,
+                     color = Occasion)) +
+  geom_line(alpha = 0.6) +
+  theme(legend.position= "bottom")
+```
+
+------------------------------------------------------------------------
+
+## New Data Setting: [NFL 2018 Game Outcomes](https://data.scorenetwork.org/football/nfl-game-outcomes.html)
+
+```{r}
+nfl_outcomes_2018 <- read_csv("https://data.scorenetwork.org/data/nfl_mahomes_era_games.csv")
+glimpse(nfl_outcomes_2018)
+
+
+```
+
+```{r echo=FALSE, eval=FALSE}
+
+phi_buf <- filter(nfl_outcomes_2018, home_team %in% c("PHI", "BUF") | 
+                   away_team %in% c("PHI", "BUF")) %>%
+  mutate(playing = case_when(home_team == "PHI" & away_team != "BUF" ~ "PHI only",
+                             home_team == "PHI" & away_team == "BUF" ~ "Both",
+                             home_team != "PHI" & away_team == "BUF" ~ "BUF only",
+                             home_team == "BUF" & away_team == "PHI" ~ "Both",
+                             home_team == "BUF" & away_team != "PHI" ~ "BUF only",
+                             home_team != "BUF" & away_team == "PHI" ~ "PHI only",
+                             ))
+count(phi_buf, playing)
+
+
+buf <- filter(nfl_outcomes_2018, home_team == "BUF" | away_team == "BUF") %>%
+  mutate(where = if_else(home_team == "BUF", "home", "away"))
+
+ggplot(data = buf,
+       mapping = aes(x = as.factor(game_outcome))) +
+  geom_bar()
+
+ggplot(data = buf, 
+       mapping = aes(x = game_type)) +
+  geom_bar()
+
+ggplot(data = buf, 
+       mapping = aes(x = game_type, fill = where)) +
+  geom_bar()
+
+ggplot(data = buf,
+       mapping = aes(x = where, fill = as.factor(game_outcome))) +
+  geom_bar()
+
+ggplot(data = buf,
+       mapping = aes(x = where, fill = as.factor(game_outcome))) +
+  geom_bar(position = "dodge")
+
+ggplot(data = buf,
+       mapping = aes(x = where, fill = as.factor(game_outcome))) +
+  geom_bar(position = "fill")
+
+ggplot(data = buf,
+       mapping = aes(fill = where, x = as.factor(game_outcome))) +
+  geom_bar(position = "fill")
+
+
+ggplot(data = phi_buf, 
+    mapping = aes(x = playing)) +
+  geom_bar()
+
+ggplot(data = phi_buf, 
+    mapping = aes(x = game_type, fill = playing)) +
+  geom_bar()
+
+ggplot(data = phi_buf, 
+    mapping = aes(x = game_type, fill = playing)) +
+  geom_bar(position = "dodge")
+
+ggplot(data = phi_buf, 
+    mapping = aes(x = game_type, fill = playing)) +
+  geom_bar(position = "fill")
+
+
+ggplot(data = phi_buf, 
+    mapping = aes(x = playing, fill = game_type)) +
+  geom_bar(position = "fill")
+
+ggplot(data = phi_buf, 
+    mapping = aes(x = playing, fill = game_type)) +
+  geom_bar(position = "dodge")
+
+ggplot(data = phi_buf, 
+       mapping = aes(x = playing, fill = as.factor(game_outcome))) +
+  geom_bar()
+
+ggplot(data = phi_buf, 
+       mapping = aes(x = playing, fill = as.factor(game_outcome))) +
+  geom_bar(position = "fill")
+
+
+ggplot(data = phi_buf, 
+       mapping = aes(fill = playing, x = as.factor(game_outcome))) +
+  geom_bar(position = "fill")
+```
+
+
+
+---
+
+
+## Data Wrangling
+
+**We haven't learned this topic yet.**
+
+**I only included this code for completeness/transparency.**
+
+With your postcards, I learned that one of you likes the Buffalo Bills so I filtered down to just them.
+
+```{r}
+buf <- filter(nfl_outcomes_2018, home_team == "BUF" | away_team == "BUF") %>%
+  mutate(where = if_else(home_team == "BUF", "home", "away"))
+
+```
+
+# Before we graph the data, how do we think the 2018 season went for the Bills?
+
+------------------------------------------------------------------------
+
+## Barplots
+
+::: columns
+::: {.column width="50%"}
+Displays the frequency for each category.
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+# Create barplot
+ggplot(data = buf, 
+       mapping = aes(x = game_type)) +
+  geom_bar()
+
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Barplots
+
+```{r}
+#| output-location: column
+# Create barplot
+ggplot(data = buf, 
+       mapping = aes(x = game_type)) +
+  geom_bar()
+
+```
+
+How could we make this graph better?
+
+------------------------------------------------------------------------
+
+## Barplots
+
+```{r}
+#| output-location: column
+
+# Create barplot
+ggplot(data = buf, 
+       mapping = aes(x = fct_infreq(game_type))) +
+  geom_bar()
+```
+
+But did they win or loss more games??
+
+------------------------------------------------------------------------
+
+## Barplots
+
+```{r}
+#| output-location: column
+
+# Create barplot
+ggplot(data = buf, 
+       mapping = aes(x = game_outcome)) +
+  geom_bar()
+```
+
+How do we get `R` to treat `game_outcome` as a categorical variable?
+
+------------------------------------------------------------------------
+
+## Barplots
+
+```{r}
+#| output-location: column
+
+# Create barplot
+ggplot(data = buf, 
+       mapping = aes(x = as.factor(game_outcome))) +
+  geom_bar()
+```
+
+
+
+------------------------------------------------------------------------
+
+## Segmented Barplots
+
+```{r}
+#| output-location: column
+
+# Create segmented barplot
+ggplot(data = buf, 
+       mapping = aes(x = where,
+                     fill = as.factor(game_outcome))) +
+  geom_bar() +
+  theme(legend.position = "bottom")
+```
+
+-   Each bar is divided into the frequencies of the `fill` variable.
+
+-   Hard to make comparisons across categories.
+
+------------------------------------------------------------------------
+
+## Segmented Barplots
+
+```{r}
+#| output-location: column
+
+
+# Create segmented barplot
+ggplot(data = buf, 
+       mapping = aes(x = where,
+                     fill = as.factor(game_outcome))) +
+  geom_bar(position = "dodge") +
+  theme(legend.position = "bottom")
+```
+
+-   Can add the `position` argument into the `geom_bar()`.
+
+------------------------------------------------------------------------
+
+## Segmented Barplots
+
+```{r}
+#| output-location: column
+
+
+# Create segmented barplot
+ggplot(data = buf, 
+       mapping = aes(x = where,
+                     fill = as.factor(game_outcome))) +
+  geom_bar(position = "fill") +
+  theme(legend.position = "bottom")
+```
+
+-   Now each bar is divided into **proportions** based on the `fill` variable.
+
+------------------------------------------------------------------------
+
+## Segmented Barplots
+
+```{r}
+#| output-location: column
+
+
+# Create segmented barplot
+ggplot(data = buf, 
+       mapping = aes(fill = where,
+                     x = as.factor(game_outcome))) +
+  geom_bar(position = "fill") +
+  theme(legend.position = "bottom")
+```
+
+-   How does our interpretation of the segmented change when we swap the variable mappings?
+
+------------------------------------------------------------------------
+
+## Adding More Variables
+
+-   Two main approaches:
+    -   Utilize other `aes`thetics of the `geom`
+    -   Facet: Create multiple plots across the categories of a categorical variable.
+
+------------------------------------------------------------------------
+
+## Utilize other `aes`thetics
+
+The basic `geom_boxplot()` needs an `x` and a `y` aesthetic:
+
+```{r}
+#| output-location: column
+ggplot(data = buf,
+       mapping = aes(x = as.factor(game_outcome),
+                     y = score_diff)) +
+  geom_boxplot() 
+```
+
+But you can also add `color` to get another categorical variable on the graph.
+
+
+------------------------------------------------------------------------
+
+## Utilize other `aes`thetics
+
+The basic `geom_boxplot()` needs an `x` and a `y` aesthetic:
+
+```{r}
+#| output-location: column
+ggplot(data = buf,
+       mapping = aes(x = as.factor(game_outcome),
+                     y = score_diff, 
+                     fill = where)) +
+  geom_boxplot() 
+```
+
+But you can also add `color` to get another categorical variable on the graph.
+
+------------------------------------------------------------------------
+
+## Facet
+
+```{r}
+#| output-location: column
+
+ggplot(data = buf, 
+       mapping = aes(x = where,
+                     fill = as.factor(game_outcome))) +
+  geom_bar(position = "dodge") +
+  theme(legend.position = "bottom") +
+  facet_wrap(~game_type)
+
+```
+
+------------------------------------------------------------------------
+
+## Facet
+
+```{r, fig.asp = 1.25}
+#| output-location: column
+
+
+ggplot(data = buf, 
+       mapping = aes(x = where,
+                     fill = as.factor(game_outcome))) +
+  geom_bar(position = "dodge") +
+  theme(legend.position = "bottom") +
+  facet_grid(week~game_type)
+```
+
+Let's fix the over-crowded y axis tick marks!
+
+------------------------------------------------------------------------
+
+## Facet
+
+```{r, fig.asp = 1.25}
+#| output-location: column
+
+
+ggplot(data = buf, 
+       mapping = aes(x = where,
+                     fill = as.factor(game_outcome))) +
+  geom_bar(position = "dodge") +
+  theme(legend.position = "bottom") +
+  facet_grid(week~game_type) +
+  scale_y_continuous(breaks = c(0, 3))
+```
+
+
+
+
+------------------------------------------------------------------------
+
+## Adding Some Context
+
+```{r line3}
+#| output-location: column
+
+buf <- mutate(buf, 
+              outcome = if_else(game_outcome == 1,
+                                "Won", "Lost"))
+
+ggplot(data = buf,
+       mapping = aes(x = outcome,
+                     y = score_diff, 
+                     fill = where)) +
+  geom_boxplot()  +
+  labs(x = "Outcome of the Game",
+       y = "Difference in Score Between \nWinner and Loser",
+       color = "Where was the Game?",
+       caption = "Data from the nflreadr Package",
+       title = "The Buffalo Bills Should Only Play At Home.")
+```
+
+------------------------------------------------------------------------
+
+## Customizing your `ggplot2` Plots
+
+-   There are so **many** ways you can customize the look of your `ggplot2` plots.
+
+-   Let's look at some common changes:
+
+    -   Fussing with labels
+    -   Removing the legend
+    -   Zooming in
+    -   Using multiple `geoms`
+    -   Color!
+    -   Themes
+
+------------------------------------------------------------------------
+
+## Fussing with Labels: Rotate
+
+```{r bar4}
+#| output-location: column
+
+# Focus on games outside the regular season
+buf_not_reg <- filter(buf, game_type != "REG")
+
+ggplot(data = buf_not_reg,
+       mapping = aes(x = game_id,
+                     y = score_diff)) +
+  geom_col()
+
+```
+
+
+------------------------------------------------------------------------
+
+## Fussing with Labels: Rotate
+
+```{r bar5}
+#| output-location: column
+
+# Focus on games outside the regular season
+buf_not_reg <- filter(buf, game_type != "REG")
+
+ggplot(data = buf_not_reg,
+       mapping = aes(x = game_id,
+                     y = score_diff)) +
+  geom_col() + 
+  theme(axis.text.x =
+          element_text(angle = 45,
+                       vjust = 1,
+                       hjust = 1))
+
+```
+
+------------------------------------------------------------------------
+
+## Not Including a Legend
+
+
+```{r bar6}
+#| output-location: column
+
+# Focus on games outside the regular season
+buf_not_reg <- filter(buf, game_type != "REG")
+
+ggplot(data = buf_not_reg,
+       mapping = aes(x = game_id,
+                     y = score_diff,
+                     fill = outcome)) +
+  geom_col() + 
+  theme(axis.text.x =
+          element_text(angle = 45,
+                       vjust = 1,
+                       hjust = 1)) +
+  guides(fill = "none")
+
+```
+
+
+
+
+## Zooming In
+
+```{r}
+#| output-location: column
+ggplot(data = july_2019, 
+       mapping = aes(x = Occasion, 
+                     y = Total,
+                     fill = Occasion)) +
+  geom_boxplot() +
+  guides(fill = "none")
+```
+
+------------------------------------------------------------------------
+
+## Zooming In
+
+```{r box5}
+#| output-location: column
+
+ggplot(data = july_2019, 
+       mapping = aes(x = Occasion, 
+                     y = Total,
+                     fill = Occasion)) +
+  geom_boxplot() +
+  guides(fill = "none") +
+  coord_cartesian(ylim = c(0, 40))
+```
+
+------------------------------------------------------------------------
+
+## Including Multiple `geom`s
+
+```{r}
+#| output-location: column
+ggplot(data = july_2019, 
+       mapping = aes(x = Occasion, 
+                     y = Total,
+                     fill = Occasion)) +
+  geom_boxplot() +
+  guides(fill = "none") +
+  coord_cartesian(ylim = c(0, 40)) +
+  geom_jitter(width = 0.1,
+              height = 0, 
+              alpha = 0.6)
+```
+
+------------------------------------------------------------------------
+
+## Including Multiple `geom`s
+
+```{r}
+#| output-location: column
+ggplot(data = july_2019,
+       mapping = aes(x = Time,
+                     y = Total,
+                     color = Occasion)) +
+  geom_line(size = 2) +
+  theme(legend.position= "bottom") +
+  geom_point(size = 3)
+```
+
+------------------------------------------------------------------------
+
+## Changing the Color
+
+```{r}
+colors()
+```
+
+------------------------------------------------------------------------
+
+## Changing the Color
+
+```{r}
+#| output-location: column
+ggplot(data = july_2019,
+       mapping = aes(x = Time,
+                     y = Total,
+                     color = Occasion)) +
+  geom_line(size = 2) +
+  theme(legend.position= "bottom") +
+  scale_color_manual(values = c("violetred2",
+                                "steelblue4"))
+```
+
+------------------------------------------------------------------------
+
+## Changing the Color
+
+```{r}
+#| output-location: column
+ggplot(data = july_2019,
+       mapping = aes(x = Time,
+                     y = Total,
+                     color = Occasion)) +
+  geom_line(size = 2) +
+  theme(legend.position= "bottom") +
+  scale_color_manual(values = c("#0D6759",
+                                "#E4844A"))
+```
+
+------------------------------------------------------------------------
+
+## Using a [Different Theme](https://ggplot2.tidyverse.org/reference/ggtheme.html)
+
+```{r}
+#| output-location: column
+ggplot(data = july_2019,
+       mapping = aes(x = Time,
+                     y = Total,
+                     color = Occasion)) +
+  geom_line(size = 2) +
+  scale_color_manual(values = c("#0D6759",
+                                "#E4844A")) +
+  theme_bw() +
+  theme(legend.position= "bottom")
+```
+
+# What `ggplot2` questions do we have?
+
+------------------------------------------------------------------------
+
+## Reminders
+
+-   Come by office hours with any questions you have on `ggplot2` or the current problem set!
