@@ -249,7 +249,238 @@
     "href": "index.html",
     "title": "DATA 100: Introduction to Data Science",
     "section": "",
-    "text": "The lecture slides (both in HTML and PDF) will be posted here. \n\n\n\n\nClass Period\nHTML Slides\nPDF Slides\n\n\n\n\nWeek 1, Wed\n\n\n\n\nWeek 2, Mon\n\n\n\n\nWeek 2, Wed\n\n\n\n\nWeek 3, Mon"
+    "text": "The lecture slides (both in HTML and PDF) will be posted here. \n\n\n\n\nClass Period\nHTML Slides\nPDF Slides\n\n\n\n\nWeek 1, Wed\n\n\n\n\nWeek 2, Mon\n\n\n\n\nWeek 2, Wed\n\n\n\n\nWeek 3, Mon\n\n\n\n\nWeek 3, Wed"
+  },
+  {
+    "objectID": "data100_wk03wed.html#announcements",
+    "href": "data100_wk03wed.html#announcements",
+    "title": "DATA 100",
+    "section": "Announcements",
+    "text": "Announcements\n\n\nCode a Valentine: Feb 10th, Taylor 212\n\n\nGoals for Today\n\n\n\nConsider measures for summarizing quantitative data\n\nCenter\nSpread/variability\n\nConsider measures for summarizing categorical data\n\n\n\nDefine data wrangling\nLearn to use functions in the dplyr package to summarize and wrangle data"
+  },
+  {
+    "objectID": "data100_wk03wed.html#load-necessary-packages",
+    "href": "data100_wk03wed.html#load-necessary-packages",
+    "title": "DATA 100",
+    "section": "Load Necessary Packages",
+    "text": "Load Necessary Packages\n\n\n\n\n\ndplyr is part of the tidyverse collection of data science packages.\n\n# Load necessary packages\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "data100_wk03wed.html#import-the-data",
+    "href": "data100_wk03wed.html#import-the-data",
+    "title": "DATA 100",
+    "section": "Import the Data",
+    "text": "Import the Data\n\njuly_2019 &lt;- read_csv(\"data/july_2019.csv\")\n\n# Inspect the data\nglimpse(july_2019)\n\nRows: 192\nColumns: 8\n$ DateTime  &lt;chr&gt; \"07/04/2019 12:00:00 AM\", \"07/04/2019 12:15:00 AM\", \"07/04/2…\n$ Day       &lt;chr&gt; \"Thursday\", \"Thursday\", \"Thursday\", \"Thursday\", \"Thursday\", …\n$ Date      &lt;date&gt; 2019-07-04, 2019-07-04, 2019-07-04, 2019-07-04, 2019-07-04,…\n$ Time      &lt;time&gt; 00:00:00, 00:15:00, 00:30:00, 00:45:00, 01:00:00, 01:15:00,…\n$ Total     &lt;dbl&gt; 2, 3, 2, 0, 3, 2, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, …\n$ Westbound &lt;dbl&gt; 2, 3, 1, 0, 2, 2, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, …\n$ Eastbound &lt;dbl&gt; 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, …\n$ Occasion  &lt;chr&gt; \"Fourth of July\", \"Fourth of July\", \"Fourth of July\", \"Fourt…"
+  },
+  {
+    "objectID": "data100_wk03wed.html#summarizing-data",
+    "href": "data100_wk03wed.html#summarizing-data",
+    "title": "DATA 100",
+    "section": "Summarizing Data",
+    "text": "Summarizing Data\nHard to do by eyeballing a spreadsheet with many rows!\n\n\n\n\n\n\nDateTime\nDay\nDate\nTime\nTotal\nWestbound\nEastbound\nOccasion\n\n\n\n\n07/04/2019 06:00:00 AM\nThursday\n2019-07-04\n06:00:00\n1\n1\n0\nFourth of July\n\n\n07/04/2019 06:15:00 AM\nThursday\n2019-07-04\n06:15:00\n4\n0\n4\nFourth of July\n\n\n07/04/2019 06:30:00 AM\nThursday\n2019-07-04\n06:30:00\n9\n1\n8\nFourth of July\n\n\n07/04/2019 06:45:00 AM\nThursday\n2019-07-04\n06:45:00\n5\n0\n5\nFourth of July\n\n\n07/04/2019 07:00:00 AM\nThursday\n2019-07-04\n07:00:00\n3\n3\n0\nFourth of July\n\n\n07/04/2019 07:15:00 AM\nThursday\n2019-07-04\n07:15:00\n2\n0\n2\nFourth of July\n\n\n07/04/2019 07:30:00 AM\nThursday\n2019-07-04\n07:30:00\n5\n2\n3\nFourth of July\n\n\n07/04/2019 07:45:00 AM\nThursday\n2019-07-04\n07:45:00\n2\n0\n2\nFourth of July"
+  },
+  {
+    "objectID": "data100_wk03wed.html#summarizing-data-visually",
+    "href": "data100_wk03wed.html#summarizing-data-visually",
+    "title": "DATA 100",
+    "section": "Summarizing Data Visually",
+    "text": "Summarizing Data Visually\n\n\n\n\n\n\n\n\n\n\n\n\n\nFor a quantitative variable, want to answer:\n\nWhat is an average value?\nWhat is the trend/shape of the variable?\nHow much variation is there from case to case?\n\n\n\nNeed to learn key summary statistics: Numerical values computed based on the observed cases."
+  },
+  {
+    "objectID": "data100_wk03wed.html#measures-of-center",
+    "href": "data100_wk03wed.html#measures-of-center",
+    "title": "DATA 100",
+    "section": "Measures of Center",
+    "text": "Measures of Center\n\n\nMean: Average of all the observations\n\n\\(n\\) = Number of cases (sample size)\n\\(x_i\\) = value of the i-th observation\nDenote by \\(\\bar{x}\\)\n\n\\[\n\\bar{x}  = \\frac{1}{n} \\sum_{i = 1}^n x_i\n\\]\n\n# Test out on first 6 values\nhead(july_2019$Total)\n\n[1] 2 3 2 0 3 2\n\n\n\nCompute with a dplyr function:\n\nsummarize(july_2019, mean_bikes = mean(Total))\n\n# A tibble: 1 × 1\n  mean_bikes\n       &lt;dbl&gt;\n1       17.1"
+  },
+  {
+    "objectID": "data100_wk03wed.html#measures-of-center-1",
+    "href": "data100_wk03wed.html#measures-of-center-1",
+    "title": "DATA 100",
+    "section": "Measures of Center",
+    "text": "Measures of Center\n\n\nMedian: Middle value\n\nHalf of the data falls below the median\nDenote by \\(m\\)\nIf \\(n\\) is even, then it is the average of the middle two values\n\n\n# Test out on first 6 values\nhead(july_2019$Total)\n\n[1] 2 3 2 0 3 2\n\n\n\nCompute with a dplyr function:\n\nsummarize(july_2019, median_bikes = median(Total))\n\n# A tibble: 1 × 1\n  median_bikes\n         &lt;dbl&gt;\n1           11"
+  },
+  {
+    "objectID": "data100_wk03wed.html#measures-of-center-2",
+    "href": "data100_wk03wed.html#measures-of-center-2",
+    "title": "DATA 100",
+    "section": "Measures of Center",
+    "text": "Measures of Center\n\n\nWhy is the mean larger than the median?\n\nsummarize(july_2019, mean_bikes = mean(Total),\n          median_bikes = median(Total))\n\n# A tibble: 1 × 2\n  mean_bikes median_bikes\n       &lt;dbl&gt;        &lt;dbl&gt;\n1       17.1           11"
+  },
+  {
+    "objectID": "data100_wk03wed.html#computing-measures-of-center-by-groups",
+    "href": "data100_wk03wed.html#computing-measures-of-center-by-groups",
+    "title": "DATA 100",
+    "section": "Computing Measures of Center by Groups",
+    "text": "Computing Measures of Center by Groups\nQuestion: Were there more bikes, on average, for Fourth of July or for the normal Thursday?"
+  },
+  {
+    "objectID": "data100_wk03wed.html#computing-measures-of-center-by-groups-1",
+    "href": "data100_wk03wed.html#computing-measures-of-center-by-groups-1",
+    "title": "DATA 100",
+    "section": "Computing Measures of Center by Groups",
+    "text": "Computing Measures of Center by Groups\nHandy dplyr function: group_by()\n\njuly_2019_grouped &lt;- group_by(july_2019, Occasion)\njuly_2019_grouped\n\n# A tibble: 192 × 8\n# Groups:   Occasion [2]\n   DateTime            Day   Date       Time  Total Westbound Eastbound Occasion\n   &lt;chr&gt;               &lt;chr&gt; &lt;date&gt;     &lt;tim&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   \n 1 07/04/2019 12:00:0… Thur… 2019-07-04 00:00     2         2         0 Fourth …\n 2 07/04/2019 12:15:0… Thur… 2019-07-04 00:15     3         3         0 Fourth …\n 3 07/04/2019 12:30:0… Thur… 2019-07-04 00:30     2         1         1 Fourth …\n 4 07/04/2019 12:45:0… Thur… 2019-07-04 00:45     0         0         0 Fourth …\n 5 07/04/2019 01:00:0… Thur… 2019-07-04 01:00     3         2         1 Fourth …\n 6 07/04/2019 01:15:0… Thur… 2019-07-04 01:15     2         2         0 Fourth …\n 7 07/04/2019 01:30:0… Thur… 2019-07-04 01:30     1         1         0 Fourth …\n 8 07/04/2019 01:45:0… Thur… 2019-07-04 01:45     0         0         0 Fourth …\n 9 07/04/2019 02:00:0… Thur… 2019-07-04 02:00     0         0         0 Fourth …\n10 07/04/2019 02:15:0… Thur… 2019-07-04 02:15     0         0         0 Fourth …\n# ℹ 182 more rows"
+  },
+  {
+    "objectID": "data100_wk03wed.html#computing-measures-of-center-by-groups-2",
+    "href": "data100_wk03wed.html#computing-measures-of-center-by-groups-2",
+    "title": "DATA 100",
+    "section": "Computing Measures of Center by Groups",
+    "text": "Computing Measures of Center by Groups\n\n\nCompute summary statistics on the grouped data frame:\n\njuly_2019_grouped &lt;- group_by(july_2019, Occasion)\nsummarize(july_2019_grouped,\n          mean_bikes = mean(Total),\n          median_bikes = median(Total))\n\n# A tibble: 2 × 3\n  Occasion        mean_bikes median_bikes\n  &lt;chr&gt;                &lt;dbl&gt;        &lt;dbl&gt;\n1 Fourth of July        10.0          9  \n2 Normal Thursday       24.2         14.5"
+  },
+  {
+    "objectID": "data100_wk03wed.html#chaining-dplyr-operations",
+    "href": "data100_wk03wed.html#chaining-dplyr-operations",
+    "title": "DATA 100",
+    "section": "Chaining dplyr Operations",
+    "text": "Chaining dplyr Operations\n\n\nInstead of:\n\njuly_2019_grouped &lt;- group_by(july_2019, Occasion)\nsummarize(july_2019_grouped,\n          mean_bikes = mean(Total),\n          median_bikes = median(Total))\n\n# A tibble: 2 × 3\n  Occasion        mean_bikes median_bikes\n  &lt;chr&gt;                &lt;dbl&gt;        &lt;dbl&gt;\n1 Fourth of July        10.0          9  \n2 Normal Thursday       24.2         14.5\n\n\n\nUse the pipe:\n\njuly_2019 %&gt;%\n  group_by(Occasion) %&gt;%\n  summarize(mean_bikes = mean(Total),\n          median_bikes = median(Total))\n\n# A tibble: 2 × 3\n  Occasion        mean_bikes median_bikes\n  &lt;chr&gt;                &lt;dbl&gt;        &lt;dbl&gt;\n1 Fourth of July        10.0          9  \n2 Normal Thursday       24.2         14.5\n\n\n\n\n\nWhy pipe?\n\n\n\n\nYou can also use |&gt;, which is newer and often referred to as the “base R pipe.”"
+  },
+  {
+    "objectID": "data100_wk03wed.html#measures-of-variability",
+    "href": "data100_wk03wed.html#measures-of-variability",
+    "title": "DATA 100",
+    "section": "Measures of Variability",
+    "text": "Measures of Variability\n\nWant a statistic that captures how much observations deviate from the mean\n\n\n\n\nFind how much each observation deviates from the mean.\nCompute the average of the deviations.\n\n\\[\n\\frac{1}{n} \\sum_{i = 1}^n (x_i - \\bar{x})\n\\]\n\n\n# Test out on first 6 values\nhead(july_2019$Total)\n\n[1] 2 3 2 0 3 2\n\n\n\n\nProblem?"
+  },
+  {
+    "objectID": "data100_wk03wed.html#measures-of-variability-1",
+    "href": "data100_wk03wed.html#measures-of-variability-1",
+    "title": "DATA 100",
+    "section": "Measures of Variability",
+    "text": "Measures of Variability\n\nWant a statistic that captures how much observations deviate from the mean\n\n\n\nHere is my NEW proposal:\n\nFind how much each observation deviates from the mean.\nCompute the average of the squared deviations.\n\n\n\n# Test out on first 6 values\nhead(july_2019$Total)\n\n[1] 2 3 2 0 3 2"
+  },
+  {
+    "objectID": "data100_wk03wed.html#measures-of-variability-2",
+    "href": "data100_wk03wed.html#measures-of-variability-2",
+    "title": "DATA 100",
+    "section": "Measures of Variability",
+    "text": "Measures of Variability\n\nWant a statistic that captures how much observations deviate from the mean\n\n\n\nHere is my ACTUAL formula:\n\nFind how much each observation deviates from the mean.\nCompute the (nearly) average of the squared deviations.\nCalled sample variance \\(s^2\\).\n\n\\[\ns^2 = \\frac{1}{n - 1} \\sum_{i = 1}^n (x_i - \\bar{x})^2\n\\]\n\nCompute with a dplyr function:\n\nsummarize(july_2019, var_bikes = var(Total))\n\n# A tibble: 1 × 1\n  var_bikes\n      &lt;dbl&gt;\n1      454."
+  },
+  {
+    "objectID": "data100_wk03wed.html#measures-of-variability-3",
+    "href": "data100_wk03wed.html#measures-of-variability-3",
+    "title": "DATA 100",
+    "section": "Measures of Variability",
+    "text": "Measures of Variability\n\nWant a statistic that captures how much observations deviate from the mean\n\n\n\n\nFind how much each observation deviates from the mean.\nCompute the (nearly) average of the squared deviations.\nCalled sample variance \\(s^2\\).\nThe square root of the sample variance is called the sample standard deviation \\(s\\).\n\n\\[\ns = \\sqrt{\\frac{1}{n - 1} \\sum_{i = 1}^n (x_i - \\bar{x})^2}\n\\]\n\nCompute with a dplyr function:\n\nsummarize(july_2019, var_bikes = var(Total),\n          sd_bikes = sd(Total))\n\n# A tibble: 1 × 2\n  var_bikes sd_bikes\n      &lt;dbl&gt;    &lt;dbl&gt;\n1      454.     21.3"
+  },
+  {
+    "objectID": "data100_wk03wed.html#measures-of-variability-4",
+    "href": "data100_wk03wed.html#measures-of-variability-4",
+    "title": "DATA 100",
+    "section": "Measures of Variability",
+    "text": "Measures of Variability\n\n\n\nIn addition to the sample standard deviation and the sample variance, there is the sample interquartile range (IQR):\n\n\\[\n\\mbox{IQR} = \\mbox{Q}_3 - \\mbox{Q}_1\n\\]\n\nCompute with a dplyr function:\n\nsummarize(july_2019, iqr_bikes = IQR(Total))\n\n# A tibble: 1 × 1\n  iqr_bikes\n      &lt;dbl&gt;\n1        16"
+  },
+  {
+    "objectID": "data100_wk03wed.html#comparing-measures-of-variability",
+    "href": "data100_wk03wed.html#comparing-measures-of-variability",
+    "title": "DATA 100",
+    "section": "Comparing Measures of Variability",
+    "text": "Comparing Measures of Variability\n\nWhich is more robust to outliers, the IQR or \\(s\\)?\nWhich is more commonly used, the IQR or \\(s\\)?\n\n\njuly_2019 %&gt;%\n  group_by(Occasion) %&gt;%\nsummarize(sd_bikes = sd(Total),\n          iqr_bikes = IQR(Total))\n\n# A tibble: 2 × 3\n  Occasion        sd_bikes iqr_bikes\n  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;\n1 Fourth of July      8.30      14  \n2 Normal Thursday    27.2       27.2"
+  },
+  {
+    "objectID": "data100_wk03wed.html#return-to-the-buffalo-bills-2018-season-data",
+    "href": "data100_wk03wed.html#return-to-the-buffalo-bills-2018-season-data",
+    "title": "DATA 100",
+    "section": "Return to the Buffalo Bills 2018 Season Data",
+    "text": "Return to the Buffalo Bills 2018 Season Data\nFocus on the dogs with the 5 most common names\n\n# Pull in the dataset on all teams\nnfl_outcomes_2018 &lt;- read_csv(\"https://data.scorenetwork.org/data/nfl_mahomes_era_games.csv\")\n\n# Focus on just the Bills\nbuf &lt;- filter(nfl_outcomes_2018, home_team == \"BUF\" | away_team == \"BUF\") %&gt;%\n  mutate(where = if_else(home_team == \"BUF\", \"home\", \"away\"))"
+  },
+  {
+    "objectID": "data100_wk03wed.html#frequency-table",
+    "href": "data100_wk03wed.html#frequency-table",
+    "title": "DATA 100",
+    "section": "Frequency Table",
+    "text": "Frequency Table\n\n\n\ncount(buf, game_type)\n\n# A tibble: 4 × 2\n  game_type     n\n  &lt;chr&gt;     &lt;int&gt;\n1 CON           1\n2 DIV           4\n3 REG          98\n4 WC            5\n\n\n\n\nggplot(data = buf, \n       mapping = aes(x = game_type)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "data100_wk03wed.html#frequency-table-1",
+    "href": "data100_wk03wed.html#frequency-table-1",
+    "title": "DATA 100",
+    "section": "Frequency Table",
+    "text": "Frequency Table\n\n\n\ncount(buf, game_type)\n\n# A tibble: 4 × 2\n  game_type     n\n  &lt;chr&gt;     &lt;int&gt;\n1 CON           1\n2 DIV           4\n3 REG          98\n4 WC            5\n\n\n\n\ncount(buf, game_type, sort = TRUE)\n\n# A tibble: 4 × 2\n  game_type     n\n  &lt;chr&gt;     &lt;int&gt;\n1 REG          98\n2 WC            5\n3 DIV           4\n4 CON           1"
+  },
+  {
+    "objectID": "data100_wk03wed.html#geom_col-example",
+    "href": "data100_wk03wed.html#geom_col-example",
+    "title": "DATA 100",
+    "section": "geom_col() Example",
+    "text": "geom_col() Example\n\n\nggplot(data = game_counts,\n       mapping = aes(x = game_type,\n                     y = n)) +\n  geom_col()"
+  },
+  {
+    "objectID": "data100_wk03wed.html#contingency-table",
+    "href": "data100_wk03wed.html#contingency-table",
+    "title": "DATA 100",
+    "section": "Contingency Table",
+    "text": "Contingency Table\n\n\n\ncount(buf, where, game_outcome)\n\n# A tibble: 4 × 3\n  where game_outcome     n\n  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt;\n1 away             0    29\n2 away             1    22\n3 home             0    17\n4 home             1    40\n\n\n\n\nggplot(data = buf, \n    mapping = aes(x = where, \n                  fill = as.factor(game_outcome))) +\n  geom_bar(position = \"dodge\") +\n  theme(legend.position = \"bottom\")"
+  },
+  {
+    "objectID": "data100_wk03wed.html#conditional-proportions",
+    "href": "data100_wk03wed.html#conditional-proportions",
+    "title": "DATA 100",
+    "section": "Conditional Proportions",
+    "text": "Conditional Proportions\n\n\n\nBeyond raw counts, we often summarize categorical data with conditional proportions.\n\nEspecially when looking for relationships!\n\n\n\n\nggplot(data = buf, \n    mapping = aes(x = where, \n                  fill = as.factor(game_outcome))) +\n  geom_bar(position = \"fill\") +\n  theme(legend.position = \"bottom\")"
+  },
+  {
+    "objectID": "data100_wk03wed.html#conditional-proportions-1",
+    "href": "data100_wk03wed.html#conditional-proportions-1",
+    "title": "DATA 100",
+    "section": "Conditional Proportions",
+    "text": "Conditional Proportions\n\n\n\ncount(buf, where, game_outcome)\n\n# A tibble: 4 × 3\n  where game_outcome     n\n  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt;\n1 away             0    29\n2 away             1    22\n3 home             0    17\n4 home             1    40\n\n\n\n\ncount(buf, where, game_outcome) %&gt;%\n  group_by(where) %&gt;%\n  mutate(prop = n/sum(n))\n\n# A tibble: 4 × 4\n# Groups:   where [2]\n  where game_outcome     n  prop\n  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;\n1 away             0    29 0.569\n2 away             1    22 0.431\n3 home             0    17 0.298\n4 home             1    40 0.702\n\n\n\n\nThe dplyr function mutate() adds new column(s) to your data frame."
+  },
+  {
+    "objectID": "data100_wk03wed.html#conditional-proportions-2",
+    "href": "data100_wk03wed.html#conditional-proportions-2",
+    "title": "DATA 100",
+    "section": "Conditional Proportions",
+    "text": "Conditional Proportions\n\n\n\ncount(buf, where, game_outcome) %&gt;%\n  group_by(where) %&gt;%\n  mutate(prop = n/sum(n))\n\n# A tibble: 4 × 4\n# Groups:   where [2]\n  where game_outcome     n  prop\n  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;\n1 away             0    29 0.569\n2 away             1    22 0.431\n3 home             0    17 0.298\n4 home             1    40 0.702\n\n\n\n\ncount(buf, where, game_outcome) %&gt;%\n  group_by(game_outcome) %&gt;%\n  mutate(prop = n/sum(n))\n\n# A tibble: 4 × 4\n# Groups:   game_outcome [2]\n  where game_outcome     n  prop\n  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;\n1 away             0    29 0.630\n2 away             1    22 0.355\n3 home             0    17 0.370\n4 home             1    40 0.645\n\n\n\nHow does the interpretation change based on which variable you condition on?"
+  },
+  {
+    "objectID": "data100_wk03wed.html#dplyr-for-data-wrangling",
+    "href": "data100_wk03wed.html#dplyr-for-data-wrangling",
+    "title": "DATA 100",
+    "section": "dplyr for Data Wrangling",
+    "text": "dplyr for Data Wrangling\n\nSeven common wrangling verbs:\n\nsummarize()\ncount()\n\nmutate()\n\nselect()\nfilter()\narrange()\n---_join()\n\nOne action:\n\ngroup_by()"
+  },
+  {
+    "objectID": "data100_wk03wed.html#return-to-mutate",
+    "href": "data100_wk03wed.html#return-to-mutate",
+    "title": "DATA 100",
+    "section": "Return to mutate()",
+    "text": "Return to mutate()\n\n\nAdd new variables\n\ncount(buf, where, game_outcome) %&gt;%\n  group_by(where) %&gt;%\n  mutate(prop = n/sum(n))\n\n# A tibble: 4 × 4\n# Groups:   where [2]\n  where game_outcome     n  prop\n  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;\n1 away             0    29 0.569\n2 away             1    22 0.431\n3 home             0    17 0.298\n4 home             1    40 0.702\n\n\n\nModify existing variables\n\nclass(buf$game_outcome)\n\n[1] \"numeric\"\n\nbuf &lt;- buf %&gt;%\n  mutate(game_outcome = as.factor(game_outcome))\nclass(buf$game_outcome)\n\n[1] \"factor\""
+  },
+  {
+    "objectID": "data100_wk03wed.html#select-extract-variables",
+    "href": "data100_wk03wed.html#select-extract-variables",
+    "title": "DATA 100",
+    "section": "select(): Extract variables",
+    "text": "select(): Extract variables\n\nbuf %&gt;%\n  select(where, game_outcome)\n\n# A tibble: 108 × 2\n   where game_outcome\n   &lt;chr&gt; &lt;fct&gt;       \n 1 away  1           \n 2 home  0           \n 3 away  0           \n 4 away  1           \n 5 home  1           \n 6 away  1           \n 7 away  1           \n 8 home  0           \n 9 home  0           \n10 away  0           \n# ℹ 98 more rows"
+  },
+  {
+    "objectID": "data100_wk03wed.html#motivation-for-filter",
+    "href": "data100_wk03wed.html#motivation-for-filter",
+    "title": "DATA 100",
+    "section": "Motivation for filter()",
+    "text": "Motivation for filter()\n\ncount(nfl_outcomes_2018, home_team, sort = TRUE)\n\n# A tibble: 33 × 2\n   home_team     n\n   &lt;chr&gt;     &lt;int&gt;\n 1 KC           64\n 2 BUF          57\n 3 SF           55\n 4 BAL          54\n 5 NO           54\n 6 TB           54\n 7 GB           53\n 8 HOU          53\n 9 LA           53\n10 PHI          53\n# ℹ 23 more rows"
+  },
+  {
+    "objectID": "data100_wk03wed.html#filter-extract-cases",
+    "href": "data100_wk03wed.html#filter-extract-cases",
+    "title": "DATA 100",
+    "section": "filter(): Extract cases",
+    "text": "filter(): Extract cases\n\nbuf &lt;- filter(nfl_outcomes_2018, home_team == \"BUF\" | away_team == \"BUF\") \ncount(buf, home_team, sort = TRUE)\n\n# A tibble: 29 × 2\n   home_team     n\n   &lt;chr&gt;     &lt;int&gt;\n 1 BUF          57\n 2 MIA           6\n 3 NE            6\n 4 NYJ           6\n 5 KC            5\n 6 TEN           3\n 7 BAL           2\n 8 HOU           2\n 9 ARI           1\n10 CHI           1\n# ℹ 19 more rows\n\n# Why is this useful?\nbuf &lt;- buf %&gt;%\n  mutate(where = if_else(home_team == \"BUF\", \"home\", \"away\"))\ncount(buf, where)\n\n# A tibble: 2 × 2\n  where     n\n  &lt;chr&gt; &lt;int&gt;\n1 away     51\n2 home     57"
+  },
+  {
+    "objectID": "data100_wk03wed.html#arrange-sort-the-cases",
+    "href": "data100_wk03wed.html#arrange-sort-the-cases",
+    "title": "DATA 100",
+    "section": "arrange(): Sort the cases",
+    "text": "arrange(): Sort the cases\n\n\n\nbuf %&gt;%\n  arrange(score_diff) %&gt;%\n  select(home_team, away_team, home_score, away_score, score_diff)\n\n# A tibble: 108 × 5\n   home_team away_team home_score away_score score_diff\n   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;\n 1 MIA       BUF                0         35        -35\n 2 WAS       BUF                3         37        -34\n 3 BUF       CHI                9         41        -32\n 4 NYJ       BUF               10         41        -31\n 5 DEN       BUF               19         48        -29\n 6 NE        BUF                9         38        -29\n 7 NYJ       BUF               17         45        -28\n 8 BUF       IND               15         41        -26\n 9 NO        BUF                6         31        -25\n10 CHI       BUF               13         35        -22\n# ℹ 98 more rows\n\n\n\n\nbuf %&gt;%\n  arrange(desc(score_diff)) %&gt;%\n  select(home_team, away_team, home_score, away_score, score_diff)\n\n# A tibble: 108 × 5\n   home_team away_team home_score away_score score_diff\n   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;\n 1 BAL       BUF               47          3         44\n 2 BUF       HOU               40          0         40\n 3 BUF       PIT               38          3         35\n 4 BUF       TEN               41          7         34\n 5 IND       BUF               37          5         32\n 6 BUF       MIA               56         26         30\n 7 BUF       NE                47         17         30\n 8 BUF       LV                38         10         28\n 9 BUF       MIA               48         20         28\n10 TEN       BUF               42         16         26\n# ℹ 98 more rows"
+  },
+  {
+    "objectID": "data100_wk03wed.html#reminders",
+    "href": "data100_wk03wed.html#reminders",
+    "title": "DATA 100",
+    "section": "Reminders",
+    "text": "Reminders\n\nCode a Valentine: Feb 10th, Taylor 212"
   },
   {
     "objectID": "data100_wk02mon.html#announcements",

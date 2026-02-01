@@ -37,7 +37,7 @@ library(tidyverse)
 theme_update(text = element_text(size = 20))
 ```
 
-::: columns
+::::: columns
 ::: {.column .center width="55%"}
 ![](img/DAW.png){width="80%"}
 :::
@@ -51,17 +51,17 @@ theme_update(text = element_text(size = 20))
 
 [DATA 100 <br> Week 3 \| Spring 2026]{.custom-subtitle}
 :::
-:::
+:::::
 
 ## Announcements
 
--   P-Set 2 will take you longer than P-Set 1 did.  Make sure to come by office hours with any questions.
+-   P-Set 2 will take you longer than P-Set 1 did. Make sure to come by office hours with any questions.
 
 ------------------------------------------------------------------------
 
 ## Goals for Today
 
-::: columns
+::::: columns
 ::: {.column width="\"50%"}
 -   Come back to the general structure of `ggplot2`.
 -   Learn a few standard graphs for numerical/quantitative data:
@@ -78,7 +78,7 @@ theme_update(text = element_text(size = 20))
     -   **Segmented barplot**: two categorical variables
 -   Also cover some common extensions and customizations.
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -99,7 +99,7 @@ library(tidyverse)
 
 ## Data Setting: [Eco-Totem Broadway Bicycle Count](https://data.cambridgema.gov/Transportation-Planning/Eco-Totem-Broadway-Bicycle-Count/q8v9-mcfg)
 
-::: columns
+::::: columns
 ::: {.column width="40%" fig-align="center"}
 ![](img/counter.jpg){width="100%"}
 :::
@@ -107,7 +107,7 @@ library(tidyverse)
 ::: {.column width="60%" fig-align="center"}
 ![](img/bike_counter_map.png){width="100%"}
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -167,7 +167,7 @@ ggplot(data = july_2019,
 
 ## Boxplots {.smaller}
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 -   **Five number summary**:
     -   Minimum
@@ -189,7 +189,7 @@ ggplot(data = july_2019,
   geom_boxplot()
 ```
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -269,7 +269,7 @@ ggplot(data = july_2019,
 
 ## Boxplot Versus Violin Plots
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ```{r}
 #| echo: false
@@ -293,7 +293,7 @@ ggplot(data = july_2019,
   guides(fill = "none")
 ```
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -475,10 +475,7 @@ ggplot(data = phi_buf,
   geom_bar(position = "fill")
 ```
 
-
-
----
-
+------------------------------------------------------------------------
 
 ## Data Wrangling
 
@@ -500,7 +497,7 @@ buf <- filter(nfl_outcomes_2018, home_team == "BUF" | away_team == "BUF") %>%
 
 ## Barplots
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 Displays the frequency for each category.
 :::
@@ -515,7 +512,7 @@ ggplot(data = buf,
 
 ```
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -574,8 +571,6 @@ ggplot(data = buf,
        mapping = aes(x = as.factor(game_outcome))) +
   geom_bar()
 ```
-
-
 
 ------------------------------------------------------------------------
 
@@ -674,7 +669,6 @@ ggplot(data = buf,
 
 But you can also add `color` to get another categorical variable on the graph.
 
-
 ------------------------------------------------------------------------
 
 ## Utilize other `aes`thetics
@@ -743,9 +737,6 @@ ggplot(data = buf,
   scale_y_continuous(breaks = c(0, 3))
 ```
 
-
-
-
 ------------------------------------------------------------------------
 
 ## Adding Some Context
@@ -801,7 +792,6 @@ ggplot(data = buf_not_reg,
 
 ```
 
-
 ------------------------------------------------------------------------
 
 ## Fussing with Labels: Rotate
@@ -827,7 +817,6 @@ ggplot(data = buf_not_reg,
 
 ## Not Including a Legend
 
-
 ```{r bar6}
 #| output-location: column
 
@@ -846,9 +835,6 @@ ggplot(data = buf_not_reg,
   guides(fill = "none")
 
 ```
-
-
-
 
 ## Zooming In
 

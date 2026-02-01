@@ -1,0 +1,855 @@
+---
+pagetitle: "Data Wrangling & Summarization"
+format: 
+  revealjs:
+    chalkboard: true
+#    incremental: true
+    theme: [default, custom.scss]
+#    multiplex: true
+    height: 900
+    width: 1600
+    slide-number: c
+    auto-stretch: false
+    callout-appearance: simple
+    pdf-max-pages-per-slide: 1
+    menu: 
+      side: right
+      numbers: true
+    code-overflow: wrap
+execute:
+  echo: true
+  warning: false
+  message: false
+  fig-asp: 0.75
+  fig-width: 8
+#  fig-align: center
+  fig-dpi: 500
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+# Some global options still not available in quarto
+ knitr::opts_chunk$set(fig.align = 'center')
+library(knitr)
+library(tidyverse)
+theme_update(text = element_text(size = 20))
+```
+
+::: columns
+::: {.column .center width="45%"}
+![](img/DAW.png){width="90%"}
+:::
+
+::: {.column .center width="55%"}
+[Data Wrangling & Summarization]{.custom-title}
+
+<br>
+
+[Kelly McConville]{.custom-subtitle}
+
+[DATA 100 <br> Week 3 \| Spring 2026]{.custom-subtitle}
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Announcements
+
+::: nonincremental
+
+-   Code a Valentine: Feb 10th, Taylor 212
+
+:::
+
+
+### Goals for Today
+
+::: columns
+::: {.column width="\"50%"}
+-   Consider measures for **summarizing** quantitative data
+    -   Center
+    -   Spread/variability
+-   Consider measures for **summarizing** categorical data
+:::
+
+::: {.column width="\"50%"}
+-   Define **data wrangling**
+
+-   Learn to use functions in the `dplyr` package to summarize and wrangle data
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Load Necessary Packages
+
+![](img/dplyr.png){width="15%" fig-align="center"}
+
+`dplyr` is part of the `tidyverse` collection of data science packages.
+
+```{r}
+#| message: true
+#| warning: true
+# Load necessary packages
+library(tidyverse)
+```
+
+------------------------------------------------------------------------
+
+## Import the [Data](https://data.cambridgema.gov/Transportation-Planning/Eco-Totem-Broadway-Bicycle-Count/q8v9-mcfg)
+
+```{r}
+july_2019 <- read_csv("data/july_2019.csv")
+
+# Inspect the data
+glimpse(july_2019)
+```
+
+------------------------------------------------------------------------
+
+## Summarizing Data
+
+Hard to do by eyeballing a spreadsheet with many rows!
+
+
+```{r, echo = FALSE}
+library(kableExtra)
+knitr::kable(july_2019[25:32,]) %>%
+  kable_styling(bootstrap_options = c("responsive", "bordered", "striped")) 
+```
+
+
+------------------------------------------------------------------------
+
+## Summarizing Data Visually
+
+::: columns
+::: {.column width="50%"}
+```{r, echo = FALSE}
+# Create histogram
+ggplot(data = july_2019, mapping = aes(x = Total)) + 
+  geom_histogram(fill = "slateblue4", color = "ghostwhite") +
+  facet_wrap(~Occasion, ncol = 1)
+
+```
+:::
+
+::: {.column width="50%"}
+<br>
+
+For a quantitative variable, want to answer:
+
+-   What is an **average** value?
+
+-   What is the **trend/shape** of the variable?
+
+-   How much **variation** is there from case to case?
+:::
+:::
+
+::: fragment
+Need to learn key **summary statistics**: Numerical values computed based on the observed cases.
+:::
+
+------------------------------------------------------------------------
+
+## Measures of Center
+
+::: columns
+::: {.column width="50%"}
+**Mean**: Average of all the observations
+
+-   $n$ = Number of cases (sample size)
+-   $x_i$ = value of the i-th observation
+-   Denote by $\bar{x}$
+
+$$
+\bar{x}  = \frac{1}{n} \sum_{i = 1}^n x_i
+$$
+
+```{r}
+# Test out on first 6 values
+head(july_2019$Total)
+```
+:::
+
+::: {.column .fragment width="50%"}
+Compute with a `dplyr` function:
+
+```{r}
+summarize(july_2019, mean_bikes = mean(Total))
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Measures of Center
+
+::: columns
+::: {.column width="50%"}
+**Median**: Middle value
+
+-   Half of the data falls below the median
+-   Denote by $m$
+-   If $n$ is even, then it is the average of the middle two values
+
+```{r}
+# Test out on first 6 values
+head(july_2019$Total)
+```
+:::
+
+::: {.column .fragment width="50%"}
+Compute with a `dplyr` function:
+
+```{r}
+summarize(july_2019, median_bikes = median(Total))
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Measures of Center
+
+::: columns
+::: {.column .fragment width="50%"}
+Why is the mean larger than the median?
+
+```{r}
+summarize(july_2019, mean_bikes = mean(Total),
+          median_bikes = median(Total))
+```
+:::
+
+::: {.column .fragment width="50%"}
+```{r, echo = FALSE}
+# Create histogram
+ggplot(data = july_2019, mapping = aes(x = Total)) + 
+  geom_histogram(fill = "slateblue4", color = "ghostwhite") 
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Computing Measures of Center by Groups
+
+**Question**: Were there more bikes, on average, for Fourth of July or for the normal Thursday?
+
+::: columns
+::: {.column width="20%"}
+
+:::
+
+
+::: {.column width="60%"}
+```{r, echo = FALSE}
+#| fig-width: 8
+
+# Create histogram
+ggplot(data = july_2019, mapping = aes(x = Total)) + 
+  geom_histogram(fill = "slateblue4", color = "ghostwhite") +
+  facet_wrap(~Occasion, ncol = 1)
+
+```
+:::
+
+::: {.column width="20%"}
+
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Computing Measures of Center by Groups
+
+Handy `dplyr` function: `group_by()`
+
+```{r}
+july_2019_grouped <- group_by(july_2019, Occasion)
+july_2019_grouped
+```
+
+------------------------------------------------------------------------
+
+## Computing Measures of Center by Groups
+
+::: columns
+::: {.column width="50%"}
+Compute summary statistics on the grouped data frame:
+
+```{r}
+july_2019_grouped <- group_by(july_2019, Occasion)
+summarize(july_2019_grouped,
+          mean_bikes = mean(Total),
+          median_bikes = median(Total))
+```
+:::
+
+::: {.column width="50%"}
+```{r, echo = FALSE}
+# Create histogram
+ggplot(data = july_2019, mapping = aes(x = Total)) + 
+  geom_histogram(fill = "slateblue4", color = "ghostwhite") +
+  facet_wrap(~Occasion, ncol = 1)
+```
+:::
+:::
+
+# And now it is time to learn the pipe: `%>%`
+
+![](img/pipe.png){width="15%" fig-align="center"}
+
+------------------------------------------------------------------------
+
+## Chaining `dplyr` Operations
+
+::: columns
+::: {.column width="50%"}
+
+Instead of:
+
+```{r}
+july_2019_grouped <- group_by(july_2019, Occasion)
+summarize(july_2019_grouped,
+          mean_bikes = mean(Total),
+          median_bikes = median(Total))
+```
+:::
+
+::: {.column .fragment width="50%"}
+
+Use the pipe:
+
+```{r}
+july_2019 %>%
+  group_by(Occasion) %>%
+  summarize(mean_bikes = mean(Total),
+          median_bikes = median(Total))
+```
+:::
+:::
+
+::: fragment
+-   Why pipe?
+:::
+
+::: fragment
+-   You can also use `|>`, which is newer and often referred to as the "base `R` pipe."
+:::
+
+------------------------------------------------------------------------
+
+## Measures of Variability
+
+-   Want a statistic that captures how much observations **deviate** from the mean
+
+::: columns
+::: {.column width="50%"}
+-   Find how much each observation deviates from the mean.
+-   Compute the average of the deviations.
+
+$$
+\frac{1}{n} \sum_{i = 1}^n (x_i - \bar{x})
+$$
+:::
+
+::: {.column width="50%"}
+```{r}
+# Test out on first 6 values
+head(july_2019$Total)
+```
+:::
+:::
+
+::: fragment
+**Problem?**
+:::
+
+------------------------------------------------------------------------
+
+## Measures of Variability
+
+-   Want a statistic that captures how much observations **deviate** from the mean
+
+::: columns
+::: {.column width="50%"}
+Here is my **NEW** proposal:
+
+-   Find how much each observation deviates from the mean.
+-   Compute the average of the **squared** deviations.
+:::
+
+::: {.column width="50%"}
+```{r}
+# Test out on first 6 values
+head(july_2019$Total)
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Measures of Variability
+
+-   Want a statistic that captures how much observations **deviate** from the mean
+
+::: columns
+::: {.column width="50%"}
+Here is my **ACTUAL** formula:
+
+-   Find how much each observation deviates from the mean.
+-   Compute the (nearly) average of the **squared** deviations.
+-   Called **sample variance** $s^2$.
+
+$$
+s^2 = \frac{1}{n - 1} \sum_{i = 1}^n (x_i - \bar{x})^2
+$$
+:::
+
+::: {.column width="50%"}
+Compute with a `dplyr` function:
+
+```{r}
+summarize(july_2019, var_bikes = var(Total))
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Measures of Variability
+
+-   Want a statistic that captures how much observations **deviate** from the mean
+
+::: columns
+::: {.column width="50%"}
+-   Find how much each observation deviates from the mean.
+-   Compute the (nearly) average of the **squared** deviations.
+-   Called **sample variance** $s^2$.
+-   The square root of the sample variance is called the **sample standard deviation** $s$.
+
+$$
+s = \sqrt{\frac{1}{n - 1} \sum_{i = 1}^n (x_i - \bar{x})^2}
+$$
+:::
+
+::: {.column width="50%"}
+Compute with a `dplyr` function:
+
+```{r}
+summarize(july_2019, var_bikes = var(Total),
+          sd_bikes = sd(Total))
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Measures of Variability
+
+::: columns
+::: {.column width="50%"}
+-   In addition to the sample standard deviation and the sample variance, there is the sample **interquartile range** (IQR):
+
+$$
+\mbox{IQR} = \mbox{Q}_3 - \mbox{Q}_1
+$$
+:::
+
+::: {.column width="50%"}
+Compute with a `dplyr` function:
+
+```{r}
+summarize(july_2019, iqr_bikes = IQR(Total))
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Comparing Measures of Variability
+
+-   Which is more robust to outliers, the IQR or $s$?
+
+-   Which is more commonly used, the IQR or $s$?
+
+```{r}
+july_2019 %>%
+  group_by(Occasion) %>%
+summarize(sd_bikes = sd(Total),
+          iqr_bikes = IQR(Total))
+```
+
+# Summarizing Categorical Variables
+
+------------------------------------------------------------------------
+
+## Return to the Buffalo Bills 2018 Season Data
+
+Focus on the dogs with the 5 most common names
+
+```{r}
+# Pull in the dataset on all teams
+nfl_outcomes_2018 <- read_csv("https://data.scorenetwork.org/data/nfl_mahomes_era_games.csv")
+
+# Focus on just the Bills
+buf <- filter(nfl_outcomes_2018, home_team == "BUF" | away_team == "BUF") %>%
+  mutate(where = if_else(home_team == "BUF", "home", "away"))
+
+```
+
+------------------------------------------------------------------------
+
+## Frequency Table
+
+::: columns
+::: {.column width="50%"}
+```{r}
+count(buf, game_type)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+ggplot(data = buf, 
+       mapping = aes(x = game_type)) +
+  geom_bar()
+
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Frequency Table
+
+::: columns
+::: {.column width="50%"}
+```{r}
+count(buf, game_type)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+count(buf, game_type, sort = TRUE)
+
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+### `geom_col()` versus `geom_bar()`
+
+If you have already aggregated the data, you will use `geom_col()` instead of `geom_bar()`.
+
+```{r}
+game_counts <- count(buf, game_type)
+game_counts
+```
+
+
+---
+
+## `geom_col()` Example
+
+```{r}
+#| output-location: column
+
+ggplot(data = game_counts,
+       mapping = aes(x = game_type,
+                     y = n)) +
+  geom_col()
+
+```
+
+------------------------------------------------------------------------
+
+### Another `ggplot2` `geom`: `geom_col()`
+
+And use `fct_reorder()` instead of `fct_infreq()` to reorder bars.
+
+```{r}
+#| output-location: column
+ggplot(data = game_counts,
+       mapping = aes(x = fct_reorder(game_type, n),
+                     y = n)) +
+  geom_col()
+```
+
+------------------------------------------------------------------------
+
+## Contingency Table
+
+::: columns
+::: {.column width="50%"}
+```{r}
+count(buf, where, game_outcome)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+ggplot(data = buf, 
+    mapping = aes(x = where, 
+                  fill = as.factor(game_outcome))) +
+  geom_bar(position = "dodge") +
+  theme(legend.position = "bottom")
+
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Conditional Proportions
+
+::: columns
+::: {.column width="50%"}
+-   Beyond raw counts, we often summarize categorical data with **conditional** proportions.
+    -   Especially when looking for relationships!
+:::
+
+::: {.column width="50%"}
+```{r}
+ggplot(data = buf, 
+    mapping = aes(x = where, 
+                  fill = as.factor(game_outcome))) +
+  geom_bar(position = "fill") +
+  theme(legend.position = "bottom")
+
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Conditional Proportions
+
+::: columns
+::: {.column width="50%"}
+```{r}
+count(buf, where, game_outcome)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+count(buf, where, game_outcome) %>%
+  group_by(where) %>%
+  mutate(prop = n/sum(n))
+```
+:::
+:::
+
+-   The dplyr function `mutate()` adds new column(s) to your data frame.
+
+------------------------------------------------------------------------
+
+## Conditional Proportions
+
+::: columns
+::: {.column width="50%"}
+```{r}
+count(buf, where, game_outcome) %>%
+  group_by(where) %>%
+  mutate(prop = n/sum(n))
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+count(buf, where, game_outcome) %>%
+  group_by(game_outcome) %>%
+  mutate(prop = n/sum(n))
+```
+:::
+:::
+
+How does the interpretation change based on which variable you condition on?
+
+------------------------------------------------------------------------
+
+![](img/dplyr_wrangling.png){width="70%" fig-align="center"}
+
+------------------------------------------------------------------------
+
+### Data Wrangling: Transformations done on the data
+
+**Why wrangle the data?**
+
+::: columns
+::: {.column .fragment width="50%"}
+To **summarize** the data.
+:::
+
+::: {.column .fragment width="50%"}
+→ To compute the mean and standard deviation of the bike counts.
+:::
+:::
+
+::: columns
+::: {.column .fragment width="50%"}
+To **drop** missing values. (Need to be careful here!)
+:::
+
+::: {.column .fragment width="50%"}
+→ On our P-Set 3, we will see that `ggplot2` will often drop observations before creating a graph.
+:::
+:::
+
+::: columns
+::: {.column .fragment width="50%"}
+To **filter** to a particular subset of the data.
+:::
+
+::: {.column .fragment width="50%"}
+→ To subset down to just games involving Buffalo.
+:::
+:::
+
+
+------------------------------------------------------------------------
+
+### Data Wrangling: Transformations done on the data
+
+**Why wrangle the data?**
+
+::: columns
+::: {.column .fragment width="50%"}
+To **arrange** the data to make it easier to display.
+:::
+
+::: {.column .fragment width="50%"}
+→ To sort from the a game's best point differential to the worst.
+:::
+:::
+
+::: columns
+::: {.column .fragment width="50%"}
+To fix how `R` **stores** a variable.
+:::
+
+::: {.column .fragment width="50%"}
+→ To convert `game_outcomes` to be a `factor()` so that `R` would treat it like a categorical variable.
+:::
+:::
+
+::: columns
+::: {.column .fragment width="50%"}
+→ To **join** data frames when information about your cases is stored in multiple places!
+:::
+
+::: {.column .fragment width="50%"}
+Will see examples of this next class!
+:::
+:::
+
+------------------------------------------------------------------------
+
+## dplyr for Data Wrangling
+
+-   Seven common wrangling verbs:
+    -   `summarize()`
+    -   `count()`\
+    -   `mutate()`\
+    -   `select()`
+    -   `filter()`
+    -   `arrange()`
+    -   `---_join()`
+-   One action:
+    -   `group_by()`
+
+------------------------------------------------------------------------
+
+## Return to `mutate()`
+
+::: columns
+::: {.column width="50%"}
+Add new variables
+
+```{r}
+count(buf, where, game_outcome) %>%
+  group_by(where) %>%
+  mutate(prop = n/sum(n))
+```
+:::
+
+::: {.column width="50%"}
+Modify existing variables
+
+```{r}
+class(buf$game_outcome)
+buf <- buf %>%
+  mutate(game_outcome = as.factor(game_outcome))
+class(buf$game_outcome)
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## `select()`: Extract variables
+
+```{r}
+buf %>%
+  select(where, game_outcome)
+```
+
+------------------------------------------------------------------------
+
+## Motivation for `filter()`
+
+```{r}
+count(nfl_outcomes_2018, home_team, sort = TRUE)
+```
+
+------------------------------------------------------------------------
+
+## `filter()`: Extract cases
+
+```{r}
+buf <- filter(nfl_outcomes_2018, home_team == "BUF" | away_team == "BUF") 
+count(buf, home_team, sort = TRUE)
+
+# Why is this useful?
+buf <- buf %>%
+  mutate(where = if_else(home_team == "BUF", "home", "away"))
+count(buf, where)
+```
+
+------------------------------------------------------------------------
+
+## `arrange()`: Sort the cases
+
+::: columns
+::: {.column width="50%"}
+```{r}
+buf %>%
+  arrange(score_diff) %>%
+  select(home_team, away_team, home_score, away_score, score_diff)
+```
+:::
+
+::: {.column .fragment width="50%"}
+```{r}
+buf %>%
+  arrange(desc(score_diff)) %>%
+  select(home_team, away_team, home_score, away_score, score_diff)
+```
+:::
+:::
+
+# Will see more data wrangling next week!
+
+------------------------------------------------------------------------
+
+## Reminders
+
+-   Code a Valentine: Feb 10th, Taylor 212
