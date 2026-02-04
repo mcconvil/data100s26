@@ -1040,7 +1040,7 @@
     "href": "data100_wk03mon.html#adding-some-context",
     "title": "DATA 100",
     "section": "Adding Some Context",
-    "text": "Adding Some Context\n\n\nbuf &lt;- mutate(buf, \n              outcome = if_else(game_outcome == 1,\n                                \"Won\", \"Lost\"))\n\nggplot(data = buf,\n       mapping = aes(x = outcome,\n                     y = score_diff, \n                     fill = where)) +\n  geom_boxplot()  +\n  labs(x = \"Outcome of the Game\",\n       y = \"Difference in Score Between \\nWinner and Loser\",\n       color = \"Where was the Game?\",\n       caption = \"Data from the nflreadr Package\",\n       title = \"The Buffalo Bills Should Only Play At Home.\")"
+    "text": "Adding Some Context\n\n\nbuf &lt;- mutate(buf, \n              outcome = if_else(game_outcome == 1,\n                                \"Won\", \"Lost\"))\n\nggplot(data = buf,\n       mapping = aes(x = outcome,\n                     y = score_diff, \n                     fill = where)) +\n  geom_boxplot()  +\n  labs(x = \"Outcome of the Game\",\n       y = \"Difference in Score Between \\nWinner and Loser\",\n       fill = \"Where was the Game?\",\n       caption = \"Data from the nflreadr Package\",\n       title = \"The Buffalo Bills Should Only Play At Home.\")"
   },
   {
     "objectID": "data100_wk03mon.html#customizing-your-ggplot2-plots",

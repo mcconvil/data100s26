@@ -37,7 +37,7 @@ library(tidyverse)
 theme_update(text = element_text(size = 20))
 ```
 
-::: columns
+::::: columns
 ::: {.column .center width="55%"}
 ![](img/DAW.png){width="80%"}
 :::
@@ -47,24 +47,24 @@ theme_update(text = element_text(size = 20))
 
 [Data Visualization]{.custom-title}
 
-<br> <br> 
+<br> <br>
 
 [Kelly McConville]{.custom-subtitle}
 
 [DATA 100 <br> Week 2 \| Spring 2026]{.custom-subtitle}
 :::
-:::
+:::::
 
 ## Announcements
 
 ::: nonincremental
 -   Class in full swing:
     -   P-set 1 due [on Gradescope by noon on Thursday](https://moodle.bucknell.edu/mod/lti/view.php?id=1813506).
-    -   Visit office hours and then fill out [this form](https://moodle.bucknell.edu/mod/lti/view.php?id=1813712) 
-    -  Panel on careers in data science and public health on Thursday at noon in Taylor 210.  
+    -   Visit office hours and then fill out [this form](https://moodle.bucknell.edu/mod/lti/view.php?id=1813712)
+    -   Panel on careers in data science and public health on Thursday at noon in Taylor 210.\
 :::
 
----
+------------------------------------------------------------------------
 
 ## Announcements
 
@@ -74,8 +74,8 @@ theme_update(text = element_text(size = 20))
 
 ## Goals for Today
 
-::: columns
-::: {.column width="\"50%"}
+::::::: columns
+:::: {.column width="\"50%"}
 **First Segment:**
 
 ::: nonincremental
@@ -84,9 +84,9 @@ theme_update(text = element_text(size = 20))
 -   Practice deconstructing graphics.
 -   Discuss good graphical practices.
 :::
-:::
+::::
 
-::: {.column width="\"50%"}
+:::: {.column width="\"50%"}
 **Second Segment:**
 
 ::: nonincremental
@@ -96,8 +96,8 @@ theme_update(text = element_text(size = 20))
     -   **Side-by-side boxplot**: one numerical variable and one categorical variable
     -   **Side-by-side violin plot**: one numerical variable and one categorical variable
 :::
-:::
-:::
+::::
+:::::::
 
 ------------------------------------------------------------------------
 
@@ -220,8 +220,8 @@ For right now, we won't focus on the **names** of particular types of graphs (e.
 
 ------------------------------------------------------------------------
 
-::: columns
-::: {.column width="30%"}
+:::::: columns
+:::: {.column width="30%"}
 ### Example 1
 
 ::: nonincremental
@@ -232,17 +232,17 @@ For right now, we won't focus on the **names** of particular types of graphs (e.
 -   What additional context is provided?
 -   What story is the graph telling?
 :::
-:::
+::::
 
 ::: {.column width="70%"}
 ![](img/anne_hathaway.png){width="85%" fig-align="center" fig-dpi="200"}
 :::
-:::
+::::::
 
 ------------------------------------------------------------------------
 
-::: columns
-::: {.column width="30%"}
+:::::: columns
+:::: {.column width="30%"}
 ### Example 2
 
 ::: nonincremental
@@ -253,12 +253,12 @@ For right now, we won't focus on the **names** of particular types of graphs (e.
 -   What additional context is provided?
 -   What story is the graph telling?
 :::
-:::
+::::
 
 ::: {.column .center width="70%"}
 ![](img/harassment_graphic.png){width="75%" fig-align="center" fig-dpi="200"}
 :::
-:::
+::::::
 
 # Visualization Considerations
 
@@ -279,7 +279,7 @@ For right now, we won't focus on the **names** of particular types of graphs (e.
 -   Visualizing data involves **editorial choices**.
 
     -   What comparisons to make easy to see.
-    -   What to highlight 
+    -   What to highlight
     -   What references to provide.
     -   What scales to use.
 
@@ -416,7 +416,7 @@ library(tidyverse)
 
 ## Data Setting: [Eco-Totem Broadway Bicycle Count](https://data.cambridgema.gov/Transportation-Planning/Eco-Totem-Broadway-Bicycle-Count/q8v9-mcfg)
 
-::: columns
+::::: columns
 ::: {.column width="40%" fig-align="center"}
 ![](img/counter.jpg){width="100%"}
 :::
@@ -424,7 +424,7 @@ library(tidyverse)
 ::: {.column width="60%" fig-align="center"}
 ![](img/bike_counter_map.png){width="100%"}
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -530,7 +530,7 @@ ggplot(data = ---, mapping = aes(---)) +
 
 ## Histograms
 
-::: columns
+::::: columns
 ::: {.column width="33%"}
 -   Binned counts of data.
 
@@ -545,7 +545,7 @@ ggplot(data = july_2019, mapping = aes(x = Total)) +
 
 ```
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -600,7 +600,7 @@ ggplot(data = july_2019,
 
 ## Boxplots
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 -   **Five number summary**:
     -   Minimum
@@ -622,7 +622,7 @@ ggplot(data = july_2019,
   geom_boxplot()
 ```
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -697,7 +697,7 @@ ggplot(data = july_2019,
 
 ## Boxplot Versus Violin Plots
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ```{r}
 #| echo: false
@@ -721,7 +721,7 @@ ggplot(data = july_2019,
   guides(fill = "none")
 ```
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -740,6 +740,6 @@ ggplot(data = ---, mapping = aes(---)) +
 ::: nonincremental
 -   Class in full swing:
     -   P-set 1 due [on Gradescope by noon on Thursday](https://moodle.bucknell.edu/mod/lti/view.php?id=1813506).
-    -   Visit office hours and then fill out [this form](https://moodle.bucknell.edu/mod/lti/view.php?id=1813712) 
-    -  Panel on careers in data science and public health on Thursday at noon in Taylor 210.  
+    -   Visit office hours and then fill out [this form](https://moodle.bucknell.edu/mod/lti/view.php?id=1813712)
+    -   Panel on careers in data science and public health on Thursday at noon in Taylor 210.\
 :::

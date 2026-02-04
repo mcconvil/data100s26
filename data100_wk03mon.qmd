@@ -755,7 +755,7 @@ ggplot(data = buf,
   geom_boxplot()  +
   labs(x = "Outcome of the Game",
        y = "Difference in Score Between \nWinner and Loser",
-       color = "Where was the Game?",
+       fill = "Where was the Game?",
        caption = "Data from the nflreadr Package",
        title = "The Buffalo Bills Should Only Play At Home.")
 ```
