@@ -249,7 +249,7 @@
     "href": "index.html",
     "title": "DATA 100: Introduction to Data Science",
     "section": "",
-    "text": "The lecture slides (both in HTML and PDF) will be posted here. \n\n\n\n\nClass Period\nHTML Slides\nPDF Slides\n\n\n\n\nWeek 1, Wed\n\n\n\n\nWeek 2, Mon\n\n\n\n\nWeek 2, Wed\n\n\n\n\nWeek 3, Mon\n\n\n\n\nWeek 3, Wed"
+    "text": "The lecture slides (both in HTML and PDF) will be posted here. \n\n\n\n\nClass Period\nHTML Slides\nPDF Slides\n\n\n\n\nWeek 1, Wed\n\n\n\n\nWeek 2, Mon\n\n\n\n\nWeek 2, Wed\n\n\n\n\nWeek 3, Mon\n\n\n\n\nWeek 3, Wed\n\n\n\n\nWeek 4, Mon"
   },
   {
     "objectID": "data100_wk03wed.html#announcements",
@@ -378,11 +378,11 @@
     "text": "Comparing Measures of Variability\n\nWhich is more robust to outliers, the IQR or \\(s\\)?\nWhich is more commonly used, the IQR or \\(s\\)?\n\n\njuly_2019 %&gt;%\n  group_by(Occasion) %&gt;%\nsummarize(sd_bikes = sd(Total),\n          iqr_bikes = IQR(Total))\n\n# A tibble: 2 × 3\n  Occasion        sd_bikes iqr_bikes\n  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;\n1 Fourth of July      8.30      14  \n2 Normal Thursday    27.2       27.2"
   },
   {
-    "objectID": "data100_wk03wed.html#return-to-the-buffalo-bills-2018-season-data",
-    "href": "data100_wk03wed.html#return-to-the-buffalo-bills-2018-season-data",
+    "objectID": "data100_wk03wed.html#return-to-the-buffalo-bills-data",
+    "href": "data100_wk03wed.html#return-to-the-buffalo-bills-data",
     "title": "DATA 100",
-    "section": "Return to the Buffalo Bills 2018 Season Data",
-    "text": "Return to the Buffalo Bills 2018 Season Data\nFocus on the dogs with the 5 most common names\n\n# Pull in the dataset on all teams\nnfl_outcomes_2018 &lt;- read_csv(\"https://data.scorenetwork.org/data/nfl_mahomes_era_games.csv\")\n\n# Focus on just the Bills\nbuf &lt;- filter(nfl_outcomes_2018, home_team == \"BUF\" | away_team == \"BUF\") %&gt;%\n  mutate(where = if_else(home_team == \"BUF\", \"home\", \"away\"))"
+    "section": "Return to the Buffalo Bills Data",
+    "text": "Return to the Buffalo Bills Data\n\n# Pull in the dataset on all teams\nnfl_outcomes_2018 &lt;- read_csv(\"https://data.scorenetwork.org/data/nfl_mahomes_era_games.csv\")\n\n# Focus on just the Bills\nbuf &lt;- filter(nfl_outcomes_2018, home_team == \"BUF\" | away_team == \"BUF\") %&gt;%\n  mutate(where = if_else(home_team == \"BUF\", \"home\", \"away\"))"
   },
   {
     "objectID": "data100_wk03wed.html#frequency-table",
@@ -600,6 +600,251 @@
     "title": "DATA 100",
     "section": "Reminders",
     "text": "Reminders\n\nClass in full swing:\n\nOffice hours:\n\nMine: Tuesdays 2:30 - 4pm, Wednesdays 2-3pm, Taylor 212\nRebecca: Mondays and Wednesdays 4:30 - 6pm, Taylor 210\nGeneral Data Science Office Hours\n\nThe first problem set is due at noon on Thursday in Gradescope."
+  },
+  {
+    "objectID": "data100_wk04mon.html#announcements",
+    "href": "data100_wk04mon.html#announcements",
+    "title": "DATA 100",
+    "section": "Announcements",
+    "text": "Announcements\nCode a Valentine: Tomorrow, 4:30pm, Taylor 212\nGoals for Today\n\n\nMore data wrangling\n\nData joins"
+  },
+  {
+    "objectID": "data100_wk04mon.html#load-necessary-packages",
+    "href": "data100_wk04mon.html#load-necessary-packages",
+    "title": "DATA 100",
+    "section": "Load Necessary Packages",
+    "text": "Load Necessary Packages\n\n\n\n\n\ndplyr is part of this collection of data science packages.\n\n# Load necessary packages\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "data100_wk04mon.html#data-setting-bureau-of-labor-statistics-bls-consumer-expenditure-survey",
+    "href": "data100_wk04mon.html#data-setting-bureau-of-labor-statistics-bls-consumer-expenditure-survey",
+    "title": "DATA 100",
+    "section": "Data Setting: Bureau of Labor Statistics (BLS) Consumer Expenditure Survey",
+    "text": "Data Setting: Bureau of Labor Statistics (BLS) Consumer Expenditure Survey\nBLS Mission: “Measures labor market activity, working conditions, price changes, and productivity in the U.S. economy to support public and private decision making.”\nData: Last quarter of the 2016 BLS Consumer Expenditure Survey.\n\nlibrary(tidyverse)\n\nce_raw &lt;- read_csv(\"data/fmli.csv\", \n                 na = c(\"NA\", \".\"))\nglimpse(ce_raw)\n\nRows: 6,301\nColumns: 51\n$ NEWID    &lt;chr&gt; \"03324174\", \"03324204\", \"03324214\", \"03324244\", \"03324274\", \"…\n$ PRINEARN &lt;chr&gt; \"01\", \"01\", \"01\", \"01\", \"02\", \"01\", \"01\", \"01\", \"02\", \"01\", \"…\n$ FINLWT21 &lt;dbl&gt; 25984.767, 6581.018, 20208.499, 18078.372, 20111.619, 19907.3…\n$ FINCBTAX &lt;dbl&gt; 116920, 200, 117000, 0, 2000, 942, 0, 91000, 95000, 40037, 10…\n$ BLS_URBN &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ POPSIZE  &lt;dbl&gt; 2, 3, 4, 2, 2, 2, 1, 2, 5, 2, 3, 2, 2, 3, 4, 3, 3, 1, 4, 1, 1…\n$ EDUC_REF &lt;chr&gt; \"16\", \"15\", \"16\", \"15\", \"14\", \"11\", \"10\", \"13\", \"12\", \"12\", \"…\n$ EDUCA2   &lt;dbl&gt; 15, 15, 13, NA, NA, NA, NA, 15, 15, 14, 12, 12, NA, NA, NA, 1…\n$ AGE_REF  &lt;dbl&gt; 63, 50, 47, 37, 51, 63, 77, 37, 51, 64, 26, 59, 81, 51, 67, 4…\n$ AGE2     &lt;dbl&gt; 50, 47, 46, NA, NA, NA, NA, 36, 53, 67, 44, 62, NA, NA, NA, 4…\n$ SEX_REF  &lt;dbl&gt; 1, 1, 2, 1, 2, 1, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1…\n$ SEX2     &lt;dbl&gt; 2, 2, 1, NA, NA, NA, NA, 2, 2, 1, 1, 1, NA, NA, NA, 1, NA, 1,…\n$ REF_RACE &lt;dbl&gt; 1, 4, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1…\n$ RACE2    &lt;dbl&gt; 1, 4, 1, NA, NA, NA, NA, 1, 1, 1, 1, 1, NA, NA, NA, 2, NA, 1,…\n$ HISP_REF &lt;dbl&gt; 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1…\n$ HISP2    &lt;dbl&gt; 2, 2, 1, NA, NA, NA, NA, 2, 2, 2, 2, 2, NA, NA, NA, 2, NA, 2,…\n$ FAM_TYPE &lt;dbl&gt; 3, 4, 1, 8, 9, 9, 8, 3, 1, 1, 3, 1, 8, 9, 8, 5, 9, 4, 8, 3, 2…\n$ MARITAL1 &lt;dbl&gt; 1, 1, 1, 5, 3, 3, 2, 1, 1, 1, 1, 1, 2, 3, 5, 1, 3, 1, 3, 1, 1…\n$ REGION   &lt;dbl&gt; 4, 4, 3, 4, 4, 3, 4, 1, 3, 2, 1, 4, 1, 3, 3, 3, 2, 1, 2, 4, 3…\n$ SMSASTAT &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ HIGH_EDU &lt;chr&gt; \"16\", \"15\", \"16\", \"15\", \"14\", \"11\", \"10\", \"15\", \"15\", \"14\", \"…\n$ EHOUSNGC &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ TOTEXPCQ &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ FOODCQ   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ TRANSCQ  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ HEALTHCQ &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ ENTERTCQ &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ EDUCACQ  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ TOBACCCQ &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ STUDFINX &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n$ IRAX     &lt;dbl&gt; 1000000, 10000, 0, NA, NA, 0, 0, 15000, NA, 477000, NA, NA, N…\n$ CUTENURE &lt;dbl&gt; 1, 1, 1, 1, 1, 2, 4, 1, 1, 2, 1, 2, 2, 2, 2, 4, 1, 1, 1, 4, 4…\n$ FAM_SIZE &lt;dbl&gt; 4, 6, 2, 1, 2, 2, 1, 5, 2, 2, 4, 2, 1, 2, 1, 4, 2, 4, 1, 3, 3…\n$ VEHQ     &lt;dbl&gt; 3, 5, 0, 4, 2, 0, 0, 2, 4, 2, 3, 2, 1, 3, 1, 2, 4, 4, 0, 2, 3…\n$ ROOMSQ   &lt;dbl&gt; 8, 5, 6, 4, 4, 4, 7, 5, 4, 9, 6, 10, 4, 7, 5, 6, 6, 8, 18, 4,…\n$ INC_HRS1 &lt;dbl&gt; 40, 40, 40, 44, 40, NA, NA, 40, 40, NA, 40, NA, NA, NA, NA, 4…\n$ INC_HRS2 &lt;dbl&gt; 30, 40, 52, NA, NA, NA, NA, 40, 40, NA, 65, NA, NA, NA, NA, 6…\n$ EARNCOMP &lt;dbl&gt; 3, 2, 2, 1, 4, 7, 8, 2, 2, 8, 2, 8, 8, 7, 8, 2, 7, 3, 1, 2, 1…\n$ NO_EARNR &lt;dbl&gt; 4, 2, 2, 1, 2, 1, 0, 2, 2, 0, 2, 0, 0, 1, 0, 2, 1, 3, 1, 2, 1…\n$ OCCUCOD1 &lt;chr&gt; \"03\", \"03\", \"05\", \"03\", \"04\", \"\", \"\", \"12\", \"04\", \"\", \"01\", \"…\n$ OCCUCOD2 &lt;chr&gt; \"04\", \"02\", \"01\", \"\", \"\", \"\", \"\", \"02\", \"03\", \"\", \"11\", \"\", \"…\n$ STATE    &lt;chr&gt; \"41\", \"15\", \"48\", \"06\", \"06\", \"48\", \"06\", \"42\", \"\", \"27\", \"25…\n$ DIVISION &lt;dbl&gt; 9, 9, 7, 9, 9, 7, 9, 2, NA, 4, 1, 8, 2, 5, 6, 7, 3, 2, 3, 9, …\n$ TOTXEST  &lt;dbl&gt; 15452, 11459, 15738, 25978, 588, 0, 0, 7261, 9406, -1414, 141…\n$ CREDFINX &lt;dbl&gt; 0, NA, 0, NA, 5, NA, NA, NA, NA, 0, NA, 0, NA, NA, NA, 2, 35,…\n$ CREDITB  &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n$ CREDITX  &lt;dbl&gt; 4000, 5000, 2000, NA, 7000, 1800, NA, 6000, NA, 719, NA, 1200…\n$ BUILDING &lt;chr&gt; \"01\", \"01\", \"01\", \"02\", \"08\", \"01\", \"01\", \"01\", \"01\", \"01\", \"…\n$ ST_HOUS  &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2…\n$ INT_PHON &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n$ INT_HOME &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…"
+  },
+  {
+    "objectID": "data100_wk04mon.html#wrangling-ce-data",
+    "href": "data100_wk04mon.html#wrangling-ce-data",
+    "title": "DATA 100",
+    "section": "Wrangling CE Data",
+    "text": "Wrangling CE Data\n\n\nWant to better understand a family’s income and expenditures\n\nce &lt;- ce_raw %&gt;%\n  select(NEWID, PRINEARN, FINCBTAX,\n         BLS_URBN, HIGH_EDU, TOTEXPCQ, IRAX)\ndim(ce)\n\n[1] 6301    7\n\n\nVariables:\n\n\nNEWID: ID for the household\nPRINEARN: ID for which member of the household is the principal earner\nFINCBTAX: Final income before taxes for the year\n\n\n\n\n\nBLS_URBN: 1 = urban, 2 = rural\nHIGH_EDU: Highest education in the household. 00 = Never attended, 10 = Grades 1-8, 11 = Grades 9-12, no degree, 12 = High school graduate, 13 = Some college, no degree, 14 = Associates degree, 15 = Bachelor’s degree, 16 = Masters, Professional/doctorate degree\nTOTEXPCQ = Total household expenditures for the current quarter\nIRAX = Total in retirement funds"
+  },
+  {
+    "objectID": "data100_wk04mon.html#wrangling-ce-data-1",
+    "href": "data100_wk04mon.html#wrangling-ce-data-1",
+    "title": "DATA 100",
+    "section": "Wrangling CE Data",
+    "text": "Wrangling CE Data\n\nce &lt;- ce %&gt;%\n  mutate(YEARLY_EXP = TOTEXPCQ*4)\nce\n\n# A tibble: 6,301 × 8\n   NEWID    PRINEARN FINCBTAX BLS_URBN HIGH_EDU TOTEXPCQ    IRAX YEARLY_EXP\n   &lt;chr&gt;    &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;\n 1 03324174 01         116920        1 16              0 1000000          0\n 2 03324204 01            200        1 15              0   10000          0\n 3 03324214 01         117000        1 16              0       0          0\n 4 03324244 01              0        1 15              0      NA          0\n 5 03324274 02           2000        1 14              0      NA          0\n 6 03324284 01            942        1 11              0       0          0\n 7 03324294 01              0        1 10              0       0          0\n 8 03324304 01          91000        1 15              0   15000          0\n 9 03324324 02          95000        2 15              0      NA          0\n10 03324334 01          40037        1 14              0  477000          0\n# ℹ 6,291 more rows"
+  },
+  {
+    "objectID": "data100_wk04mon.html#logical-operators",
+    "href": "data100_wk04mon.html#logical-operators",
+    "title": "DATA 100",
+    "section": "Logical Operators",
+    "text": "Logical Operators\n\nce_sub &lt;- ce %&gt;%\n  filter(YEARLY_EXP &gt; 0, BLS_URBN == 1, HIGH_EDU != \"00\")\nce_sub\n\n# A tibble: 3,950 × 8\n   NEWID    PRINEARN FINCBTAX BLS_URBN HIGH_EDU TOTEXPCQ   IRAX YEARLY_EXP\n   &lt;chr&gt;    &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n 1 03335204 01          37000        1 14          2492.      0      9968.\n 2 03335214 01         103000        1 16          6128.     NA     24513.\n 3 03335224 01          14686        1 13          1072.     NA      4287.\n 4 03335244 02          33396        1 12          1630       0      6520 \n 5 03335264 01              0        1 13          3213.     NA     12853.\n 6 03335274 01              0        1 15          4674.      0     18694.\n 7 03335294 01         745136        1 16          8693. 280000     34773.\n 8 03335304 01          36000        1 16          3733.     NA     14933.\n 9 03335314 02          45000        1 15          3627.   3000     14509 \n10 03335334 01          20862        1 13           802.      0      3209.\n# ℹ 3,940 more rows"
+  },
+  {
+    "objectID": "data100_wk04mon.html#logical-operators-1",
+    "href": "data100_wk04mon.html#logical-operators-1",
+    "title": "DATA 100",
+    "section": "Logical Operators",
+    "text": "Logical Operators\n\nce_sub &lt;- ce %&gt;%\n  filter(YEARLY_EXP &gt; 0, (BLS_URBN == 1 | HIGH_EDU != \"00\"))\nce_sub\n\n# A tibble: 4,178 × 8\n   NEWID    PRINEARN FINCBTAX BLS_URBN HIGH_EDU TOTEXPCQ   IRAX YEARLY_EXP\n   &lt;chr&gt;    &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n 1 03335204 01          37000        1 14          2492.      0      9968.\n 2 03335214 01         103000        1 16          6128.     NA     24513.\n 3 03335224 01          14686        1 13          1072.     NA      4287.\n 4 03335244 02          33396        1 12          1630       0      6520 \n 5 03335264 01              0        1 13          3213.     NA     12853.\n 6 03335274 01              0        1 15          4674.      0     18694.\n 7 03335294 01         745136        1 16          8693. 280000     34773.\n 8 03335304 01          36000        1 16          3733.     NA     14933.\n 9 03335314 02          45000        1 15          3627.   3000     14509 \n10 03335334 01          20862        1 13           802.      0      3209.\n# ℹ 4,168 more rows"
+  },
+  {
+    "objectID": "data100_wk04mon.html#case_when-recoding-variables",
+    "href": "data100_wk04mon.html#case_when-recoding-variables",
+    "title": "DATA 100",
+    "section": "case_when: Recoding Variables",
+    "text": "case_when: Recoding Variables\n\n\n\ncount(ce, BLS_URBN)\n\n# A tibble: 2 × 2\n  BLS_URBN     n\n     &lt;dbl&gt; &lt;int&gt;\n1        1  5952\n2        2   349\n\n\n\n\nce &lt;- ce %&gt;%\n  mutate(BLS_URBN = case_when(\n    BLS_URBN == 1 ~ \"Urban\",\n    BLS_URBN == 2 ~ \"Rural\"\n  ))\ncount(ce, BLS_URBN)\n\n# A tibble: 2 × 2\n  BLS_URBN     n\n  &lt;chr&gt;    &lt;int&gt;\n1 Rural      349\n2 Urban     5952"
+  },
+  {
+    "objectID": "data100_wk04mon.html#case_when-creating-variables",
+    "href": "data100_wk04mon.html#case_when-creating-variables",
+    "title": "DATA 100",
+    "section": "case_when: Creating Variables",
+    "text": "case_when: Creating Variables\n\n\n\ncount(ce, HIGH_EDU)\n\n# A tibble: 8 × 2\n  HIGH_EDU     n\n  &lt;chr&gt;    &lt;int&gt;\n1 00           8\n2 10         110\n3 11         302\n4 12        1272\n5 13        1297\n6 14         714\n7 15        1528\n8 16        1070\n\nce &lt;- ce %&gt;%\n  mutate(HIGH_EDU = as.numeric(HIGH_EDU))\ncount(ce, HIGH_EDU)\n\n# A tibble: 8 × 2\n  HIGH_EDU     n\n     &lt;dbl&gt; &lt;int&gt;\n1        0     8\n2       10   110\n3       11   302\n4       12  1272\n5       13  1297\n6       14   714\n7       15  1528\n8       16  1070\n\n\n\n\nce &lt;- ce %&gt;%\n  mutate(HIGH_EDU2 = case_when(\n    is.na(HIGH_EDU) ~ NA,\n    HIGH_EDU &lt;= 11 ~ \"Less than high school degree\",\n    between(HIGH_EDU, 12, 13) ~ \"High school degree\",\n    HIGH_EDU &gt;= 14 ~ \"College degree\"\n  ))\ncount(ce, HIGH_EDU2)\n\n# A tibble: 3 × 2\n  HIGH_EDU2                        n\n  &lt;chr&gt;                        &lt;int&gt;\n1 College degree                3312\n2 High school degree            2569\n3 Less than high school degree   420"
+  },
+  {
+    "objectID": "data100_wk04mon.html#variable-names",
+    "href": "data100_wk04mon.html#variable-names",
+    "title": "DATA 100",
+    "section": "Variable Names",
+    "text": "Variable Names\nSometimes datasets come with terrible variable names.\n\nce &lt;- ce %&gt;%\n  rename(INCOME = FINCBTAX)\nce\n\n# A tibble: 6,301 × 9\n   NEWID PRINEARN INCOME BLS_URBN HIGH_EDU TOTEXPCQ    IRAX YEARLY_EXP HIGH_EDU2\n   &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;    \n 1 0332… 01       116920 Urban          16        0 1000000          0 College …\n 2 0332… 01          200 Urban          15        0   10000          0 College …\n 3 0332… 01       117000 Urban          16        0       0          0 College …\n 4 0332… 01            0 Urban          15        0      NA          0 College …\n 5 0332… 02         2000 Urban          14        0      NA          0 College …\n 6 0332… 01          942 Urban          11        0       0          0 Less tha…\n 7 0332… 01            0 Urban          10        0       0          0 Less tha…\n 8 0332… 01        91000 Urban          15        0   15000          0 College …\n 9 0332… 02        95000 Rural          15        0      NA          0 College …\n10 0332… 01        40037 Urban          14        0  477000          0 College …\n# ℹ 6,291 more rows"
+  },
+  {
+    "objectID": "data100_wk04mon.html#handling-missing-data",
+    "href": "data100_wk04mon.html#handling-missing-data",
+    "title": "DATA 100",
+    "section": "Handling Missing Data",
+    "text": "Handling Missing Data\nWant to compute mean income and mean retirement funds by location.\n\n\n\nce %&gt;%\n  group_by(BLS_URBN) %&gt;%\n  summarize(mean_INCOME = mean(INCOME),\n            mean_IRAX = mean(IRAX),\n            households = n())\n\n# A tibble: 2 × 4\n  BLS_URBN mean_INCOME mean_IRAX households\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;      &lt;int&gt;\n1 Rural         40440.        NA        349\n2 Urban         63772.        NA       5952\n\n\n\n\nce_aggressive &lt;- ce_raw %&gt;%\n  na.omit()\nce_aggressive\n\n# A tibble: 0 × 51\n# ℹ 51 variables: NEWID &lt;chr&gt;, PRINEARN &lt;chr&gt;, FINLWT21 &lt;dbl&gt;, FINCBTAX &lt;dbl&gt;,\n#   BLS_URBN &lt;dbl&gt;, POPSIZE &lt;dbl&gt;, EDUC_REF &lt;chr&gt;, EDUCA2 &lt;dbl&gt;, AGE_REF &lt;dbl&gt;,\n#   AGE2 &lt;dbl&gt;, SEX_REF &lt;dbl&gt;, SEX2 &lt;dbl&gt;, REF_RACE &lt;dbl&gt;, RACE2 &lt;dbl&gt;,\n#   HISP_REF &lt;dbl&gt;, HISP2 &lt;dbl&gt;, FAM_TYPE &lt;dbl&gt;, MARITAL1 &lt;dbl&gt;, REGION &lt;dbl&gt;,\n#   SMSASTAT &lt;dbl&gt;, HIGH_EDU &lt;chr&gt;, EHOUSNGC &lt;dbl&gt;, TOTEXPCQ &lt;dbl&gt;,\n#   FOODCQ &lt;dbl&gt;, TRANSCQ &lt;dbl&gt;, HEALTHCQ &lt;dbl&gt;, ENTERTCQ &lt;dbl&gt;, EDUCACQ &lt;dbl&gt;,\n#   TOBACCCQ &lt;dbl&gt;, STUDFINX &lt;dbl&gt;, IRAX &lt;dbl&gt;, CUTENURE &lt;dbl&gt;, …"
+  },
+  {
+    "objectID": "data100_wk04mon.html#handling-missing-data-1",
+    "href": "data100_wk04mon.html#handling-missing-data-1",
+    "title": "DATA 100",
+    "section": "Handling Missing Data",
+    "text": "Handling Missing Data\n\n\n\nce_moderate &lt;- ce %&gt;%\n  drop_na(IRAX, INCOME, BLS_URBN) %&gt;%\n  group_by(BLS_URBN) %&gt;%  \n  summarize(mean_INCOME = mean(INCOME),\n            mean_IRAX = mean(IRAX),\n            households = n())\n\nce_moderate\n\n# A tibble: 2 × 4\n  BLS_URBN mean_INCOME mean_IRAX households\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;      &lt;int&gt;\n1 Rural         38651.    37008.         63\n2 Urban         58987.    94512.        991\n\n\n\n\nce_light &lt;- ce %&gt;%\n  group_by(BLS_URBN) %&gt;%\n  summarize(mean_INCOME = mean(INCOME, na.rm = TRUE),\n            mean_IRAX = mean(IRAX, na.rm = TRUE), \n            households = n())\n\nce_light\n\n# A tibble: 2 × 4\n  BLS_URBN mean_INCOME mean_IRAX households\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;      &lt;int&gt;\n1 Rural         40440.    37008.        349\n2 Urban         63772.    94512.       5952"
+  },
+  {
+    "objectID": "data100_wk04mon.html#multiple-groupings",
+    "href": "data100_wk04mon.html#multiple-groupings",
+    "title": "DATA 100",
+    "section": "Multiple Groupings",
+    "text": "Multiple Groupings\n\nce %&gt;%\n  group_by(BLS_URBN, HIGH_EDU2) %&gt;%\n  summarize(mean_INCOME = mean(INCOME, na.rm = TRUE),\n            mean_IRAX = mean(IRAX, na.rm = TRUE), \n            households = n()) %&gt;%\n  arrange(mean_IRAX)\n\n# A tibble: 6 × 5\n# Groups:   BLS_URBN [2]\n  BLS_URBN HIGH_EDU2                    mean_INCOME mean_IRAX households\n  &lt;chr&gt;    &lt;chr&gt;                              &lt;dbl&gt;     &lt;dbl&gt;      &lt;int&gt;\n1 Rural    Less than high school degree      14715.        0          39\n2 Urban    Less than high school degree      23046.     8270.        381\n3 Rural    High school degree                31087.    15543.        192\n4 Urban    High school degree                39147.    30533.       2377\n5 Rural    College degree                    64161.   105148.        118\n6 Urban    College degree                    86957.   168767.       3194"
+  },
+  {
+    "objectID": "data100_wk04mon.html#piping-into-ggplot2",
+    "href": "data100_wk04mon.html#piping-into-ggplot2",
+    "title": "DATA 100",
+    "section": "Piping into ggplot2",
+    "text": "Piping into ggplot2\n\n\nce %&gt;%\n  group_by(BLS_URBN, HIGH_EDU2) %&gt;%\n  summarize(mean_INCOME = mean(INCOME, na.rm = TRUE),\n            mean_IRAX = mean(IRAX, na.rm = TRUE), \n            households = n()) %&gt;%\n  ggplot(mapping = aes(x = mean_INCOME,\n                       y = mean_IRAX, \n                       shape = BLS_URBN,\n                       color = HIGH_EDU2)) +\n  geom_point(size = 5)"
+  },
+  {
+    "objectID": "data100_wk04mon.html#data-joins",
+    "href": "data100_wk04mon.html#data-joins",
+    "title": "DATA 100",
+    "section": "Data Joins",
+    "text": "Data Joins\n\nOften in the data analysis workflow, we have more than one data source, which means more than one dataframe, and we want to combine these dataframes.\nNeed principled way to combine.\n\nNeed a key that links two dataframes together.\n\nThese multiple dataframes are called relational data."
+  },
+  {
+    "objectID": "data100_wk04mon.html#ce-data",
+    "href": "data100_wk04mon.html#ce-data",
+    "title": "DATA 100",
+    "section": "CE Data",
+    "text": "CE Data\n\n\nHousehold survey but data are also collected on individuals\n\nfmli: household data\nmemi: household member-level data\n\n\n\n\nfmli &lt;- read_csv(\"data/fmli.csv\", \n                 na = c(\"NA\", \".\")) %&gt;%\n  select(NEWID, PRINEARN, FINCBTAX,\n         BLS_URBN, HIGH_EDU)\nmemi &lt;- read_csv(\"data/memi.csv\", \n                 na = c(\"NA\", \".\")) %&gt;%\n  select(NEWID, MEMBNO, AGE, SEX, EARNTYPE)\n\n\nWant to add variables on the principal earner from the member data frame to the household data frame"
+  },
+  {
+    "objectID": "data100_wk04mon.html#ce-data-1",
+    "href": "data100_wk04mon.html#ce-data-1",
+    "title": "DATA 100",
+    "section": "CE Data",
+    "text": "CE Data\nKey variable(s)?\n\n\n\nfmli\n\n# A tibble: 6,301 × 5\n   NEWID    PRINEARN FINCBTAX BLS_URBN HIGH_EDU\n   &lt;chr&gt;    &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   \n 1 03324174 01         116920        1 16      \n 2 03324204 01            200        1 15      \n 3 03324214 01         117000        1 16      \n 4 03324244 01              0        1 15      \n 5 03324274 02           2000        1 14      \n 6 03324284 01            942        1 11      \n 7 03324294 01              0        1 10      \n 8 03324304 01          91000        1 15      \n 9 03324324 02          95000        2 15      \n10 03324334 01          40037        1 14      \n# ℹ 6,291 more rows\n\n\n\n\nmemi\n\n# A tibble: 15,412 × 5\n   NEWID    MEMBNO   AGE   SEX EARNTYPE\n   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;\n 1 03552611      1    58     2        2\n 2 03552641      1    54     1        1\n 3 03552641      2    49     2       NA\n 4 03552651      1    39     2       NA\n 5 03552651      2    10     2       NA\n 6 03552651      3    32     1       NA\n 7 03552651      4     7     1       NA\n 8 03552651      5     9     1       NA\n 9 03552681      1    38     1        3\n10 03552681      2    34     2       NA\n# ℹ 15,402 more rows"
+  },
+  {
+    "objectID": "data100_wk04mon.html#ce-data-2",
+    "href": "data100_wk04mon.html#ce-data-2",
+    "title": "DATA 100",
+    "section": "CE Data",
+    "text": "CE Data\n\n\nKey variables?\n\nProblem with class?\n\n\n\n\nclass(fmli$NEWID)\n\n[1] \"character\"\n\nclass(memi$NEWID)\n\n[1] \"character\"\n\nclass(fmli$PRINEARN)\n\n[1] \"character\"\n\nclass(memi$MEMBNO)\n\n[1] \"numeric\""
+  },
+  {
+    "objectID": "data100_wk04mon.html#ce-data-3",
+    "href": "data100_wk04mon.html#ce-data-3",
+    "title": "DATA 100",
+    "section": "CE Data",
+    "text": "CE Data\n\n\nKey variables?\n\nProblem with class?\n\n\n\n\nfmli &lt;- mutate(fmli, PRINEARN = as.integer(PRINEARN))\nclass(fmli$PRINEARN)\n\n[1] \"integer\"\n\nclass(memi$MEMBNO)\n\n[1] \"numeric\""
+  },
+  {
+    "objectID": "data100_wk04mon.html#ce-data-4",
+    "href": "data100_wk04mon.html#ce-data-4",
+    "title": "DATA 100",
+    "section": "CE Data",
+    "text": "CE Data\n\nWant to add columns of memi to fmli that correspond to the principal earner’s memi data\n\nWhat type of join is that?"
+  },
+  {
+    "objectID": "data100_wk04mon.html#the-world-of-joins",
+    "href": "data100_wk04mon.html#the-world-of-joins",
+    "title": "DATA 100",
+    "section": "The World of Joins",
+    "text": "The World of Joins\n\nMutating joins: Add new variables to one dataset from matching observations in another.\n\nleft_join() (and right_join())\ninner_join()\nfull_join()\n\nThere are also filtering joins but we won’t cover those today."
+  },
+  {
+    "objectID": "data100_wk04mon.html#example-dataframes",
+    "href": "data100_wk04mon.html#example-dataframes",
+    "title": "DATA 100",
+    "section": "Example Dataframes",
+    "text": "Example Dataframes\nHere I created the data frames by hand.\n\n# Note: These are fake DATA 100 students\nstudents &lt;- data.frame(name = c(\"Alice\", \"Josh\", \"Megan\", \"Eric\", \"Jean\"),\n                       res_hall = c(\"South Campus Apts\", \"Smith\", \"Off-campus\", \"Smith\", \"Trax\"),\n                       caf = c(\"like\", \"hate\", \"hate\", \"neutral\", \"love\"))\n\nhalls &lt;- data.frame(name = c(\"Kress\", \"Smith\", \"South Campus Apts\", \"Trax\"),\n                    steps = c(250, 450, 1400, 400))"
+  },
+  {
+    "objectID": "data100_wk04mon.html#example-dataframes-1",
+    "href": "data100_wk04mon.html#example-dataframes-1",
+    "title": "DATA 100",
+    "section": "Example Dataframes",
+    "text": "Example Dataframes\n\nstudents\n\n   name          res_hall     caf\n1 Alice South Campus Apts    like\n2  Josh             Smith    hate\n3 Megan        Off-campus    hate\n4  Eric             Smith neutral\n5  Jean              Trax    love\n\nhalls\n\n               name steps\n1             Kress   250\n2             Smith   450\n3 South Campus Apts  1400\n4              Trax   400"
+  },
+  {
+    "objectID": "data100_wk04mon.html#left_join",
+    "href": "data100_wk04mon.html#left_join",
+    "title": "DATA 100",
+    "section": "left_join()",
+    "text": "left_join()\n\nstudents_new &lt;- left_join(students, halls)\n\nJoining with `by = join_by(name)`\n\nstudents_new\n\n   name          res_hall     caf steps\n1 Alice South Campus Apts    like    NA\n2  Josh             Smith    hate    NA\n3 Megan        Off-campus    hate    NA\n4  Eric             Smith neutral    NA\n5  Jean              Trax    love    NA"
+  },
+  {
+    "objectID": "data100_wk04mon.html#left_join-1",
+    "href": "data100_wk04mon.html#left_join-1",
+    "title": "DATA 100",
+    "section": "left_join()",
+    "text": "left_join()\n\nstudents_new &lt;- left_join(students, halls, join_by(\"res_hall\" == \"name\"))\nstudents_new\n\n   name          res_hall     caf steps\n1 Alice South Campus Apts    like  1400\n2  Josh             Smith    hate   450\n3 Megan        Off-campus    hate    NA\n4  Eric             Smith neutral   450\n5  Jean              Trax    love   400"
+  },
+  {
+    "objectID": "data100_wk04mon.html#inner_join",
+    "href": "data100_wk04mon.html#inner_join",
+    "title": "DATA 100",
+    "section": "inner_join()",
+    "text": "inner_join()\n\nstudents_new &lt;- inner_join(students, halls, join_by(\"res_hall\" == \"name\"))\nstudents_new\n\n   name          res_hall     caf steps\n1 Alice South Campus Apts    like  1400\n2  Josh             Smith    hate   450\n3  Eric             Smith neutral   450\n4  Jean              Trax    love   400"
+  },
+  {
+    "objectID": "data100_wk04mon.html#full_join",
+    "href": "data100_wk04mon.html#full_join",
+    "title": "DATA 100",
+    "section": "full_join()",
+    "text": "full_join()\n\nstudents_new &lt;- full_join(students, halls, join_by(\"res_hall\" == \"name\"))\nstudents_new\n\n   name          res_hall     caf steps\n1 Alice South Campus Apts    like  1400\n2  Josh             Smith    hate   450\n3 Megan        Off-campus    hate    NA\n4  Eric             Smith neutral   450\n5  Jean              Trax    love   400\n6  &lt;NA&gt;             Kress    &lt;NA&gt;   250"
+  },
+  {
+    "objectID": "data100_wk04mon.html#back-to-our-real-world-example",
+    "href": "data100_wk04mon.html#back-to-our-real-world-example",
+    "title": "DATA 100",
+    "section": "Back to our Real-World Example",
+    "text": "Back to our Real-World Example\n\n\nWhat kind of join do we want for the Consumer Expenditure data?\n\nWant to add columns of memi to fmli that correspond to the principal earner’s memi data\n\nAlso going to create smaller data frames for us to play with:\n\n\n\n\n\nfmli_small &lt;- filter(fmli, NEWID %in% c(\"03530051\",\n                                        \"03327224\",\n                                        \"03324324\",\n                                        \"03324244\"))\nfmli_small\n\n# A tibble: 4 × 5\n  NEWID    PRINEARN FINCBTAX BLS_URBN HIGH_EDU\n  &lt;chr&gt;       &lt;int&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   \n1 03324244        1        0        1 15      \n2 03324324        2    95000        2 15      \n3 03327224        1        0        1 14      \n4 03530051        3    70000        1 11      \n\n\n\n\nmemi_small &lt;- filter(memi, NEWID %in% c(\"03530051\",\n                                        \"03327224\",\n                                        \"03324324\",\n                                        \"03324244\"))\nmemi_small\n\n# A tibble: 10 × 5\n   NEWID    MEMBNO   AGE   SEX EARNTYPE\n   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;\n 1 03324244      1    37     1        1\n 2 03324324      1    51     1        1\n 3 03324324      2    53     2        1\n 4 03327224      1    28     2        3\n 5 03327224      2    32     1        2\n 6 03327224      3     1     2       NA\n 7 03530051      1    43     1       NA\n 8 03530051      2    16     1       NA\n 9 03530051      3    44     1        3\n10 03530051      4     5     2       NA"
+  },
+  {
+    "objectID": "data100_wk04mon.html#look-at-the-possible-joins",
+    "href": "data100_wk04mon.html#look-at-the-possible-joins",
+    "title": "DATA 100",
+    "section": "Look at the Possible Joins",
+    "text": "Look at the Possible Joins\n\nleft_join(fmli_small, memi_small) \n\nJoining with `by = join_by(NEWID)`\n\n\n# A tibble: 10 × 9\n   NEWID    PRINEARN FINCBTAX BLS_URBN HIGH_EDU MEMBNO   AGE   SEX EARNTYPE\n   &lt;chr&gt;       &lt;int&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;\n 1 03324244        1        0        1 15            1    37     1        1\n 2 03324324        2    95000        2 15            1    51     1        1\n 3 03324324        2    95000        2 15            2    53     2        1\n 4 03327224        1        0        1 14            1    28     2        3\n 5 03327224        1        0        1 14            2    32     1        2\n 6 03327224        1        0        1 14            3     1     2       NA\n 7 03530051        3    70000        1 11            1    43     1       NA\n 8 03530051        3    70000        1 11            2    16     1       NA\n 9 03530051        3    70000        1 11            3    44     1        3\n10 03530051        3    70000        1 11            4     5     2       NA"
+  },
+  {
+    "objectID": "data100_wk04mon.html#look-at-the-possible-joins-1",
+    "href": "data100_wk04mon.html#look-at-the-possible-joins-1",
+    "title": "DATA 100",
+    "section": "Look at the Possible Joins",
+    "text": "Look at the Possible Joins\nBe careful. This erroneous example made my R crash when I tried it on the full data frames.\n\n\n\nleft_join(fmli_small, memi_small, join_by(\"PRINEARN\" == \"MEMBNO\"))\n\n# A tibble: 13 × 9\n   NEWID.x  PRINEARN FINCBTAX BLS_URBN HIGH_EDU NEWID.y    AGE   SEX EARNTYPE\n   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;\n 1 03324244        1        0        1 15       03324244    37     1        1\n 2 03324244        1        0        1 15       03324324    51     1        1\n 3 03324244        1        0        1 15       03327224    28     2        3\n 4 03324244        1        0        1 15       03530051    43     1       NA\n 5 03324324        2    95000        2 15       03324324    53     2        1\n 6 03324324        2    95000        2 15       03327224    32     1        2\n 7 03324324        2    95000        2 15       03530051    16     1       NA\n 8 03327224        1        0        1 14       03324244    37     1        1\n 9 03327224        1        0        1 14       03324324    51     1        1\n10 03327224        1        0        1 14       03327224    28     2        3\n11 03327224        1        0        1 14       03530051    43     1       NA\n12 03530051        3    70000        1 11       03327224     1     2       NA\n13 03530051        3    70000        1 11       03530051    44     1        3\n\n\n\n\ncount(fmli_small, PRINEARN)\n\n# A tibble: 3 × 2\n  PRINEARN     n\n     &lt;int&gt; &lt;int&gt;\n1        1     2\n2        2     1\n3        3     1\n\ncount(memi_small, MEMBNO)\n\n# A tibble: 4 × 2\n  MEMBNO     n\n   &lt;dbl&gt; &lt;int&gt;\n1      1     4\n2      2     3\n3      3     2\n4      4     1"
+  },
+  {
+    "objectID": "data100_wk04mon.html#look-at-the-possible-joins-2",
+    "href": "data100_wk04mon.html#look-at-the-possible-joins-2",
+    "title": "DATA 100",
+    "section": "Look at the Possible Joins",
+    "text": "Look at the Possible Joins\n\nleft_join(fmli_small, memi_small, join_by(\"NEWID\" == \"NEWID\", \"PRINEARN\" == \"MEMBNO\"))\n\n# A tibble: 4 × 8\n  NEWID    PRINEARN FINCBTAX BLS_URBN HIGH_EDU   AGE   SEX EARNTYPE\n  &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;\n1 03324244        1        0        1 15          37     1        1\n2 03324324        2    95000        2 15          53     2        1\n3 03327224        1        0        1 14          28     2        3\n4 03530051        3    70000        1 11          44     1        3"
+  },
+  {
+    "objectID": "data100_wk04mon.html#look-at-the-possible-joins-3",
+    "href": "data100_wk04mon.html#look-at-the-possible-joins-3",
+    "title": "DATA 100",
+    "section": "Look at the Possible Joins",
+    "text": "Look at the Possible Joins\n\ninner_join(fmli_small, memi_small, join_by(\"NEWID\" == \"NEWID\", \"PRINEARN\" == \"MEMBNO\"))\n\n# A tibble: 4 × 8\n  NEWID    PRINEARN FINCBTAX BLS_URBN HIGH_EDU   AGE   SEX EARNTYPE\n  &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;\n1 03324244        1        0        1 15          37     1        1\n2 03324324        2    95000        2 15          53     2        1\n3 03327224        1        0        1 14          28     2        3\n4 03530051        3    70000        1 11          44     1        3\n\n\nWhy does this give us the same answer as left_join for this situation?"
+  },
+  {
+    "objectID": "data100_wk04mon.html#look-at-the-possible-joins-4",
+    "href": "data100_wk04mon.html#look-at-the-possible-joins-4",
+    "title": "DATA 100",
+    "section": "Look at the Possible Joins",
+    "text": "Look at the Possible Joins\n\nfull_join(fmli_small, memi_small, join_by(\"NEWID\" == \"NEWID\", \"PRINEARN\" == \"MEMBNO\"))\n\n# A tibble: 10 × 8\n   NEWID    PRINEARN FINCBTAX BLS_URBN HIGH_EDU   AGE   SEX EARNTYPE\n   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;\n 1 03324244        1        0        1 15          37     1        1\n 2 03324324        2    95000        2 15          53     2        1\n 3 03327224        1        0        1 14          28     2        3\n 4 03530051        3    70000        1 11          44     1        3\n 5 03324324        1       NA       NA &lt;NA&gt;        51     1        1\n 6 03327224        2       NA       NA &lt;NA&gt;        32     1        2\n 7 03327224        3       NA       NA &lt;NA&gt;         1     2       NA\n 8 03530051        1       NA       NA &lt;NA&gt;        43     1       NA\n 9 03530051        2       NA       NA &lt;NA&gt;        16     1       NA\n10 03530051        4       NA       NA &lt;NA&gt;         5     2       NA"
+  },
+  {
+    "objectID": "data100_wk04mon.html#joining-tips",
+    "href": "data100_wk04mon.html#joining-tips",
+    "title": "DATA 100",
+    "section": "Joining Tips",
+    "text": "Joining Tips\n\nfmli &lt;- left_join(fmli, memi, join_by(\"NEWID\" == \"NEWID\", \"PRINEARN\" == \"MEMBNO\"))\n\n\nFIRST: conceptualize for yourself what you think you want the final dataset to look like!\nCheck initial dimensions and final dimensions.\nUse variable names when joining even if they are the same."
+  },
+  {
+    "objectID": "data100_wk04mon.html#naming-wrangled-data",
+    "href": "data100_wk04mon.html#naming-wrangled-data",
+    "title": "DATA 100",
+    "section": "Naming Wrangled Data",
+    "text": "Naming Wrangled Data\nShould I name my new dataframe ce or ce1? In other words, should I write over my original dataframe or should I save a new dataframe?\n\nMy answer:\n\nIs your new dataframe structurally different? If so, give it a new name.\nAre you removing values you will need for a future analysis within the same document? If so, give it a new name.\nAre you just adding to or cleaning the data? If so, then write over the original."
   },
   {
     "objectID": "data100_wk01wed.html#keyword",

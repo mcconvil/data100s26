@@ -1,0 +1,603 @@
+---
+pagetitle: "More Data Wrangling"
+format: 
+  revealjs:
+    chalkboard: true
+    incremental: true
+    theme: [default, custom.scss]
+#    multiplex: true
+    height: 900
+    width: 1600
+    slide-number: c
+    auto-stretch: false
+    callout-appearance: simple
+    pdf-max-pages-per-slide: 1
+    menu: 
+      side: right
+      numbers: true
+    code-overflow: wrap
+execute:
+  echo: true
+  warning: false
+  message: false
+  fig-asp: 0.75
+  fig-width: 8
+#  fig-align: center
+  fig-dpi: 500
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+# Some global options still not available in quarto
+ knitr::opts_chunk$set(fig.align = 'center')
+library(knitr)
+library(tidyverse)
+theme_update(text = element_text(size = 20))
+```
+
+::: columns
+::: {.column .center width="45%"}
+![](img/DAW.png){width="90%"}
+:::
+
+::: {.column .center width="55%"}
+[More Data Wrangling]{.custom-title}
+
+<br>
+
+[Kelly McConville]{.custom-subtitle}
+
+[DATA 100 <br> Week 4 \| Spring 2026]{.custom-subtitle}
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Announcements
+
+Code a Valentine: Tomorrow, 4:30pm, Taylor 212
+
+### Goals for Today
+
+::: columns
+::: {.column width="\"50%"}
+More data wrangling
+:::
+
+::: {.column width="\"50%"}
+Data joins
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Load Necessary Packages
+
+![](img/dplyr.png){width="15%" fig-align="center"}
+
+`dplyr` is part of this collection of data science packages.
+
+```{r}
+#| message: true
+#| warning: true
+# Load necessary packages
+library(tidyverse)
+```
+
+------------------------------------------------------------------------
+
+## Data Setting: [Bureau of Labor Statistics (BLS) Consumer Expenditure Survey](https://www.bls.gov/cex/) {.smaller}
+
+**BLS Mission**: "Measures labor market activity, working conditions, price changes, and productivity in the U.S. economy to support public and private decision making."
+
+**Data**: Last quarter of the 2016 BLS Consumer Expenditure Survey.
+
+```{r}
+library(tidyverse)
+
+ce_raw <- read_csv("data/fmli.csv", 
+                 na = c("NA", "."))
+glimpse(ce_raw)
+```
+
+------------------------------------------------------------------------
+
+## Wrangling CE Data {.smaller}
+
+::: columns
+::: {.column width="\"50%"}
+Want to better understand a family's income and expenditures
+
+```{r}
+ce <- ce_raw %>%
+  select(NEWID, PRINEARN, FINCBTAX,
+         BLS_URBN, HIGH_EDU, TOTEXPCQ, IRAX)
+dim(ce)
+```
+
+**Variables:**
+
+::: nonincremental
+-   `NEWID`: ID for the household
+-   `PRINEARN`: ID for which member of the household is the principal earner
+-   `FINCBTAX`: Final income before taxes for the year
+:::
+:::
+
+::: {.column width="\"50%"}
+::: nonincremental
+-   `BLS_URBN`: 1 = urban, 2 = rural
+-   `HIGH_EDU`: Highest education in the household. 00 = Never attended, 10 = Grades 1-8, 11 = Grades 9-12, no degree, 12 = High school graduate, 13 = Some college, no degree, 14 = Associates degree, 15 = Bachelor's degree, 16 = Masters, Professional/doctorate degree
+-   `TOTEXPCQ` = Total household expenditures for the current quarter
+-   `IRAX` = Total in retirement funds
+:::
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Wrangling CE Data
+
+```{r}
+ce <- ce %>%
+  mutate(YEARLY_EXP = TOTEXPCQ*4)
+ce
+```
+
+------------------------------------------------------------------------
+
+## Logical Operators
+
+```{r}
+ce_sub <- ce %>%
+  filter(YEARLY_EXP > 0, BLS_URBN == 1, HIGH_EDU != "00")
+ce_sub
+```
+
+------------------------------------------------------------------------
+
+## Logical Operators
+
+```{r}
+ce_sub <- ce %>%
+  filter(YEARLY_EXP > 0, (BLS_URBN == 1 | HIGH_EDU != "00"))
+ce_sub
+```
+
+------------------------------------------------------------------------
+
+## `case_when`: Recoding Variables
+
+::: columns
+::: {.column width="\"50%"}
+```{r}
+count(ce, BLS_URBN)
+
+```
+:::
+
+::: {.column .fragment width="\"50%"}
+```{r}
+ce <- ce %>%
+  mutate(BLS_URBN = case_when(
+    BLS_URBN == 1 ~ "Urban",
+    BLS_URBN == 2 ~ "Rural"
+  ))
+count(ce, BLS_URBN)
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## `case_when`: Creating Variables
+
+::: columns
+::: {.column width="\"50%"}
+```{r}
+count(ce, HIGH_EDU)
+ce <- ce %>%
+  mutate(HIGH_EDU = as.numeric(HIGH_EDU))
+count(ce, HIGH_EDU)
+```
+:::
+
+::: {.column .fragment width="\"50%"}
+```{r}
+ce <- ce %>%
+  mutate(HIGH_EDU2 = case_when(
+    is.na(HIGH_EDU) ~ NA,
+    HIGH_EDU <= 11 ~ "Less than high school degree",
+    between(HIGH_EDU, 12, 13) ~ "High school degree",
+    HIGH_EDU >= 14 ~ "College degree"
+  ))
+count(ce, HIGH_EDU2)
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Variable Names
+
+Sometimes datasets come with terrible variable names.
+
+```{r}
+ce <- ce %>%
+  rename(INCOME = FINCBTAX)
+ce
+```
+
+------------------------------------------------------------------------
+
+## Handling Missing Data
+
+Want to compute mean income and mean retirement funds by location.
+
+::: columns
+::: {.column width="\"50%"}
+```{r}
+ce %>%
+  group_by(BLS_URBN) %>%
+  summarize(mean_INCOME = mean(INCOME),
+            mean_IRAX = mean(IRAX),
+            households = n())
+```
+:::
+
+::: {.column .fragment width="\"50%"}
+```{r}
+ce_aggressive <- ce_raw %>%
+  na.omit()
+ce_aggressive
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Handling Missing Data
+
+::: columns
+::: {.column width="\"50%"}
+```{r}
+ce_moderate <- ce %>%
+  drop_na(IRAX, INCOME, BLS_URBN) %>%
+  group_by(BLS_URBN) %>%  
+  summarize(mean_INCOME = mean(INCOME),
+            mean_IRAX = mean(IRAX),
+            households = n())
+
+ce_moderate
+```
+:::
+
+::: {.column .fragment width="\"50%"}
+```{r}
+ce_light <- ce %>%
+  group_by(BLS_URBN) %>%
+  summarize(mean_INCOME = mean(INCOME, na.rm = TRUE),
+            mean_IRAX = mean(IRAX, na.rm = TRUE), 
+            households = n())
+
+ce_light
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Multiple Groupings
+
+```{r}
+ce %>%
+  group_by(BLS_URBN, HIGH_EDU2) %>%
+  summarize(mean_INCOME = mean(INCOME, na.rm = TRUE),
+            mean_IRAX = mean(IRAX, na.rm = TRUE), 
+            households = n()) %>%
+  arrange(mean_IRAX)
+```
+
+------------------------------------------------------------------------
+
+## Piping into `ggplot2`
+
+```{r}
+#| output-location: column
+ce %>%
+  group_by(BLS_URBN, HIGH_EDU2) %>%
+  summarize(mean_INCOME = mean(INCOME, na.rm = TRUE),
+            mean_IRAX = mean(IRAX, na.rm = TRUE), 
+            households = n()) %>%
+  ggplot(mapping = aes(x = mean_INCOME,
+                       y = mean_IRAX, 
+                       shape = BLS_URBN,
+                       color = HIGH_EDU2)) +
+  geom_point(size = 5) 
+```
+
+------------------------------------------------------------------------
+
+## Data Joins
+
+-   Often in the data analysis workflow, we have more than one data source, which means more than one dataframe, and we want to combine these dataframes.
+
+-   Need principled way to combine.
+
+    -   Need a **key** that links two dataframes together.
+
+-   These multiple dataframes are called **relational data**.
+
+------------------------------------------------------------------------
+
+## CE Data
+
+::: nonincremental
+-   **Household** survey but data are also collected on **individuals**
+    -   `fmli`: household data
+    -   `memi`: household member-level data
+:::
+
+```{r}
+fmli <- read_csv("data/fmli.csv", 
+                 na = c("NA", ".")) %>%
+  select(NEWID, PRINEARN, FINCBTAX,
+         BLS_URBN, HIGH_EDU)
+memi <- read_csv("data/memi.csv", 
+                 na = c("NA", ".")) %>%
+  select(NEWID, MEMBNO, AGE, SEX, EARNTYPE)
+```
+
+-   Want to add variables on the **principal earner** from the member data frame to the household data frame
+
+------------------------------------------------------------------------
+
+## CE Data
+
+Key variable(s)?
+
+::: columns
+::: {.column width="\"50%"}
+```{r}
+fmli
+
+```
+:::
+
+::: {.column width="\"50%"}
+```{r}
+memi
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## CE Data
+
+::: nonincremental
+-   Key variables?
+    -   Problem with class?
+:::
+
+```{r}
+class(fmli$NEWID)
+class(memi$NEWID)
+class(fmli$PRINEARN)
+class(memi$MEMBNO)
+```
+
+------------------------------------------------------------------------
+
+## CE Data
+
+::: nonincremental
+-   Key variables?
+    -   Problem with class?
+:::
+
+```{r}
+fmli <- mutate(fmli, PRINEARN = as.integer(PRINEARN))
+class(fmli$PRINEARN)
+class(memi$MEMBNO)
+```
+
+------------------------------------------------------------------------
+
+## CE Data
+
+-   Want to add columns of `memi` to `fmli` that correspond to the principal earner's memi data
+    -   What type of join is that?
+
+------------------------------------------------------------------------
+
+## The World of Joins
+
+-   **Mutating joins**: Add new variables to one dataset from matching observations in another.
+    -   `left_join()` (and `right_join()`)
+    -   `inner_join()`
+    -   `full_join()`
+-   There are also *filtering* joins but we won't cover those today.
+
+------------------------------------------------------------------------
+
+## Example Dataframes
+
+Here I created the data frames by hand.
+
+```{r}
+# Note: These are fake DATA 100 students
+students <- data.frame(name = c("Alice", "Josh", "Megan", "Eric", "Jean"),
+                       res_hall = c("South Campus Apts", "Smith", "Off-campus", "Smith", "Trax"),
+                       caf = c("like", "hate", "hate", "neutral", "love"))
+
+halls <- data.frame(name = c("Kress", "Smith", "South Campus Apts", "Trax"),
+                    steps = c(250, 450, 1400, 400))
+```
+
+------------------------------------------------------------------------
+
+## Example Dataframes
+
+```{r}
+students
+halls
+```
+
+------------------------------------------------------------------------
+
+## `left_join()`
+
+```{r, message=TRUE, warning=TRUE, error = TRUE}
+students_new <- left_join(students, halls)
+students_new
+```
+
+------------------------------------------------------------------------
+
+## `left_join()`
+
+```{r}
+students_new <- left_join(students, halls, join_by("res_hall" == "name"))
+students_new
+```
+
+------------------------------------------------------------------------
+
+## `inner_join()`
+
+```{r}
+students_new <- inner_join(students, halls, join_by("res_hall" == "name"))
+students_new
+```
+
+------------------------------------------------------------------------
+
+## `full_join()`
+
+```{r}
+students_new <- full_join(students, halls, join_by("res_hall" == "name"))
+students_new
+```
+
+------------------------------------------------------------------------
+
+## Back to our Real-World Example
+
+::: nonincremental
+-   What kind of join do we want for the Consumer Expenditure data?
+    -   Want to add columns of `memi` to `fmli` that correspond to the principal earner's memi data
+-   Also going to create smaller data frames for us to play with:
+:::
+
+::: columns
+::: {.column width="\"50%"}
+```{r}
+fmli_small <- filter(fmli, NEWID %in% c("03530051",
+                                        "03327224",
+                                        "03324324",
+                                        "03324244"))
+fmli_small
+```
+:::
+
+::: {.column width="\"50%"}
+```{r}
+memi_small <- filter(memi, NEWID %in% c("03530051",
+                                        "03327224",
+                                        "03324324",
+                                        "03324244"))
+memi_small
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Look at the Possible Joins
+
+```{r, message=TRUE, warning=TRUE}
+left_join(fmli_small, memi_small) 
+```
+
+------------------------------------------------------------------------
+
+## Look at the Possible Joins
+
+Be careful. This erroneous example made my R crash when I tried it on the full data frames.
+
+::: columns
+::: {.column width="67%"}
+```{r}
+left_join(fmli_small, memi_small, join_by("PRINEARN" == "MEMBNO"))
+```
+:::
+
+::: {.column width="33%"}
+```{r}
+count(fmli_small, PRINEARN)
+count(memi_small, MEMBNO)
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Look at the Possible Joins
+
+```{r}
+left_join(fmli_small, memi_small, join_by("NEWID" == "NEWID", "PRINEARN" == "MEMBNO"))
+```
+
+------------------------------------------------------------------------
+
+## Look at the Possible Joins
+
+```{r}
+inner_join(fmli_small, memi_small, join_by("NEWID" == "NEWID", "PRINEARN" == "MEMBNO"))
+```
+
+Why does this give us the same answer as `left_join` for this situation?
+
+------------------------------------------------------------------------
+
+## Look at the Possible Joins
+
+```{r}
+full_join(fmli_small, memi_small, join_by("NEWID" == "NEWID", "PRINEARN" == "MEMBNO"))
+```
+
+------------------------------------------------------------------------
+
+## Joining Tips
+
+```{r}
+fmli <- left_join(fmli, memi, join_by("NEWID" == "NEWID", "PRINEARN" == "MEMBNO"))
+```
+
+-   FIRST: conceptualize for yourself what you think you want the final dataset to look like!
+-   Check initial dimensions and final dimensions.
+-   Use variable names when joining even if they are the same.
+
+------------------------------------------------------------------------
+
+## Naming Wrangled Data
+
+Should I name my new dataframe `ce` or `ce1`? In other words, should I write over my original dataframe or should I save a new dataframe?
+
+-   *My* answer:
+    -   Is your new dataframe structurally different? If so, give it a **new name**.
+    -   Are you removing values you will need for a future analysis within the same document? If so, give it a **new name**.
+    -   Are you just adding to or cleaning the data? If so, then **write over** the original.
+
+# Live Coding
+
+------------------------------------------------------------------------
+
+### Sage Advice from ModernDive
+
+<br>
+
+> "Crucial: Unless you are very confident in what you are doing, it is worthwhile not starting to code right away. Rather, first sketch out on paper all the necessary data wrangling steps not using exact code, but rather high-level pseudocode that is informal yet detailed enough to articulate what you are doing. This way you won't confuse what you are trying to do (the algorithm) with how you are going to do it (writing dplyr code)."
