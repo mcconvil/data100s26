@@ -479,9 +479,8 @@ summarize(sd_bikes = sd(Total),
 
 ------------------------------------------------------------------------
 
-## Return to the Buffalo Bills 2018 Season Data
+## Return to the Buffalo Bills Data
 
-Focus on the dogs with the 5 most common names
 
 ```{r}
 # Pull in the dataset on all teams
