@@ -1,0 +1,32 @@
+---
+title: "Live Coding Week 4 Mon"
+author: "DATA 100, Spring 2026"
+format: pdf
+execute:
+  eval: false
+---
+
+```{r}
+library(tidyverse)
+
+# Load data
+memi <- read_csv("data/memi.csv")
+fmli <- read_csv("data/fmli.csv")
+
+# Wrangling
+fmli <- mutate(fmli, PRINEARN = as.integer(PRINEARN)) %>%
+  left_join(memi, join_by("NEWID" == "NEWID", "PRINEARN" == "MEMBNO"))
+```
+
+-   Let's find the average income and median retirement amount based on the sex of the principal earner.
+
+    -   Can I do two separate `summarize()`s?
+
+-   Now find the average income and median retirement amount based on the sex of the principal earner for households where the principal earner is 40 or older.
+
+-   How do these summaries statistics vary by education level of household?
+
+-   Now let's sort our table by average income.
+
+-   For rural places, what proportion of households have a female as the principal earner? What about for urban households?
+

@@ -1,5 +1,5 @@
 ---
-pagetitle: "Data Collection"
+pagetitle: "More Data Collection"
 format: 
   revealjs:
     chalkboard: true
@@ -43,13 +43,13 @@ theme_update(text = element_text(size = 12))
 :::
 
 ::: {.column .center width="55%"}
-[Data Collection]{.custom-title}
+[More Data Collection]{.custom-title}
 
 <br> <br> <br> <br>
 
 [Kelly McConville]{.custom-subtitle}
 
-[DATA 100 <br> Week 4 \| Spring 2026]{.custom-subtitle}
+[DATA 100 <br> Week 5 \| Spring 2026]{.custom-subtitle}
 :::
 :::::
 
@@ -57,169 +57,18 @@ theme_update(text = element_text(size = 12))
 
 ## Announcements
 
--   Next week: Mid-term Exam 1
-    -   Wed: In-class component
-    -   Fri: Oral component (over Zoom)
--   Oral practice in lab this week.
-    -   Good prep for the mid-term exam.
+-   Mid-term Exam 1
+    -   Wed: In-class component.  Bring a laptop.
+    -   Fri: Oral component (over Zoom).  Make sure to sign up!
 
 ### Goals for Today
 
--   Cover data collection/acquisition.
+-   Continue data collection.
+-   Start modeling.
 
-------------------------------------------------------------------------
+------------
 
-## Which Are YOU?
-
-::::: columns
-::: {.column .center width="50%"}
-### Data Visualizer
-
-<iframe src="https://giphy.com/embed/d31vTpVi1LAcDvdm" width="680" height="562" frameBorder="0" class="giphy-embed" allowFullScreen>
-
-</iframe>
-
-<p><a href="https://giphy.com/gifs/netflix-d31vTpVi1LAcDvdm">via GIPHY</a></p>
-:::
-
-::: {.column .center width="50%"}
-### Data Wrangler
-
-<iframe src="https://giphy.com/embed/DbaUtl1DcLyrdwhzGJ" width="680" height="562" frameBorder="0" class="giphy-embed" allowFullScreen>
-
-</iframe>
-
-<p><a href="https://giphy.com/gifs/Amalgia-DbaUtl1DcLyrdwhzGJ">via GIPHY</a></p>
-:::
-:::::
-
-::: fragment
-We are looking for any students interested in graphic design to design DATA 100 hex stickers.
-:::
-
-------------------------------------------------------------------------
-
-### When to Get Coding Help
-
-`r emo::ji("cry")` *"I have no idea how to do this problem."*
-
-::: fragment
-→ Ask someone to point you to an similar example from the lecture, handouts, and guides.
-:::
-
-::: fragment
-→ Talk it through with someone on the Teaching Team or another DATA 100 student so together we can verbalize the process of going from Q to A.
-:::
-
-<br>
-
-::: fragment
-`r emo::ji("rage")` *"I am getting a weird error but really think my code is correct/on the right track/matches the examples from class."*
-:::
-
-::: fragment
-→ It is time for a second pair of eyes. Don't stare at the error for over 10 minutes.
-:::
-
-<br>
-
-::: fragment
-`r emo::ji("star-struck")` And lots of other times too! `r emo::ji("grimace")`
-:::
-
-------------------------------------------------------------------------
-
-### When to Get Help
-
-Remember:
-
-::: fragment
-→ Struggling is part of learning.
-:::
-
-::: fragment
-→ But let us help you ensure it is a **productive** struggle.
-:::
-
-::: fragment
-→ Struggling does NOT mean you are bad at stats!
-:::
-
-------------------------------------------------------------------------
-
-## Now for Data Collection
-
-![](img/DAW.png){width="50%" fig-align="center"}
-
-------------------------------------------------------------------------
-
-## Motivating Our Discussion of Data Collection
-
-![](img/twitter-study-design.png){width="50%" fig-align="center"}
-
-## Who are the data supposed to represent?
-
-![](img/week4.002.jpeg){width="75%" fig-align="center"}
-
-**Key questions:**
-
--   What evidence is there that the data are **representative**?
--   Who is present? Who is absent?
--   Who is overrepresented? Who is underrepresented?
-
-------------------------------------------------------------------------
-
-## Who are the data supposed to represent?
-
-![](img/week4.003.jpeg){width="80%" fig-align="center"}
-
-**Census**: We have data on the whole population!
-
-------------------------------------------------------------------------
-
-## Who are the data supposed to represent?
-
-![](img/sampling.002.jpeg){width="85%" fig-align="center"}
-
-------------------------------------------------------------------------
-
-## Who are the data supposed to represent?
-
-![](img/week4.005.jpeg){width="75%" fig-align="center"}
-
-**Key questions:**
-
--   What evidence is there that the **sample** is **representative** of the **population**?
--   Who is present? Who is absent?
--   Who is overrepresented? Who is underrepresented?
-
-------------------------------------------------------------------------
-
-## Sampling Bias
-
-![](img/sampling.001.jpeg){width="75%" fig-align="center"}
-
-**Sampling bias**: When the sampled units are **systematically different** from the non-sampled units on the variables of interest.
-
-------------------------------------------------------------------------
-
-### Sampling Bias Example
-
-The **Literary Digest** was a political magazine that correctly predicted the presidential outcomes from 1916 to 1932. In 1936, they conducted the most extensive (to that date) public opinion poll. They mailed questionnaires to over 10 million people (about 1/3 of US households) whose names and addresses they obtained from telephone books and vehicle registration lists.
-
-**Population of Interest**:
-
-<br>
-
-**Sample**:
-
-<br>
-
-**Sampling bias**:
-
-------------------------------------------------------------------------
-
-## Random Sampling
+## Recap: Random Sampling
 
 Use random sampling (a random mechanism for selecting cases from the population) to remove sampling bias.
 
@@ -239,273 +88,6 @@ Use random sampling (a random mechanism for selecting cases from the population)
 Why aren't all samples generated using simple random sampling?
 :::
 
-------------------------------------------------------------------------
-
-### US Forest Inventory and Analysis Program
-
-::::: columns
-::: {.column width="15%"}
-![](img/fs.png){fig-align="center"}
-:::
-
-::: {.column width="85%"}
-> Mission: "Make and keep current a comprehensive inventory and analysis of the present and prospective conditions of and requirements for the renewable resources of the forest and rangelands of the US."
-:::
-:::::
-
-::: fragment
-Need a **random sample** of ground plots to say something about the state of our nation's forests!
-:::
-
-------------------------------------------------------------------------
-
-### FIA: Simple Random Sampling
-
-:::::: columns
-:::: {.column width="50%"}
--   Break the landscape up into equally sized plots (\~1 acre).
--   Number each plot from 1 to 28,635,520.
--   Use a **random** mechanism to sample 4773 plots.
-
-::: fragment
-```{r}
-sample(x = 1:28635520, size = 4773) %>%
-  head()
-```
-:::
-::::
-
-::: {.column width="50%"}
-```{r, echo = FALSE}
-library(maps)
-library(tidyverse)
-pa_counties <- map_data("county", "pennsylvania")
-ggplot(pa_counties, aes(long, lat, group = group)) +
-  geom_polygon(fill = "olivedrab", colour = "olivedrab") + 
-  coord_quickmap() +
-  theme_void() + 
-  geom_vline(xintercept=seq(-80.51989, -74.6851, by = 0.1), size = .2, color = "gray") +
-  geom_hline(yintercept=seq(39.71980, 42.26986, by = 0.08), size = .2, color = "gray")
-```
-:::
-::::::
-
-::: fragment
-Thoughts on this sampling design?
-:::
-
-------------------------------------------------------------------------
-
-### FIA: Cluster Random Sampling
-
-:::::: columns
-:::: {.column width="50%"}
--   Break the landscape up into equally sized plots (\~1 acre).
--   Put each plot in a cluster.
-    -   For our example: cluster = county.
--   Number each cluster.
--   Use a **random** mechanism to sample 2 clusters.
--   Sample **all** plots in those 2 clusters.
-
-::: fragment
-```{r}
-sample(x = 1:67, size = 2) 
-```
-:::
-::::
-
-::: {.column width="50%"}
-```{r, echo = FALSE}
-library(maps)
-library(tidyverse)
-library(paletteer) 
-pal <- paletteer_c("grDevices::Plasma", 67)
-#pal <- paletteer_c("ggthemes::Sunset-Sunrise Diverging", 67)
-#pal <- paletteer_c("pals::ocean.curl", 67)
-
-pa_counties <- map_data("county", "pennsylvania")
-ggplot(pa_counties, aes(long, lat, group = group,
-                          fill = factor(group))) +
-  geom_polygon(colour = "olivedrab") + 
-  coord_quickmap() +
-  theme_void() +
-  geom_vline(xintercept=seq(-80.51989, -74.6851, by = 0.1), size = .2, color = "gray") +
-  geom_hline(yintercept=seq(39.71980, 42.26986, by = 0.08), size = .2, color = "gray") +
-  scale_fill_manual(values = pal, name = "") +
-  theme(legend.position = "bottom", 
-        legend.text = element_text(size = 30)) +
-  guides(fill = "none")
-```
-:::
-::::::
-
-::: fragment
-Thoughts on this sampling design?
-:::
-
-------------------------------------------------------------------------
-
-### FIA: Cluster Random Sampling
-
-:::::: columns
-:::: {.column width="50%"}
-::: nonincremental
--   Break the landscape up into equally sized plots (\~1 acre).
--   Put each plot in a cluster.
-    -   For our example: cluster = county.
--   Number each cluster.
--   Use a **random** mechanism to sample 2 clusters.
--   Take a **simple random sample** within the sampled clusters.
-:::
-
-```{r}
-sample(x = 1:67, size = 2) 
-```
-
-```{r, eval = FALSE}
-sample(x = 1:---, size = ---)
-```
-::::
-
-::: {.column width="50%"}
-```{r, echo = FALSE}
-library(maps)
-library(tidyverse)
-library(paletteer) 
-
-
-pa_counties <- map_data("county", "pennsylvania")
-ggplot(pa_counties, aes(long, lat, group = group,
-                          fill = factor(group))) +
-  geom_polygon(colour = "olivedrab") + 
-  coord_quickmap() +
-  theme_void() + 
-  geom_vline(xintercept=seq(-80.51989, -74.6851, by = 0.1), size = .2, color = "gray") +
-  geom_hline(yintercept=seq(39.71980, 42.26986, by = 0.08), size = .2, color = "gray") +
-  scale_fill_manual(values = pal, name = "") +
-  theme(legend.position = "bottom", 
-        legend.text = element_text(size = 30)) +
-  guides(fill = "none")
-```
-:::
-::::::
-
-::: fragment
-Subsampling within each sampled cluster is much more common than subsampling the whole sampled cluster!
-:::
-
-------------------------------------------------------------------------
-
-### FIA: Cluster Random Sampling
-
-::::: columns
-::: {.column width="50%"}
-```{r  out.width = "95%", echo = FALSE, fig.align = 'center'}
-knitr::include_graphics("img/pa_googlemaps.png")
-```
-:::
-
-::: {.column width="50%"}
-```{r, echo = FALSE}
-ggplot(pa_counties, aes(long, lat, group = group,
-                          fill = factor(group))) +
-  geom_polygon(colour = "olivedrab") + 
-  coord_quickmap() +
-  theme_void() + 
-
-  scale_fill_manual(values = pal, name = "") +
-  theme(legend.position = "bottom", 
-        legend.text = element_text(size = 30)) + 
-  guides(fill = "none")
-```
-:::
-:::::
-
--   Are our clusters based on counties **homogeneous**?
-
--   Why is **homogeneity** important for cluster sampling?
-
-------------------------------------------------------------------------
-
-### FIA: Stratified Random Sampling
-
-:::::: columns
-:::: {.column width="50%"}
--   Break the landscape up into equally sized plots (\~1 acre).
--   Put each plot in a stratum.
-    -   For our example: stratum = county.
--   Take a **simple random sample** within every stratum.
-    -   Don't have to be equally sized!
-
-::: fragment
-```{r, eval = FALSE}
-# Do this for each stratum
-sample(x = 1:---, size = ---)
-```
-:::
-::::
-
-::: {.column width="50%"}
-```{r, echo = FALSE}
-
-
-pa_counties <- map_data("county", "pennsylvania")
-ggplot(pa_counties, aes(long, lat, group = group,
-                          fill = factor(group))) +
-  geom_polygon(colour = "olivedrab") + 
-  coord_quickmap() +
-  theme_void() + 
-  geom_vline(xintercept=seq(-80.51989, -74.6851, by = 0.1), size = .2, color = "gray") +
-  geom_hline(yintercept=seq(39.71980, 42.26986, by = 0.08), size = .2, color = "gray") +
-  scale_fill_manual(values = pal, name = "") +
-  theme(legend.position = "bottom", 
-        legend.text = element_text(size = 30)) +
-  guides(fill = "none")
-```
-:::
-::::::
-
-::: fragment
-Thoughts on this sampling design?
-:::
-
-------------------------------------------------------------------------
-
-### FIA: Systematic Random Sampling
-
-:::::: columns
-:::: {.column width="50%"}
-This is FIA's **actual** sampling design (okay, slightly simplified).
-
--   Break the landscape up into equally sized plots (\~1 acre).
--   Number each plot from 1 to 28,635,520.
--   Use a **random** mechanism to pick starting point. Then sample about once every 6000 acres.
-
-::: fragment
-```{r}
-sample(x = 1:28635520, size = 1) 
-```
-:::
-::::
-
-::: {.column width="50%"}
-```{r, echo = FALSE}
-library(maps)
-library(tidyverse)
-pa_counties <- map_data("county", "pennsylvania")
-ggplot(pa_counties, aes(long, lat, group = group)) +
-  geom_polygon(fill = "olivedrab", colour = "olivedrab") + 
-  coord_quickmap() +
-  theme_void() + 
-  geom_vline(xintercept=seq(-80.51989, -74.6851, by = 0.1), size = .2, color = "gray") +
-  geom_hline(yintercept=seq(39.71980, 42.26986, by = 0.08), size = .2, color = "gray") 
-```
-:::
-::::::
-
-::: fragment
-Why is this design **better** than simple random sampling?
-:::
 
 ------------------------------------------------------------------------
 
@@ -627,74 +209,7 @@ ggplot(data = NHANES, mapping = aes(x = Age, y = Height)) +
 > "Protects the privacy and confidentiality of research subjects and data concerning them, whether obtained from the subjects directly, other persons, or existing records."
 :::
 
-------------------------------------------------------------------------
 
-## Detour from Our Detour
-
-```{r points}
-#| output-location: column
-library(tidyverse)
-library(NHANES)
-
-ggplot(data = NHANES, 
-       mapping = aes(x = Age,
-                     y = Height)) +
-  geom_point(alpha = 0.1) +
-  geom_smooth(color = "skyblue")
-```
-
-------------------------------------------------------------------------
-
-## Detour from Our Detour
-
-```{r hearts}
-#| output-location: column
-library(tidyverse)
-library(NHANES)
-library(emojifont)
-
-
-NHANES <- mutate(NHANES, 
-          heart = fontawesome("fa-heart"))
-
-ggplot(data = NHANES, 
-       mapping = aes(x = Age,
-                     y = Height,
-                     label = heart)) +
-  geom_text(alpha = 0.2, color = "red",
-            family='fontawesome-webfont',
-            size = 6) +
-  stat_smooth(color = "deeppink")
-```
-
-------------------------------------------------------------------------
-
-### Further Down the Rabbit Hole
-
-```{r}
-#| output-location: column
-# Generate heart coordinates
-t <- seq(-pi,pi,0.04)
-x <- 16*0.25*(3*sin(t) - sin(3*t))
-y <- 13*cos(t) - 5*cos(2*t) - cos(4*t)
-heart_data <- data.frame(x, y)  %>%
-  mutate(heart = fontawesome("fa-heart"))
-
-# Make Valentine graph!
-ggplot(data = heart_data, 
-       mapping = aes(x = x, y = y,
-                     label = heart)) +
-  geom_text(alpha = 0.2, color = "deeppink",
-            family='fontawesome-webfont',
-            size = 7) +
-  theme_void() + 
-  annotate("text", x = 0, y = 2, 
-           label = "Happy Valentine's Day", size = 10,
-           color = "deeppink3") + 
-  annotate("text", x = 0, y = 0, label = "Insert Name",
-           size = 10, color = "deeppink3")
-
-```
 
 # Back to Data Collection
 
@@ -727,6 +242,8 @@ ggplot(data = heart_data,
 ------------------------------------------------------------------------
 
 ### Come Back to Literary Digest Example
+
+The **Literary Digest** was a political magazine that correctly predicted the presidential outcomes from 1916 to 1932. In 1936, they conducted the most extensive (to that date) public opinion poll. They mailed questionnaires to over 10 million people (about 1/3 of US households) whose names and addresses they obtained from telephone books and vehicle registration lists.
 
 Of the 10 million people surveyed, more than 2.4 million responded with 57% indicating that they would vote for Republican Alf Landon in the upcoming presidential election instead of the current President Franklin Delano Roosevelt.
 
@@ -954,3 +471,302 @@ ggplot(data = MinistersRum, mapping = aes(x = Ministers,
 -   But also consider the goals of your analysis. Often the research question isn't causal.
 
 -   **Bottom Line:** We often have to use imperfect data to make decisions.
+
+## Conclusions, Conclusions
+
+```{r, echo = FALSE, out.width='80%'}
+knitr::include_graphics("img/week4.005.jpeg")
+```
+
+------------------------------------------------------------------------
+
+## Recap {background-image="img/DAW.png" background-size="45%"}
+
+------------------------------------------------------------------------
+
+### Typical Analysis Goals
+
+**Descriptive**: Want to estimate quantities related to the population.
+
+→ How many trees are in Alaska?
+
+<br>
+
+**Predictive**: Want to predict the value of a variable.
+
+→ Can I use remotely sensed data to predict forest types in Alaska?
+
+<br>
+
+**Causal**: Want to determine if changes in a variable cause changes in another variable.
+
+→ Are insects causing the increased mortality rates for pinyon-juniper woodlands?
+
+
+
+
+------------------------------------------------------------------------
+
+## Form of the Model
+
+<br><br><br>
+
+$$
+y = f(x) + \epsilon
+$$
+
+<br><br><br>
+
+**Goal:**
+
+-   Determine a reasonable form for $f()$. (Ex: Line, curve, ...)
+
+-   Estimate $f()$ with $\hat{f}()$ using the data.
+
+-   Generate predicted values: $\hat y = \hat{f}(x)$.
+
+------------------------------------------------------------------------
+
+### Simple Linear Regression Model
+
+Consider this model when:
+
+-   Response variable $(y)$: quantitative
+
+-   Explanatory variable $(x)$: quantitative
+
+    -   Have only ONE explanatory variable.
+
+-   AND, $f()$ can be approximated by a line.
+
+------------------------------------------------------------------------
+
+### Example: [The Ultimate Halloween Candy Power Ranking](https://fivethirtyeight.com/videos/the-ultimate-halloween-candy-power-ranking/)
+
+> "The social contract of Halloween is simple: Provide adequate treats to costumed masses, or be prepared for late-night tricks from those dissatisfied with your offer. To help you avoid that type of vengeance, and to help you make good decisions at the supermarket this weekend, we wanted to figure out what Halloween candy people most prefer. So we devised an experiment: Pit dozens of fun-sized candy varietals against one another, and let the wisdom of the crowd decide which one was best." -- Walt Hickey
+
+> "While we don't know who exactly voted, we do know this: 8,371 different IP addresses voted on about 269,000 randomly generated matchups.2 So, not a scientific survey or anything, but a good sample of what candy people like."
+
+------------------------------------------------------------------------
+
+### Example: [The Ultimate Halloween Candy Power Ranking](https://fivethirtyeight.com/videos/the-ultimate-halloween-candy-power-ranking/)
+
+```{r, echo = FALSE, out.width='80%'}
+knitr::include_graphics("img/candy_ex.png")
+```
+
+------------------------------------------------------------------------
+
+### Example: [The Ultimate Halloween Candy Power Ranking](https://fivethirtyeight.com/videos/the-ultimate-halloween-candy-power-ranking/)
+
+```{r}
+candy <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/candy-power-ranking/candy-data.csv") %>%
+  mutate(pricepercent = pricepercent*100)
+
+glimpse(candy)
+
+```
+
+------------------------------------------------------------------------
+
+### Example: [The Ultimate Halloween Candy Power Ranking](https://fivethirtyeight.com/videos/the-ultimate-halloween-candy-power-ranking/)
+
+::: columns
+::: column
+-   Linear trend?
+
+-   Direction of trend?
+:::
+
+::: column
+```{r}
+#| echo: false
+ggplot(data = candy, 
+       mapping = aes(x = pricepercent,
+                     y = winpercent)) +
+  geom_point(alpha = 0.6, size = 4, 
+             color = "chocolate4")
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+### Example: [The Ultimate Halloween Candy Power Ranking](https://fivethirtyeight.com/videos/the-ultimate-halloween-candy-power-ranking/)
+
+::: columns
+::: column
+-   A simple linear regression model would be suitable for these data.
+
+-   But first, let's describe more plots!
+:::
+
+::: column
+```{r}
+#| echo: false
+ggplot(data = candy, 
+       mapping = aes(x = pricepercent,
+                     y = winpercent)) +
+  geom_point(alpha = 0.6, size = 4, 
+             color = "chocolate4") +
+  geom_smooth(method = "lm", se = FALSE,
+              color = "deeppink2")
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Describing Relationships
+
+```{r}
+#| fig-width: 7
+#| fig-height: 3.5
+#| echo: false
+
+set.seed(4119)
+x <- runif(50, 0, 10)
+y1 <- 3 + 1*x + rnorm(50, 0 , 3)
+y2 <- runif(50, 0, 10)
+y3 <- 1 - .5*x + rnorm(50, 0, 1)
+y4 <- 3 + -40*x +  4*x^2 + rnorm(50, 0, 20)
+dat <- data_frame(x, y1, y2, y3, y4)  
+
+library(cowplot)
+# Create scatterplots and place in a grid
+p1 <- ggplot(dat, aes(x, y1)) + geom_point()
+p2 <- ggplot(dat, aes(x, y2)) + geom_point()
+p3 <- ggplot(dat, aes(x, y3)) + geom_point()
+p4 <- ggplot(dat, aes(x, y4)) + geom_point()
+
+```
+
+::: columns
+
+::: {.column .center}
+
+```{r}
+#| echo: false
+plot_grid(p1, p2, p3, p4, ncol=2, labels = c("A", "B", "C", "D"))
+
+```
+
+:::
+
+::: column
+
+-   Need a summary statistics that quantifies the strength and relationship of the linear trend!
+:::
+:::
+
+
+
+
+
+
+------------------------------------------------------------------------
+
+## (Sample) Correlation Coefficient
+
+-   Measures the **strength** and **direction** of **linear** relationship between two quantitative variables
+
+-   Symbol: $r$
+
+-   Always between -1 and 1
+
+-   Sign indicates the direction of the relationship
+
+-   Magnitude indicates the strength of the linear relationship
+
+::: fragment
+```{r}
+candy %>%
+  summarize(cor = cor(pricepercent, winpercent))
+```
+:::
+
+------------------------------------------------------------------------
+
+::: columns
+::: {.column .center}
+```{r, echo = FALSE, fig.height=5, fig.width=7.5, fig.align='center'}
+
+plot_grid(p1, p2, p3, p4, ncol=2, labels = c("A", "B", "C", "D"))
+
+```
+:::
+
+::: column
+Any guesses on the correlations for A, B, C, or D?
+
+::: fragment
+```{r}
+#| eval: false
+dat %>%
+  summarize(A = cor(x, y1), B = cor(x, y2),
+            C = cor(x, y3), D = cor(x, y4))
+```
+:::
+:::
+:::
+
+------------------------------------------------------------------------
+
+## New Example
+
+```{r, echo = FALSE}
+# Load new dataset
+dat2 <- read_csv("data/datasaurus.csv") %>%
+  filter(dataset != "slant_up")
+```
+
+::: columns
+::: column
+```{r}
+# Correlation coefficients
+dat2 %>%
+  group_by(dataset) %>%
+  summarize(cor = cor(x, y))
+```
+:::
+
+::: column
+-   Conclude that $x$ and $y$ have the same relationship across these different datasets because the correlation is the same?
+:::
+:::
+
+------------------------------------------------------------------------
+
+#### Always graph the data when exploring relationships!
+
+::: columns
+::: {.column .center}
+
+```{r}
+#| fig-width: 7
+#| fig-height: 3.5
+#| echo: false
+ggplot(data = dat2, mapping = aes(x = x, y = y)) +
+  geom_point() +
+  facet_wrap(~ dataset, ncol = 4)
+```
+
+:::
+
+::: column
+
+The datasets may have the same value for the correlation coefficient, but they don't exhibit the same relationships!
+
+
+:::
+:::
+
+
+
+----
+
+## Reminders
+
+-   Mid-term Exam 1
+    -   Wed: In-class component.  Bring a laptop.
+    -   Fri: Oral component (over Zoom).  Make sure to sign up!

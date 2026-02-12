@@ -1,0 +1,105 @@
+---
+title: "Live Coding Week 4 Mon"
+author: "DATA 100, Spring 2026"
+format: pdf
+execute:
+  eval: false
+---
+
+```{r}
+library(tidyverse)
+
+# Load data
+memi <- read_csv("data/memi.csv")
+fmli <- read_csv("data/fmli.csv")
+
+# Wrangling
+fmli <- mutate(fmli, PRINEARN = as.integer(PRINEARN)) %>%
+  left_join(memi, join_by("NEWID" == "NEWID", "PRINEARN" == "MEMBNO")) 
+```
+
+-   Let's find the average income and median retirement amount based on the sex of the principal earner.
+
+    -   Can I do two separate `summarize()`s?
+    
+```{r}
+fmli %>%
+  mutate(sex_prin_earner = case_when(
+    SEX == 1 ~ "male",
+    SEX == 2 ~ "female"
+  )) %>%
+  group_by(sex_prin_earner) %>%
+  summarize(mean_inc = mean(FINCBTAX), med_retire = median(IRAX, na.rm = TRUE))
+
+# Versus
+
+fmli %>%
+  mutate(sex_prin_earner = case_when(
+    SEX == 1 ~ "male",
+    SEX == 2 ~ "female"
+  )) %>%
+  drop_na(IRAX) %>%
+  group_by(sex_prin_earner) %>%
+  summarize(mean_inc = mean(FINCBTAX), med_retire = median(IRAX))
+```
+
+
+-   Now find the average income and median retirement amount based on the sex of the principal earner for households where the principal earner is 40 or older.
+
+```{r}
+fmli %>%
+  mutate(sex_prin_earner = case_when(
+    SEX == 1 ~ "male",
+    SEX == 2 ~ "female"
+  )) %>%
+  filter(AGE >= 40) %>%
+  group_by(sex_prin_earner) %>%
+  summarize(mean_inc = mean(FINCBTAX), med_retire = median(IRAX, na.rm = TRUE))
+```
+
+
+-   How do these summaries statistics vary by education level of household?
+
+
+```{r}
+fmli %>%
+  mutate(sex_prin_earner = case_when(
+    SEX == 1 ~ "male",
+    SEX == 2 ~ "female"
+  )) %>%
+  filter(AGE >= 40) %>%
+  group_by(sex_prin_earner, HIGH_EDU) %>%
+  summarize(mean_inc = mean(FINCBTAX), med_retire = median(IRAX, na.rm = TRUE))
+```
+
+-   Now let's sort our table by average income.
+
+```{r}
+fmli %>%
+  mutate(sex_prin_earner = case_when(
+    SEX == 1 ~ "male",
+    SEX == 2 ~ "female"
+  )) %>%
+  filter(AGE >= 40) %>%
+  group_by(sex_prin_earner, HIGH_EDU) %>%
+  summarize(mean_inc = mean(FINCBTAX), med_retire = median(IRAX, na.rm = TRUE)) %>%
+  arrange(desc(mean_inc))
+```
+
+-   For rural places, what proportion of households have a female as the principal earner? What about for urban households?
+
+```{r}
+fmli %>%
+  mutate(location = case_when(
+    BLS_URBN == 1 ~ "Urban",
+    BLS_URBN != 1 ~ "Rural"
+  ), 
+  sex_prin_earner = case_when(
+    SEX == 1 ~ "male",
+    SEX == 2 ~ "female"
+  )) %>%
+  count(location, sex_prin_earner) %>%
+  group_by(location) %>%
+  mutate(prop = n/sum(n))
+```
+
