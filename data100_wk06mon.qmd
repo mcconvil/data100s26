@@ -1,0 +1,751 @@
+---
+pagetitle: "Modeling"
+format: 
+  revealjs:
+    chalkboard: true
+    incremental: true
+    theme: [default, custom.scss]
+#    multiplex: true
+    height: 900
+    width: 1600
+    slide-number: c
+    auto-stretch: false
+    callout-appearance: simple
+    pdf-max-pages-per-slide: 1
+    menu: 
+      side: right
+      numbers: true
+    code-overflow: wrap
+execute:
+  echo: true
+  warning: false
+  message: false
+  fig-asp: 0.75
+  fig-width: 8
+#  fig-align: center
+  fig-dpi: 500
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+# Some global options still not available in quarto
+ knitr::opts_chunk$set(fig.align = 'center')
+library(knitr)
+library(tidyverse)
+theme_update(text = element_text(size = 12))
+```
+
+::::: columns
+::: {.column .center width="45%"}
+![](img/DAW.png){width="90%"}
+:::
+
+::: {.column .center width="55%"}
+[Modeling]{.custom-title}
+
+<br> <br> <br> <br>
+
+[Kelly McConville]{.custom-subtitle}
+
+[DATA 100 <br> Week 6 \| Spring 2026]{.custom-subtitle}
+:::
+:::::
+
+------------------------------------------------------------------------
+
+## Announcements
+
+-   Exam grading in-progress
+-   Back to lab on Friday and P-Set 4.
+
+### Goals for Today
+
+-   Quick survey 
+-   Modeling
+-   Measuring linear relationships
+
+--------------------------------
+
+## Reflecting on your DATA 100 Engagement
+
+If you felt like the midterm didn't go as well as you would have hoped, I'd encourage you to reflect on how you are engaging with the DATA 100 support systems:
+
+* Are you attending lecture?
+* Are you attending lab and actively engaging with the material?
+* Are you able to make progress on the p-sets by yourself before collaborating with others?
+    + When collaborating, are you taking on an active or a passive role?
+* Are you using office hours to talk through the material and your p-set?
+
+::: fragment
+
+Rebecca and I want to see you have a positive, productive learning experience in DATA 100!
+
+
+:::
+
+
+------------
+
+
+## Recap {background-image="img/DAW.png" background-size="45%"}
+
+------------------------------------------------------------------------
+
+## Form of the Model
+
+<br><br><br>
+
+$$
+y = f(x) + \epsilon
+$$
+
+<br><br><br>
+
+**Goal:**
+
+-   Determine a reasonable form for $f()$. (Ex: Line, curve, ...)
+
+-   Estimate $f()$ with $\hat{f}()$ using the data.
+
+-   Generate predicted values: $\hat y = \hat{f}(x)$.
+
+------------------------------------------------------------------------
+
+### Simple Linear Regression Model
+
+Consider this model when:
+
+-   Response variable $(y)$: quantitative
+
+-   Explanatory variable $(x)$: quantitative
+
+    -   Have only ONE explanatory variable.
+
+-   AND, $f()$ can be approximated by a line.
+
+
+---------
+
+
+
+### Example: [The Ultimate Halloween Candy Power Ranking](https://fivethirtyeight.com/videos/the-ultimate-halloween-candy-power-ranking/)
+
+```{r}
+candy <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/candy-power-ranking/candy-data.csv") %>%
+  mutate(pricepercent = pricepercent*100)
+
+glimpse(candy)
+
+```
+
+----------
+
+
+### Example: [The Ultimate Halloween Candy Power Ranking](https://fivethirtyeight.com/videos/the-ultimate-halloween-candy-power-ranking/)
+
+::: columns
+::: column
+-   A simple linear regression model would be suitable for these data.
+
+-   But first, let's describe more plots!
+:::
+
+::: column
+```{r}
+#| echo: false
+ggplot(data = candy, 
+       mapping = aes(x = pricepercent,
+                     y = winpercent)) +
+  geom_point(alpha = 0.6, size = 4, 
+             color = "chocolate4") +
+  geom_smooth(method = "lm", se = FALSE,
+              color = "deeppink2")
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Describing Relationships
+
+```{r}
+#| fig-width: 7
+#| fig-height: 3.5
+#| echo: false
+
+set.seed(4119)
+x <- runif(50, 0, 10)
+y1 <- 3 + 1*x + rnorm(50, 0 , 3)
+y2 <- runif(50, 0, 10)
+y3 <- 1 - .5*x + rnorm(50, 0, 1)
+y4 <- 3 + -40*x +  4*x^2 + rnorm(50, 0, 20)
+dat <- data_frame(x, y1, y2, y3, y4)  
+
+library(cowplot)
+# Create scatterplots and place in a grid
+p1 <- ggplot(dat, aes(x, y1)) + geom_point()
+p2 <- ggplot(dat, aes(x, y2)) + geom_point()
+p3 <- ggplot(dat, aes(x, y3)) + geom_point()
+p4 <- ggplot(dat, aes(x, y4)) + geom_point()
+
+```
+
+::: columns
+
+::: {.column .center}
+
+```{r}
+#| echo: false
+plot_grid(p1, p2, p3, p4, ncol=2, labels = c("A", "B", "C", "D"))
+
+```
+
+:::
+
+::: column
+
+-   Need a summary statistics that quantifies the strength and relationship of the linear trend!
+:::
+:::
+
+
+
+
+
+
+------------------------------------------------------------------------
+
+## (Sample) Correlation Coefficient
+
+-   Measures the **strength** and **direction** of **linear** relationship between two quantitative variables
+
+-   Symbol: $r$
+
+-   Always between -1 and 1
+
+-   Sign indicates the direction of the relationship
+
+-   Magnitude indicates the strength of the linear relationship
+
+::: fragment
+```{r}
+candy %>%
+  summarize(cor = cor(pricepercent, winpercent))
+```
+:::
+
+------------------------------------------------------------------------
+
+::: columns
+::: {.column .center}
+```{r, echo = FALSE, fig.height=5, fig.width=7.5, fig.align='center'}
+
+plot_grid(p1, p2, p3, p4, ncol=2, labels = c("A", "B", "C", "D"))
+
+```
+:::
+
+::: column
+Any guesses on the correlations for A, B, C, or D?
+
+::: fragment
+```{r}
+#| eval: false
+dat %>%
+  summarize(A = cor(x, y1), B = cor(x, y2),
+            C = cor(x, y3), D = cor(x, y4))
+```
+:::
+:::
+:::
+
+------------------------------------------------------------------------
+
+## New Example
+
+```{r, echo = FALSE}
+# Load new dataset
+dat2 <- read_csv("data/datasaurus.csv") %>%
+  filter(dataset != "slant_up")
+```
+
+::: columns
+::: column
+```{r}
+# Correlation coefficients
+dat2 %>%
+  group_by(dataset) %>%
+  summarize(cor = cor(x, y))
+```
+:::
+
+::: column
+-   Conclude that $x$ and $y$ have the same relationship across these different datasets because the correlation is the same?
+:::
+:::
+
+------------------------------------------------------------------------
+
+#### Always graph the data when exploring relationships!
+
+::: columns
+::: {.column .center}
+
+```{r}
+#| fig-width: 7
+#| fig-height: 3.5
+#| echo: false
+ggplot(data = dat2, mapping = aes(x = x, y = y)) +
+  geom_point() +
+  facet_wrap(~ dataset, ncol = 4)
+```
+
+:::
+
+::: column
+
+The datasets may have the same value for the correlation coefficient, but they don't exhibit the same relationships!
+
+
+:::
+:::
+
+
+# Returning to the Simple Linear Regression model...
+
+------------------------------------------------------------------------
+
+### Simple Linear Regression
+
+::: columns
+::: column
+Let's return to the Candy Example.
+
+-   A line is a reasonable model form.
+
+-   Where should the line be?
+
+    -   Slope? Intercept?
+:::
+
+::: column
+```{r}
+#| echo: false
+ggplot(data = candy, 
+       mapping = aes(x = pricepercent,
+                     y = winpercent)) +
+  geom_point(alpha = 0.6, size = 4, 
+             color = "chocolate4") +
+  geom_smooth(method = "lm", se = FALSE,
+              color = "deeppink2") + 
+  geom_smooth(method = "lm", se = FALSE, data = candy[1:30,], color = "purple") +
+  geom_smooth(method = "lm", se = FALSE, data = candy[40:80,], color = "orange") 
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+### Form of the SLR Model
+
+$$ 
+\begin{align}
+y &= f(x) + \epsilon \\
+y &= \beta_o + \beta_1 x + \epsilon
+\end{align}
+$$
+
+-   Need to determine the best **estimates** of $\beta_o$ and $\beta_1$.
+
+------------------------------------------------------------------------
+
+#### Distinguishing between the **population** and the **sample**
+
+::: columns
+::: column
+$$ 
+y = \beta_o + \beta_1 x + \epsilon
+$$
+
+-   Parameters:
+    -   Based on the **population**
+    -   Unknown then if don't have data on the whole population
+    -   EX: $\beta_o$ and $\beta_1$
+:::
+
+::: column
+$$
+\hat{y} = \hat{ \beta}_o + \hat{\beta}_1 x
+$$
+
+-   Statistics:
+    -   Based on the **sample** data
+    -   Known
+    -   Usually estimate a population parameter
+    -   EX: $\hat{\beta}_o$ and $\hat{\beta}_1$
+:::
+:::
+
+------------------------------------------------------------------------
+
+### Method of Least Squares
+
+Need two key definitions:
+
+-   **Fitted value**: The *estimated* value of the $i$-th case
+
+::: fragment
+$$
+\hat{y}_i = \hat{\beta}_o + \hat{\beta}_1 x_i
+$$
+:::
+
+-   **Residuals**: The *observed* error term for the $i$-th case
+
+::: fragment
+$$
+e_i = y_i - \hat{y}_i
+$$
+
+**Goal**: Pick values for $\hat{\beta}_o$ and $\hat{\beta}_1$ so that the residuals are small!
+:::
+
+------------------------------------------------------------------------
+
+### Method of Least Squares
+
+::: columns
+::: column
+-   Want residuals to be small.
+
+-   Minimize a function of the residuals.
+
+-   Minimize:
+
+::: fragment
+$$
+\sum_{i = 1}^n e^2_i
+$$
+:::
+:::
+
+::: column
+```{r, echo=FALSE, eval = TRUE}
+ggplot(data = candy, 
+       mapping = aes(x = pricepercent,
+                     y = winpercent)) +
+  geom_point(alpha = 0.6, size = 4, 
+             color = "chocolate4") +
+  stat_smooth(method = "lm", se = FALSE,
+              color = "deeppink2") +
+  annotate("segment", x = candy$pricepercent, 
+           xend = candy$pricepercent, 
+           y = candy$winpercent, yend = 42 + .178*candy$pricepercent, 
+           color = "darkblue", arrow = arrow(length = unit(0.03, "npc"))) + 
+  geom_point()
+  
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+### Method of Least Squares
+
+After minimizing the sum of squared residuals, you get the following equations:
+
+Get the following equations:
+
+$$ 
+\begin{align}
+\hat{\beta}_1 &= \frac{ \sum_{i = 1}^n (x_i - \bar{x}) (y_i - \bar{y})}{ \sum_{i = 1}^n (x_i - \bar{x})^2} \\
+\hat{\beta}_o &= \bar{y} - \hat{\beta}_1 \bar{x}
+\end{align}
+$$ where
+
+$$
+\begin{align}
+\bar{y} = \frac{1}{n} \sum_{i = 1}^n y_i \quad \mbox{and} \quad \bar{x} = \frac{1}{n} \sum_{i = 1}^n x_i
+\end{align}
+$$
+
+------------------------------------------------------------------------
+
+### Method of Least Squares
+
+Then we can estimate the whole function with:
+
+$$
+\hat{y} = \hat{\beta}_o + \hat{\beta}_1 x
+$$
+
+Called the **least squares line** or the **line of best fit**.
+
+------------------------------------------------------------------------
+
+### Method of Least Squares
+
+`ggplot2` will compute the line and add it to your plot using `geom_smooth(method = "lm")`
+
+```{r}
+#| output-location: column
+ggplot(data = candy, 
+       mapping = aes(x = pricepercent,
+                     y = winpercent)) +
+  geom_point(alpha = 0.6, size = 4, 
+             color = "chocolate4") +
+  geom_smooth(method = "lm", se = FALSE,
+              color = "deeppink2")
+```
+
+But what are the **exact** values of $\hat{\beta}_o$ and $\hat{\beta}_1$?
+
+------------------------------------------------------------------------
+
+### Constructing the Simple Linear Regression Model in R
+
+```{r}
+mod <- lm(winpercent ~ pricepercent, data = candy)
+
+library(moderndive)
+get_regression_table(mod)
+```
+
+-   Interpretation of the coefficients?
+
+------------------------------------------------------------------------
+
+### Prediction
+
+```{r}
+new_cases <- data.frame(pricepercent = c(25, 85, 150))
+predict(mod, newdata = new_cases)
+```
+
+-   We didn't have any treats in our sample with a price percentage of 85%. Can we still make this prediction?
+    -   Called **interpolation**
+
+<br>
+
+-   We didn't have any treats in our sample with a price percentage of 150%. Can we still make this prediction?
+    -   Called **extrapolation**
+
+------------------------------------------------------------------------
+
+### Cautions
+
+::: columns
+::: column
+-   Careful to only predict values within the range of $x$ values in the sample.
+
+-   Make sure to investigate **outliers**: observations that fall far from the cloud of points.
+:::
+
+::: column
+```{r, echo = FALSE}
+set.seed(13681)
+x <- c(runif(50, 0, 10))
+y1 <- c(3 + 1*x + rnorm(50, 0))
+dat1 <- data_frame(x = c(x, 20), y = c(y1, 20))
+x2 <- c(x, 20)
+y2 <- c(y1, 5)
+dat <- data_frame(x = x2, y = y2) 
+p1 <- ggplot(dat, aes(x, y)) + geom_point() + 
+  stat_smooth(method = "lm", se = FALSE, color = "turquoise4", linewidth = 2) +
+  stat_smooth(method = "lm", se = FALSE, data = dat[-51,], color = "deeppink3", linewidth = 2)
+p2 <- ggplot(dat1, aes(x, y)) + geom_point() + 
+  stat_smooth(method = "lm", se = FALSE, color = "turquoise4", linewidth = 2) +
+  stat_smooth(method = "lm", se = FALSE, data = dat[-51,], color = "deeppink3", linewidth = 2)
+plot_grid(p1, p2, ncol = 2)
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+### Linear Regression
+
+Linear regression is a flexible class of models that allow for:
+
+-   Both quantitative and categorical **explanatory** variables.
+
+-   **Multiple** explanatory variables.
+
+-   **Curved** relationships between the response variable and the explanatory variable.
+
+-   BUT the **response variable is quantitative**.
+
+------------------------------------------------------------------------
+
+### What About A Categorical Explanatory Variable?
+
+-   Response variable $(y)$: quantitative
+
+-   Have 1 categorical explanatory variable $(x)$ with two categories.
+
+-   Model form:
+
+::: fragment
+$$ 
+\begin{align}
+y &= \beta_o + \beta_1 x + \epsilon
+\end{align}
+$$
+:::
+
+-   First, need to convert the categories of $x$ to numbers.
+
+------------------------------------------------------------------------
+
+### Example: Halloween Candy
+
+```{r}
+candy <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/candy-power-ranking/candy-data.csv")
+glimpse(candy)
+```
+
+What might be a good categorical explanatory variable of `winpercent`?
+
+------------------------------------------------------------------------
+
+### Exploratory Data Analysis
+
+Before building the model, let's explore and visualize the data!
+
+-   What `dplyr` functions should I use to find the mean and sd of `winpercent` by the categories of `chocolate`?
+
+-   What graph should we use to visualize the `winpercent` scores by `chocolate`?
+
+------------------------------------------------------------------------
+
+### Exploratory Data Analysis
+
+```{r}
+# Summarize
+candy %>%
+  group_by(chocolate) %>%
+  summarize(count = n(), mean_win = mean(winpercent), 
+            sd_win = sd(winpercent))
+```
+
+------------------------------------------------------------------------
+
+### Exploratory Data Analysis
+
+```{r}
+#| output-location: column
+
+ggplot(candy, aes(x = factor(chocolate), 
+                   y = winpercent, 
+                  fill = factor(chocolate))) +
+  geom_boxplot() +
+    stat_summary(fun = mean,
+                 geom = "point",
+                 color = "yellow",
+                 size = 4) +
+  guides(fill = "none") +
+  scale_fill_manual(values =
+                      c("0" = "deeppink",
+                        "1" = "chocolate4")) +
+  scale_x_discrete(labels = c("No", "Yes"),
+                   name =
+          "Does the candy contain chocolate?")
+```
+
+------------------------------------------------------------------------
+
+### Fit the Linear Regression Model
+
+Model Form:
+
+$$ 
+\begin{align}
+y &= \beta_o + \beta_1 x + \epsilon
+\end{align}
+$$
+
+When $x = 0$:
+
+<br>
+
+<br>
+
+When $x = 1$:
+
+```{r}
+mod <- lm(winpercent ~ chocolate, data = candy)
+library(moderndive)
+get_regression_table(mod)
+```
+
+------------------------------------------------------------------------
+
+### Notes
+
+-   When the explanatory variable is categorical, $\beta_o$ and $\beta_1$ no longer represent the intercept and slope.
+
+-   Now $\beta_o$ represents the (population) mean of the response variable when $x = 0$.
+
+-   And, $\beta_1$ represents the change in the (population) mean response going from $x = 0$ to $x = 1$.
+
+-   Can also do prediction:
+
+::: fragment
+```{r}
+new_candy <- data.frame(chocolate = c(0, 1))
+predict(mod, newdata = new_candy)
+```
+:::
+
+------------------------------------------------------------------------
+
+### Turns Out Reese's Miniatures Are Under-Priced...
+
+
+::::: columns
+::: {.column .center width="15%"}
+
+:::
+
+::: {.column .center width="70%"}
+
+```{r echo = FALSE}
+#|out-width: "50%"
+
+library(ggrepel)
+ggplot(data = candy, 
+       mapping = aes(x = pricepercent,
+                     y = winpercent)) +
+  geom_point(alpha = 0.6, size = 4, 
+             color = "chocolate4") +
+  geom_text_repel(aes(label = competitorname), size = 4,
+                  force = 2, show.legend  = FALSE,
+                  box.padding = 1)
+```
+
+:::
+
+::: {.column .center width="15%"}
+
+:::
+
+:::::
+
+------------------------------------------------------------------------
+
+## Note about Office Hours
+
+::: {.nonincremental}
+
+* Professor McConville: Tuesdays 2:30 - 4pm and Wednesdays 2 - 3pm in Taylor 212.
+* Rebecca: Mondays and Wednesdays 4:30 - 6pm in the classroom (Taylor 203).
+* Going to add one more hour. Vote on the time: [burl.live/ohs](https://burl.live/ohs)
+
+:::
+
+![](img/qr-ohs.svg)
+
