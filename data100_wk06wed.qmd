@@ -1,0 +1,468 @@
+---
+pagetitle: "Multiple Linear Regression"
+format: 
+  revealjs:
+    chalkboard: true
+    incremental: true
+    theme: [default, custom.scss]
+#    multiplex: true
+    height: 900
+    width: 1600
+    slide-number: c
+    auto-stretch: false
+    callout-appearance: simple
+    pdf-max-pages-per-slide: 1
+    menu: 
+      side: right
+      numbers: true
+    code-overflow: wrap
+execute:
+  echo: true
+  warning: false
+  message: false
+  fig-asp: 0.75
+  fig-width: 8
+#  fig-align: center
+  fig-dpi: 500
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+# Some global options still not available in quarto
+ knitr::opts_chunk$set(fig.align = 'center')
+library(knitr)
+library(tidyverse)
+theme_update(text = element_text(size = 12))
+```
+
+::::: columns
+::: {.column .center width="45%"}
+![](img/DAW.png){width="90%"}
+:::
+
+::: {.column .center width="55%"}
+[Multiple Linear Regression]{.custom-title}
+
+<br> <br> 
+
+[Kelly McConville]{.custom-subtitle}
+
+[DATA 100 <br> Week 6 \| Spring 2026]{.custom-subtitle}
+:::
+:::::
+
+------------------------------------------------------------------------
+
+## Announcements
+
+-  Quiz 4 in lab on Friday.
+-  Upcoming talks from alumni in data and AI.
+-  New office hour
+
+### Goals for Today
+
+::: columns
+::: column
+-   Recap: Simple linear regression model
+-   Broadening our idea of linear regression
+:::
+
+::: column
+-   Regression with a single, categorical explanatory variable
+-   Regression with multiple explanatory variables
+:::
+:::
+
+------------------------------------------------------------------------
+
+### Simple Linear Regression
+
+Consider this model when:
+
+::: nonincremental
+-   Response variable $(y)$: quantitative
+
+-   Explanatory variable $(x)$: quantitative
+
+    -   Have only ONE explanatory variable.
+
+-   AND, $f()$ can be approximated by a line:
+:::
+
+$$ 
+\begin{align}
+y &= \beta_o + \beta_1 x + \epsilon
+\end{align}
+$$
+
+------------------------------------------------------------------------
+
+### Linear Regression
+
+Linear regression is a flexible class of models that allow for:
+
+-   Both quantitative and categorical **explanatory** variables.
+
+-   **Multiple** explanatory variables.
+
+-   **Curved** relationships between the response variable and the explanatory variable.
+
+-   BUT the **response variable is quantitative**.
+
+---
+
+### Multiple Linear Regression
+
+Form of the Model:
+
+$$ 
+\begin{align}
+y &= \beta_o + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p + \epsilon
+\end{align}
+$$
+
+How does extending to more predictors change our process?
+
+-   What **doesn't** change:
+    -   Still use **Method of Least Squares** to estimate coefficients
+    -   Still use `lm()` to fit the model and `predict()` for prediction
+-   What **does** change:
+    -   Meaning of the coefficients are more complicated and depend on other variables in the model
+    -   Need to decide which variables to include and how (linear term, squared term...)
+
+------------------------------------------------------------------------
+
+### Multiple Linear Regression
+
+-   We are going to see a few examples of multiple linear regression today and next lecture.
+
+-   We will need to return to modeling later in the course once we have learned about statistical inference (i.e., confidence intervals and p-values).
+
+------
+
+## Example
+
+Meadowfoam is a plant that grows in the Pacific Northwest and is harvested for its seed oil. In a randomized experiment, researchers at Oregon State University looked at how two light-related factors influenced the number of flowers per meadowfoam plant, the primary measure of productivity for this plant. The two light measures were light intensity (in mmol/ $m^2$ /sec) and the timing of onset of the light (early or late in terms of photo periodic floral induction).
+
+<br>
+
+**Response variable**:
+
+<br>
+
+**Explanatory variables**:
+
+<br>
+
+**Model Form:**
+
+------------------------------------------------------------------------
+
+### Data Loading and Wrangling
+
+```{r}
+library(tidyverse)
+library(Sleuth3)
+data(case0901)
+
+# Recode the timing variable
+count(case0901, Time)
+case0901 <- case0901 %>%
+  mutate(TimeCat = case_when(
+    Time == 1 ~ "Late",
+    Time == 2 ~ "Early"
+    )) 
+count(case0901, TimeCat)
+```
+
+------------------------------------------------------------------------
+
+### Visualizing the Data
+
+```{r}
+#| output-location: column
+
+ggplot(case0901,
+       aes(x = Intensity,
+           y = Flowers,
+           color = TimeCat)) + 
+  geom_point(size = 4)
+
+```
+
+Why don't I have to include `data =` and `mapping =` in my `ggplot()` layer?
+
+------------------------------------------------------------------------
+
+### Building the Linear Regression Model
+
+Full model form:
+
+```{r}
+modFlowers <- lm(Flowers ~ Intensity + TimeCat, data = case0901)
+
+library(moderndive)
+get_regression_table(modFlowers)
+```
+
+::: nonincremental
+-   Estimated regression line for $x_2 = 1$:
+
+<br> <br>
+
+-   Estimated regression line for $x_2 = 0$:
+:::
+
+------------------------------------------------------------------------
+
+### Appropriateness of Model Form
+
+```{r}
+#| output-location: column
+
+ggplot(case0901, 
+       aes(x = Intensity,
+           y = Flowers,
+           color = TimeCat)) + 
+  geom_point(size = 4) + 
+  geom_smooth(method = "lm", se = FALSE)
+
+```
+
+Is the assumption of **equal slopes** reasonable here?
+
+------------------------------------------------------------------------
+
+### Prediction
+
+```{r}
+flowersNew <- data.frame(Intensity = c(700, 700), TimeCat = c("Early", "Late"))
+flowersNew
+
+predict(modFlowers, newdata = flowersNew)
+```
+
+-------
+
+
+## Intermission: TREND STRETCHES!
+
+:::::: columns
+::: {.column .center width="15%"}
+:::
+
+::: {.column .center width="70%"}
+
+```{r, echo = FALSE, fig.height=3.5, fig.width=6.5, fig.align='center'}
+set.seed(4119)
+x <- runif(50, 0, 10)
+y1 <- 3 + 1*x + rnorm(50, 0 , 3)
+y2 <- runif(50, 0, 10)
+y3 <- 1 - .5*x + rnorm(50, 0, 1)
+y4 <- 3 + -40*x +  4*x^2 + rnorm(50, 0, 20)
+dat <- data_frame(x, y1, y2, y3, y4)  
+
+library(cowplot)
+# Create scatterplots and place in a grid
+p1 <- ggplot(dat, aes(x, y1)) + geom_point()
+p2 <- ggplot(dat, aes(x, y2)) + geom_point()
+p3 <- ggplot(dat, aes(x, y3)) + geom_point()
+p4 <- ggplot(dat, aes(x, y4)) + geom_point()
+plot_grid(p1, p2, p3, p4, ncol=2, labels = c("A", "B", "C", "D"))
+
+```
+
+:::
+
+::: {.column .center width="15%"}
+:::
+::::::
+
+------------------------------------------------------------------------
+
+### New Example
+
+For this example, we will use data collected by the website pollster.com, which aggregated 102 presidential polls from August 29th, 2008 through the end of September. We want to determine the best model to explain the variable `Margin`, measured by the difference in preference between Barack Obama and John McCain. Our potential predictors are `Days` (the number of days after the Democratic Convention) and `Charlie` (indicator variable on whether poll was conducted before or after the first ABC interview of Sarah Palin with Charlie Gibson).
+
+::: columns
+::: {.column width="70%"}
+```{r}
+library(Stat2Data)
+data("Pollster08")
+glimpse(Pollster08)
+```
+:::
+
+::: {.column width="30%"}
+**Response variable**:
+
+<br>
+
+**Explanatory variables**:
+:::
+:::
+
+------------------------------------------------------------------------
+
+### Visualizing the Data
+
+```{r}
+#| output-location: column
+
+ggplot(Pollster08,
+       aes(x = Days,
+           y = Margin, 
+           color = Charlie)) +
+  geom_point(size = 3)
+```
+
+What is wrong with how one of the variables is mapped in the graph?
+
+------------------------------------------------------------------------
+
+### Visualizing the Data
+
+```{r}
+#| output-location: column
+
+ggplot(Pollster08,
+       aes(x = Days,
+           y = Margin, 
+           color = factor(Charlie))) +
+  geom_point(size = 3)
+```
+
+Is the assumption of **equal slopes** reasonable here?
+
+------------------------------------------------------------------------
+
+### Model Forms
+
+**Same** Slopes Model:
+
+<br> <br> <br>
+
+**Different** Slopes Model:
+
+::: nonincremental
+-   Line for $x_2 = 1$:
+
+<br> <br> <br>
+
+-   Line for $x_2 = 0$:
+:::
+
+------------------------------------------------------------------------
+
+### Fitting the Linear Regression Model
+
+```{r}
+modPoll <- lm(Margin ~ factor(Charlie)*Days, data = Pollster08)
+
+get_regression_table(modPoll)
+```
+
+::: nonincremental
+-   Estimated regression line for $x_2 = 1$:
+
+<br> <br> <br>
+
+-   Estimated regression line for $x_2 = 0$:
+:::
+
+------------------------------------------------------------------------
+
+### Adding the Regression Model to the Plot
+
+```{r polls3}
+#| output-location: column
+
+ggplot(Pollster08, 
+       aes(x = Days, 
+           y = Margin, 
+           color = factor(Charlie))) +
+  geom_point(size = 3) +
+  geom_smooth(method = lm, se = FALSE)
+```
+
+Is our modeling goal here **predictive** or **descriptive**?
+
+------------------------------------------------------------------------
+
+
+### Let's Practice with the `palmerpenguins`!
+
+![](img/penguins.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+### Let's Practice with the `palmerpenguins`!
+
+```{r}
+library(palmerpenguins)
+glimpse(penguins)
+```
+
+------------------------------------------------------------------------
+
+### Let's Practice with the `palmerpenguins`!
+
+```{r}
+#| output-location: column
+
+# Focus on just the Chinstrap and Adelie
+chin_adel <- penguins %>%
+  filter(species != "Gentoo")
+
+ggplot(data = chin_adel,
+       mapping = aes(x = flipper_length_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point(alpha = 0.7) +
+  stat_smooth(method = "lm", se = FALSE)
+```
+
+------------------------------------------------------------------------
+
+```{r}
+mod1 <- lm(bill_length_mm ~ flipper_length_mm + species, data = chin_adel)
+get_regression_table(mod1)
+```
+
+```{r}
+mod2 <- lm(bill_length_mm ~ flipper_length_mm * species, data = chin_adel)
+get_regression_table(mod2)
+```
+
+------------------------------------------------------------------------
+
+## Practice
+
+Determine and interpret the slope for a **Chinstrap** penguin using Model 1.
+
+<br> <br>
+
+Determine and interpret the slope for a **Adelie** penguin using Model 1.
+
+<br> <br>
+
+In Model 1, interpret $\hat{\beta}_2$.
+
+<br> <br>
+
+Determine and interpret the slope for a **Chinstrap** penguin using Model 2.
+
+<br> <br>
+
+Determine and interpret the slope for a **Adelie** penguin using Model 2.
+
+------
+
+
+## Reminders
+
+-  Quiz 4 in lab on Friday.
+-  Upcoming talks from alumni in data and AI.
+-  New office hour

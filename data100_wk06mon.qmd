@@ -62,32 +62,27 @@ theme_update(text = element_text(size = 12))
 
 ### Goals for Today
 
--   Quick survey 
+-   Quick survey
 -   Modeling
 -   Measuring linear relationships
 
---------------------------------
+------------------------------------------------------------------------
 
 ## Reflecting on your DATA 100 Engagement
 
 If you felt like the midterm didn't go as well as you would have hoped, I'd encourage you to reflect on how you are engaging with the DATA 100 support systems:
 
-* Are you attending lecture?
-* Are you attending lab and actively engaging with the material?
-* Are you able to make progress on the p-sets by yourself before collaborating with others?
-    + When collaborating, are you taking on an active or a passive role?
-* Are you using office hours to talk through the material and your p-set?
+-   Are you attending lecture?
+-   Are you attending lab and actively engaging with the material?
+-   Are you able to make progress on the p-sets by yourself before collaborating with others?
+    -   When collaborating, are you taking on an active or a passive role?
+-   Are you using office hours to talk through the material and your p-set?
 
 ::: fragment
-
 Rebecca and I want to see you have a positive, productive learning experience in DATA 100!
-
-
 :::
 
-
-------------
-
+------------------------------------------------------------------------
 
 ## Recap {background-image="img/DAW.png" background-size="45%"}
 
@@ -125,10 +120,7 @@ Consider this model when:
 
 -   AND, $f()$ can be approximated by a line.
 
-
----------
-
-
+------------------------------------------------------------------------
 
 ### Example: [The Ultimate Halloween Candy Power Ranking](https://fivethirtyeight.com/videos/the-ultimate-halloween-candy-power-ranking/)
 
@@ -140,12 +132,11 @@ glimpse(candy)
 
 ```
 
-----------
-
+------------------------------------------------------------------------
 
 ### Example: [The Ultimate Halloween Candy Power Ranking](https://fivethirtyeight.com/videos/the-ultimate-halloween-candy-power-ranking/)
 
-::: columns
+::::: columns
 ::: column
 -   A simple linear regression model would be suitable for these data.
 
@@ -164,7 +155,7 @@ ggplot(data = candy,
               color = "deeppink2")
 ```
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -192,28 +183,19 @@ p4 <- ggplot(dat, aes(x, y4)) + geom_point()
 
 ```
 
-::: columns
-
+::::: columns
 ::: {.column .center}
-
 ```{r}
 #| echo: false
 plot_grid(p1, p2, p3, p4, ncol=2, labels = c("A", "B", "C", "D"))
 
 ```
-
 :::
 
 ::: column
-
 -   Need a summary statistics that quantifies the strength and relationship of the linear trend!
 :::
-:::
-
-
-
-
-
+:::::
 
 ------------------------------------------------------------------------
 
@@ -238,7 +220,7 @@ candy %>%
 
 ------------------------------------------------------------------------
 
-::: columns
+:::::: columns
 ::: {.column .center}
 ```{r, echo = FALSE, fig.height=5, fig.width=7.5, fig.align='center'}
 
@@ -247,7 +229,7 @@ plot_grid(p1, p2, p3, p4, ncol=2, labels = c("A", "B", "C", "D"))
 ```
 :::
 
-::: column
+:::: column
 Any guesses on the correlations for A, B, C, or D?
 
 ::: fragment
@@ -258,8 +240,8 @@ dat %>%
             C = cor(x, y3), D = cor(x, y4))
 ```
 :::
-:::
-:::
+::::
+::::::
 
 ------------------------------------------------------------------------
 
@@ -271,7 +253,7 @@ dat2 <- read_csv("data/datasaurus.csv") %>%
   filter(dataset != "slant_up")
 ```
 
-::: columns
+::::: columns
 ::: column
 ```{r}
 # Correlation coefficients
@@ -284,15 +266,14 @@ dat2 %>%
 ::: column
 -   Conclude that $x$ and $y$ have the same relationship across these different datasets because the correlation is the same?
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
 #### Always graph the data when exploring relationships!
 
-::: columns
+::::: columns
 ::: {.column .center}
-
 ```{r}
 #| fig-width: 7
 #| fig-height: 3.5
@@ -301,17 +282,12 @@ ggplot(data = dat2, mapping = aes(x = x, y = y)) +
   geom_point() +
   facet_wrap(~ dataset, ncol = 4)
 ```
-
 :::
 
 ::: column
-
 The datasets may have the same value for the correlation coefficient, but they don't exhibit the same relationships!
-
-
 :::
-:::
-
+:::::
 
 # Returning to the Simple Linear Regression model...
 
@@ -319,7 +295,7 @@ The datasets may have the same value for the correlation coefficient, but they d
 
 ### Simple Linear Regression
 
-::: columns
+::::: columns
 ::: column
 Let's return to the Candy Example.
 
@@ -344,7 +320,7 @@ ggplot(data = candy,
   geom_smooth(method = "lm", se = FALSE, data = candy[40:80,], color = "orange") 
 ```
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -363,7 +339,7 @@ $$
 
 #### Distinguishing between the **population** and the **sample**
 
-::: columns
+::::: columns
 ::: column
 $$ 
 y = \beta_o + \beta_1 x + \epsilon
@@ -386,7 +362,7 @@ $$
     -   Usually estimate a population parameter
     -   EX: $\hat{\beta}_o$ and $\hat{\beta}_1$
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -416,8 +392,8 @@ $$
 
 ### Method of Least Squares
 
-::: columns
-::: column
+:::::: columns
+:::: column
 -   Want residuals to be small.
 
 -   Minimize a function of the residuals.
@@ -429,7 +405,7 @@ $$
 \sum_{i = 1}^n e^2_i
 $$
 :::
-:::
+::::
 
 ::: column
 ```{r, echo=FALSE, eval = TRUE}
@@ -448,7 +424,7 @@ ggplot(data = candy,
   
 ```
 :::
-:::
+::::::
 
 ------------------------------------------------------------------------
 
@@ -536,7 +512,7 @@ predict(mod, newdata = new_cases)
 
 ### Cautions
 
-::: columns
+::::: columns
 ::: column
 -   Careful to only predict values within the range of $x$ values in the sample.
 
@@ -561,7 +537,7 @@ p2 <- ggplot(dat1, aes(x, y)) + geom_point() +
 plot_grid(p1, p2, ncol = 2)
 ```
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -705,14 +681,11 @@ predict(mod, newdata = new_candy)
 
 ### Turns Out Reese's Miniatures Are Under-Priced...
 
-
-::::: columns
+:::::: columns
 ::: {.column .center width="15%"}
-
 :::
 
 ::: {.column .center width="70%"}
-
 ```{r echo = FALSE}
 #|out-width: "50%"
 
@@ -726,26 +699,20 @@ ggplot(data = candy,
                   force = 2, show.legend  = FALSE,
                   box.padding = 1)
 ```
-
 :::
 
 ::: {.column .center width="15%"}
-
 :::
-
-:::::
+::::::
 
 ------------------------------------------------------------------------
 
 ## Note about Office Hours
 
-::: {.nonincremental}
-
-* Professor McConville: Tuesdays 2:30 - 4pm and Wednesdays 2 - 3pm in Taylor 212.
-* Rebecca: Mondays and Wednesdays 4:30 - 6pm in the classroom (Taylor 203).
-* Going to add one more hour. Vote on the time: [burl.live/ohs](https://burl.live/ohs)
-
+::: nonincremental
+-   Professor McConville: Tuesdays 2:30 - 4pm and Wednesdays 2 - 3pm in Taylor 212.
+-   Rebecca: Mondays and Wednesdays 4:30 - 6pm in the classroom (Taylor 203).
+-   Going to add one more hour. Vote on the time: [burl.live/ohs](https://burl.live/ohs)
 :::
 
 ![](img/qr-ohs.svg)
-

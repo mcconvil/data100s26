@@ -58,15 +58,15 @@ theme_update(text = element_text(size = 12))
 ## Announcements
 
 -   Mid-term Exam 1
-    -   Wed: In-class component.  Bring a laptop.
-    -   Fri: Oral component (over Zoom).  Make sure to sign up!
+    -   Wed: In-class component. Bring a laptop.
+    -   Fri: Oral component (over Zoom). Make sure to sign up!
 
 ### Goals for Today
 
 -   Continue data collection.
 -   Start modeling.
 
-------------
+------------------------------------------------------------------------
 
 ## Recap: Random Sampling
 
@@ -87,7 +87,6 @@ Use random sampling (a random mechanism for selecting cases from the population)
 ::: fragment
 Why aren't all samples generated using simple random sampling?
 :::
-
 
 ------------------------------------------------------------------------
 
@@ -208,8 +207,6 @@ ggplot(data = NHANES, mapping = aes(x = Age, y = Height)) +
 ::: fragment
 > "Protects the privacy and confidentiality of research subjects and data concerning them, whether obtained from the subjects directly, other persons, or existing records."
 :::
-
-
 
 # Back to Data Collection
 
@@ -502,9 +499,6 @@ knitr::include_graphics("img/week4.005.jpeg")
 
 → Are insects causing the increased mortality rates for pinyon-juniper woodlands?
 
-
-
-
 ------------------------------------------------------------------------
 
 ## Form of the Model
@@ -571,7 +565,7 @@ glimpse(candy)
 
 ### Example: [The Ultimate Halloween Candy Power Ranking](https://fivethirtyeight.com/videos/the-ultimate-halloween-candy-power-ranking/)
 
-::: columns
+::::: columns
 ::: column
 -   Linear trend?
 
@@ -588,13 +582,13 @@ ggplot(data = candy,
              color = "chocolate4")
 ```
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
 ### Example: [The Ultimate Halloween Candy Power Ranking](https://fivethirtyeight.com/videos/the-ultimate-halloween-candy-power-ranking/)
 
-::: columns
+::::: columns
 ::: column
 -   A simple linear regression model would be suitable for these data.
 
@@ -613,7 +607,7 @@ ggplot(data = candy,
               color = "deeppink2")
 ```
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -641,28 +635,19 @@ p4 <- ggplot(dat, aes(x, y4)) + geom_point()
 
 ```
 
-::: columns
-
+::::: columns
 ::: {.column .center}
-
 ```{r}
 #| echo: false
 plot_grid(p1, p2, p3, p4, ncol=2, labels = c("A", "B", "C", "D"))
 
 ```
-
 :::
 
 ::: column
-
 -   Need a summary statistics that quantifies the strength and relationship of the linear trend!
 :::
-:::
-
-
-
-
-
+:::::
 
 ------------------------------------------------------------------------
 
@@ -687,7 +672,7 @@ candy %>%
 
 ------------------------------------------------------------------------
 
-::: columns
+:::::: columns
 ::: {.column .center}
 ```{r, echo = FALSE, fig.height=5, fig.width=7.5, fig.align='center'}
 
@@ -696,7 +681,7 @@ plot_grid(p1, p2, p3, p4, ncol=2, labels = c("A", "B", "C", "D"))
 ```
 :::
 
-::: column
+:::: column
 Any guesses on the correlations for A, B, C, or D?
 
 ::: fragment
@@ -707,8 +692,8 @@ dat %>%
             C = cor(x, y3), D = cor(x, y4))
 ```
 :::
-:::
-:::
+::::
+::::::
 
 ------------------------------------------------------------------------
 
@@ -720,7 +705,7 @@ dat2 <- read_csv("data/datasaurus.csv") %>%
   filter(dataset != "slant_up")
 ```
 
-::: columns
+::::: columns
 ::: column
 ```{r}
 # Correlation coefficients
@@ -733,15 +718,14 @@ dat2 %>%
 ::: column
 -   Conclude that $x$ and $y$ have the same relationship across these different datasets because the correlation is the same?
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
 #### Always graph the data when exploring relationships!
 
-::: columns
+::::: columns
 ::: {.column .center}
-
 ```{r}
 #| fig-width: 7
 #| fig-height: 3.5
@@ -750,23 +734,17 @@ ggplot(data = dat2, mapping = aes(x = x, y = y)) +
   geom_point() +
   facet_wrap(~ dataset, ncol = 4)
 ```
-
 :::
 
 ::: column
-
 The datasets may have the same value for the correlation coefficient, but they don't exhibit the same relationships!
-
-
 :::
-:::
+:::::
 
-
-
-----
+------------------------------------------------------------------------
 
 ## Reminders
 
 -   Mid-term Exam 1
-    -   Wed: In-class component.  Bring a laptop.
-    -   Fri: Oral component (over Zoom).  Make sure to sign up!
+    -   Wed: In-class component. Bring a laptop.
+    -   Fri: Oral component (over Zoom). Make sure to sign up!
