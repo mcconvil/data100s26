@@ -1,0 +1,336 @@
+---
+pagetitle: "More Regression"
+format: 
+  revealjs:
+    html-math-method: mathjax
+    chalkboard: true
+    incremental: true
+    theme: [default, custom.scss]
+ #   multiplex: true
+    height: 900
+    width: 1600
+    slide-number: c
+    auto-stretch: false
+    callout-appearance: simple
+    pdf-max-pages-per-slide: 1
+    menu: 
+      side: right
+      numbers: true
+    code-overflow: wrap
+execute:
+  echo: true
+  warning: false
+  message: false
+  fig-asp: 0.75
+  fig-width: 8
+#  fig-align: center
+  fig-dpi: 500
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+# Some global options still not available in quarto
+ knitr::opts_chunk$set(fig.align = 'center')
+library(knitr)
+library(tidyverse)
+theme_update(text = element_text(size = 16))
+```
+
+::: columns
+::: {.column .center width="45%"}
+![](img/DAW.png){width="90%"}
+:::
+
+::: {.column .center width="55%"}
+[More Regression]{.custom-title}
+
+<br> <br> <br>
+
+[Kelly McConville]{.custom-subtitle}
+
+[DATA 100 <br> Week 7 \| Spring 2026]{.custom-subtitle}
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Announcements
+
+-   Remember to come to office hours and post twice to Slack by Friday!
+
+### Goals for Today
+
+::: columns
+::: column
+-   Handling categorical, explanatory variables **with more than 2 categories**
+:::
+
+::: column
+-   Regression with polynomial explanatory variables
+:::
+:::
+
+------------------------------------------------------------------------
+
+### Linear Regression
+
+Model Form:
+
+$$ 
+\begin{align}
+y &= \beta_o + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p + \epsilon
+\end{align}
+$$
+
+Linear regression is a flexible class of models that allow for:
+
+::: nonincremental
+-   Both quantitative and categorical **explanatory** variables.
+
+-   **Multiple** explanatory variables.
+
+-   **Curved** relationships between the response variable and the explanatory variable.
+
+-   BUT the **response variable is quantitative**.
+:::
+
+------------------------------------------------------------------------
+
+### Example: Movies
+
+Let's model a movie's critic rating using the audience rating and the movie's genre.
+
+```{r}
+library(tidyverse)
+movies <- read_csv("https://www.lock5stat.com/datasets2e/HollywoodMovies.csv")
+
+# Restrict our attention to dramas, horrors, and actions
+movies2 <- movies %>%
+  filter(Genre %in% c("Drama", "Horror", "Action")) %>%
+  drop_na(Genre, AudienceScore, RottenTomatoes)
+glimpse(movies2)
+```
+
+**Response variable:**
+
+**Explanatory variables:**
+
+------------------------------------------------------------------------
+
+#### How should we encode a categorical variable with more than 2 categories?
+
+Let's start with what NOT to do.
+
+<br> <br>
+
+**Equal Slopes Model:**
+
+------------------------------------------------------------------------
+
+#### How should we encode a categorical variable with more than 2 categories?
+
+What we should do instead.
+
+<br> <br>
+
+**Equal Slopes Model:**
+
+------------------------------------------------------------------------
+
+#### How should we encode a categorical variable with more than 2 categories?
+
+<br> <br>
+
+**Different Slopes Model:**
+
+------------------------------------------------------------------------
+
+### Exploring the Data
+
+```{r}
+#| output-location: column
+
+ggplot(data = movies2,
+       mapping = aes(x = AudienceScore,
+                     y = RottenTomatoes,
+                     color = Genre)) +
+  geom_point() +
+  stat_smooth(method = lm, se = FALSE) +
+  geom_abline(slope = 1, intercept = 0) 
+```
+
+::: nonincremental
+-   Trends?
+
+-   Should we include interaction terms in the model?
+:::
+
+------------------------------------------------------------------------
+
+### Side-bar: Identify Outliers on a Graph
+
+```{r}
+outliers <- movies2 %>%
+  mutate(DiffScore = AudienceScore - RottenTomatoes) %>%
+  filter(DiffScore > 50 | DiffScore < -30) %>%
+  select(Movie, DiffScore, AudienceScore, RottenTomatoes, Genre)
+outliers
+```
+
+------------------------------------------------------------------------
+
+### Side-bar: Identify Outliers on a Graph
+
+```{r}
+#| output-location: column
+
+library(ggrepel)
+ggplot(data = movies2,
+       mapping = aes(x = AudienceScore,
+                     y = RottenTomatoes,
+                     color = Genre)) +
+  geom_point() +
+  stat_smooth(method = lm, se = FALSE) +
+  geom_abline(slope = 1, intercept = 0) +
+  geom_text_repel(data = outliers,
+                  mapping = aes(label =
+                                  Movie),
+                  force = 10,
+                  show.legend = FALSE,
+                  size = 6)
+```
+
+------------------------------------------------------------------------
+
+### Building the Model:
+
+Full model form:
+
+```{r}
+mod <- lm(RottenTomatoes ~ AudienceScore*Genre, data = movies2)
+
+library(moderndive)
+get_regression_table(mod) 
+```
+
+Estimated model for Dramas:
+
+------------------------------------------------------------------------
+
+### Let's Practice!
+
+Here's data from 1990 - 2021 on the first four picks in the NBA draft.  Let's explore how the relationship between time playing and points scored per game varies by a player's overall pick number.
+
+
+```{r}
+#| output-location: column
+nba_draft <- read_csv("https://data.scorenetwork.org/data/nba_draft.csv") %>%
+  filter(pick_overall <= 4) %>%
+  mutate(pick_overall = as.factor(pick_overall),
+         total_hours_played = total_mins_played/60)
+
+ggplot(data = nba_draft, mapping = aes(
+  x = total_hours_played, y = pts_per_game, color = pick_overall
+)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+
+
+------------------------------------------------------------------------
+
+```{r}
+mod1 <- lm(pts_per_game ~ total_hours_played + pick_overall, data = nba_draft)
+get_regression_table(mod1)
+```
+
+```{r}
+mod2 <- lm(pts_per_game ~ total_hours_played * pick_overall, data = nba_draft)
+get_regression_table(mod2)
+```
+
+------------------------------------------------------------------------
+
+## Practice
+
+In Model 1, interpret $\hat{\beta}_1$.
+
+<br> <br>
+
+In Model 1, interpret $\hat{\beta}_2$.
+
+
+<br> <br>
+
+
+For Model 2, determine the slope for the 1st picks, the slope for the 2nd picks, the slope for the 3rd picks, and the slope for the 4th picks.  
+
+<br> <br>
+
+Based on Model 2, which pick seems to make the best use of their play time (in terms of scoring points)?
+
+------------------------------------------------------------------------
+
+### Coming Back to Our Exploratory Data Analysis of Movies...
+
+```{r}
+#| output-location: column
+
+library(ggrepel)
+ggplot(data = movies2,
+       mapping = aes(x = AudienceScore,
+                     y = RottenTomatoes,
+                     color = Genre)) +
+  geom_point()
+```
+
+Evidence of **curvature**?
+
+------------------------------------------------------------------------
+
+## Adding a Curve to your Scatterplot
+
+```{r}
+#| output-location: column
+ggplot(data = movies2,
+       mapping = aes(x = AudienceScore,
+                     y = RottenTomatoes,
+                     color = Genre)) +
+  geom_point() +
+  stat_smooth(method = lm, se = FALSE, 
+        formula = y ~ poly(x, degree = 2))
+```
+
+------------------------------------------------------------------------
+
+## Fitting the New Model {.smaller}
+
+```{r}
+
+mod2 <- lm(RottenTomatoes ~ poly(AudienceScore, degree = 2, raw = TRUE)*Genre, 
+           data = movies2)
+get_regression_table(mod2, print = TRUE) 
+```
+
+------------------------------------------------------------------------
+
+### Linear Regression & Curved Relationships
+
+**Form of the Model:**
+
+$$ 
+\begin{align}
+y &= \beta_o + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p + \epsilon
+\end{align}
+$$
+
+But why is it called **linear** regression if the model also handles for curved relationship??
+
+------------------------------------------------------------------------
+
+## Reminders:
+
+-   Remember to come to office hours and post twice to Slack by Friday!

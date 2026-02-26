@@ -239,6 +239,7 @@ dat %>%
   summarize(A = cor(x, y1), B = cor(x, y2),
             C = cor(x, y3), D = cor(x, y4))
 ```
+
 :::
 ::::
 ::::::
