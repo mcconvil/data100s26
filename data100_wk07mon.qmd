@@ -38,7 +38,7 @@ library(tidyverse)
 theme_update(text = element_text(size = 16))
 ```
 
-::: columns
+::::: columns
 ::: {.column .center width="45%"}
 ![](img/DAW.png){width="90%"}
 :::
@@ -52,7 +52,7 @@ theme_update(text = element_text(size = 16))
 
 [DATA 100 <br> Week 7 \| Spring 2026]{.custom-subtitle}
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -62,7 +62,7 @@ theme_update(text = element_text(size = 16))
 
 ### Goals for Today
 
-::: columns
+::::: columns
 ::: column
 -   Handling categorical, explanatory variables **with more than 2 categories**
 :::
@@ -70,7 +70,7 @@ theme_update(text = element_text(size = 16))
 ::: column
 -   Regression with polynomial explanatory variables
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -221,8 +221,7 @@ Estimated model for Dramas:
 
 ### Let's Practice!
 
-Here's data from 1990 - 2021 on the first four picks in the NBA draft.  Let's explore how the relationship between time playing and points scored per game varies by a player's overall pick number.
-
+Here's data from 1990 - 2021 on the first four picks in the NBA draft. Let's explore how the relationship between time playing and points scored per game varies by a player's overall pick number.
 
 ```{r}
 #| output-location: column
@@ -237,8 +236,6 @@ ggplot(data = nba_draft, mapping = aes(
   geom_point() +
   geom_smooth(method = "lm", se = FALSE)
 ```
-
-
 
 ------------------------------------------------------------------------
 
@@ -262,11 +259,9 @@ In Model 1, interpret $\hat{\beta}_1$.
 
 In Model 1, interpret $\hat{\beta}_2$.
 
-
 <br> <br>
 
-
-For Model 2, determine the slope for the 1st picks, the slope for the 2nd picks, the slope for the 3rd picks, and the slope for the 4th picks.  
+For Model 2, determine the slope for the 1st picks, the slope for the 2nd picks, the slope for the 3rd picks, and the slope for the 4th picks.
 
 <br> <br>
 
