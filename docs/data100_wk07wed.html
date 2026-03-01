@@ -9,7 +9,7 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.25">
 
-  <title>DATA 100 – More Regression</title>
+  <title>DATA 100 – Modeling Guidance</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -200,7 +200,7 @@
 <div class="column center" style="width:45%;">
 <p><img data-src="img/DAW.png" style="width:90.0%"></p>
 </div><div class="column center" style="width:55%;">
-<p><span class="custom-title">More Regression</span></p>
+<p><span class="custom-title">Model Guidance</span></p>
 <p><br> <br> <br></p>
 <p><span class="custom-subtitle">Kelly McConville</span></p>
 <p><span class="custom-subtitle">DATA 100 <br> Week 7 | Spring 2026</span></p>
@@ -209,18 +209,38 @@
 <section id="announcements" class="slide level2">
 <h2>Announcements</h2>
 <ul>
-<li class="fragment">Remember to come to office hours and post twice to Slack by Friday!</li>
+<li class="fragment">Remember: Spring Break next week</li>
+<li class="fragment">Friday: Optional lab, no quiz. But will receive a problem set (due on the Thursday after break).</li>
 </ul>
 <h3 id="goals-for-today">Goals for Today</h3>
 <div class="columns">
 <div class="column">
 <ul>
-<li class="fragment">Handling categorical, explanatory variables <strong>with more than 2 categories</strong></li>
+<li class="fragment">Modeling guidance</li>
 </ul>
 </div><div class="column">
 <ul>
-<li class="fragment">Regression with polynomial explanatory variables</li>
+<li class="fragment">A bit of conceptual review</li>
 </ul>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="which-are-you">Which Are You?</h3>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p>Data Visualizer</p>
+<iframe src="https://giphy.com/embed/d31vTpVi1LAcDvdm" width="480" height="362" frameborder="0" class="giphy-embed" allowfullscreen="">
+</iframe>
+</div><div class="column" style="width:33%;">
+<p>Data Wrangler</p>
+<iframe src="https://giphy.com/embed/DbaUtl1DcLyrdwhzGJ" width="480" height="362" frameborder="0" class="giphy-embed" allowfullscreen="">
+</iframe>
+</div><div class="column" style="width:33%;">
+<p>Model Builder</p>
+<p><br></p>
+<iframe src="https://giphy.com/embed/xZsLh7B3KMMyUptD9D" width="480" height="270" frameborder="0" class="giphy-embed" allowfullscreen="">
+</iframe>
 </div></div>
 </section>
 <section class="slide level2">
@@ -242,17 +262,72 @@ y &amp;= \beta_o + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p + \epsilon
 </section>
 <section class="slide level2">
 
-<h3 id="example-movies">Example: Movies</h3>
-<p>Let’s model a movie’s critic rating using the audience rating and the movie’s genre.</p>
+<h3 id="model-building-guidance">Model Building Guidance</h3>
+<p>What degree of polynomial should I include in my model?</p>
+<div class="fragment">
+<div class="columns">
+<div class="column">
+<p><br></p>
+<p><strong>Guiding Principle</strong>: Capture the general trend, not the noise.</p>
+<p><span class="math display">\[
+\begin{align}
+y &amp;= f(x) + \epsilon \\
+y &amp;= \mbox{TREND} + \mbox{NOISE}
+\end{align}
+\]</span></p>
+</div><div class="column">
+<p>Returning the 2008 Election Example:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a></a>movies <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://www.lock5stat.com/datasets2e/HollywoodMovies.csv"</span>)</span>
-<span id="cb1-3"><a></a></span>
-<span id="cb1-4"><a></a><span class="co"># Restrict our attention to dramas, horrors, and actions</span></span>
-<span id="cb1-5"><a></a>movies2 <span class="ot">&lt;-</span> movies <span class="sc">%&gt;%</span></span>
-<span id="cb1-6"><a></a>  <span class="fu">filter</span>(Genre <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Drama"</span>, <span class="st">"Horror"</span>, <span class="st">"Action"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb1-7"><a></a>  <span class="fu">drop_na</span>(Genre, AudienceScore, RottenTomatoes)</span>
-<span id="cb1-8"><a></a><span class="fu">glimpse</span>(movies2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk07wed_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="model-building-guidance-1" class="slide level2 smaller">
+<h2>Model Building Guidance</h2>
+<p>Shouldn’t we always include the interaction term?</p>
+<div class="columns">
+<div class="column">
+<p><strong>Guiding Principle</strong>: Occam’s Razor for Modeling</p>
+<blockquote>
+<p>“All other things being equal, simpler models are to be preferred over complex ones.” – ModernDive</p>
+</blockquote>
+<p><strong>Guiding Principle</strong>: Consider your modeling goals.</p>
+<ul>
+<li>The equal slopes model allows us to control for the intensity of the light and then see the impact of being in the early or late timing groups on the number of flowers.</li>
+</ul>
+</div><div class="column">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk07wed_files/figure-revealjs/mf-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li class="fragment">Later in the course will learn statistical procedures for determining whether or not a particular term should be included in the model.</li>
+</ul>
+</div></div>
+</section>
+<section>
+<section id="what-if-i-want-to-include-more-than-2-explanatory-variables" class="title-slide slide level1 center">
+<h1>What if I want to include more than 2 explanatory variables??</h1>
+
+</section>
+<section class="slide level2">
+
+<h3 id="model-building-guidance-2">Model Building Guidance</h3>
+<p>We often have several potential explanatory variables. How do we determine which to include in the model and in what form?</p>
+<p><strong>Guiding Principle</strong>: Include explanatory variables that attempt to explain <strong>different</strong> aspects of the variation in the response variable.</p>
+<div class="cell" data-layout-align="center">
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 313
 Columns: 16
@@ -274,261 +349,41 @@ $ OpenProfit       &lt;dbl&gt; 58.57, 47.00, 38.23, 109.08, 35.07, 30.36, 44.62,
 $ Year             &lt;dbl&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007,…</code></pre>
 </div>
 </div>
-<p><strong>Response variable:</strong></p>
-<p><strong>Explanatory variables:</strong></p>
-</section>
-<section class="slide level2">
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(GGally)</span>
+<span id="cb2-2"><a></a>movies2 <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a></a>  <span class="fu">select</span>(RottenTomatoes, AudienceScore, OpeningWeekend, </span>
+<span id="cb2-4"><a></a>         DomesticGross, Genre) <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a></a>  <span class="fu">ggpairs</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 
-<h4 id="how-should-we-encode-a-categorical-variable-with-more-than-2-categories">How should we encode a categorical variable with more than 2 categories?</h4>
-<p>Let’s start with what NOT to do.</p>
-<p><br> <br></p>
-<p><strong>Equal Slopes Model:</strong></p>
 </section>
-<section class="slide level2">
-
-<h4 id="how-should-we-encode-a-categorical-variable-with-more-than-2-categories-1">How should we encode a categorical variable with more than 2 categories?</h4>
-<p>What we should do instead.</p>
-<p><br> <br></p>
-<p><strong>Equal Slopes Model:</strong></p>
-</section>
-<section class="slide level2">
-
-<h4 id="how-should-we-encode-a-categorical-variable-with-more-than-2-categories-2">How should we encode a categorical variable with more than 2 categories?</h4>
-<p><br> <br></p>
-<p><strong>Different Slopes Model:</strong></p>
-</section>
-<section class="slide level2">
-
-<h3 id="exploring-the-data">Exploring the Data</h3>
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> movies2,</span>
-<span id="cb3-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> AudienceScore,</span>
-<span id="cb3-3"><a></a>                     <span class="at">y =</span> RottenTomatoes,</span>
-<span id="cb3-4"><a></a>                     <span class="at">color =</span> Genre)) <span class="sc">+</span></span>
-<span id="cb3-5"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb3-6"><a></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb3-7"><a></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div><div class="column">
+<section id="" class="slide level2 output-location-slide"><div class="cell output-location-slide" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk07mon_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
+<p><img data-src="data100_wk07wed_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
 </div>
-</div></div>
-<ul>
-<li><p>Trends?</p></li>
-<li><p>Should we include interaction terms in the model?</p></li>
-</ul>
-</section>
-<section class="slide level2">
+</div></section><section class="slide level2">
 
-<h3 id="side-bar-identify-outliers-on-a-graph">Side-bar: Identify Outliers on a Graph</h3>
+<h3 id="model-building-guidance-3">Model Building Guidance</h3>
+<p>We often have several potential explanatory variables. How do we determine which to include in the model and in what form?</p>
+<p><strong>Guiding Principle</strong>: Include explanatory variables that attempt to explain <strong>different</strong> aspects of the variation in the response variable.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>outliers <span class="ot">&lt;-</span> movies2 <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a></a>  <span class="fu">mutate</span>(<span class="at">DiffScore =</span> AudienceScore <span class="sc">-</span> RottenTomatoes) <span class="sc">%&gt;%</span></span>
-<span id="cb4-3"><a></a>  <span class="fu">filter</span>(DiffScore <span class="sc">&gt;</span> <span class="dv">50</span> <span class="sc">|</span> DiffScore <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">30</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-4"><a></a>  <span class="fu">select</span>(Movie, DiffScore, AudienceScore, RottenTomatoes, Genre)</span>
-<span id="cb4-5"><a></a>outliers</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 9 × 5
-  Movie                             DiffScore AudienceScore RottenTomatoes Genre
-  &lt;chr&gt;                                 &lt;dbl&gt;         &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;
-1 Saw IV                                   52            70             18 Horr…
-2 Step Up 2: The Streets                   55            81             26 Drama
-3 Kit Kittredge: An American Girl         -52            26             78 Drama
-4 Stop-Loss                               -38            27             65 Drama
-5 Transformers: Revenge of the Fal…        56            76             20 Acti…
-6 The Twilight Saga: New Moon              51            78             27 Drama
-7 Drag Me to Hell                         -31            61             92 Horr…
-8 The Last Exorcism                       -41            32             73 Drama
-9 Haywire                                 -40            40             80 Acti…</code></pre>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="side-bar-identify-outliers-on-a-graph-1">Side-bar: Identify Outliers on a Graph</h3>
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb6-2"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> movies2,</span>
-<span id="cb6-3"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> AudienceScore,</span>
-<span id="cb6-4"><a></a>                     <span class="at">y =</span> RottenTomatoes,</span>
-<span id="cb6-5"><a></a>                     <span class="at">color =</span> Genre)) <span class="sc">+</span></span>
-<span id="cb6-6"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb6-7"><a></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb6-8"><a></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb6-9"><a></a>  <span class="fu">geom_text_repel</span>(<span class="at">data =</span> outliers,</span>
-<span id="cb6-10"><a></a>                  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">label =</span></span>
-<span id="cb6-11"><a></a>                                  Movie),</span>
-<span id="cb6-12"><a></a>                  <span class="at">force =</span> <span class="dv">10</span>,</span>
-<span id="cb6-13"><a></a>                  <span class="at">show.legend =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb6-14"><a></a>                  <span class="at">size =</span> <span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="data100_wk07mon_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
-</figure>
-</div>
-</div>
-</div></div>
-</section>
-<section class="slide level2">
-
-<h3 id="building-the-model">Building the Model:</h3>
-<p>Full model form:</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(RottenTomatoes <span class="sc">~</span> AudienceScore<span class="sc">*</span>Genre, <span class="at">data =</span> movies2)</span>
-<span id="cb7-2"><a></a></span>
-<span id="cb7-3"><a></a><span class="fu">library</span>(moderndive)</span>
-<span id="cb7-4"><a></a><span class="fu">get_regression_table</span>(mod) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 7
-  term                    estimate std_error statistic p_value lower_ci upper_ci
-  &lt;chr&gt;                      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-1 intercept                -15.0       5.27      -2.85   0.005  -25.4     -4.67 
-2 AudienceScore              1.01      0.085     11.8    0        0.84     1.18 
-3 Genre: Drama              22.8       8.94       2.55   0.011    5.23    40.4  
-4 Genre: Horror            -15.2      11.0       -1.39   0.165  -36.8      6.32 
-5 AudienceScore:GenreDra…   -0.253     0.136     -1.86   0.065   -0.522    0.015
-6 AudienceScore:GenreHor…    0.365     0.206      1.77   0.078   -0.04     0.771</code></pre>
-</div>
-</div>
-<p>Estimated model for Dramas:</p>
-</section>
-<section class="slide level2">
-
-<h3 id="lets-practice">Let’s Practice!</h3>
-<p>Here’s data from 1990 - 2021 on the first four picks in the NBA draft. Let’s explore how the relationship between time playing and points scored per game varies by a player’s overall pick number.</p>
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>nba_draft <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://data.scorenetwork.org/data/nba_draft.csv"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a></a>  <span class="fu">filter</span>(pick_overall <span class="sc">&lt;=</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-3"><a></a>  <span class="fu">mutate</span>(<span class="at">pick_overall =</span> <span class="fu">as.factor</span>(pick_overall),</span>
-<span id="cb9-4"><a></a>         <span class="at">total_hours_played =</span> total_mins_played<span class="sc">/</span><span class="dv">60</span>)</span>
-<span id="cb9-5"><a></a></span>
-<span id="cb9-6"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> nba_draft, <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb9-7"><a></a>  <span class="at">x =</span> total_hours_played, <span class="at">y =</span> pts_per_game, <span class="at">color =</span> pick_overall</span>
-<span id="cb9-8"><a></a>)) <span class="sc">+</span></span>
-<span id="cb9-9"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb9-10"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="data100_wk07mon_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
-</figure>
-</div>
-</div>
-</div></div>
-</section>
-<section class="slide level2">
-
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(pts_per_game <span class="sc">~</span> total_hours_played <span class="sc">+</span> pick_overall, <span class="at">data =</span> nba_draft)</span>
-<span id="cb10-2"><a></a><span class="fu">get_regression_table</span>(mod1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 7
-  term               estimate std_error statistic p_value lower_ci upper_ci
-  &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-1 intercept            14.1       1.09      12.9    0       11.9     16.2  
-2 total_hours_played    0.009     0.002      4.30   0        0.005    0.013
-3 pick_overall: 2      -3.68      1.18      -3.11   0.002   -6.02    -1.34 
-4 pick_overall: 3      -1.27      1.18      -1.08   0.285   -3.61     1.07 
-5 pick_overall: 4      -3.81      1.18      -3.23   0.002   -6.15    -1.47 </code></pre>
-</div>
-</div>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(pts_per_game <span class="sc">~</span> total_hours_played <span class="sc">*</span> pick_overall, <span class="at">data =</span> nba_draft)</span>
-<span id="cb12-2"><a></a><span class="fu">get_regression_table</span>(mod2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 8 × 7
-  term                    estimate std_error statistic p_value lower_ci upper_ci
-  &lt;chr&gt;                      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-1 intercept                 13.0       1.55      8.40    0        9.96    16.1  
-2 total_hours_played         0.012     0.004     3.11    0.002    0.004    0.019
-3 pick_overall: 2           -1.84      2.13     -0.863   0.39    -6.06     2.38 
-4 pick_overall: 3            0.87      2.31      0.377   0.707   -3.70     5.44 
-5 pick_overall: 4           -3.48      2.23     -1.56    0.121   -7.90     0.932
-6 total_hours_played:pic…   -0.006     0.005    -1.03    0.303   -0.016    0.005
-7 total_hours_played:pic…   -0.006     0.006    -1.08    0.283   -0.018    0.005
-8 total_hours_played:pic…   -0.001     0.006    -0.135   0.893   -0.012    0.011</code></pre>
-</div>
-</div>
-</section>
-<section id="practice" class="slide level2">
-<h2>Practice</h2>
-<p>In Model 1, interpret <span class="math inline">\(\hat{\beta}_1\)</span>.</p>
-<p><br> <br></p>
-<p>In Model 1, interpret <span class="math inline">\(\hat{\beta}_2\)</span>.</p>
-<p><br> <br></p>
-<p>For Model 2, determine the slope for the 1st picks, the slope for the 2nd picks, the slope for the 3rd picks, and the slope for the 4th picks.</p>
-<p><br> <br></p>
-<p>Based on Model 2, which pick seems to make the best use of their play time (in terms of scoring points)?</p>
-</section>
-<section class="slide level2">
-
-<h3 id="coming-back-to-our-exploratory-data-analysis-of-movies">Coming Back to Our Exploratory Data Analysis of Movies…</h3>
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb14-2"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> movies2,</span>
-<span id="cb14-3"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> AudienceScore,</span>
-<span id="cb14-4"><a></a>                     <span class="at">y =</span> RottenTomatoes,</span>
-<span id="cb14-5"><a></a>                     <span class="at">color =</span> Genre)) <span class="sc">+</span></span>
-<span id="cb14-6"><a></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="data100_wk07mon_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
-</figure>
-</div>
-</div>
-</div></div>
-<p>Evidence of <strong>curvature</strong>?</p>
-</section>
-<section id="adding-a-curve-to-your-scatterplot" class="slide level2">
-<h2>Adding a Curve to your Scatterplot</h2>
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> movies2,</span>
-<span id="cb15-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> AudienceScore,</span>
-<span id="cb15-3"><a></a>                     <span class="at">y =</span> RottenTomatoes,</span>
-<span id="cb15-4"><a></a>                     <span class="at">color =</span> Genre)) <span class="sc">+</span></span>
-<span id="cb15-5"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb15-6"><a></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb15-7"><a></a>        <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="at">degree =</span> <span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="data100_wk07mon_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
-</figure>
-</div>
-</div>
-</div></div>
-</section>
-<section id="fitting-the-new-model" class="slide level2 smaller">
-<h2>Fitting the New Model</h2>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(RottenTomatoes <span class="sc">~</span> <span class="fu">poly</span>(AudienceScore, <span class="at">degree =</span> <span class="dv">2</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>)<span class="sc">*</span>Genre, </span>
-<span id="cb16-2"><a></a>           <span class="at">data =</span> movies2)</span>
-<span id="cb16-3"><a></a><span class="fu">get_regression_table</span>(mod2, <span class="at">print =</span> <span class="cn">TRUE</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>mod_movies <span class="ot">&lt;-</span> <span class="fu">lm</span>(RottenTomatoes <span class="sc">~</span> AudienceScore <span class="sc">+</span> Genre <span class="sc">+</span> DomesticGross, <span class="at">data =</span> movies2)</span>
+<span id="cb3-2"><a></a><span class="fu">get_regression_table</span>(mod_movies, <span class="at">print =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top">
 <colgroup>
-<col style="width: 50%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 7%">
-<col style="width: 8%">
-<col style="width: 8%">
+<col style="width: 20%">
+<col style="width: 13%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 11%">
+<col style="width: 13%">
+<col style="width: 13%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -544,84 +399,48 @@ $ Year             &lt;dbl&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">intercept</td>
-<td style="text-align: right;">9.922</td>
-<td style="text-align: right;">14.851</td>
-<td style="text-align: right;">0.668</td>
-<td style="text-align: right;">0.505</td>
-<td style="text-align: right;">-19.301</td>
-<td style="text-align: right;">39.145</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">poly(AudienceScore, degree = 2, raw = TRUE)1</td>
-<td style="text-align: right;">0.098</td>
-<td style="text-align: right;">0.515</td>
-<td style="text-align: right;">0.191</td>
-<td style="text-align: right;">0.849</td>
-<td style="text-align: right;">-0.916</td>
-<td style="text-align: right;">1.113</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">poly(AudienceScore, degree = 2, raw = TRUE)2</td>
-<td style="text-align: right;">0.008</td>
-<td style="text-align: right;">0.004</td>
-<td style="text-align: right;">1.788</td>
-<td style="text-align: right;">0.075</td>
-<td style="text-align: right;">-0.001</td>
-<td style="text-align: right;">0.016</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Genre: Drama</td>
-<td style="text-align: right;">88.923</td>
-<td style="text-align: right;">24.538</td>
-<td style="text-align: right;">3.624</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">40.638</td>
-<td style="text-align: right;">137.208</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Genre: Horror</td>
-<td style="text-align: right;">-23.767</td>
-<td style="text-align: right;">31.054</td>
-<td style="text-align: right;">-0.765</td>
-<td style="text-align: right;">0.445</td>
-<td style="text-align: right;">-84.876</td>
-<td style="text-align: right;">37.342</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">poly(AudienceScore, degree = 2, raw = TRUE)1:GenreDrama</td>
-<td style="text-align: right;">-2.608</td>
-<td style="text-align: right;">0.840</td>
-<td style="text-align: right;">-3.107</td>
+<td style="text-align: right;">-12.472</td>
+<td style="text-align: right;">4.083</td>
+<td style="text-align: right;">-3.055</td>
 <td style="text-align: right;">0.002</td>
-<td style="text-align: right;">-4.260</td>
-<td style="text-align: right;">-0.956</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">poly(AudienceScore, degree = 2, raw = TRUE)2:GenreDrama</td>
-<td style="text-align: right;">0.019</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">2.785</td>
-<td style="text-align: right;">0.006</td>
-<td style="text-align: right;">0.006</td>
-<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">-20.506</td>
+<td style="text-align: right;">-4.439</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">poly(AudienceScore, degree = 2, raw = TRUE)1:GenreHorror</td>
-<td style="text-align: right;">0.574</td>
-<td style="text-align: right;">1.223</td>
-<td style="text-align: right;">0.469</td>
-<td style="text-align: right;">0.639</td>
-<td style="text-align: right;">-1.833</td>
-<td style="text-align: right;">2.981</td>
+<td style="text-align: left;">AudienceScore</td>
+<td style="text-align: right;">0.975</td>
+<td style="text-align: right;">0.072</td>
+<td style="text-align: right;">13.590</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.834</td>
+<td style="text-align: right;">1.117</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">poly(AudienceScore, degree = 2, raw = TRUE)2:GenreHorror</td>
-<td style="text-align: right;">-0.001</td>
-<td style="text-align: right;">0.012</td>
-<td style="text-align: right;">-0.061</td>
-<td style="text-align: right;">0.951</td>
-<td style="text-align: right;">-0.024</td>
-<td style="text-align: right;">0.022</td>
+<td style="text-align: left;">Genre: Drama</td>
+<td style="text-align: right;">6.117</td>
+<td style="text-align: right;">2.644</td>
+<td style="text-align: right;">2.314</td>
+<td style="text-align: right;">0.021</td>
+<td style="text-align: right;">0.916</td>
+<td style="text-align: right;">11.319</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Genre: Horror</td>
+<td style="text-align: right;">2.058</td>
+<td style="text-align: right;">3.141</td>
+<td style="text-align: right;">0.655</td>
+<td style="text-align: right;">0.513</td>
+<td style="text-align: right;">-4.121</td>
+<td style="text-align: right;">8.238</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DomesticGross</td>
+<td style="text-align: right;">-0.006</td>
+<td style="text-align: right;">0.015</td>
+<td style="text-align: right;">-0.431</td>
+<td style="text-align: right;">0.667</td>
+<td style="text-align: right;">-0.035</td>
+<td style="text-align: right;">0.023</td>
 </tr>
 </tbody>
 </table>
@@ -630,23 +449,356 @@ $ Year             &lt;dbl&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2
 </section>
 <section class="slide level2">
 
-<h3 id="linear-regression-curved-relationships">Linear Regression &amp; Curved Relationships</h3>
-<p><strong>Form of the Model:</strong></p>
-<p><span class="math display">\[
-\begin{align}
-y &amp;= \beta_o + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p + \epsilon
-\end{align}
-\]</span></p>
-<p>But why is it called <strong>linear</strong> regression if the model also handles for curved relationship??</p>
+<h3 id="model-building-guidance-4">Model Building Guidance</h3>
+<p>Suppose I built 2 different models. <strong>Which is better?</strong></p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(RottenTomatoes <span class="sc">~</span> AudienceScore, <span class="at">data =</span> movies2)</span>
+<span id="cb4-2"><a></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(RottenTomatoes <span class="sc">~</span> AudienceScore <span class="sc">+</span> Genre <span class="sc">+</span> DomesticGross, <span class="at">data =</span> movies2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li class="fragment"><p>Big question! Take a modeling course to learn systematic model selection techniques.</p></li>
+<li class="fragment"><p>We will explore one approach. (But there are many possible approaches!)</p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="comparing-models">Comparing Models</h3>
+<p>Suppose I built 2 different models. <strong>Which is better?</strong></p>
+<ul>
+<li class="fragment">Pick the best model based on some measure of quality.</li>
+</ul>
+<div class="fragment">
+<p><strong>Measure of quality</strong>: <span class="math inline">\(R^2\)</span> (Coefficient of Determination)</p>
+<p><span class="math display">\[\begin{align*}
+R^2 &amp;= \mbox{Percent of total variation in y explained by the model}\\
+&amp;= 1- \frac{\sum (y - \hat{y})^2}{\sum (y - \bar{y})^2}
+\end{align*}\]</span></p>
+<p><strong>Strategy</strong>: Compute the <span class="math inline">\(R^2\)</span> value for each model and pick the one with the highest <span class="math inline">\(R^2\)</span>.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="comparing-models-with-r2">Comparing Models with <span class="math inline">\(R^2\)</span></h3>
+<p><strong>Strategy</strong>: Compute the <span class="math inline">\(R^2\)</span> value for each model and pick the one with the highest <span class="math inline">\(R^2\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(RottenTomatoes <span class="sc">~</span> AudienceScore <span class="sc">+</span> Genre, <span class="at">data =</span> movies2)</span>
+<span id="cb5-2"><a></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(RottenTomatoes <span class="sc">~</span> AudienceScore <span class="sc">+</span> Genre <span class="sc">+</span> DomesticGross, <span class="at">data =</span> movies2)</span>
+<span id="cb5-3"><a></a></span>
+<span id="cb5-4"><a></a><span class="fu">get_regression_summaries</span>(mod1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 9
+  r_squared adj_r_squared   mse  rmse sigma statistic p_value    df  nobs
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.469         0.464  353.  18.8  18.9      90.9       0     3   313</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">get_regression_summaries</span>(mod2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 9
+  r_squared adj_r_squared   mse  rmse sigma statistic p_value    df  nobs
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.469         0.462  353.  18.8  18.9      68.0       0     4   313</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p><strong>Strategy</strong>: Compute the <span class="math inline">\(R^2\)</span> value for each model and pick the one with the highest <span class="math inline">\(R^2\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">get_regression_summaries</span>(mod1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 9
+  r_squared adj_r_squared   mse  rmse sigma statistic p_value    df  nobs
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.469         0.464  353.  18.8  18.9      90.9       0     3   313</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">get_regression_summaries</span>(mod2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 9
+  r_squared adj_r_squared   mse  rmse sigma statistic p_value    df  nobs
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.469         0.462  353.  18.8  18.9      68.0       0     4   313</code></pre>
+</div>
+</div>
+<div class="fragment">
+<p><strong>Problem:</strong> As we add predictors, the <span class="math inline">\(R^2\)</span> value will only increase.</p>
+<p><strong>Guiding Principle</strong>: Occam’s Razor for Modeling</p>
+<blockquote>
+<p>“All other things being equal, simpler models are to be preferred over complex ones.” – ModernDive</p>
+</blockquote>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="comparing-models-with-the-adjusted-r2">Comparing Models with the Adjusted <span class="math inline">\(R^2\)</span></h3>
+<p><strong>New Measure of quality</strong>: Adjusted <span class="math inline">\(R^2\)</span> (Coefficient of Determination)</p>
+<p><span class="math display">\[\begin{align*}
+\mbox{adj} R^2 &amp;= 1- \frac{\sum (y - \hat{y})^2}{\sum (y - \bar{y})^2} \left(\frac{n - 1}{n - p - 1} \right)
+\end{align*}\]</span></p>
+<p>where <span class="math inline">\(p\)</span> is the number of explanatory variables in the model.</p>
+<ul>
+<li class="fragment"><p>Now we will penalize larger models.</p></li>
+<li class="fragment"><p><strong>Strategy</strong>: Compute the adjusted <span class="math inline">\(R^2\)</span> value for each model and pick the one with the highest adjusted <span class="math inline">\(R^2\)</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p><strong>Strategy</strong>: Compute the adjusted <span class="math inline">\(R^2\)</span> value for each model and pick the one with the highest adjusted <span class="math inline">\(R^2\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">get_regression_summaries</span>(mod1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 9
+  r_squared adj_r_squared   mse  rmse sigma statistic p_value    df  nobs
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.469         0.464  353.  18.8  18.9      90.9       0     3   313</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">get_regression_summaries</span>(mod2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 9
+  r_squared adj_r_squared   mse  rmse sigma statistic p_value    df  nobs
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.469         0.462  353.  18.8  18.9      68.0       0     4   313</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="model-building-guidance-5">Model Building Guidance</h3>
+<p>We often have several potential explanatory variables. How do we determine which to include in the model and in what form?</p>
+<p><strong>Guiding Principle</strong>: Use your modeling motivation to determine how much you weigh <strong>interpretability</strong> versus <strong>prediction accuracy</strong> when choosing the model.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk07wed_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center" width="6500"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="model-building">Model Building</h3>
+<ul>
+<li class="fragment"><p>We will come back to methods for model selection.</p></li>
+<li class="fragment"><p>Key ideas:</p>
+<ul>
+<li class="fragment">Determining the <strong>response</strong> variable and the potential <strong>explanatory</strong> variable(s)</li>
+<li class="fragment">Writing out the <strong>model form</strong> and understanding what the terms represent <strong>in context</strong></li>
+<li class="fragment"><strong>Building</strong> and <strong>visualizing</strong> linear regression models in <code>R</code></li>
+<li class="fragment"><strong>Comparing</strong> different potential models</li>
+</ul></li>
+<li class="fragment"><p>After break: Look at models before linear regression!</p></li>
+</ul>
+</section></section>
+<section id="shift-gears-conceptual-review" class="title-slide slide level1 center">
+<h1>Shift Gears: Conceptual Review</h1>
+
+</section>
+
+<section id="one-can-conclude-a-causal-relationship-between-two-variables-if-the-study-contains-random-sampling." class="title-slide slide level1 center">
+<h1>One can conclude a causal relationship between two variables if the study contains random sampling.</h1>
+<p><span class="custom-subtitle">TRUE or FALSE</span></p>
+<p><span class="custom-subtitle">(1) or (2)</span></p>
+</section>
+
+<section id="the-larger-the-value-of-correlation-coefficient-the-stronger-the-linear-relationship-between-two-variables." class="title-slide slide level1 center">
+<h1>The larger the value of correlation coefficient, the stronger the linear relationship between two variables.</h1>
+<p><span class="custom-subtitle">TRUE or FALSE</span></p>
+<p><span class="custom-subtitle">(1) or (2)</span></p>
+</section>
+
+<section id="the-iqr-is-a-measure-of-the-variability-of-the-middle-50-of-the-data." class="title-slide slide level1 center">
+<h1>The IQR is a measure of the variability of the middle 50% of the data.</h1>
+<p><span class="custom-subtitle">TRUE or FALSE</span></p>
+<p><span class="custom-subtitle">(1) or (2)</span></p>
+</section>
+
+<section id="a-residual-can-only-be-non-negative." class="title-slide slide level1 center">
+<h1>A residual can only be non-negative.</h1>
+<p><span class="custom-subtitle">TRUE or FALSE</span></p>
+<p><span class="custom-subtitle">(1) or (2)</span></p>
+</section>
+
+<section id="a-non-random-sample-of-10000-individuals-is-better-than-a-random-sample-of-1000." class="title-slide slide level1 center">
+<h1>A non-random sample of 10,000 individuals is better than a random sample of 1000.</h1>
+<p><span class="custom-subtitle">TRUE or FALSE</span></p>
+<p><span class="custom-subtitle">(1) or (2)</span></p>
+</section>
+
+<section id="bar-graphs-and-histograms-are-the-same-graph-since-they-both-contain-bars." class="title-slide slide level1 center">
+<h1>Bar graphs and histograms are the same graph since they both contain bars.</h1>
+<p><span class="custom-subtitle">TRUE or FALSE</span></p>
+<p><span class="custom-subtitle">(1) or (2)</span></p>
+</section>
+
+<section>
+<section id="when-using-a-linear-regression-model-to-make-predictions-you-can-only-make-predictions-at-the-observed-values-for-your-explanatory-variables." class="title-slide slide level1 center">
+<h1>When using a linear regression model to make predictions, you can only make predictions at the observed values for your explanatory variables.</h1>
+<p><span class="custom-subtitle">TRUE or FALSE</span></p>
+<p><span class="custom-subtitle">(1) or (2)</span></p>
+</section>
+<section id="name-those-functions" class="slide level2">
+<h2>Name Those Functions</h2>
+<div class="columns">
+<div class="column">
+<p>Unwrangled Data</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  species island bill_length_mm sex   
+  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; 
+1 Gentoo  Biscoe           45.2 female
+2 Gentoo  Biscoe           50.5 male  
+3 Adelie  Biscoe           38.8 male  
+4 Gentoo  Biscoe           50.5 male  
+5 Gentoo  Biscoe           45.3 female</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>full</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  species island bill_length_mm sex   
+  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; 
+1 Gentoo  Biscoe           45.2 female
+2 Gentoo  Biscoe           50.5 male  
+3 Adelie  Biscoe           38.8 male  
+4 Gentoo  Biscoe           50.5 male  
+5 Adelie  Dream            37.5 &lt;NA&gt;  
+6 Gentoo  Biscoe           45.3 female</code></pre>
+</div>
+</div>
+</div><div class="column">
+<p>Wrangled Data</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>wrangled</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  species island bill_length_mm sex   
+  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; 
+1 Gentoo  Biscoe           45.2 female
+2 Gentoo  Biscoe           50.5 male  
+3 Adelie  Biscoe           38.8 male  
+4 Gentoo  Biscoe           50.5 male  
+5 Gentoo  Biscoe           45.3 female</code></pre>
+</div>
+</div>
+</div></div>
+<p>What <code>dplyr</code> function(s) did I use to wrangle these data?</p>
+</section>
+<section id="name-those-functions-1" class="slide level2">
+<h2>Name Those Functions</h2>
+<div class="columns">
+<div class="column">
+<p>Unwrangled Data</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>full</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  species island bill_length_mm sex   
+  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; 
+1 Gentoo  Biscoe           45.2 female
+2 Gentoo  Biscoe           50.5 male  
+3 Adelie  Biscoe           38.8 male  
+4 Gentoo  Biscoe           50.5 male  
+5 Adelie  Dream            37.5 &lt;NA&gt;  
+6 Gentoo  Biscoe           45.3 female</code></pre>
+</div>
+</div>
+</div><div class="column">
+<p>Wrangled Data</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>wrangled</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+# Groups:   island [2]
+  species island sex        n     p
+  &lt;fct&gt;   &lt;fct&gt;  &lt;fct&gt;  &lt;int&gt; &lt;dbl&gt;
+1 Adelie  Biscoe male       1   0.2
+2 Adelie  Dream  &lt;NA&gt;       1   1  
+3 Gentoo  Biscoe female     2   0.4
+4 Gentoo  Biscoe male       2   0.4</code></pre>
+</div>
+</div>
+</div></div>
+<p>What <code>dplyr</code> function(s) did I use to wrangle these data?</p>
+</section>
+<section id="name-those-functions-2" class="slide level2">
+<h2>Name Those Functions</h2>
+<div class="columns">
+<div class="column">
+<p>Unwrangled Data</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>full</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  species island bill_length_mm sex   
+  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; 
+1 Gentoo  Biscoe           45.2 female
+2 Gentoo  Biscoe           50.5 male  
+3 Adelie  Biscoe           38.8 male  
+4 Gentoo  Biscoe           50.5 male  
+5 Adelie  Dream            37.5 &lt;NA&gt;  
+6 Gentoo  Biscoe           45.3 female</code></pre>
+</div>
+</div>
+</div><div class="column">
+<p>Wrangled Data</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>wrangled</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  species island
+  &lt;fct&gt;   &lt;fct&gt; 
+1 Adelie  Biscoe
+2 Adelie  Dream </code></pre>
+</div>
+</div>
+</div></div>
+<p>What <code>dplyr</code> function(s) did I use to wrangle these data?</p>
+</section>
+<section id="name-those-functions-3" class="slide level2">
+<h2>Name Those Functions</h2>
+<div class="columns">
+<div class="column">
+<p>Unwrangled Data</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>full</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  species island bill_length_mm sex   
+  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; 
+1 Gentoo  Biscoe           45.2 female
+2 Gentoo  Biscoe           50.5 male  
+3 Adelie  Biscoe           38.8 male  
+4 Gentoo  Biscoe           50.5 male  
+5 Adelie  Dream            37.5 &lt;NA&gt;  
+6 Gentoo  Biscoe           45.3 female</code></pre>
+</div>
+</div>
+</div><div class="column">
+<p>Wrangled Data</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>wrangled</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  mean_bill
+      &lt;dbl&gt;
+1      44.6</code></pre>
+</div>
+</div>
+</div></div>
+<p>What <code>dplyr</code> function(s) did I use to wrangle these data?</p>
 </section>
 <section id="reminders" class="slide level2">
 <h2>Reminders:</h2>
 <ul>
-<li class="fragment">Remember to come to office hours and post twice to Slack by Friday!</li>
+<li class="fragment">Remember: Spring Break next week</li>
+<li class="fragment">Friday: Optional lab, no quiz. But will receive a problem set (due on the Thursday after break).</li>
 </ul>
 
 
-</section>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

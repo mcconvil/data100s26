@@ -38,7 +38,7 @@ library(tidyverse)
 theme_update(text = element_text(size = 16))
 ```
 
-::: columns
+::::: columns
 ::: {.column .center width="45%"}
 ![](img/DAW.png){width="90%"}
 :::
@@ -52,32 +52,32 @@ theme_update(text = element_text(size = 16))
 
 [DATA 100 <br> Week 7 \| Spring 2026]{.custom-subtitle}
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
 ## Announcements
 
 -   Remember: Spring Break next week
--   Friday: Optional lab, no quiz.  But will receive a problem set (due on the Thursday after break).
+-   Friday: Optional lab, no quiz. But will receive a problem set (due on the Thursday after break).
 
 ### Goals for Today
 
-::: columns
+::::: columns
 ::: column
 -   Modeling guidance
 :::
 
 ::: column
--   Beyond linear regression
+-   A bit of conceptual review
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
 ### Which Are You?
 
-::: columns
+:::::: columns
 ::: {.column width="33%"}
 Data Visualizer
 
@@ -103,7 +103,7 @@ Model Builder
 
 </iframe>
 :::
-:::
+::::::
 
 ------------------------------------------------------------------------
 
@@ -129,14 +129,14 @@ Linear regression is a flexible class of models that allow for:
 -   BUT the **response variable is quantitative**.
 :::
 
------
+------------------------------------------------------------------------
 
 ### Model Building Guidance
 
 What degree of polynomial should I include in my model?
 
-::: fragment
-::: columns
+:::::: fragment
+::::: columns
 ::: column
 <br>
 
@@ -167,8 +167,8 @@ ggplot(data = Pollster08, mapping = aes(x = Days, y = Margin)) +
               color = "darkgreen")
 ```
 :::
-:::
-:::
+:::::
+::::::
 
 ------------------------------------------------------------------------
 
@@ -176,8 +176,8 @@ ggplot(data = Pollster08, mapping = aes(x = Days, y = Margin)) +
 
 Shouldn't we always include the interaction term?
 
-::: columns
-::: column
+:::::: columns
+:::: column
 **Guiding Principle**: Occam's Razor for Modeling
 
 > "All other things being equal, simpler models are to be preferred over complex ones." -- ModernDive
@@ -187,7 +187,7 @@ Shouldn't we always include the interaction term?
 ::: nonincremental
 -   The equal slopes model allows us to control for the intensity of the light and then see the impact of being in the early or late timing groups on the number of flowers.
 :::
-:::
+::::
 
 ::: column
 ```{r mf, echo = FALSE}
@@ -209,7 +209,7 @@ ggplot(case0901, aes(x = Intensity, y = Flowers,
 
 -   Later in the course will learn statistical procedures for determining whether or not a particular term should be included in the model.
 :::
-:::
+::::::
 
 # What if I want to include more than 2 explanatory variables??
 
@@ -282,12 +282,11 @@ Suppose I built 2 different models. **Which is better?**
 ::: fragment
 **Measure of quality**: $R^2$ (Coefficient of Determination)
 
-```{=tex}
 \begin{align*}
 R^2 &= \mbox{Percent of total variation in y explained by the model}\\
 &= 1- \frac{\sum (y - \hat{y})^2}{\sum (y - \bar{y})^2}
 \end{align*}
-```
+
 **Strategy**: Compute the $R^2$ value for each model and pick the one with the highest $R^2$.
 :::
 
@@ -328,11 +327,10 @@ get_regression_summaries(mod2)
 
 **New Measure of quality**: Adjusted $R^2$ (Coefficient of Determination)
 
-```{=tex}
 \begin{align*}
 \mbox{adj} R^2 &= 1- \frac{\sum (y - \hat{y})^2}{\sum (y - \bar{y})^2} \left(\frac{n - 1}{n - p - 1} \right)
 \end{align*}
-```
+
 where $p$ is the number of explanatory variables in the model.
 
 -   Now we will penalize larger models.
@@ -386,6 +384,10 @@ plot_grid(p1, p2, p3, ncol = 3)
     -   Writing out the **model form** and understanding what the terms represent **in context**
     -   **Building** and **visualizing** linear regression models in `R`
     -   **Comparing** different potential models
+    
+
+- After break: Look at models before linear regression!
+
 
 # Shift Gears: Conceptual Review
 
@@ -435,7 +437,7 @@ plot_grid(p1, p2, p3, ncol = 3)
 
 ## Name Those Functions
 
-::: columns
+::::: columns
 ::: column
 Unwrangled Data
 
@@ -470,7 +472,7 @@ wrangled <- full %>%
 wrangled
 ```
 :::
-:::
+:::::
 
 What `dplyr` function(s) did I use to wrangle these data?
 
@@ -478,7 +480,7 @@ What `dplyr` function(s) did I use to wrangle these data?
 
 ## Name Those Functions
 
-::: columns
+::::: columns
 ::: column
 Unwrangled Data
 
@@ -502,7 +504,7 @@ wrangled <- full %>%
 wrangled
 ```
 :::
-:::
+:::::
 
 What `dplyr` function(s) did I use to wrangle these data?
 
@@ -510,7 +512,7 @@ What `dplyr` function(s) did I use to wrangle these data?
 
 ## Name Those Functions
 
-::: columns
+::::: columns
 ::: column
 Unwrangled Data
 
@@ -533,7 +535,7 @@ wrangled <- full %>%
 wrangled
 ```
 :::
-:::
+:::::
 
 What `dplyr` function(s) did I use to wrangle these data?
 
@@ -541,7 +543,7 @@ What `dplyr` function(s) did I use to wrangle these data?
 
 ## Name Those Functions
 
-::: columns
+::::: columns
 ::: column
 Unwrangled Data
 
@@ -564,7 +566,7 @@ wrangled <- full %>%
 wrangled
 ```
 :::
-:::
+:::::
 
 What `dplyr` function(s) did I use to wrangle these data?
 
@@ -572,3 +574,5 @@ What `dplyr` function(s) did I use to wrangle these data?
 
 ## Reminders:
 
+-   Remember: Spring Break next week
+-   Friday: Optional lab, no quiz. But will receive a problem set (due on the Thursday after break).

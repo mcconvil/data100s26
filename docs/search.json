@@ -4,7 +4,7 @@
     "href": "data100_wk02wed.html#announcements",
     "title": "DATA 100",
     "section": "Announcements",
-    "text": "Announcements\n\n\nClass in full swing:\n\nP-set 1 due on Gradescope by noon on Thursday.\nVisit office hours and then fill out this form\nPanel on careers in data science and public health on Thursday at noon in Taylor 210."
+    "text": "Announcements\n\nClass in full swing:\n\nP-set 1 due on Gradescope by noon on Thursday.\nVisit office hours and then fill out this form\nPanel on careers in data science and public health on Thursday at noon in Taylor 210."
   },
   {
     "objectID": "data100_wk02wed.html#announcements-1",
@@ -18,7 +18,7 @@
     "href": "data100_wk02wed.html#goals-for-today",
     "title": "DATA 100",
     "section": "Goals for Today",
-    "text": "Goals for Today\n\n\nFirst Segment:\n\n\nMotivate data visualizations.\nDevelop language to talk about the components of a graphic.\nPractice deconstructing graphics.\nDiscuss good graphical practices.\n\n\n\nSecond Segment:\n\n\nLearn the general structure of ggplot2.\nLearn a few standard graphs for numerical/quantitative data:\n\nHistogram: one numerical variable\nSide-by-side boxplot: one numerical variable and one categorical variable\nSide-by-side violin plot: one numerical variable and one categorical variable"
+    "text": "Goals for Today\n\n\nFirst Segment:\n\nMotivate data visualizations.\nDevelop language to talk about the components of a graphic.\nPractice deconstructing graphics.\nDiscuss good graphical practices.\n\n\nSecond Segment:\n\nLearn the general structure of ggplot2.\nLearn a few standard graphs for numerical/quantitative data:\n\nHistogram: one numerical variable\nSide-by-side boxplot: one numerical variable and one categorical variable\nSide-by-side violin plot: one numerical variable and one categorical variable"
   },
   {
     "objectID": "data100_wk02wed.html#why-construct-a-graph",
@@ -144,7 +144,7 @@
     "href": "data100_wk02wed.html#grammar-of-graphics-1",
     "title": "DATA 100",
     "section": "Grammar of Graphics",
-    "text": "Grammar of Graphics\n\n\ndata: Data frame that contains the raw data\n\nVariables used in the graph\n\ngeom: Geometric shape that the data are mapped to.\n\nEX: Point, line, bar, text, …\n\naesthetic: Visual properties of the geom\n\nEX: X (horizontal) position, y (vertical) position, color, fill, shape\n\nscale: Controls how data are mapped to the visual values of the aesthetic.\n\nEX: particular colors, log scale\n\nguide: Legend/key to help user convert visual display back to the data"
+    "text": "Grammar of Graphics\n\ndata: Data frame that contains the raw data\n\nVariables used in the graph\n\ngeom: Geometric shape that the data are mapped to.\n\nEX: Point, line, bar, text, …\n\naesthetic: Visual properties of the geom\n\nEX: X (horizontal) position, y (vertical) position, color, fill, shape\n\nscale: Controls how data are mapped to the visual values of the aesthetic.\n\nEX: particular colors, log scale\n\nguide: Legend/key to help user convert visual display back to the data"
   },
   {
     "objectID": "data100_wk02wed.html#ggplot2-example-code",
@@ -242,7 +242,7 @@
     "href": "data100_wk02wed.html#reminders",
     "title": "DATA 100",
     "section": "Reminders",
-    "text": "Reminders\n\n\nClass in full swing:\n\nP-set 1 due on Gradescope by noon on Thursday.\nVisit office hours and then fill out this form\nPanel on careers in data science and public health on Thursday at noon in Taylor 210."
+    "text": "Reminders\n\nClass in full swing:\n\nP-set 1 due on Gradescope by noon on Thursday.\nVisit office hours and then fill out this form\nPanel on careers in data science and public health on Thursday at noon in Taylor 210."
   },
   {
     "objectID": "data100_wk06wed.html#announcements",
@@ -634,7 +634,7 @@
     "href": "index.html",
     "title": "DATA 100: Introduction to Data Science",
     "section": "",
-    "text": "The lecture slides (both in HTML and PDF) will be posted here. \n\n\n\n\nClass Period\nHTML Slides\nPDF Slides\n\n\n\n\nWeek 1, Wed\n\n\n\n\nWeek 2, Mon\n\n\n\n\nWeek 2, Wed\n\n\n\n\nWeek 3, Mon\n\n\n\n\nWeek 3, Wed\n\n\n\n\nWeek 4, Mon\n\n\n\n\nWeek 4, Wed\n\n\n\n\nWeek 5, Mon\n\n\n\n\nWeek 6, Mon\n\n\n\n\nWeek 6, Wed\n\n\n\n\nWeek 7, Mon"
+    "text": "The lecture slides (both in HTML and PDF) will be posted here. \n\n\n\n\nClass Period\nHTML Slides\nPDF Slides\n\n\n\n\nWeek 1, Wed\n\n\n\n\nWeek 2, Mon\n\n\n\n\nWeek 2, Wed\n\n\n\n\nWeek 3, Mon\n\n\n\n\nWeek 3, Wed\n\n\n\n\nWeek 4, Mon\n\n\n\n\nWeek 4, Wed\n\n\n\n\nWeek 5, Mon\n\n\n\n\nWeek 6, Mon\n\n\n\n\nWeek 6, Wed\n\n\n\n\nWeek 7, Mon\n\n\n\n\nWeek 7, Wed"
   },
   {
     "objectID": "data100_wk04mon.html#announcements",
@@ -662,7 +662,7 @@
     "href": "data100_wk04mon.html#wrangling-ce-data",
     "title": "DATA 100",
     "section": "Wrangling CE Data",
-    "text": "Wrangling CE Data\n\n\nWant to better understand a family’s income and expenditures\n\nce &lt;- ce_raw %&gt;%\n  select(NEWID, PRINEARN, FINCBTAX,\n         BLS_URBN, HIGH_EDU, TOTEXPCQ, IRAX)\ndim(ce)\n\n[1] 6301    7\n\n\nVariables:\n\n\nNEWID: ID for the household\nPRINEARN: ID for which member of the household is the principal earner\nFINCBTAX: Final income before taxes for the year\n\n\n\n\n\nBLS_URBN: 1 = urban, 2 = rural\nHIGH_EDU: Highest education in the household. 00 = Never attended, 10 = Grades 1-8, 11 = Grades 9-12, no degree, 12 = High school graduate, 13 = Some college, no degree, 14 = Associates degree, 15 = Bachelor’s degree, 16 = Masters, Professional/doctorate degree\nTOTEXPCQ = Total household expenditures for the current quarter\nIRAX = Total in retirement funds"
+    "text": "Wrangling CE Data\n\n\nWant to better understand a family’s income and expenditures\n\nce &lt;- ce_raw %&gt;%\n  select(NEWID, PRINEARN, FINCBTAX,\n         BLS_URBN, HIGH_EDU, TOTEXPCQ, IRAX)\ndim(ce)\n\n[1] 6301    7\n\n\nVariables:\n\nNEWID: ID for the household\nPRINEARN: ID for which member of the household is the principal earner\nFINCBTAX: Final income before taxes for the year\n\n\n\nBLS_URBN: 1 = urban, 2 = rural\nHIGH_EDU: Highest education in the household. 00 = Never attended, 10 = Grades 1-8, 11 = Grades 9-12, no degree, 12 = High school graduate, 13 = Some college, no degree, 14 = Associates degree, 15 = Bachelor’s degree, 16 = Masters, Professional/doctorate degree\nTOTEXPCQ = Total household expenditures for the current quarter\nIRAX = Total in retirement funds"
   },
   {
     "objectID": "data100_wk04mon.html#wrangling-ce-data-1",
@@ -746,7 +746,7 @@
     "href": "data100_wk04mon.html#ce-data",
     "title": "DATA 100",
     "section": "CE Data",
-    "text": "CE Data\n\n\nHousehold survey but data are also collected on individuals\n\nfmli: household data\nmemi: household member-level data\n\n\n\n\nfmli &lt;- read_csv(\"data/fmli.csv\", \n                 na = c(\"NA\", \".\")) %&gt;%\n  select(NEWID, PRINEARN, FINCBTAX,\n         BLS_URBN, HIGH_EDU)\nmemi &lt;- read_csv(\"data/memi.csv\", \n                 na = c(\"NA\", \".\")) %&gt;%\n  select(NEWID, MEMBNO, AGE, SEX, EARNTYPE)\n\n\nWant to add variables on the principal earner from the member data frame to the household data frame"
+    "text": "CE Data\n\nHousehold survey but data are also collected on individuals\n\nfmli: household data\nmemi: household member-level data\n\n\n\nfmli &lt;- read_csv(\"data/fmli.csv\", \n                 na = c(\"NA\", \".\")) %&gt;%\n  select(NEWID, PRINEARN, FINCBTAX,\n         BLS_URBN, HIGH_EDU)\nmemi &lt;- read_csv(\"data/memi.csv\", \n                 na = c(\"NA\", \".\")) %&gt;%\n  select(NEWID, MEMBNO, AGE, SEX, EARNTYPE)\n\n\nWant to add variables on the principal earner from the member data frame to the household data frame"
   },
   {
     "objectID": "data100_wk04mon.html#ce-data-1",
@@ -760,14 +760,14 @@
     "href": "data100_wk04mon.html#ce-data-2",
     "title": "DATA 100",
     "section": "CE Data",
-    "text": "CE Data\n\n\nKey variables?\n\nProblem with class?\n\n\n\n\nclass(fmli$NEWID)\n\n[1] \"character\"\n\nclass(memi$NEWID)\n\n[1] \"character\"\n\nclass(fmli$PRINEARN)\n\n[1] \"character\"\n\nclass(memi$MEMBNO)\n\n[1] \"numeric\""
+    "text": "CE Data\n\nKey variables?\n\nProblem with class?\n\n\n\nclass(fmli$NEWID)\n\n[1] \"character\"\n\nclass(memi$NEWID)\n\n[1] \"character\"\n\nclass(fmli$PRINEARN)\n\n[1] \"character\"\n\nclass(memi$MEMBNO)\n\n[1] \"numeric\""
   },
   {
     "objectID": "data100_wk04mon.html#ce-data-3",
     "href": "data100_wk04mon.html#ce-data-3",
     "title": "DATA 100",
     "section": "CE Data",
-    "text": "CE Data\n\n\nKey variables?\n\nProblem with class?\n\n\n\n\nfmli &lt;- mutate(fmli, PRINEARN = as.integer(PRINEARN))\nclass(fmli$PRINEARN)\n\n[1] \"integer\"\n\nclass(memi$MEMBNO)\n\n[1] \"numeric\""
+    "text": "CE Data\n\nKey variables?\n\nProblem with class?\n\n\n\nfmli &lt;- mutate(fmli, PRINEARN = as.integer(PRINEARN))\nclass(fmli$PRINEARN)\n\n[1] \"integer\"\n\nclass(memi$MEMBNO)\n\n[1] \"numeric\""
   },
   {
     "objectID": "data100_wk04mon.html#ce-data-4",
@@ -830,7 +830,7 @@
     "href": "data100_wk04mon.html#back-to-our-real-world-example",
     "title": "DATA 100",
     "section": "Back to our Real-World Example",
-    "text": "Back to our Real-World Example\n\n\nWhat kind of join do we want for the Consumer Expenditure data?\n\nWant to add columns of memi to fmli that correspond to the principal earner’s memi data\n\nAlso going to create smaller data frames for us to play with:\n\n\n\n\n\nfmli_small &lt;- filter(fmli, NEWID %in% c(\"03530051\",\n                                        \"03327224\",\n                                        \"03324324\",\n                                        \"03324244\"))\nfmli_small\n\n# A tibble: 4 × 5\n  NEWID    PRINEARN FINCBTAX BLS_URBN HIGH_EDU\n  &lt;chr&gt;       &lt;int&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   \n1 03324244        1        0        1 15      \n2 03324324        2    95000        2 15      \n3 03327224        1        0        1 14      \n4 03530051        3    70000        1 11      \n\n\n\n\nmemi_small &lt;- filter(memi, NEWID %in% c(\"03530051\",\n                                        \"03327224\",\n                                        \"03324324\",\n                                        \"03324244\"))\nmemi_small\n\n# A tibble: 10 × 5\n   NEWID    MEMBNO   AGE   SEX EARNTYPE\n   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;\n 1 03324244      1    37     1        1\n 2 03324324      1    51     1        1\n 3 03324324      2    53     2        1\n 4 03327224      1    28     2        3\n 5 03327224      2    32     1        2\n 6 03327224      3     1     2       NA\n 7 03530051      1    43     1       NA\n 8 03530051      2    16     1       NA\n 9 03530051      3    44     1        3\n10 03530051      4     5     2       NA"
+    "text": "Back to our Real-World Example\n\nWhat kind of join do we want for the Consumer Expenditure data?\n\nWant to add columns of memi to fmli that correspond to the principal earner’s memi data\n\nAlso going to create smaller data frames for us to play with:\n\n\n\n\nfmli_small &lt;- filter(fmli, NEWID %in% c(\"03530051\",\n                                        \"03327224\",\n                                        \"03324324\",\n                                        \"03324244\"))\nfmli_small\n\n# A tibble: 4 × 5\n  NEWID    PRINEARN FINCBTAX BLS_URBN HIGH_EDU\n  &lt;chr&gt;       &lt;int&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   \n1 03324244        1        0        1 15      \n2 03324324        2    95000        2 15      \n3 03327224        1        0        1 14      \n4 03530051        3    70000        1 11      \n\n\n\n\nmemi_small &lt;- filter(memi, NEWID %in% c(\"03530051\",\n                                        \"03327224\",\n                                        \"03324324\",\n                                        \"03324244\"))\nmemi_small\n\n# A tibble: 10 × 5\n   NEWID    MEMBNO   AGE   SEX EARNTYPE\n   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;\n 1 03324244      1    37     1        1\n 2 03324324      1    51     1        1\n 3 03324324      2    53     2        1\n 4 03327224      1    28     2        3\n 5 03327224      2    32     1        2\n 6 03327224      3     1     2       NA\n 7 03530051      1    43     1       NA\n 8 03530051      2    16     1       NA\n 9 03530051      3    44     1        3\n10 03530051      4     5     2       NA"
   },
   {
     "objectID": "data100_wk04mon.html#look-at-the-possible-joins",
@@ -1001,11 +1001,60 @@
     "text": "Reminders\n\nClass in full swing:\n\nOffice hours:\n\nMine: Tuesdays 2:30 - 4pm, Wednesdays 2-3pm, Taylor 212\nRebecca: Mondays and Wednesdays 4:30 - 6pm, Taylor 210\nGeneral Data Science Office Hours\n\nThe first problem set is due at noon on Thursday in Gradescope."
   },
   {
+    "objectID": "data100_wk07wed.html#announcements",
+    "href": "data100_wk07wed.html#announcements",
+    "title": "DATA 100",
+    "section": "Announcements",
+    "text": "Announcements\n\nRemember: Spring Break next week\nFriday: Optional lab, no quiz. But will receive a problem set (due on the Thursday after break).\n\nGoals for Today\n\n\n\nModeling guidance\n\n\n\nA bit of conceptual review"
+  },
+  {
+    "objectID": "data100_wk07wed.html#model-building-guidance-1",
+    "href": "data100_wk07wed.html#model-building-guidance-1",
+    "title": "DATA 100",
+    "section": "Model Building Guidance",
+    "text": "Model Building Guidance\nShouldn’t we always include the interaction term?\n\n\nGuiding Principle: Occam’s Razor for Modeling\n\n“All other things being equal, simpler models are to be preferred over complex ones.” – ModernDive\n\nGuiding Principle: Consider your modeling goals.\n\nThe equal slopes model allows us to control for the intensity of the light and then see the impact of being in the early or late timing groups on the number of flowers.\n\n\n\n\n\n\n\n\n\n\n\n\nLater in the course will learn statistical procedures for determining whether or not a particular term should be included in the model."
+  },
+  {
+    "objectID": "data100_wk07wed.html#name-those-functions",
+    "href": "data100_wk07wed.html#name-those-functions",
+    "title": "DATA 100",
+    "section": "Name Those Functions",
+    "text": "Name Those Functions\n\n\nUnwrangled Data\n\n\n# A tibble: 5 × 4\n  species island bill_length_mm sex   \n  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; \n1 Gentoo  Biscoe           45.2 female\n2 Gentoo  Biscoe           50.5 male  \n3 Adelie  Biscoe           38.8 male  \n4 Gentoo  Biscoe           50.5 male  \n5 Gentoo  Biscoe           45.3 female\n\n\n\nfull\n\n# A tibble: 6 × 4\n  species island bill_length_mm sex   \n  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; \n1 Gentoo  Biscoe           45.2 female\n2 Gentoo  Biscoe           50.5 male  \n3 Adelie  Biscoe           38.8 male  \n4 Gentoo  Biscoe           50.5 male  \n5 Adelie  Dream            37.5 &lt;NA&gt;  \n6 Gentoo  Biscoe           45.3 female\n\n\n\nWrangled Data\n\nwrangled\n\n# A tibble: 5 × 4\n  species island bill_length_mm sex   \n  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; \n1 Gentoo  Biscoe           45.2 female\n2 Gentoo  Biscoe           50.5 male  \n3 Adelie  Biscoe           38.8 male  \n4 Gentoo  Biscoe           50.5 male  \n5 Gentoo  Biscoe           45.3 female\n\n\n\nWhat dplyr function(s) did I use to wrangle these data?"
+  },
+  {
+    "objectID": "data100_wk07wed.html#name-those-functions-1",
+    "href": "data100_wk07wed.html#name-those-functions-1",
+    "title": "DATA 100",
+    "section": "Name Those Functions",
+    "text": "Name Those Functions\n\n\nUnwrangled Data\n\nfull\n\n# A tibble: 6 × 4\n  species island bill_length_mm sex   \n  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; \n1 Gentoo  Biscoe           45.2 female\n2 Gentoo  Biscoe           50.5 male  \n3 Adelie  Biscoe           38.8 male  \n4 Gentoo  Biscoe           50.5 male  \n5 Adelie  Dream            37.5 &lt;NA&gt;  \n6 Gentoo  Biscoe           45.3 female\n\n\n\nWrangled Data\n\nwrangled\n\n# A tibble: 4 × 5\n# Groups:   island [2]\n  species island sex        n     p\n  &lt;fct&gt;   &lt;fct&gt;  &lt;fct&gt;  &lt;int&gt; &lt;dbl&gt;\n1 Adelie  Biscoe male       1   0.2\n2 Adelie  Dream  &lt;NA&gt;       1   1  \n3 Gentoo  Biscoe female     2   0.4\n4 Gentoo  Biscoe male       2   0.4\n\n\n\nWhat dplyr function(s) did I use to wrangle these data?"
+  },
+  {
+    "objectID": "data100_wk07wed.html#name-those-functions-2",
+    "href": "data100_wk07wed.html#name-those-functions-2",
+    "title": "DATA 100",
+    "section": "Name Those Functions",
+    "text": "Name Those Functions\n\n\nUnwrangled Data\n\nfull\n\n# A tibble: 6 × 4\n  species island bill_length_mm sex   \n  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; \n1 Gentoo  Biscoe           45.2 female\n2 Gentoo  Biscoe           50.5 male  \n3 Adelie  Biscoe           38.8 male  \n4 Gentoo  Biscoe           50.5 male  \n5 Adelie  Dream            37.5 &lt;NA&gt;  \n6 Gentoo  Biscoe           45.3 female\n\n\n\nWrangled Data\n\nwrangled\n\n# A tibble: 2 × 2\n  species island\n  &lt;fct&gt;   &lt;fct&gt; \n1 Adelie  Biscoe\n2 Adelie  Dream \n\n\n\nWhat dplyr function(s) did I use to wrangle these data?"
+  },
+  {
+    "objectID": "data100_wk07wed.html#name-those-functions-3",
+    "href": "data100_wk07wed.html#name-those-functions-3",
+    "title": "DATA 100",
+    "section": "Name Those Functions",
+    "text": "Name Those Functions\n\n\nUnwrangled Data\n\nfull\n\n# A tibble: 6 × 4\n  species island bill_length_mm sex   \n  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; \n1 Gentoo  Biscoe           45.2 female\n2 Gentoo  Biscoe           50.5 male  \n3 Adelie  Biscoe           38.8 male  \n4 Gentoo  Biscoe           50.5 male  \n5 Adelie  Dream            37.5 &lt;NA&gt;  \n6 Gentoo  Biscoe           45.3 female\n\n\n\nWrangled Data\n\nwrangled\n\n# A tibble: 1 × 1\n  mean_bill\n      &lt;dbl&gt;\n1      44.6\n\n\n\nWhat dplyr function(s) did I use to wrangle these data?"
+  },
+  {
+    "objectID": "data100_wk07wed.html#reminders",
+    "href": "data100_wk07wed.html#reminders",
+    "title": "DATA 100",
+    "section": "Reminders:",
+    "text": "Reminders:\n\nRemember: Spring Break next week\nFriday: Optional lab, no quiz. But will receive a problem set (due on the Thursday after break)."
+  },
+  {
     "objectID": "data100_wk03wed.html#announcements",
     "href": "data100_wk03wed.html#announcements",
     "title": "DATA 100",
     "section": "Announcements",
-    "text": "Announcements\n\n\nCode a Valentine: Feb 10th, Taylor 212\n\n\nGoals for Today\n\n\n\nConsider measures for summarizing quantitative data\n\nCenter\nSpread/variability\n\nConsider measures for summarizing categorical data\n\n\n\nDefine data wrangling\nLearn to use functions in the dplyr package to summarize and wrangle data"
+    "text": "Announcements\n\nCode a Valentine: Feb 10th, Taylor 212\n\nGoals for Today\n\n\n\nConsider measures for summarizing quantitative data\n\nCenter\nSpread/variability\n\nConsider measures for summarizing categorical data\n\n\n\nDefine data wrangling\nLearn to use functions in the dplyr package to summarize and wrangle data"
   },
   {
     "objectID": "data100_wk03wed.html#load-necessary-packages",
@@ -1334,7 +1383,7 @@
     "href": "data100_wk01wed.html#example-visualizing-covid-prevalence-4",
     "title": "DATA 100",
     "section": "Example: Visualizing COVID Prevalence",
-    "text": "Example: Visualizing COVID Prevalence\n\n\nThe Massachusetts Water Resources Authority (MWRA) graph tracks the presence of COVID-19 in the Boston-area wastewater.\n\n\n\n\n\n\n\n\n\n\n\n\nWhat are the pros of using wastewater over nasal swabs to assess COVID prevalence? What are the cons?\nOne more note: The graph also incorporates uncertainty measures, a key statistical thinking idea that we will learn more about later in the semester!"
+    "text": "Example: Visualizing COVID Prevalence\n\nThe Massachusetts Water Resources Authority (MWRA) graph tracks the presence of COVID-19 in the Boston-area wastewater.\n\n\n\n\n\n\n\n\n\n\n\nWhat are the pros of using wastewater over nasal swabs to assess COVID prevalence? What are the cons?\nOne more note: The graph also incorporates uncertainty measures, a key statistical thinking idea that we will learn more about later in the semester!"
   },
   {
     "objectID": "data100_wk01wed.html#statistical-thinking",
@@ -1362,21 +1411,21 @@
     "href": "data100_wk01wed.html#data-frames",
     "title": "DATA 100",
     "section": "Data Frames",
-    "text": "Data Frames\nData in spreadsheet-like format where:\n\nRows = Observations/cases\nColumns = Variables\n\n\n\n\n\n\n\nID\nkind\n.pred_AI\n.pred_class\ndetector\nnative\nname\nmodel\n\n\n\n\n1\nHuman\n0.9999942\nAI\nSapling\nNo\nReal TOEFL\nHuman\n\n\n2\nHuman\n0.8281448\nAI\nCrossplag\nNo\nReal TOEFL\nHuman\n\n\n3\nHuman\n0.0002137\nHuman\nCrossplag\nYes\nReal College Essays\nHuman\n\n\n4\nAI\n0.0000000\nHuman\nZeroGPT\nNA\nFake CS224N - GPT3\nGPT3\n\n\n5\nAI\n0.0017841\nHuman\nOriginalityAI\nNA\nFake CS224N - GPT3, PE\nGPT4\n\n\n6\nHuman\n0.0001783\nHuman\nHFOpenAI\nYes\nReal CS224N\nHuman\n\n\n\n\n\n\n\n\n\nData from GPT Detectors Are Biased Against Non-Native English Writers. Weixin Liang, Mert Yuksekgonul, Yining Mao, Eric Wu, James Zou. CellPress Patterns and available in the R package detectors."
+    "text": "Data Frames\nData in spreadsheet-like format where:\n\nRows = Observations/cases\nColumns = Variables\n\n\n\n\n\n\n\nID\nkind\n.pred_AI\n.pred_class\ndetector\nnative\nname\nmodel\n\n\n\n\n1\nHuman\n0.9999942\nAI\nSapling\nNo\nReal TOEFL\nHuman\n\n\n2\nHuman\n0.8281448\nAI\nCrossplag\nNo\nReal TOEFL\nHuman\n\n\n3\nHuman\n0.0002137\nHuman\nCrossplag\nYes\nReal College Essays\nHuman\n\n\n4\nAI\n0.0000000\nHuman\nZeroGPT\nNA\nFake CS224N - GPT3\nGPT3\n\n\n5\nAI\n0.0017841\nHuman\nOriginalityAI\nNA\nFake CS224N - GPT3, PE\nGPT4\n\n\n6\nHuman\n0.0001783\nHuman\nHFOpenAI\nYes\nReal CS224N\nHuman\n\n\n\n\n\n\n\nData from GPT Detectors Are Biased Against Non-Native English Writers. Weixin Liang, Mert Yuksekgonul, Yining Mao, Eric Wu, James Zou. CellPress Patterns and available in the R package detectors."
   },
   {
     "objectID": "data100_wk01wed.html#data-frames-1",
     "href": "data100_wk01wed.html#data-frames-1",
     "title": "DATA 100",
     "section": "Data Frames",
-    "text": "Data Frames\n\n\n\n\n\n\nID\nkind\n.pred_AI\n.pred_class\ndetector\nnative\nname\nmodel\n\n\n\n\n1\nHuman\n0.9999942\nAI\nSapling\nNo\nReal TOEFL\nHuman\n\n\n2\nHuman\n0.8281448\nAI\nCrossplag\nNo\nReal TOEFL\nHuman\n\n\n3\nHuman\n0.0002137\nHuman\nCrossplag\nYes\nReal College Essays\nHuman\n\n\n4\nAI\n0.0000000\nHuman\nZeroGPT\nNA\nFake CS224N - GPT3\nGPT3\n\n\n5\nAI\n0.0017841\nHuman\nOriginalityAI\nNA\nFake CS224N - GPT3, PE\nGPT4\n\n\n6\nHuman\n0.0001783\nHuman\nHFOpenAI\nYes\nReal CS224N\nHuman\n\n\n\n\n\n\n\n\nRows = Observations/cases\nWhat are the cases? What does each row represent?"
+    "text": "Data Frames\n\n\n\n\n\n\nID\nkind\n.pred_AI\n.pred_class\ndetector\nnative\nname\nmodel\n\n\n\n\n1\nHuman\n0.9999942\nAI\nSapling\nNo\nReal TOEFL\nHuman\n\n\n2\nHuman\n0.8281448\nAI\nCrossplag\nNo\nReal TOEFL\nHuman\n\n\n3\nHuman\n0.0002137\nHuman\nCrossplag\nYes\nReal College Essays\nHuman\n\n\n4\nAI\n0.0000000\nHuman\nZeroGPT\nNA\nFake CS224N - GPT3\nGPT3\n\n\n5\nAI\n0.0017841\nHuman\nOriginalityAI\nNA\nFake CS224N - GPT3, PE\nGPT4\n\n\n6\nHuman\n0.0001783\nHuman\nHFOpenAI\nYes\nReal CS224N\nHuman\n\n\n\n\n\n\nRows = Observations/cases\nWhat are the cases? What does each row represent?"
   },
   {
     "objectID": "data100_wk01wed.html#data-frames-2",
     "href": "data100_wk01wed.html#data-frames-2",
     "title": "DATA 100",
     "section": "Data Frames",
-    "text": "Data Frames\n\n\n\n\n\n\nID\nkind\n.pred_AI\n.pred_class\ndetector\nnative\nname\nmodel\n\n\n\n\n1\nHuman\n0.9999942\nAI\nSapling\nNo\nReal TOEFL\nHuman\n\n\n2\nHuman\n0.8281448\nAI\nCrossplag\nNo\nReal TOEFL\nHuman\n\n\n3\nHuman\n0.0002137\nHuman\nCrossplag\nYes\nReal College Essays\nHuman\n\n\n4\nAI\n0.0000000\nHuman\nZeroGPT\nNA\nFake CS224N - GPT3\nGPT3\n\n\n5\nAI\n0.0017841\nHuman\nOriginalityAI\nNA\nFake CS224N - GPT3, PE\nGPT4\n\n\n6\nHuman\n0.0001783\nHuman\nHFOpenAI\nYes\nReal CS224N\nHuman\n\n\n\n\n\n\n\n\nColumns = Variables\nVariables: Describe characteristics of the observations\n\nQuantitative: Numerical in nature\nCategorical: Values are categories\nIdentification: Uniquely identify each case"
+    "text": "Data Frames\n\n\n\n\n\n\nID\nkind\n.pred_AI\n.pred_class\ndetector\nnative\nname\nmodel\n\n\n\n\n1\nHuman\n0.9999942\nAI\nSapling\nNo\nReal TOEFL\nHuman\n\n\n2\nHuman\n0.8281448\nAI\nCrossplag\nNo\nReal TOEFL\nHuman\n\n\n3\nHuman\n0.0002137\nHuman\nCrossplag\nYes\nReal College Essays\nHuman\n\n\n4\nAI\n0.0000000\nHuman\nZeroGPT\nNA\nFake CS224N - GPT3\nGPT3\n\n\n5\nAI\n0.0017841\nHuman\nOriginalityAI\nNA\nFake CS224N - GPT3, PE\nGPT4\n\n\n6\nHuman\n0.0001783\nHuman\nHFOpenAI\nYes\nReal CS224N\nHuman\n\n\n\n\n\n\nColumns = Variables\nVariables: Describe characteristics of the observations\n\nQuantitative: Numerical in nature\nCategorical: Values are categories\nIdentification: Uniquely identify each case"
   },
   {
     "objectID": "data100_wk01wed.html#hand-drawn-data-viz",
@@ -1397,7 +1446,7 @@
     "href": "data100_wk01wed.html#goal-tomorrow-collect-data-from-your-life-so-that-you-can-visualize-it-on-p-set-1.",
     "title": "DATA 100",
     "section": "Goal: Tomorrow, collect data from your life so that you can visualize it on P-Set 1.",
-    "text": "Goal: Tomorrow, collect data from your life so that you can visualize it on P-Set 1.\n\n\n\nRecommendations\n\n\nStore the data in your favorite spreadsheet program (Google Sheets, Numbers, Excel).\nDetermine what your cases/observations will be.\nCollect data on more variables than you will likely visualize. It is hard to know beforehand what the interesting relationships will be.\n\n\n\nIn Lab\n\nWill get a blank postcard and further guidance on the visualization with P-Set 1."
+    "text": "Goal: Tomorrow, collect data from your life so that you can visualize it on P-Set 1.\n\n\nRecommendations\n\n\nStore the data in your favorite spreadsheet program (Google Sheets, Numbers, Excel).\nDetermine what your cases/observations will be.\nCollect data on more variables than you will likely visualize. It is hard to know beforehand what the interesting relationships will be.\n\n\nIn Lab\n\nWill get a blank postcard and further guidance on the visualization with P-Set 1."
   },
   {
     "objectID": "data100_wk01wed.html#section",
@@ -1467,7 +1516,7 @@
     "href": "data100_wk06mon.html#note-about-office-hours",
     "title": "DATA 100",
     "section": "Note about Office Hours",
-    "text": "Note about Office Hours\n\n\nProfessor McConville: Tuesdays 2:30 - 4pm and Wednesdays 2 - 3pm in Taylor 212.\nRebecca: Mondays and Wednesdays 4:30 - 6pm in the classroom (Taylor 203).\nGoing to add one more hour. Vote on the time: burl.live/ohs"
+    "text": "Note about Office Hours\n\nProfessor McConville: Tuesdays 2:30 - 4pm and Wednesdays 2 - 3pm in Taylor 212.\nRebecca: Mondays and Wednesdays 4:30 - 6pm in the classroom (Taylor 203).\nGoing to add one more hour. Vote on the time: burl.live/ohs"
   },
   {
     "objectID": "data100_wk04wed.html#announcements",
@@ -1537,7 +1586,7 @@
     "href": "data100_wk04wed.html#random-sampling",
     "title": "DATA 100",
     "section": "Random Sampling",
-    "text": "Random Sampling\nUse random sampling (a random mechanism for selecting cases from the population) to remove sampling bias.\nTypes of random sampling\n\n\nSimple random sampling\nCluster sampling\nStratified random sampling\nSystematic sampling\n\n\n\nWhy aren’t all samples generated using simple random sampling?"
+    "text": "Random Sampling\nUse random sampling (a random mechanism for selecting cases from the population) to remove sampling bias.\nTypes of random sampling\n\nSimple random sampling\nCluster sampling\nStratified random sampling\nSystematic sampling\n\n\nWhy aren’t all samples generated using simple random sampling?"
   },
   {
     "objectID": "data100_wk04wed.html#responsibilities-to-research-subjects",
@@ -1649,7 +1698,7 @@
     "href": "data100_wk05mon.html#recap-random-sampling",
     "title": "DATA 100",
     "section": "Recap: Random Sampling",
-    "text": "Recap: Random Sampling\nUse random sampling (a random mechanism for selecting cases from the population) to remove sampling bias.\nTypes of random sampling\n\n\nSimple random sampling\nCluster sampling\nStratified random sampling\nSystematic sampling\n\n\n\nWhy aren’t all samples generated using simple random sampling?"
+    "text": "Recap: Random Sampling\nUse random sampling (a random mechanism for selecting cases from the population) to remove sampling bias.\nTypes of random sampling\n\nSimple random sampling\nCluster sampling\nStratified random sampling\nSystematic sampling\n\n\nWhy aren’t all samples generated using simple random sampling?"
   },
   {
     "objectID": "data100_wk05mon.html#responsibilities-to-research-subjects",
