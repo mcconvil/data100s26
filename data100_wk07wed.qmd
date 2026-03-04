@@ -384,10 +384,8 @@ plot_grid(p1, p2, p3, ncol = 3)
     -   Writing out the **model form** and understanding what the terms represent **in context**
     -   **Building** and **visualizing** linear regression models in `R`
     -   **Comparing** different potential models
-    
 
-- After break: Look at models before linear regression!
-
+-   After break: Look at models before linear regression!
 
 # Shift Gears: Conceptual Review
 
@@ -427,6 +425,18 @@ plot_grid(p1, p2, p3, ncol = 3)
 
 [(1) or (2)]{.custom-subtitle}
 
+
+```{r}
+#| eval: false
+#| echo: false
+
+ggplot(data = movies2, mapping = aes(x = Genre)) +
+  geom_bar()
+ggplot(data = movies2, mapping = aes(x = DomesticGross)) +
+  geom_histogram(bins = 20)
+```
+
+
 # When using a linear regression model to make predictions, you can only make predictions at the observed values for your explanatory variables.
 
 [TRUE or FALSE]{.custom-subtitle}
@@ -450,8 +460,6 @@ full <- penguins %>%
   select(species, island, bill_length_mm, sex)
 
 
-full %>%
-  filter(!is.na(sex))
 ```
 
 ```{r}
