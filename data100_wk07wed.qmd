@@ -73,6 +73,16 @@ theme_update(text = element_text(size = 16))
 :::
 :::::
 
+
+----
+
+
+## Questions
+
+* When do I put on the hats?
+* What is $\epsilon$ (epsilon)?
+
+
 ------------------------------------------------------------------------
 
 ### Which Are You?
