@@ -1,0 +1,682 @@
+---
+pagetitle: "Hypothesis Testing"
+format: 
+  revealjs:
+    html-math-method: mathjax
+    chalkboard: true
+    incremental: true
+    theme: [default, custom.scss]
+#    multiplex: true
+    height: 900
+    width: 1600
+    slide-number: c
+    auto-stretch: false
+    callout-appearance: simple
+    pdf-max-pages-per-slide: 1
+    menu: 
+      side: right
+      numbers: true
+    code-overflow: wrap
+execute:
+  echo: true
+  warning: false
+  message: false
+  fig-asp: 0.75
+  fig-width: 8
+#  fig-align: center
+  fig-dpi: 500
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+# Some global options still not available in quarto
+ knitr::opts_chunk$set(fig.align = 'center')
+library(knitr)
+library(tidyverse)
+theme_update(text = element_text(size = 16))
+```
+
+------------------------------------------------------------------------
+
+::: columns
+::: {.column .center width="45%"}
+![](img/DAW.png){width="90%"}
+:::
+
+::: {.column .center width="55%"}
+[Hypothesis Testing]{.custom-title}
+
+<br> <br> 
+
+[Kelly McConville]{.custom-subtitle}
+
+[DATA 100 <br> Week 9 \| Spring 2026]{.custom-subtitle}
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Announcements
+
+::: nonincremental
+-   Map making in `R` workshop: Part of the Sustainability Symposium
+    -  Th, March 26, 2:30 - 3:50pm, Taylor 210
+:::
+
+### Goals for Today
+
+::: columns
+::: column
+
+-   More examples of confidence intervals in `R`
+-   Confidence interval interpretations
+
+:::
+
+::: column
+-   Set-up the structure of **hypothesis testing**
+-   Determine if Bucknell students have ESP!
+:::
+:::
+
+
+------------------------------------------------------------------------
+
+## Load Packages and Data
+
+```{r}
+library(tidyverse)
+library(infer)
+```
+
+Let's return to the movies dataset and estimate numerical quantities about Hollywood movies.
+
+```{r}
+# Read in data
+movies <- read_csv("https://www.lock5stat.com/datasets2e/HollywoodMovies.csv")
+```
+
+
+------------------------------------------------------------------------
+
+## Estimation for a Single Mean
+
+What is the average amount of money $(\mu)$ made in the opening weekend?
+
+```{r}
+# Compute the summary statistic
+x_bar <- movies %>%
+  drop_na(OpeningWeekend) %>%
+  specify(response = OpeningWeekend) %>%
+  calculate(stat = "mean")
+x_bar
+```
+
+
+------------------------------------------------------------------------
+
+## Estimation for a Single Mean
+
+```{r}
+#| output-location: column
+set.seed(999)
+
+
+# Construct bootstrap distribution
+bootstrap_dist <- movies %>%
+  drop_na(OpeningWeekend) %>%
+  specify(response = OpeningWeekend) %>%
+  generate(reps =  1000, type = "bootstrap") %>%
+  calculate(stat = "mean")
+
+# Look at bootstrap distribution
+ggplot(data = bootstrap_dist, 
+       mapping = aes(x = stat)) +
+  geom_histogram(color = "white")
+```
+
+------------------------------------------------------------------------
+
+## Estimation for a Single Mean -- SE Method
+
+```{r}
+#| output-location: column
+
+# Get confidence interval
+ci <- bootstrap_dist %>% 
+  get_confidence_interval(type = "se", level = 0.95,
+                          point_estimate = x_bar)
+ci
+```
+
+**Interpretation:** The point estimate is \$ `r round(x_bar$stat, digits = 1)`M. I am 95% confidence that the average amount of money made by all Hollywood movies is between \$ `r ci$lower_ci`M and \$ `r round(ci$upper_ci, digits = 1)`M.
+
+
+------------------------------------------------------------------------
+
+## Estimation for a Single Mean
+
+```{r}
+#| output-location: column
+# Visualize confidence interval
+bootstrap_dist %>%
+  visualize() +
+  shade_confidence_interval(endpoints = ci)
+```
+
+------------------------------------------------------------------------
+
+## Estimation for a Single Mean -- Percentile Method
+
+```{r}
+#| output-location: column
+
+# Get confidence interval 
+ci_95 <- bootstrap_dist %>% 
+  get_confidence_interval(type = "percentile",
+                          level = 0.95) 
+ci_95
+```
+
+------------------------------------------------------------------------
+
+## Estimation for Difference in Means
+
+What is the difference in average amount of money made in the opening weekend between action movies and dramas $(\mu_1 - \mu_2)$?
+
+```{r}
+#| output-location: column
+# Compute the summary statistic
+diff_x_bar <- movies %>%
+  drop_na(OpeningWeekend) %>%
+  filter(Genre %in% c("Drama", "Action")) %>%
+  specify(OpeningWeekend ~ Genre) %>%
+  calculate(stat = "diff in means")
+diff_x_bar
+```
+
+-   Why a difference in means?
+
+------------------------------------------------------------------------
+
+## Estimation for Difference in Means
+
+```{r}
+#| output-location: column
+
+# Construct bootstrap distribution
+bootstrap_dist <- movies %>%
+  drop_na(OpeningWeekend) %>%
+  filter(Genre %in% c("Drama", "Action")) %>%
+  specify(OpeningWeekend ~ Genre) %>%
+  generate(reps =  1000, type = "bootstrap") %>%
+  calculate(stat = "diff in means",
+            order = c("Action", "Drama"))
+
+# Look at bootstrap distribution
+ggplot(data = bootstrap_dist,
+       mapping = aes(x = stat)) +
+  geom_histogram(color = "white")
+```
+
+------------------------------------------------------------------------
+
+## Estimation for Difference in Means -- SE Method
+
+```{r}
+#| output-location: column
+# Get confidence interval 
+ci_95 <- bootstrap_dist %>% 
+  get_confidence_interval(type = "se", level = 0.95,
+                          point_estimate = diff_x_bar) 
+ci_95
+```
+
+**Interpretation**: The point estimate is \$ `r round(diff_x_bar$stat, digits = 1)`M. I am 95% confidence that action movies make, on average, between \$ `r round(ci_95$lower_ci, digits = 1)`M and \$ `r round(ci_95$upper_ci, digits = 1)`M more than dramas.
+
+------------------------------------------------------------------------
+
+## Comparing CIs
+
+```{r}
+#| output-location: column
+
+
+ci_99 <- bootstrap_dist %>% 
+  get_confidence_interval(type = "se", level = 0.99,
+                          point_estimate = diff_x_bar)
+
+bootstrap_dist %>%
+  visualize() +
+  shade_confidence_interval(endpoints = ci_99,
+                            fill = "gold1",
+                            color = "gold3") +
+  shade_confidence_interval(endpoints = ci_95) 
+```
+
+-   Why construct a 95% CI versus a 99% CI?
+
+------------------------------------------------------------------------
+
+::: columns
+::: {.column width="40%"}
+```{r,  out.width = "80%", echo=FALSE, fig.align='center', fig.cap = "", fig.pos="h"}
+library(knitr)
+include_graphics("img/cis.png") 
+```
+:::
+
+::: {.column width="60%"}
+[What do we mean by confidence?](http://www.rossmanchance.com/applets/2021/confsim/ConfSim.html)
+
+-   Confidence level = success rate of the method under **repeated sampling**
+
+-   How do I know if my ONE CI successfully contains the true value of the parameter?
+
+-   As we increase the **confidence level**, what happens to the width of the interval?
+
+-   As we increase the **sample size**, what happens to the width of the interval?
+
+-   As we increase the **number of bootstrap samples** we take, what happens to the width of the interval?
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Interpreting Confidence Intervals
+
+**Example:** Estimating average household income before taxes in the US
+
+::: columns
+::: column
+SE Method Formula:
+
+$$
+\mbox{statistic} \pm{\mbox{ME}}
+$$
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(infer)
+ce <- read_csv("data/fmli.csv")
+# summarize(ce, meanFINCBTAX = mean(FINCBTAX))
+bootstrap_dist <- ce %>%
+  specify(response = FINCBTAX) %>%
+  generate(reps =  1000, type = "bootstrap") %>%
+  calculate(stat = "mean")
+summarize(bootstrap_dist, ME = 2*sd(stat), lower = 62480 - ME, upper = 62480 + ME)
+```
+:::
+
+::: column
+*"The margin of \[sampling\] error can be described as the 'penalty' in precision for not talking to everyone in a given population. It describes the range that an answer likely falls between if the survey had reached everyone in a population, instead of just a sample of that population."* -- Courtney Kennedy, Director of Survey Research at Pew Research Center
+
+CI = interval of **plausible** values for the **parameter**
+:::
+:::
+
+**Safe interpretation:** I am P% confident that {insert what the parameter represents in context} is between {insert lower bound} and {insert upper bound}.
+
+------------------------------------------------------------------------
+
+## Caution: Intervals in the wild
+
+Statement in [an article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1255808/) for The BMJ (British Medical Journal):
+
+```{r, echo = FALSE, fig.align='center', out.width='90%'}
+knitr::include_graphics("img/bmj.png")
+```
+
+------------------------------------------------------------------------
+
+## Statistical Inference
+
+::: columns
+::: column
+```{r, echo = FALSE, out.width='90%'}
+knitr::include_graphics("img/week4.005.jpeg")
+```
+:::
+
+::: column
+**Goal**: Draw conclusions about the population based on a sample.
+
+**Main Flavors**:
+
+-   Estimating numerical quantities.
+-   Testing conjectures.
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Example: Does Extrasensory Perception (ESP) exist?
+
+::: columns
+::: column
+```{r, echo = FALSE, out.width='80%', fig.cap = "Daryl Bem and Ben Honorton"}
+knitr::include_graphics("img/Bem_Honorton.png")
+```
+:::
+
+::: column
+Bem and Honorton conducted extrasensory perception studies:
+
+::: nonincremental
+-   A "sender" randomly chooses an object out of 4 possible objects and sends that information to a "receiver".
+-   The "receiver" is then given a set of 4 possible objects and they must decide which one most resembles the object sent to them.
+:::
+
+Out of 329 trials, the "receivers" correctly identified the object 106 times.
+:::
+:::
+
+------------------------------------------------------------------------
+
+## ESP Example
+
+Let's consider the following questions:
+
+::: nonincremental
+a.  If ESP does not exist and the "receivers" are guessing, how often would we expect them to be correct?
+
+b.  For each sample (set of 329 trials), do we expect the proportion of correct guesses to be equal? Why or why not?
+
+c.  Is it possible to randomly guess correctly 106 out of 329 times (i.e., 32% of the time)?
+
+d.  How unusual is it to guess correctly 106 out of 329 times if ESP doesn't exist?
+:::
+
+::: fragment
+To help us answer d., we need a **sampling distribution** for the sample proportion where **we assume the "receivers" were purely guessing!**
+:::
+
+
+------------------------------------------------------------------------
+
+## Sampling Distribution of a Statistic
+
+::: columns
+::: column
+**Steps for (Approximate) Distribution:**
+
+::: nonincremental
+(1) Decide on a sample size, $n$.
+
+(2) Randomly select a sample of size $n$ from the population.
+
+(3) Compute the sample statistic.
+
+(4) Put the sample back in.
+
+(5) Repeat Steps (2) - (4) many (1000+) times.
+:::
+:::
+
+::: column
+```{r  out.width = "95%", echo=FALSE, fig.align='center'}
+include_graphics("img/samp_dist_prop.jpg") 
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Sampling Distribution Under No ESP
+
+**Steps for (Approximate) Distribution:**
+
+::: nonincremental
+(1) Decide on a sample size, $n$.
+
+(2) Randomly select a sample of size $n$ from the population.
+:::
+
+```{r}
+library(mosaic)
+rflip(n = 329, prob = 0.25)
+```
+
+------------------------------------------------------------------------
+
+## Sampling Distribution Under No ESP
+
+::: nonincremental
+(3) Compute the sample statistic.
+:::
+
+```{r}
+rflip(n = 329, prob = 0.25, summarize = TRUE)
+```
+
+::: fragment
+::: nonincremental
+(4) Put the sample back in.
+
+(5) Repeat Steps (2) - (4) many (1000+) times.
+:::
+
+```{r}
+guess_sampling_dist <- do(1000)*rflip(n = 329, prob = 0.25)
+guess_sampling_dist
+```
+:::
+
+------------------------------------------------------------------------
+
+## Sampling Distribution Under No ESP
+
+```{r}
+#| output-location: column
+
+ggplot(data = guess_sampling_dist,
+       mapping = aes(x = prop)) +
+  geom_histogram(color = "white",
+                 bins = 20)
+```
+
+What value should our sampling distribution be centered around if the receivers are just guessing?
+
+------------------------------------------------------------------------
+
+## Sampling Distribution Under No ESP {.smaller}
+
+::: nonincremental
+-   How do the study results compare to the sampling distribution under no ESP?
+    -   How unusual is it to guess correctly 106 out of 329 times if ESP doesn't exist?
+:::
+
+```{r}
+#| output-location: column
+
+p_hat <- 106/329
+ggplot(data = guess_sampling_dist,
+       mapping = aes(x = prop)) +
+  geom_histogram(color = "white",
+                 bins = 20) +
+  geom_vline(xintercept = p_hat,
+             color = "orange",
+             size = 2)
+```
+
+-   Do Bem and Honorton have evidence that ESP exists?
+
+------------------------------------------------------------------------
+
+## Do Bucknellians Have ESP?
+
+::: columns
+::: column
+In pairs:
+
+::: nonincremental
+-   Decide who is going to be the sender and who is going to be the receiver.
+
+-   **Sender:** Think of one of these images.
+
+-   **Receiver:** Guess which image the sender was thinking of.
+
+-   Now switch roles and do it again!
+
+-   Once you have both played each role, each person should add a tally mark on the chalkboard.
+:::
+:::
+
+::: column
+```{r, echo = FALSE, fig.align='center', out.width='95%'}
+knitr::include_graphics("img/four_images.png")
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Do Bucknellians Have ESP?
+
+What do we need to modify in the code to answer the question?
+
+```{r, eval = FALSE}
+guess_sampling_dist <- do(1000)*rflip(n = 119, prob = 0.25)
+p_hat <- 42/119
+ggplot(data = guess_sampling_dist, mapping = aes(x = prop)) +
+  geom_histogram(color = "white", bins = 20) +
+  geom_vline(xintercept = p_hat, color = "orange", size = 2)
+```
+
+------------------------------------------------------------------------
+
+### Hypothesis Testing
+
+#### Big Idea:
+
+-   Make an assumption about the population **parameter**.
+
+-   Generate a sampling distribution for a *test* statistic based on that assumption.
+
+    -   Called a **null distribution**
+
+-   See if the test statistic based on the observed sample aligns with the generated sampling distribution or not.
+
+-   If it does, then we didn't learn much.
+
+    -   (Didn't prove the parameter equals the assumed value but it is still plausible)
+
+-   If it doesn't, then we have evidence that our assumption about the parameter was wrong.
+
+------------------------------------------------------------------------
+
+### ESP Example
+
+**Big Idea:**
+
+-   Make an assumption about the population parameter.
+    -   Ex: ESP doesn't exist. p, probability of guessing correctly, equals 0.25.
+
+::: columns
+::: column
+-   Generate a sampling distribution for a *test* statistic based on that assumption.
+    -   Called a **null distribution**
+:::
+
+::: column
+```{r, echo = FALSE}
+# Generate sampling distribution under no ESP
+library(mosaic)
+guess_sampling_dist <- do(1000)*rflip(n = 53, prob = 0.25)
+ggplot(data = guess_sampling_dist, mapping = aes(x = prop)) +
+  geom_histogram(color = "white", bins = 13, fill = "orange")
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+### ESP Example
+
+**Big Idea:**
+
+::: columns
+::: column
+-   See if the test statistic based on the observed sample aligns with the generated sampling distribution or not.
+    -   Ex: It is in the center-ish of the distribution. It isn't an unusual value.
+-   If it does, then we didn't learn much. (Didn't prove the parameter equals the assumed value but it is still plausible)
+    -   It is still possible that ESP doesn't exist.
+:::
+
+::: column
+```{r, echo = FALSE}
+p_hat <- 14/53
+# Graph the sampling distribution if guessing
+ggplot(data = guess_sampling_dist, mapping = aes(x = prop)) +
+  geom_histogram(color = "white", bins = 13, fill = "orange") +
+  geom_vline(xintercept = p_hat, color = "deeppink", size = 2)
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+### ESP Example
+
+::: columns
+::: column
+**Big Idea:**
+
+-   See if the test statistic based on the observed sample aligns with the generated sampling distribution or not.
+    -   It is far in the tails of the distribution. It is an unusual value.
+-   If it doesn't, then we have evidence that our assumption about the parameter was wrong.
+    -   We have evidence ESP exists.
+:::
+
+::: column
+```{r, echo = FALSE}
+p_hat <- 106/329
+guess_sampling_dist <- do(1000)*rflip(n = 329, prob = 0.25)
+# Graph the sampling distribution if guessing
+ggplot(data = guess_sampling_dist, mapping = aes(x = prop)) +
+  geom_histogram(color = "white", bins = 20, fill = "orange") +
+  geom_vline(xintercept = p_hat, color = "deeppink", size = 2)
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+### Let's Take a Step Back from Our Last Statement...
+
+::: nonincremental
+-   Two important words in data analysis:
+
+    -   Reproducibility
+    -   Replicability
+:::
+
+-   **Reproducibility**: If I give you the raw data and my write-up, you will get to the exact same final numbers that I did.
+
+-   By using `Quarto` Documents, we are learning a **reproducible** workflow.
+
+-   **Replicability**: If you follow my study design but collect new data (i.e. repeat my study on new subjects), you will come to the same conclusions that I did.
+
+------------------------------------------------------------------------
+
+### Replication Crisis
+
+-   Science is going through a **replication crisis** right now.
+
+    -   [In cancer science, many "discoveries" don't hold up](https://www.reuters.com/article/us-science-cancer-idUSBRE82R12P20120328)
+    -   [Estimating the reproducibility of psychological science](https://science.sciencemag.org/content/349/6251/aac4716)
+    -   [Psychology Is Starting To Deal With Its Replication Problem](https://fivethirtyeight.com/features/psychology-is-starting-to-deal-with-its-replication-problem/)
+
+-   And, sadly, **replication** studies of Bem and Honorton's ESP trials typically failed to find evidence of ESP.
+
+------------------------------------------------------------------------
+
+## Reminders:
+
+::: nonincremental
+-   Map making in `R` workshop: Part of the Sustainability Symposium
+    -  Th, March 26, 2:30 - 3:50pm, Taylor 210
+:::
+
