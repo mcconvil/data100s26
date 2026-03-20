@@ -1,0 +1,490 @@
+---
+pagetitle: "More Hypothesis Testing"
+format: 
+  revealjs:
+    html-math-method: mathjax
+    chalkboard: true
+    incremental: true
+    theme: [default, custom.scss]
+#    multiplex: true
+    height: 900
+    width: 1600
+    slide-number: c
+    auto-stretch: false
+    callout-appearance: simple
+    pdf-max-pages-per-slide: 1
+    menu: 
+      side: right
+      numbers: true
+    code-overflow: wrap
+execute:
+  echo: true
+  warning: false
+  message: false
+  fig-asp: 0.75
+  fig-width: 8
+#  fig-align: center
+  fig-dpi: 500
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+# Some global options still not available in quarto
+ knitr::opts_chunk$set(fig.align = 'center')
+library(knitr)
+library(tidyverse)
+theme_update(text = element_text(size = 16))
+```
+
+------------------------------------------------------------------------
+
+::: columns
+::: {.column .center width="45%"}
+![](img/DAW.png){width="90%"}
+:::
+
+::: {.column .center width="55%"}
+[More Hypothesis Testing]{.custom-title}
+
+<br> <br> <br>
+
+[Kelly McConville]{.custom-subtitle}
+
+[DATA 100 <br> Week 9 \| Spring 2026]{.custom-subtitle}
+:::
+:::
+
+# Grab 30 notecards! It is okay if they already have markings on them. {.unnumbered .unlisted}
+
+------------------------------------------------------------------------
+
+## Announcements
+
+-   `r emo::ji("tada")` We are now accepting **data science student fellow applications** for DATA 100. 
+    -   About 10-12 hours of work per week.\
+    -   Primary responsibilities: Work on a collaborative, mentored data or AI project, attend relevant meetings, and participate in DCDS ambassador activities.
+
+### Goals for Today
+
+::: columns
+::: column
+-   Learn the **language** of hypothesis testing (including **p-values**)
+
+-   Practice framing research questions in terms of hypotheses
+:::
+
+::: column
+-   Learn how to generate **null distributions**
+
+-   Use `infer` to conduct hypothesis tests in `R`
+:::
+:::
+
+---
+
+### Hypothesis Testing Framework
+
+Have two competing hypothesis:
+
+-   Null Hypothesis $(H_o)$: Dull hypothesis, status quo, random chance, no effect...
+
+-   Alternative Hypothesis $(H_a)$: (Usually) contains the researchers' conjecture.
+
+::: fragment
+Must first take those hypotheses and translate them into statements about the **population parameters** so that we can test them with sample data.
+
+Example:
+:::
+
+::: columns
+::: column
+::: fragment
+$H_o$: ESP doesn't exist.
+
+$H_a$: ESP does exist.
+
+Then translate into a statistical problem!
+:::
+:::
+
+::: column
+::: fragment
+$p$ =
+
+$H_o$:
+
+$H_a$:
+:::
+:::
+:::
+
+# Let's Practice Setting up Hypotheses!
+
+------------------------------------------------------------------------
+
+### Example 1
+
+Can a simple smile have an effect on punishment assigned following an infraction? In a 1995 study, Hecht and LeFrance examined the effect of a smile on the leniency of disciplinary action for wrongdoers. Participants in the experiment took on the role of members of a college disciplinary panel judging students accused of cheating. For each suspect, along with a description of the offense, a picture was provided with either a smile or neutral facial expression. A leniency score was calculated based on the disciplinary decisions made by the participants.
+
+Write out Ho and Ha in terms of conjectures.
+
+<br>
+
+<br>
+
+Write out Ho and Ha in terms of population parameters.
+
+Make sure to first define the population parameter in the context of the problem.
+
+------------------------------------------------------------------------
+
+### Example 2
+
+Can you tell if a mouse is in pain by looking at its facial expression? A recent study created a ''mouse grimace scale" and tested to see if there was a positive correlation between scores on that scale and the degree of pain (based on injections of a weak and mildly painful solution). The study's authors believe that if the scale applies to other mammals as well, it could help veterinarians test how well painkillers and other medications work in animals.
+
+Write out Ho and Ha in terms of conjectures.
+
+<br>
+
+<br>
+
+Write out Ho and Ha in terms of population parameters.
+
+Make sure to first define the population parameter in the context of the problem.
+
+------------------------------------------------------------------------
+
+### Hypothesis Testing Framework
+
+Flavors of hypotheses:
+
+-   $H_o$: parameter $=$ null value
+
+-   One of the following:
+
+    -   $H_a$: parameter $\neq$ null value
+    -   $H_a$: parameter $>$ null value
+    -   $H_a$: parameter $<$ null value
+
+::: fragment
+**Question**: But doesn't $H_o$ sometimes represent $\leq$ or $\geq$?
+:::
+
+------------------------------------------------------------------------
+
+### Hypothesis Testing Framework
+
+Once you have set-up your hypotheses...
+
+-   Collect data.
+
+-   Assume $H_o$ is correct.
+
+-   Quantify the likelihood of the sample results using a test statistic.
+
+    -   **Test statistic**: Numerical summary of the sample data
+        -   Often is equal to the sample statistic.
+    -   **Null distribution**: Sampling distribution of the test statistic if the null hypothesis is true.
+
+::: fragment
+**Question**: How do we use the null distribution to quantify the likelihood of the sample results?
+:::
+
+------------------------------------------------------------------------
+
+### Null Distributions and P-Values
+
+**p-value** = Probability of the observed test statistic or more extreme if $H_o$ is true
+
+-   More extreme = direction of $H_a$
+
+-   Find the proportion of test statistics in the null distribution that are equal to or more extreme that the observed test statistic
+
+    -   Let's draw some pictures.
+
+------------------------------------------------------------------------
+
+### P-values and Conclusions
+
+-   If the p-value is small, we have evidence for $H_a$.
+
+-   If the p-value is not small, we don't have evidence for $H_a$.
+
+-   In your conclusions, focus on $H_a$ (the hypothesis that stores the researchers' conjecture).
+
+-   Will discuss conclusions in more detail soon!
+
+    -   For example, what do we mean by "small"?
+
+------------------------------------------------------------------------
+
+## Generating Null Distributions
+
+**For the sample proportion in the ESP Example:**
+
+::: columns
+::: column
+Steps:
+
+1.  Flip unfair coin (prop heads = 0.25) 329 times.
+2.  Compute proportion of heads.
+3.  Repeat 1 and 2 many times.
+:::
+
+::: column
+::: fragment
+`R` code using the `infer` package:
+
+```{r}
+library(infer)
+
+# Construct data frame of sample results
+esp <- data.frame(guess = c(rep("correct", 106),
+                            rep("incorrect",
+                                329 - 106)))
+
+# Generate Null Distribution
+null_dist <- esp %>%
+  specify(response = guess, success = "correct") %>%
+  hypothesize(null = "point", p = 0.25) %>%
+  generate(reps = 1000, type = "draw") %>%
+  calculate(stat ="prop")
+```
+:::
+:::
+:::
+
+::: fragment
+For different variable types, we will need to move beyond using a coin to conceptualize the null distribution.
+:::
+
+------------------------------------------------------------------------
+
+## Hypothesis Testing in `R`
+
+```{r}
+#| output-location: column
+
+# Compute observed test statistic
+test_stat <- esp %>%
+  specify(response = guess, success = "correct") %>%
+  calculate(stat ="prop")
+test_stat
+
+test_stat <- 106/329
+test_stat
+```
+
+------------------------------------------------------------------------
+
+## Hypothesis Testing in `R`
+
+```{r}
+#| output-location: column
+
+# Graph null distribution with test statistic
+visualize(null_dist) +
+  geom_vline(xintercept = test_stat,
+             color = "deeppink", size = 2)
+
+```
+
+------------------------------------------------------------------------
+
+## Hypothesis Testing in `R`
+
+```{r}
+#| output-location: column
+
+# Compute p-value
+p_value <- null_dist %>%
+  get_p_value(obs_stat = test_stat,
+              direction = "right")
+p_value
+```
+
+::: fragment
+**Interpretation of** $p$-value: If ESP doesn't exist, the probability of observing 106 or more correct identifications out of 329 trials equals `r p_value`.
+:::
+
+::: fragment
+**Conclusion**: Since it is so unlikely (i.e., practically impossible) to have seen such unusual results if ESP doesn't exist, these data suggest that ESP does exist.
+:::
+
+------------------------------------------------------------------------
+
+### Example
+
+In 2005, the researchers Antonioli and Reveley posed the question "Does swimming with the dolphins help depression?" To investigate, they recruited 30 US subjects diagnosed with mild to moderate depression. Participants were randomly assigned to either the treatment group or the control group. Those in the treatment group went swimming with dolphins, while those in the control group went swimming without dolphins. After two weeks, each subject was categorized as "showed substantial improvement" or "did not show substantial improvement".
+
+```{r, message=FALSE,echo = FALSE}
+dolphins <- read.csv("data/Dolphins.txt", sep="")
+```
+
+Here's a contingency table of `improve` and `group`.
+
+::: columns
+::: column
+```{r}
+dolphins %>%
+  count(group, improve)
+```
+:::
+
+::: column
+Ho:
+
+Ha:
+:::
+:::
+
+How might we generate the null distribution for this scenario?
+
+------------------------------------------------------------------------
+
+### Dolphin Example
+
+Ho:
+
+Ha:
+
+How might we generate the null distribution for this scenario?
+
+Snapshot of the data:
+
+```{r, echo = FALSE}
+set.seed(44)
+dolphins %>%
+  sample_n(8)
+```
+
+Once you have your simulated null statistic, add it to the class dotplot.
+
+# Will finish the dolphin example on the next p-set. Let's return to the Palmer Penguins.
+
+![](img/penguins.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+## Penguins Example
+
+Let's return to the `penguins` data and ask if flipper length varies, on average, by the sex of the penguin.
+
+**Research Question**: Does flipper length differ by sex?
+
+**Response Variable**:
+
+<br>
+
+**Explanatory Variable**:
+
+<br>
+
+**Statistical Hypotheses**:
+
+------------------------------------------------------------------------
+
+## Exploratory Data Analysis
+
+```{r}
+#| output-location: column
+
+library(palmerpenguins)
+
+penguins %>%
+  drop_na(sex) %>%
+ggplot(mapping = aes(x = sex,
+                     y = flipper_length_mm)) +
+  geom_boxplot()
+
+
+```
+
+------------------------------------------------------------------------
+
+## Two-Sided Hypothesis Test
+
+```{r}
+#| output-location: column
+
+
+# Compute observed test statistic
+test_stat <- penguins %>%
+  drop_na(sex) %>%
+  specify(flipper_length_mm ~ sex) %>%
+  calculate(stat ="diff in means",
+            order = c("female", "male"))
+test_stat
+```
+
+```{r}
+# Generate null distribution 
+null_dist <- penguins %>%
+  drop_na(sex) %>%
+  specify(flipper_length_mm ~ sex) %>%
+  hypothesize(null = "independence") %>%
+  generate(reps = 1000, type = "permute") %>%
+  calculate(stat ="diff in means",
+            order = c("female", "male"))
+```
+
+------------------------------------------------------------------------
+
+## Two-Sided Hypothesis Test
+
+```{r}
+#| output-location: column
+
+# Graph null distribution with test statistic
+visualize(null_dist) +
+  geom_vline(xintercept = test_stat$stat,
+             color = "deeppink", size = 2) +
+  geom_vline(xintercept = abs(test_stat$stat),
+             color = "deeppink", size = 2)
+```
+
+------------------------------------------------------------------------
+
+## Two-Sided Hypothesis Test
+
+```{r}
+#| output-location: column
+
+# Compute p-value
+p_value <- null_dist %>%
+  get_p_value(obs_stat = test_stat,
+              direction = "two_sided")
+p_value
+```
+
+**Interpretation of** $p$-value: If the mean flipper length does not differ by sex in the population, the probability of observing a difference in the sample means of at least `r abs(test_stat$stat)` mm (in magnitude) is equal to `r p_value`.
+
+**Conclusion**: These data represent evidence that flipper length does vary by sex.
+
+------------------------------------------------------------------------
+
+## Hypothesis Testing Framework
+
+-   Set-up hypotheses: 
+    - Be able to express in words and in terms of parameters.
+
+-   Collect data.
+
+-   Assume $H_o$ is correct.
+
+-   Compute a p-value to quantify the likelihood of the sample results using a test statistic.
+
+# Next Class: A closer look at the conclusions of a hypothesis test
+
+
+------------------------------------------------------------------------
+
+## Reminders:
+
+::: nonincremental
+-   `r emo::ji("tada")` We are now accepting **data science student fellow applications** for DATA 100. 
+    -   About 10-12 hours of work per week.\
+    -   Primary responsibilities: Work on a collaborative, mentored data or AI project, attend relevant meetings, and participate in DCDS ambassador activities.
+:::
