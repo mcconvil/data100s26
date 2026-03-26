@@ -40,7 +40,7 @@ theme_update(text = element_text(size = 16))
 
 ------------------------------------------------------------------------
 
-::: columns
+::::: columns
 ::: {.column .center width="45%"}
 ![](img/DAW.png){width="90%"}
 :::
@@ -54,7 +54,7 @@ theme_update(text = element_text(size = 16))
 
 [DATA 100 <br> Week 9 \| Spring 2026]{.custom-subtitle}
 :::
-:::
+:::::
 
 # Grab 30 notecards! It is okay if they already have markings on them. {.unnumbered .unlisted}
 
@@ -62,13 +62,13 @@ theme_update(text = element_text(size = 16))
 
 ## Announcements
 
--   `r emo::ji("tada")` We are now accepting **data science student fellow applications** for DATA 100. 
+-   `r emo::ji("tada")` We are now accepting **data science student fellow applications** for DATA 100.
     -   About 10-12 hours of work per week.\
     -   Primary responsibilities: Work on a collaborative, mentored data or AI project, attend relevant meetings, and participate in DCDS ambassador activities.
 
 ### Goals for Today
 
-::: columns
+::::: columns
 ::: column
 -   Learn the **language** of hypothesis testing (including **p-values**)
 
@@ -80,9 +80,9 @@ theme_update(text = element_text(size = 16))
 
 -   Use `infer` to conduct hypothesis tests in `R`
 :::
-:::
+:::::
 
----
+------------------------------------------------------------------------
 
 ### Hypothesis Testing Framework
 
@@ -98,8 +98,8 @@ Must first take those hypotheses and translate them into statements about the **
 Example:
 :::
 
-::: columns
-::: column
+::::::: columns
+:::: column
 ::: fragment
 $H_o$: ESP doesn't exist.
 
@@ -107,9 +107,9 @@ $H_a$: ESP does exist.
 
 Then translate into a statistical problem!
 :::
-:::
+::::
 
-::: column
+:::: column
 ::: fragment
 $p$ =
 
@@ -117,8 +117,8 @@ $H_o$:
 
 $H_a$:
 :::
-:::
-:::
+::::
+:::::::
 
 # Let's Practice Setting up Hypotheses!
 
@@ -224,7 +224,7 @@ Once you have set-up your hypotheses...
 
 **For the sample proportion in the ESP Example:**
 
-::: columns
+:::::: columns
 ::: column
 Steps:
 
@@ -233,7 +233,7 @@ Steps:
 3.  Repeat 1 and 2 many times.
 :::
 
-::: column
+:::: column
 ::: fragment
 `R` code using the `infer` package:
 
@@ -253,8 +253,8 @@ null_dist <- esp %>%
   calculate(stat ="prop")
 ```
 :::
-:::
-:::
+::::
+::::::
 
 ::: fragment
 For different variable types, we will need to move beyond using a coin to conceptualize the null distribution.
@@ -325,7 +325,7 @@ dolphins <- read.csv("data/Dolphins.txt", sep="")
 
 Here's a contingency table of `improve` and `group`.
 
-::: columns
+::::: columns
 ::: column
 ```{r}
 dolphins %>%
@@ -338,7 +338,7 @@ Ho:
 
 Ha:
 :::
-:::
+:::::
 
 How might we generate the null distribution for this scenario?
 
@@ -467,8 +467,9 @@ p_value
 
 ## Hypothesis Testing Framework
 
--   Set-up hypotheses: 
-    - Be able to express in words and in terms of parameters.
+-   Set-up hypotheses:
+
+    -   Be able to express in words and in terms of parameters.
 
 -   Collect data.
 
@@ -478,13 +479,12 @@ p_value
 
 # Next Class: A closer look at the conclusions of a hypothesis test
 
-
 ------------------------------------------------------------------------
 
 ## Reminders:
 
 ::: nonincremental
--   `r emo::ji("tada")` We are now accepting **data science student fellow applications** for DATA 100. 
+-   `r emo::ji("tada")` We are now accepting **data science student fellow applications** for DATA 100.
     -   About 10-12 hours of work per week.\
     -   Primary responsibilities: Work on a collaborative, mentored data or AI project, attend relevant meetings, and participate in DCDS ambassador activities.
 :::
