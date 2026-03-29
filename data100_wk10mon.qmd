@@ -41,7 +41,7 @@ theme_update(text = element_text(size = 16))
 
 ------------------------------------------------------------------------
 
-::: columns
+::::: columns
 ::: {.column .center width="45%"}
 ![](img/DAW.png){width="90%"}
 :::
@@ -55,7 +55,7 @@ theme_update(text = element_text(size = 16))
 
 [DATA 100 <br> Week 10 \| Spring 2026]{.custom-subtitle}
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -67,22 +67,21 @@ theme_update(text = element_text(size = 16))
     -   Primary responsibilities: Work on a collaborative, mentored data or AI project, attend relevant meetings, and participate in DCDS ambassador activities.
 :::
 
-
 ### Goals for Today
 
-::: columns
+::::: columns
 ::: column
 -   Coding goals (DATA 100 & beyond)
 -   Advice on the next data science class
 :::
 
 ::: column
--  Hypothesis testing example
+-   Hypothesis testing example
 -   **Decisions** in a hypothesis test
     -   Types of errors
 -   The **power** of a hypothesis test
 :::
-:::
+:::::
 
 # Now that you have discovered your love of data, what class should you take next?
 
@@ -96,7 +95,7 @@ theme_update(text = element_text(size = 16))
 
 -   **Follow-up Question**: So what coding is there left to learn?
 
--   **Answer**: Learning how to **program**. This includes topics such as control flow, iteration, creating functions, and vectorization.  Also, learning how to use an **AI tool** effectively and ethically to support your code generation and how to debug AI code suggestions.
+-   **Answer**: Learning how to **program**. This includes topics such as control flow, iteration, creating functions, and vectorization. Also, learning how to use an **AI tool** effectively and ethically to support your code generation and how to debug AI code suggestions.
 
 ------------------------------------------------------------------------
 
@@ -105,10 +104,8 @@ theme_update(text = element_text(size = 16))
 ::: nonincremental
 -   CSCI 187. Creative Computing & Society: Computing, Creativity & the Social Good.
 -   CSCI 203. Introduction to Computer Science.
--   ANOP 203. Introduction to Programming for Business Analytics. 
+-   ANOP 203. Introduction to Programming for Business Analytics.
 :::
-
-
 
 ## That Next Modeling Course
 
@@ -119,7 +116,6 @@ theme_update(text = element_text(size = 16))
 -   Many of the upper-level stats courses are modeling courses (but they do have pre-reqs).
 :::
 
-
 ## That Next Visualization Course
 
 ::: nonincremental
@@ -129,13 +125,9 @@ theme_update(text = element_text(size = 16))
 
 # Feel free to stop by office hours or send me a Slack note if you have advising questions!
 
-
-
-
-
 # Now: A closer look at the conclusions of a hypothesis test
 
-----------------------------
+------------------------------------------------------------------------
 
 ## Hypothesis Testing Framework
 
@@ -157,12 +149,12 @@ theme_update(text = element_text(size = 16))
 
 Once you get to the end of a hypothesis test you make one of two decisions:
 
--   P-value is small. 
+-   P-value is small.
     -   Reject $H_o$.
-    -   **I have evidence for $H_a$.** 
--   P-value is not small. 
+    -   **I have evidence for** $H_a$.
+-   P-value is not small.
     -   Fail to reject $H_o$.
-    -   **I don't have evidence for $H_a$.** 
+    -   **I don't have evidence for** $H_a$.
 
 ::: fragment
 Sometimes we make the correct decision. Sometimes we make a mistake.
@@ -221,7 +213,7 @@ Use $\alpha$ to determine "small" for a p-value.
 
 Suppose we have a baseball player who has been a 0.250 career hitter who suddenly improves to be a 0.333 hitter. He wants a raise but needs to convince his manager that he has genuinely improved. The manager offers to examine his performance in 20 at-bats.
 
-::: columns
+::::: columns
 ::: column
 Ho:
 :::
@@ -229,9 +221,9 @@ Ho:
 ::: column
 Ha:
 :::
-:::
+:::::
 
-::: columns
+:::::: columns
 ::: column
 ```{r, echo = FALSE, fig.asp = 0.65}
 dat <- data.frame(at_bats = c(rep("hit", 8), 
@@ -270,7 +262,7 @@ power <- alt %>%
 ```
 :::
 
-::: column
+:::: column
 ::: nonincremental
 -   When $\alpha$ is set to $0.05$, he needs to hit 9 or more to get a small enough p-value to reject $H_o$.
 
@@ -280,8 +272,8 @@ power <- alt %>%
 
 -   What aspects of the test could the baseball player change to **increase the power** of the test?
 :::
-:::
-:::
+::::
+::::::
 
 ------------------------------------------------------------------------
 
@@ -291,7 +283,7 @@ Suppose we have a baseball player who has been a 0.250 career hitter who suddenl
 
 **What will happen to the power of the test if we increase the sample size?**
 
-::: columns
+:::::: columns
 ::: column
 ```{r, echo = FALSE, fig.asp = 0.65}
 dat <- data.frame(at_bats = c(rep("hit", 40), 
@@ -335,14 +327,14 @@ power <- round(mean(alt$stat > quantile(null$stat, 0.95)), digits = 2)
 ```
 :::
 
-::: column
+:::: column
 ::: nonincremental
 -   Increasing the sample size increases the power.
 
 -   When $\alpha$ is set to $0.05$ and the sample size is now 100, the power of this test is `r power`.
 :::
-:::
-:::
+::::
+::::::
 
 ------------------------------------------------------------------------
 
@@ -352,7 +344,7 @@ Suppose we have a baseball player who has been a 0.250 career hitter who suddenl
 
 **What will happen to the power of the test if we increase** $\alpha$ to 0.1?
 
-::: columns
+:::::: columns
 ::: column
 ```{r, echo = FALSE, fig.asp = 0.65}
 dat <- data.frame(at_bats = c(rep("hit", 40), 
@@ -396,14 +388,14 @@ power <- round(mean(alt$stat > quantile(null$stat, 0.9)), digits = 2)
 ```
 :::
 
-::: column
+:::: column
 ::: nonincremental
 -   Increasing $\alpha$ increases the power.
     -   Decreases $\beta$.
 -   When $\alpha$ is set to $0.1$ and the sample size is 100, the power of this test is `r power`.
 :::
-:::
-:::
+::::
+::::::
 
 ------------------------------------------------------------------------
 
@@ -413,7 +405,7 @@ Suppose we have a baseball player who has been a 0.250 career hitter who suddenl
 
 **What will happen to the power of the test if he is an even better player?**
 
-::: columns
+:::::: columns
 ::: column
 ```{r, echo = FALSE, fig.asp = 0.65}
 dat <- data.frame(at_bats = c(rep("hit", 40), 
@@ -457,7 +449,7 @@ power <- round(mean(alt$stat > quantile(null$stat, 0.9)), digits = 2)
 ```
 :::
 
-::: column
+:::: column
 ::: nonincremental
 -   **Effect size**: Difference between true value of the parameter and null value.
 
@@ -467,12 +459,10 @@ power <- round(mean(alt$stat > quantile(null$stat, 0.9)), digits = 2)
 
 -   When $\alpha$ is set to $0.1$, the sample size is 100, and the true probability of hitting the ball is 0.4, the power of this test is `r power`.
 :::
-:::
-:::
+::::
+::::::
 
-#  Will talk about computing power later!
-
-
+# Will talk about computing power later!
 
 ## Thoughts on Power
 
@@ -495,7 +485,6 @@ knitr::include_graphics("img/bem_honorton_1994_results.png")
 ```
 
 ------------------------------------------------------------------------
-
 
 ### Statistical Inference Zoom Out -- Estimation
 
@@ -531,10 +520,7 @@ knitr::include_graphics("img/bem_honorton_1994_results.png")
 
 **Question**: How did folks do inference before computers?
 
-
-
-
-------
+------------------------------------------------------------------------
 
 ## Reminders:
 

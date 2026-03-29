@@ -40,10 +40,9 @@ theme_update(text = element_text(size = 16))
 
 # Grab 30 notecards! It is okay if they already have markings on them. And, please return the notecards to the same spot after class. {.unnumbered .unlisted}
 
----------------------------
+------------------------------------------------------------------------
 
-
-::: columns
+::::: columns
 ::: {.column .center width="45%"}
 ![](img/DAW.png){width="90%"}
 :::
@@ -57,42 +56,34 @@ theme_update(text = element_text(size = 16))
 
 [DATA 100 <br> Week 8 \| Spring 2026]{.custom-subtitle}
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
 ## Announcements
 
--  P-Set 5 is due tomorrow at noon.
--  Interesting sports analytics talk tomorrow at noon in Taylor 212.  Sign up to attend: [https://forms.gle/771gNTLQjtUH1Jbo6](https://forms.gle/771gNTLQjtUH1Jbo6)
+-   P-Set 5 is due tomorrow at noon.
+-   Interesting sports analytics talk tomorrow at noon in Taylor 212. Sign up to attend: <https://forms.gle/771gNTLQjtUH1Jbo6>
 
 ### Goals for Today
 
-::: columns
+::::: columns
 ::: column
-
 -   Estimation
 -   Sampling distributions
-
 :::
 
 ::: column
-
 -   Bootstrap distributions
 -   Bootstrapped confidence intervals
-
-
 :::
-:::
-
-
-
+:::::
 
 # `r emo::ji("thinking")` The second half of DATA 100 is more conceptually difficult. `r emo::ji("thinking")`
 
 [So keep coming to lecture, to lab, and to office hours to get your questions answered!]{.custom-subtitle}
 
--------
+------------------------------------------------------------------------
 
 ## Statistical Inference
 
@@ -104,26 +95,18 @@ theme_update(text = element_text(size = 16))
 
 -   Testing conjectures.
 
-
 ------------------------------------------------------------------------
 
 ## Sampling Distribution of a Statistic
 
-
-
-
-::: columns
+::::: columns
 ::: column
-
 ```{r  out.width = "85%", echo=FALSE, fig.align='center'}
 include_graphics("img/samp_dist_prop.jpg") 
 ```
-
-
 :::
 
 ::: column
-
 Steps to Construct an (Approximate) Sampling Distribution:
 
 1.  Decide on a sample size, $n$.
@@ -135,36 +118,27 @@ Steps to Construct an (Approximate) Sampling Distribution:
 4.  Put the sample back in.
 
 5.  Repeat Steps 2 - 4 many (1000+) times.
-
 :::
-:::
-
+:::::
 
 ## Sampling Distribution
 
-
-
-::: columns
+::::: columns
 ::: column
-
 ```{r  out.width = "85%", echo=FALSE, fig.align='center'}
 include_graphics("img/samp_dist_prop.jpg") 
 ```
-
-
 :::
 
 ::: column
+-   What are some of the key features of a sampling distribution?
 
-* What are some of the key features of a sampling distribution?
+-   Key Questions:
 
-* Key Questions:
-    + How do sampling distributions help us **quantify uncertainty**?
-    + If I am estimating a parameter in a real example, why **won't** I be able to construct the sampling distribution?
-
+    -   How do sampling distributions help us **quantify uncertainty**?
+    -   If I am estimating a parameter in a real example, why **won't** I be able to construct the sampling distribution?
 :::
-:::
-
+:::::
 
 ------------------------------------------------------------------------
 
@@ -188,32 +162,24 @@ include_graphics("img/samp_dist_prop.jpg")
 
 ## New `R` Packages
 
-::: columns
+::::: columns
 ::: {.column width="20%"}
 ![](img/infer.png){width="100%" fig-align="center"}
 :::
 
 ::: {.column width="80%"}
-
-<br> <br> <br> 
+<br> <br> <br>
 
 ```{r}
 library(infer)
 ```
 
 Will use `infer` to conduct statistical inference.
-
-
-
 :::
-:::
+:::::
 
-
-
-
-::: columns
+::::::: columns
 ::: {.column width="3%"}
-
 :::
 
 ::: {.column width="12%"}
@@ -221,21 +187,18 @@ Will use `infer` to conduct statistical inference.
 :::
 
 ::: {.column width="5%"}
-
 :::
 
 ::: column
-<br> 
+<br>
 
 ```{r}
 library(pdxTrees)
 ```
 
 Will use `pdxTrees` to access data on trees in Portland, OR parks.
-
 :::
-:::
-
+:::::::
 
 ------------------------------------------------------------------------
 
@@ -321,7 +284,7 @@ ggplot(data = samp_dist,
   geom_histogram(bins = 14)
 ```
 
-::: columns
+:::::: columns
 ::: {.column width="33%"}
 -   Shape?
 :::
@@ -333,13 +296,13 @@ ggplot(data = samp_dist,
 ::: {.column width="33%"}
 -   Spread?
 :::
-:::
+::::::
 
 ------------------------------------------------------------------------
 
 ### Properties of the Sampling Distribution
 
-::: columns
+::::: columns
 ::: column
 ```{r}
 #| echo: false
@@ -363,7 +326,7 @@ summarize(samp_dist, mean(statistic))
 summarize(samp_dist, sd(statistic))
 ```
 :::
-:::
+:::::
 
 The standard deviation of a sample statistic is called the **standard error**.
 
@@ -430,7 +393,7 @@ What did we learn about sampling distributions?
 
 -   **Question:** How do sampling distributions help us **quantify uncertainty**?
 
----
+------------------------------------------------------------------------
 
 ## Estimation
 
@@ -460,7 +423,7 @@ summarize(ce, meanFINCBTAX = mean(FINCBTAX))
 
 ## Confidence Intervals
 
-::: columns
+::::: columns
 ::: column
 It is time to move **beyond** just point estimates to interval estimates that quantify our uncertainty.
 :::
@@ -470,7 +433,7 @@ It is time to move **beyond** just point estimates to interval estimates that qu
 summarize(ce, meanFINCBTAX = mean(FINCBTAX))
 ```
 :::
-:::
+:::::
 
 -   **Confidence Interval**: Interval of **plausible** values for a parameter
 
@@ -506,14 +469,13 @@ What else do we need to construct the CI?
 
 -   **Solution**: Approximate the sampling distribution using **ONLY OUR ONE SAMPLE!**
 
-
 ------------------------------------------------------------------------
 
 ### Bootstrap Distribution
 
 How do we approximate the sampling distribution?
 
-::: columns
+:::: columns
 ::: {.column width="\"50%"}
 **Bootstrap Distribution of a Sample Statistic**:
 
@@ -523,7 +485,7 @@ How do we approximate the sampling distribution?
 
 3.  Repeat 1 and 2 many (1000+) times.
 :::
-:::
+::::
 
 ------------------------------------------------------------------------
 
@@ -698,11 +660,9 @@ ci_95 <- bootstrap_dist %>%
 ci_95
 ```
 
-
------
-
+------------------------------------------------------------------------
 
 ## Reminders
 
--  P-Set 5 is due tomorrow at noon.
--  Interesting sports analytics talk tomorrow at noon in Taylor 212.  Sign up to attend: [https://forms.gle/771gNTLQjtUH1Jbo6](https://forms.gle/771gNTLQjtUH1Jbo6)
+-   P-Set 5 is due tomorrow at noon.
+-   Interesting sports analytics talk tomorrow at noon in Taylor 212. Sign up to attend: <https://forms.gle/771gNTLQjtUH1Jbo6>
