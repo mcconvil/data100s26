@@ -41,7 +41,7 @@ theme_update(text = element_text(size = 16))
 
 ------------------------------------------------------------------------
 
-::: columns
+::::: columns
 ::: {.column .center width="45%"}
 ![](img/DAW.png){width="90%"}
 :::
@@ -49,24 +49,23 @@ theme_update(text = element_text(size = 16))
 ::: {.column .center width="55%"}
 [Inference: Random Variables + P-Value Pitfalls]{.custom-title}
 
-
 [Kelly McConville]{.custom-subtitle}
 
 [DATA 100 <br> Week 10 \| Spring 2026]{.custom-subtitle}
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
 ## Announcements
 
--   Exam next week: 
-    -  In-class on Wed (April 8th)
-    -  Orals throughout the day on Fri (April 10th).  **In-person** this time!
+-   Exam next week:
+    -   In-class on Wed (April 8th)
+    -   Orals throughout the day on Fri (April 10th). **In-person** this time!
 
 ### Goals for Today
 
-::: columns
+::::: columns
 ::: column
 -   Statistical inference zoom out
 -   Approximating inference using random variables
@@ -74,15 +73,14 @@ theme_update(text = element_text(size = 16))
 
 ::: column
 -   A hearty p-values discussion
-
 :::
-:::
+:::::
 
 # Which Flavor of Data Scientist Are You?
 
 ------------------------------------------------------------------------
 
-::: columns
+::::: columns
 ::: column
 Data Visualizer
 
@@ -114,7 +112,7 @@ Inferencer
 
 </iframe>
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -152,36 +150,28 @@ Inferencer
 
 **Question**: How did folks do inference before computers?
 
-
 # It is time to recast some of the sample statistics we have been exploring as random variables!
 
 ------------------------------------------------------------------------
 
 ### Sample Statistics as Random Variables
 
-
 **Random variable** (RV) is a random process that **takes on numerical values**.
 
--  Statisticians understand the shape, center, and spread of MANY random variables.
+-   Statisticians understand the shape, center, and spread of MANY random variables.
 
-
-::: fragment
-
+:::: fragment
 Here are some of the sample statistics we've seen lately:
 
 ::: nonincremental
 -   $\hat{p}$ = sample proportion of correct receiver guesses out of 329 trials
 
-
 -   $\hat{p}_D - \hat{p}_Y$ = difference in sample improvement proportions between those who swam with dolphins and those who did not
 :::
-
-:::
+::::
 
 ::: fragment
-
 Why are these all random variables?
-
 :::
 
 ------------------------------------------------------------------------
@@ -190,8 +180,8 @@ Why are these all random variables?
 
 -   $\hat{p}$ = sample proportion of correct receiver guesses out of 329 trials
 
-::: columns
-::: column
+::::::: columns
+:::: column
 ::: fragment
 We generated its Null Distribution:
 
@@ -217,11 +207,11 @@ ggplot(null_dist, aes(x = stat, y = ..density..)) +
   xlim(.16, .36) + ylim(0, 17)
 ```
 :::
-:::
+::::
 
-::: column
+:::: column
 ::: fragment
-Which is well approximated by the distribution of a Normal random variable. 
+Which is well approximated by the distribution of a Normal random variable.
 
 ```{r, echo = FALSE}
 ggplot(null_dist, aes(x = stat, y = ..density..)) +
@@ -230,9 +220,8 @@ ggplot(null_dist, aes(x = stat, y = ..density..)) +
   xlim(.16, .36) + ylim(0, 17)
 ```
 :::
-:::
-:::
-
+::::
+:::::::
 
 ------------------------------------------------------------------------
 
@@ -240,8 +229,8 @@ ggplot(null_dist, aes(x = stat, y = ..density..)) +
 
 -   $\hat{p}_D - \hat{p}_Y$ = difference in sample improvement proportions between those who swam with dolphins and those who did not
 
-::: columns
-::: column
+::::::: columns
+:::: column
 ::: fragment
 We generated its Null Distribution:
 
@@ -264,9 +253,9 @@ ggplot(null_dist, aes(x = stat, y = ..density..)) +
   xlim(-.5, .5) + ylim(0, 7)
 ```
 :::
-:::
+::::
 
-::: column
+:::: column
 ::: fragment
 Which is **kinda somewhat** approximated by the distribution of a Normal random variable.
 
@@ -277,14 +266,10 @@ ggplot(null_dist, aes(x = stat, y = ..density..)) +
   xlim(-.5, .5) + ylim(0, 7)
 ```
 :::
-:::
-:::
-
-
-
+::::
+:::::::
 
 # *"All models are wrong but some are useful."* -- George Box
-
 
 ------------------------------------------------------------------------
 
@@ -353,11 +338,11 @@ library(cowplot)
 plot_grid(p1, p2)
 ```
 
-* The larger the sample size, the closer the distribution gets to being bell-shaped and symmetric, like a Normal random variable.
+-   The larger the sample size, the closer the distribution gets to being bell-shaped and symmetric, like a Normal random variable.
 
 # Sometimes it is easier to find a good random variable approximation if we **standardize** our sample statistic first.
 
------
+------------------------------------------------------------------------
 
 ### Z-scores
 
@@ -381,9 +366,9 @@ $$
 
 -   $\hat{p}$ = proportion of Maples in a sample of 50 trees
 
-- Mean of $\hat{p}$: 0.138
-- Standard deviation of $\hat{p}$: 0.049
+-   Mean of $\hat{p}$: 0.138
 
+-   Standard deviation of $\hat{p}$: 0.049
 
 -   Suppose we have a sample where $\hat{p} = 0.05$. Then the z-score would be:
 
@@ -408,7 +393,7 @@ $$
 -   Allows us to quickly (but roughly) classify results as unusual or not.
     -   $|$ Z-score $|$ \> 2 → results are unusual/p-value will be smallish
 
----
+------------------------------------------------------------------------
 
 ### Inference based on Random Variable Approximation: One Proportion
 
@@ -422,18 +407,15 @@ esp <- data.frame(guess = c(rep("correct", 106), rep("incorrect", 329 - 106)))
 ```
 
 ::: fragment
-
 ```{r}
 # Theory-based approximation
 prop_test(esp, response = guess, success = "correct", p = 0.25,
           z = TRUE, alternative = "greater")
 
 ```
-
 :::
 
 ::: fragment
-
 ```{r}
 # Confidence interval
 prop_test(esp, response = guess, success = "correct", 
@@ -441,7 +423,6 @@ prop_test(esp, response = guess, success = "correct",
 ```
 
 When is the random variable approximation reasonable?
-
 :::
 
 ------------------------------------------------------------------------
@@ -467,11 +448,11 @@ FloridaLakes <- read_csv("https://www.lock5stat.com/datasets1e/FloridaLakes.csv"
 
 <br>
 
----
+------------------------------------------------------------------------
 
 ### Inference for a Single Mean: Simulation-Based Approach
 
-::: columns
+::::: columns
 ::: column
 ```{r}
 library(infer)
@@ -501,12 +482,11 @@ pvalue
 
 ```
 :::
-:::
+:::::
 
 **Why are we using `type = "bootstrap"` when constructing a null distribution?!**
 
------
-
+------------------------------------------------------------------------
 
 ### Inference for a Single Mean: Random Variable-Based Approach
 
@@ -515,10 +495,9 @@ t_test(FloridaLakes, response = pH, mu = 7,
        alternative = "two-sided")
 ```
 
-
 When is the random variable approximation reasonable?
 
----
+------------------------------------------------------------------------
 
 ### Statistical Inference using Random Variables
 
@@ -528,10 +507,7 @@ When is the random variable approximation reasonable?
 
     -   Will extend beyond inference for 1 variable next time.
 
-
-
 # P-Values
-
 
 ------------------------------------------------------------------------
 
@@ -559,41 +535,41 @@ When is the random variable approximation reasonable?
 
 ### Let's Talk About P-values
 
-::: columns
-::: column
+:::::: columns
+:::: column
 ::: nonincremental
 -   **A consequence**: Researchers often put too much weight on the p-value and not enough weight on their domain knowledge/the plausibility of their conjecture.
     -   Sometimes we give more weight to things we don't understand.
 -   [xkcd comic](https://xkcd.com/1132/)
 :::
-:::
+::::
 
 ::: column
 ```{r  out.width = "65%", echo=FALSE, fig.align='center'}
 include_graphics("img/frequentists_vs_bayesians_2x.png") 
 ```
 :::
-:::
+::::::
 
 ------------------------------------------------------------------------
 
 ### Let's Talk About P-values
 
-::: columns
-::: {.column width="65%"}
+:::::: columns
+:::: {.column width="65%"}
 ::: nonincremental
--   **A consequence**: [P-hacking](https://projects.fivethirtyeight.com/p-hacking/): Cherry-picking promising findings that are beyond this arbitrary threshold.
+-   **A consequence**: [P-hacking](https://stats.andrewheiss.com/hack-your-way/): Cherry-picking promising findings that are beyond this arbitrary threshold.
 
 -   [xkcd comic](https://www.explainxkcd.com/wiki/index.php/882:_Significant)
 :::
-:::
+::::
 
 ::: {.column .center width="35%"}
 ```{r  out.width = "40%", echo=FALSE, fig.align='center'}
 include_graphics("img/significant.png") 
 ```
 :::
-:::
+::::::
 
 ------------------------------------------------------------------------
 
@@ -628,7 +604,7 @@ include_graphics("img/significant.png")
 -   We won't use the **"statistically significant"** language in DATA 100. Instead say **"statistically discernible."**
 :::
 
-----
+------------------------------------------------------------------------
 
 ### Let's Talk About P-values
 
@@ -664,14 +640,12 @@ include_graphics("img/Cobb.png")
 
 -   Your ability to tell if a \# is less than 0.05 is not a learning objective for DATA 100.
 
-
-
----------------------------------------------------------------------
+------------------------------------------------------------------------
 
 ## Reminders:
 
 ::: nonincremental
--   Exam next week: 
-    -  In-class on Wed (April 8th)
-    -  Orals throughout the day on Fri (April 10th).  **In-person** this time!
+-   Exam next week:
+    -   In-class on Wed (April 8th)
+    -   Orals throughout the day on Fri (April 10th). **In-person** this time!
 :::
