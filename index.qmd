@@ -26,10 +26,7 @@ The lecture slides (both in HTML and PDF) will be posted here. <!-- Additionally
 | Week 10, Mon | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk10mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk10mon.pdf) |
 | Week 10, Wed | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk10wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk10wed.pdf) |
 | Week 11, Mon | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk11mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk11mon.pdf) |
-
-<!-- | Week 11, Wed | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk11wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk11wed.pdf) | -->
-
-<!-- | Week 12, Mon | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk12mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk12mon.pdf) | -->
+| Week 12, Mon | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk12mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk12mon.pdf) |
 
 <!-- | Week 13, Mon | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk13mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk13mon.pdf) | -->
 

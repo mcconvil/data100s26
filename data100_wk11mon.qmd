@@ -1,0 +1,409 @@
+---
+pagetitle: "More Theory-Based Inference"
+format: 
+  revealjs:
+    html-math-method: mathjax
+    chalkboard: true
+    incremental: true
+    theme: [default, custom.scss]
+#    multiplex: true
+    height: 900
+    width: 1600
+    slide-number: c
+    auto-stretch: false
+    callout-appearance: simple
+    pdf-max-pages-per-slide: 1
+    menu: 
+      side: right
+      numbers: true
+    code-overflow: wrap
+#    fontsize: 20
+execute:
+  echo: true
+  warning: false
+  message: false
+  fig-asp: 0.75
+  fig-width: 8
+#  fig-align: center
+  fig-dpi: 500
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+# Some global options still not available in quarto
+ knitr::opts_chunk$set(fig.align = 'center')
+library(knitr)
+library(tidyverse)
+theme_update(text = element_text(size = 13))
+```
+
+------------------------------------------------------------------------
+
+::: columns
+::: {.column .center width="45%"}
+![](img/DAW.png){width="90%"}
+:::
+
+::: {.column .center width="55%"}
+[More Theory-Based Inference]{.custom-title}
+
+<br> <br> <br>
+
+[Kelly McConville]{.custom-subtitle}
+
+[DATA 100 <br> Week 11 \| Spring 2026]{.custom-subtitle}
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Announcements
+
+-  Exam this week:  
+    - In-class on Wed
+    - Oral on Fri.  (Sign-ups are in Slack.)
+
+### Goals for Today
+
+::: columns
+::: column
+-   Discuss more random variable-based inference.
+:::
+
+::: column
+-   Compare methods of inference.
+:::
+:::
+
+
+------------------------------------------------------------------------
+
+### Statistical Inference Zoom Out -- Estimation
+
+![](img/ci_diagram.png){width="60%" fig-align="center"}
+
+------------------------------------------------------------------------
+
+### Statistical Inference Zoom Out -- Testing
+
+![](img/hyp_testing_diagram.png){width="70%" fig-align="center"}
+
+------------------------------------------------------------------------
+
+### Recap:
+
+**Central Limit Theorem (CLT):** For random samples and a large sample size $(n)$, the sampling distribution of many sample statistics is approximately normal.
+
+* Applies to most of the statistics we have explored so far:
+    * Sample mean
+    * Sample proportion
+    * Sample difference in means
+    * Sample difference in proportions
+    * Correlation
+
+------------------------------------------------------------------------
+
+### There Are [Several Versions](https://mcconvil.github.io/stat100s24/inference_summary.html) of the CLT!
+
+```{r, echo = FALSE}
+symbols <- data.frame(Response = c("quantitative", "categorical",
+                                   "quantitative", "categorical",
+                                   "quantitative"),
+                         Explanatory = c("-", "-",
+                                         "categorical",
+                                         "categorical",
+                                         "quantitative"),
+                         Numerical_Quantity = c("mean", 
+                                                "proportion",
+                                                "difference in means",
+                                                "difference in proportions",
+                                                "correlation"),
+                         Parameter = c("$\\mu$", "$p$", 
+                                       "$\\mu_1 - \\mu_2$",
+                                       "$p_1 - p_2$",
+                                       "$\\rho$"),
+                                       Statistic = c("$\\bar{x}$",
+                                                     "$\\hat{p}$",
+                                                     "$\\bar{x}_1 - \\bar{x}_2$",
+                                                     "$\\hat{p}_1 - \\hat{p}_2$",
+                                                     "$r$"))
+
+symbols %>% 
+  kableExtra::kbl(format="markdown")
+```
+
+-   Refer to [these tables](https://mcconvil.github.io/stat100s24/inference_summary.html) for:
+    -   CLT's "large sample" assumption
+    -   If you want to know the theory-based `R` function.
+    -   If you are curious about the equations for the test statistic and confidence interval
+
+
+
+# Let's cover examples of theory-based inference for two variables.
+
+------------------------------------------------------------------------
+
+## Data Example
+
+We have data on a random sub-sample of the 2010 American Community Survey. The American Community Survey is given every year to a random sample of US residents.
+
+```{r}
+# Libraries
+library(tidyverse)
+library(Lock5Data)
+
+# Data
+data(ACS)
+# Focus on adults
+ACS_adults <- filter(ACS, Age >= 18)
+
+glimpse(ACS_adults)
+```
+
+------------------------------------------------------------------------
+
+### Difference in Proportions
+
+Let's try to determine if there's a relationship between US citizenship and marriage status.
+
+**Response variable:**
+
+**Explanatory variable:**
+
+**Parameter of interest:**
+
+**Sample size requirement for theory-based inference**:
+
+------------------------------------------------------------------------
+
+## Difference in Proportions {.smaller}
+
+Let's try to determine if there's a relationship between US citizenship and marriage status.
+
+```{r}
+#| output-location: column
+
+# Exploratory data analysis
+ggplot(data = ACS_adults, 
+       mapping = aes(x = factor(USCitizen),
+                     fill  = factor(Married))) +
+  geom_bar(position = "fill")
+```
+
+```{r}
+#| output-location: column
+# Sample size
+ACS_adults %>%
+  count(Married, USCitizen)
+```
+
+------------------------------------------------------------------------
+
+### Difference in Proportions
+
+Let's try to determine if there's a relationship between US citizenship and marriage status.
+
+Why is`prop_test()` failing?
+
+```{r}
+#| error: true
+
+library(infer)
+ACS_adults %>%
+prop_test(Married ~ USCitizen, 
+          order = c("1", "0"), z = TRUE,
+          success = "1")
+```
+
+------------------------------------------------------------------------
+
+### Difference in Proportions
+
+Let's try to determine if there's a relationship between US citizenship and marriage status.
+
+```{r}
+ACS_adults %>%
+  mutate(MarriedCat = case_when(Married == 0 ~ "No",
+                                Married == 1 ~ "Yes"),
+         USCitizenCat = case_when(USCitizen == 0 ~ "Not citizen",
+                                  USCitizen == 1 ~ "Citizen")) %>%
+prop_test(MarriedCat ~ USCitizenCat, 
+          order = c("Citizen", "Not citizen"), z = TRUE,
+          success = "Yes")
+```
+
+------------------------------------------------------------------------
+
+### Difference in Means
+
+Let's estimate the average hours worked per week between married and unmarried US residents.
+
+**Response variable:**
+
+**Explanatory variable:**
+
+**Parameter of interest:**
+
+**Sample size requirement for theory-based inference**:
+
+------------------------------------------------------------------------
+
+## Difference in Means {.smaller}
+
+Let's estimate the average hours worked per week between married and unmarried US residents.
+
+```{r}
+#| output-location: column
+
+# Exploratory data analysis
+ggplot(data = ACS_adults, mapping = aes(x = HoursWk)) +
+  geom_histogram() +
+  facet_wrap(~Married, ncol = 1)
+```
+
+```{r}
+#| output-location: column
+# Sample size
+ACS_adults %>%
+  drop_na(HoursWk) %>%
+  count(Married)
+```
+
+------------------------------------------------------------------------
+
+### Difference in Means
+
+Let's estimate the average hours worked per week between married and unmarried US residents.
+
+Which arguments for `t_test()` reflect my research question?
+
+::: columns
+::: column
+```{r}
+library(infer)
+ACS_adults %>%
+t_test(HoursWk ~ Married, order = c("1", "0"))
+```
+:::
+
+::: column
+```{r}
+library(infer)
+ACS_adults %>%
+t_test(HoursWk ~ Married, order = c("1", "0"),
+       alternative = "greater")
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+### Correlation
+
+We want to determine if age and hours worked per week have a positive linear relationship.
+
+**Response variable:**
+
+**Explanatory variable:**
+
+**Parameter of interest:**
+
+**Sample size requirement for theory-based inference**:
+
+------------------------------------------------------------------------
+
+### Correlation
+
+We want to determine if age and hours worked per week have a positive linear relationship.
+
+```{r}
+#| output-location: column
+
+# Exploratory data analysis
+ggplot(data = ACS_adults, 
+       mapping = aes(x = Age,
+                     y  = HoursWk)) +
+  geom_jitter(alpha = 0.5) +
+  geom_smooth()
+```
+
+------------------------------------------------------------------------
+
+### Correlation
+
+We want to determine if age and hours worked per week have a positive linear relationship.
+
+```{r}
+cor.test(~ HoursWk + Age, data = ACS_adults, alternative = "greater")
+```
+
+------------------------------------------------------------------------
+
+### Correlation
+
+We want to determine if age and hours worked per week have a positive linear relationship.
+
+```{r}
+#| output-location: column
+
+# Exploratory data analysis
+ggplot(data = ACS_adults, 
+       mapping = aes(x = Age,
+                     y  = HoursWk)) +
+  geom_jitter(alpha = 0.5) +
+  geom_smooth()
+```
+
+# Have Learned Two Routes to Statistical Inference
+
+[Which is **better**?]{.custom-subtitle .fragment}
+
+------------------------------------------------------------------------
+
+#### Is Simulation-Based Inference or Theory-Based Inference better?
+
+Depends on how you define **better**.
+
+::: columns
+::: column
+-   If **better** = Leads to better understanding:
+:::
+
+::: column
+::: fragment
+→ Research tends to show students have a better understanding of **p-values** and **confidence** from learning simulation-based methods.
+:::
+:::
+:::
+
+::: columns
+::: column
+-   If **better** = More flexible/robust to assumptions:
+:::
+
+::: column
+::: fragment
+→ The simulation-based methods tend to be more flexible but that generally requires learning extensions beyond what we've seen in DATA 100.
+:::
+:::
+:::
+
+::: columns
+::: column
+-   If **better** = More commonly used:
+:::
+
+::: column
+::: fragment
+→ Definitely the theory-based methods but the simulation-based methods are becoming more **common**.
+:::
+:::
+:::
+
+-   Good to be comfortable with both as you will see both used!
+
+# What about inference for linear regression models?  
+
+

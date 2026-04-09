@@ -10,7 +10,7 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.57">
 
-  <title>DATA 100 – Data Collection</title>
+  <title>DATA 100 – Inference for Regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -398,868 +398,758 @@
 <div class="column center" style="width:45%;">
 <p><img data-src="img/DAW.png" style="width:90.0%"></p>
 </div><div class="column center" style="width:55%;">
-<p><span class="custom-title">Data Collection</span></p>
-<p><br> <br> <br> <br></p>
+<p><span class="custom-title">Inference for Linear Regression</span></p>
+<p><br> <br> <br></p>
 <p><span class="custom-subtitle">Kelly McConville</span></p>
-<p><span class="custom-subtitle">DATA 100 <br> Week 4 | Spring 2026</span></p>
+<p><span class="custom-subtitle">DATA 100 <br> Week 12 | Spring 2026</span></p>
 </div></div>
 </section>
 <section id="announcements" class="slide level2">
 <h2>Announcements</h2>
 <ul>
-<li class="fragment">Next week: Mid-term Exam 1
+<li class="fragment">No lab on Friday this week.<br>
+</li>
+<li class="fragment">Instead you will spend Wednesday’s class time (3 - 4:20pm) as lab time:
 <ul>
-<li class="fragment">Wed: In-class component</li>
-<li class="fragment">Fri: Oral component (over Zoom)</li>
-</ul></li>
-<li class="fragment">Oral practice in lab this week.
-<ul>
-<li class="fragment">Good prep for the mid-term exam.</li>
+<li class="fragment">Lecture quiz (covering today and last Monday)</li>
+<li class="fragment">Practice</li>
+<li class="fragment">Start problem set 8.</li>
 </ul></li>
 </ul>
 <h3 id="goals-for-today">Goals for Today</h3>
-<ul>
-<li class="fragment">Cover data collection/acquisition.</li>
-</ul>
-</section>
-<section id="which-are-you" class="slide level2">
-<h2>Which Are YOU?</h2>
 <div class="columns">
-<div class="column center" style="width:50%;">
-<h3 id="data-visualizer">Data Visualizer</h3>
-<iframe src="https://giphy.com/embed/d31vTpVi1LAcDvdm" width="680" height="562" frameborder="0" class="giphy-embed" allowfullscreen="">
-</iframe>
-<p>
-<a href="https://giphy.com/gifs/netflix-d31vTpVi1LAcDvdm">via GIPHY</a>
-</p>
-</div><div class="column center" style="width:50%;">
-<h3 id="data-wrangler">Data Wrangler</h3>
-<iframe src="https://giphy.com/embed/DbaUtl1DcLyrdwhzGJ" width="680" height="562" frameborder="0" class="giphy-embed" allowfullscreen="">
-</iframe>
-<p>
-<a href="https://giphy.com/gifs/Amalgia-DbaUtl1DcLyrdwhzGJ">via GIPHY</a>
-</p>
+<div class="column">
+<ul>
+<li class="fragment"><p>Recap <strong>multiple linear regression</strong></p></li>
+<li class="fragment"><p>Check <strong>assumptions</strong> for linear regression inference</p></li>
+</ul>
+</div><div class="column">
+<ul>
+<li class="fragment"><p><strong>Hypothesis testing</strong> for linear regression</p></li>
+<li class="fragment"><p><strong>Estimation</strong> and <strong>prediction</strong> inference for linear regression</p></li>
+</ul>
 </div></div>
-<div class="fragment">
-<p>We are looking for any students interested in graphic design to design DATA 100 hex stickers.</p>
-</div>
 </section>
-<section class="slide level2">
+<section id="exam-reflections" class="title-slide slide level1 center">
+<h1>Exam Reflections</h1>
 
-<h3 id="when-to-get-coding-help">When to Get Coding Help</h3>
-<p>😢 <em>“I have no idea how to do this problem.”</em></p>
-<div class="fragment">
-<p>→ Ask someone to point you to an similar example from the lecture, handouts, and guides.</p>
-</div>
-<div class="fragment">
-<p>→ Talk it through with someone on the Teaching Team or another DATA 100 student so together we can verbalize the process of going from Q to A.</p>
-</div>
-<p><br></p>
-<div class="fragment">
-<p>😡 <em>“I am getting a weird error but really think my code is correct/on the right track/matches the examples from class.”</em></p>
-</div>
-<div class="fragment">
-<p>→ It is time for a second pair of eyes. Don’t stare at the error for over 10 minutes.</p>
-</div>
-<p><br></p>
-<div class="fragment">
-<p>🤩 And lots of other times too! 😬</p>
-</div>
 </section>
-<section class="slide level2">
 
-<h3 id="when-to-get-help">When to Get Help</h3>
-<p>Remember:</p>
-<div class="fragment">
-<p>→ Struggling is part of learning.</p>
-</div>
-<div class="fragment">
-<p>→ But let us help you ensure it is a <strong>productive</strong> struggle.</p>
-</div>
-<div class="fragment">
-<p>→ Struggling does NOT mean you are bad at stats!</p>
-</div>
+<section>
+<section id="what-does-statistical-inference-estimation-and-hypothesis-testing-look-like-when-i-have-more-than-0-or-1-explanatory-variables" class="title-slide slide level1 center">
+<h1>What does statistical inference (estimation and hypothesis testing) look like when I have more than 0 or 1 explanatory variables?</h1>
+<p><span class="custom-subtitle fragment">One route: Multiple Linear Regression!</span></p>
 </section>
-<section id="now-for-data-collection" class="slide level2">
-<h2>Now for Data Collection</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/DAW.png" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
-</figure>
-</div>
-</section>
-<section id="motivating-our-discussion-of-data-collection" class="slide level2">
-<h2>Motivating Our Discussion of Data Collection</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/twitter-study-design.png" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
-</figure>
-</div>
-</section>
-<section id="who-are-the-data-supposed-to-represent" class="slide level2">
-<h2>Who are the data supposed to represent?</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/week4.002.jpeg" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
-</figure>
-</div>
-<p><strong>Key questions:</strong></p>
-<ul>
-<li class="fragment">What evidence is there that the data are <strong>representative</strong>?</li>
-<li class="fragment">Who is present? Who is absent?</li>
-<li class="fragment">Who is overrepresented? Who is underrepresented?</li>
-</ul>
-</section>
-<section id="who-are-the-data-supposed-to-represent-1" class="slide level2">
-<h2>Who are the data supposed to represent?</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/week4.003.jpeg" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-<p><strong>Census</strong>: We have data on the whole population!</p>
-</section>
-<section id="who-are-the-data-supposed-to-represent-2" class="slide level2">
-<h2>Who are the data supposed to represent?</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/sampling.002.jpeg" class="quarto-figure quarto-figure-center" style="width:85.0%"></p>
-</figure>
-</div>
-</section>
-<section id="who-are-the-data-supposed-to-represent-3" class="slide level2">
-<h2>Who are the data supposed to represent?</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/week4.005.jpeg" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
-</figure>
-</div>
-<p><strong>Key questions:</strong></p>
-<ul>
-<li class="fragment">What evidence is there that the <strong>sample</strong> is <strong>representative</strong> of the <strong>population</strong>?</li>
-<li class="fragment">Who is present? Who is absent?</li>
-<li class="fragment">Who is overrepresented? Who is underrepresented?</li>
-</ul>
-</section>
-<section id="sampling-bias" class="slide level2">
-<h2>Sampling Bias</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/sampling.001.jpeg" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
-</figure>
-</div>
-<p><strong>Sampling bias</strong>: When the sampled units are <strong>systematically different</strong> from the non-sampled units on the variables of interest.</p>
-</section>
-<section class="slide level2">
-
-<h3 id="sampling-bias-example">Sampling Bias Example</h3>
-<p>The <strong>Literary Digest</strong> was a political magazine that correctly predicted the presidential outcomes from 1916 to 1932. In 1936, they conducted the most extensive (to that date) public opinion poll. They mailed questionnaires to over 10 million people (about 1/3 of US households) whose names and addresses they obtained from telephone books and vehicle registration lists.</p>
-<p><strong>Population of Interest</strong>:</p>
-<p><br></p>
-<p><strong>Sample</strong>:</p>
-<p><br></p>
-<p><strong>Sampling bias</strong>:</p>
-</section>
-<section id="random-sampling" class="slide level2">
-<h2>Random Sampling</h2>
-<p>Use random sampling (a random mechanism for selecting cases from the population) to remove sampling bias.</p>
-<h4 id="types-of-random-sampling">Types of random sampling</h4>
+<section id="multiple-linear-regression" class="slide level2">
+<h2>Multiple Linear Regression</h2>
+<p>Linear regression is a flexible class of models that allow for:</p>
 <div>
 <ul>
-<li><p>Simple random sampling</p></li>
-<li><p>Cluster sampling</p></li>
-<li><p>Stratified random sampling</p></li>
-<li><p>Systematic sampling</p></li>
+<li><p>Both quantitative and categorical explanatory variables.</p></li>
+<li><p>Multiple explanatory variables.</p></li>
+<li><p>Curved relationships between the response variable and the explanatory variable.</p></li>
+<li><p>BUT the response variable is quantitative.</p></li>
 </ul>
 </div>
 <div class="fragment">
-<p>Why aren’t all samples generated using simple random sampling?</p>
+<p><strong>In this week’s p-set</strong> you will explore the importance of <strong>controlling for key explanatory variables</strong> when making inferences about relationships.</p>
 </div>
 </section>
 <section class="slide level2">
 
-<h3 id="us-forest-inventory-and-analysis-program">US Forest Inventory and Analysis Program</h3>
+<h3 id="multiple-linear-regression-1">Multiple Linear Regression</h3>
+<p><strong>Form of the Model:</strong></p>
+<p><span class="math display">\[
+\begin{align}
+y &amp;= \beta_o + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p + \epsilon
+\end{align}
+\]</span></p>
+<p><strong>Fitted Model:</strong> Using the Method of Least Squares,</p>
+<p><span class="math display">\[
+\begin{align}
+\hat{y} &amp;= \hat{\beta}_o + \hat{\beta}_1 x_1 + \hat{\beta}_2 x_2 + \cdots + \hat{\beta}_p x_p
+\end{align}
+\]</span></p>
+</section>
+<section class="slide level2">
+
+<h3 id="typical-inferential-questions-hypothesis-testing">Typical Inferential Questions – Hypothesis Testing</h3>
+<p>Should <span class="math inline">\(x_2\)</span> be in the model that already contains <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_3\)</span>? Also often asked as “Controlling for <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_3\)</span>, is there evidence that <span class="math inline">\(x_2\)</span> has a relationship with <span class="math inline">\(y\)</span>?”</p>
+<p><span class="math display">\[
+\begin{align}
+y &amp;= \beta_o + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \epsilon
+\end{align}
+\]</span></p>
+<p>In other words, should <span class="math inline">\(\beta_2 = 0\)</span>?</p>
+</section>
+<section class="slide level2">
+
+<h3 id="typical-inferential-questions-estimation">Typical Inferential Questions – Estimation</h3>
+<p>After controlling for the other explanatory variables, what is the range of plausible values for <span class="math inline">\(\beta_3\)</span> (which summarizes the relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x_3\)</span>)?</p>
+<p><span class="math display">\[
+\begin{align}
+y &amp;= \beta_o + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \epsilon
+\end{align}
+\]</span></p>
+</section>
+<section class="slide level2">
+
+<h3 id="typical-inferential-questions-prediction">Typical Inferential Questions – Prediction</h3>
+<p>While <span class="math inline">\(\hat{y}\)</span> is a point estimate for <span class="math inline">\(y\)</span>, can we also get an interval estimate for <span class="math inline">\(y\)</span>? In other words, can we get a range of plausible <strong>predictions</strong> for <span class="math inline">\(y\)</span>?</p>
+<p><span class="math display">\[
+\begin{align}
+y &amp;= \beta_o + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \epsilon
+\end{align}
+\]</span></p>
+<div class="fragment">
+<p>To answer these questions, we need to add some <strong>assumptions</strong> to our linear regression model.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="multiple-linear-regression-2">Multiple Linear Regression</h3>
+<p><strong>Form of the Model:</strong></p>
+<p><span class="math display">\[
+\begin{align}
+y &amp;= \beta_o + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p + \epsilon
+\end{align}
+\]</span></p>
+<p><strong>Additional Assumptions:</strong></p>
+<p><span class="math display">\[
+\epsilon \overset{\mbox{ind}}{\sim} N (\mu = 0, \sigma = \sigma_{\epsilon})
+\]</span></p>
+<p><span class="math inline">\(\sigma_{\epsilon}\)</span> = typical deviations from the model</p>
+<div class="fragment">
+<p>Let’s unpack these assumptions!</p>
+</div>
+</section>
+<section id="assumptions-independence" class="slide level2">
+<h2>Assumptions – Independence</h2>
+<p>For ease of visualization, let’s assume a <strong>simple</strong> linear regression model:</p>
+<span class="math display">\[\begin{align*}
+y = \beta_o + \beta_1 x_1 + \epsilon \quad \mbox{   where   } \quad \epsilon \overset{\color{black}{\mbox{ind}}}{\sim}N\left(0, \sigma_{\epsilon} \right)
+\end{align*}\]</span>
+<p><strong>Assumption</strong>: The cases are independent of each other.</p>
+<p><strong>Question</strong>: How do we check this assumption?</p>
+<div class="fragment">
+<p>Consider how the data were collected.</p>
+</div>
+</section>
+<section id="assumptions-normality" class="slide level2 smaller">
+<h2>Assumptions – Normality</h2>
+<p><span class="math display">\[
+\begin{align*}
+y = \beta_o + \beta_1 x_1 + \epsilon \quad \mbox{   where   } \quad \epsilon \overset{\mbox{ind}}{\sim}\color{black}{N} \left(0, \sigma_{\epsilon} \right)
+\end{align*}
+\]</span></p>
+<p><strong>Assumption</strong>: The errors are normally distributed.</p>
 <div class="columns">
-<div class="column" style="width:15%;">
+<div class="column">
+<p><strong>Question</strong>: How do we check this assumption?</p>
+</div><div class="column">
+<p>Recall the residual: <span class="math inline">\(e = y - \hat{y}\)</span></p>
+</div></div>
+<div class="fragment">
+<p><strong>QQ-plot:</strong> Plot the residuals against the quantiles of a normal distribution!</p>
+<div class="columns">
+<div class="column">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/fs.png" class="quarto-figure quarto-figure-center"></p>
+<p><img data-src="data100_wk12mon_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center" width="3000"></p>
 </figure>
 </div>
-</div><div class="column" style="width:85%;">
+</div>
+</div>
+</div><div class="column">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk12mon_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center" width="3000"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="assumptions-mean-of-errors" class="slide level2">
+<h2>Assumptions – Mean of Errors</h2>
+<span class="math display">\[\begin{align*}
+y = \beta_o + \beta_1 x_1 + \epsilon \quad \mbox{   where   } \quad \epsilon \overset{\mbox{ind}}{\sim}N\left(\color{black}{0}, \sigma_{\epsilon} \right)
+\end{align*}\]</span>
+<p><strong>Assumption</strong>: The points will, on average, fall on the line.</p>
+<p><strong>Question</strong>: How do we check this assumption?</p>
+<div class="fragment">
+<p>If you use the Method of Least Squares, then you don’t have to check.</p>
+<p>It will be true by construction:</p>
+<p><span class="math display">\[
+\sum e = 0
+\]</span></p>
+</div>
+</section>
+<section id="assumptions-constant-variance" class="slide level2">
+<h2>Assumptions – Constant Variance</h2>
+<span class="math display">\[\begin{align*}
+y = \beta_o + \beta_1 x_1 + \epsilon \quad \mbox{   where   } \quad \epsilon \overset{\mbox{ind}}{\sim}N\left(0, \color{black}{\sigma_{\epsilon}} \right)
+\end{align*}\]</span>
+<p><strong>Assumption</strong>: The variability in the errors is constant.</p>
+<p><strong>Question</strong>: How do we check this assumption?</p>
+<div class="fragment">
+<p><strong>One option</strong>: Scatterplot</p>
+<div class="columns">
+<div class="column">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk12mon_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center" width="3000"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk12mon_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center" width="3000"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="assumptions-constant-variance-1" class="slide level2">
+<h2>Assumptions – Constant Variance</h2>
+<span class="math display">\[\begin{align*}
+y = \beta_o + \beta_1 x_1 + \epsilon \quad \mbox{   where   } \quad \epsilon \overset{\mbox{ind}}{\sim}N\left(0, \color{black}{\sigma_{\epsilon}} \right)
+\end{align*}\]</span>
+<p><strong>Assumption</strong>: The variability in the errors is constant.</p>
+<p><strong>Question</strong>: How do we check this assumption?</p>
+<p><strong>Better option</strong> (especially when have more than 1 explanatory variable): <strong>Residual Plot</strong></p>
+<div class="columns">
+<div class="column">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk12mon_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center" width="3000"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk12mon_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center" width="3000"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="assumptions-model-form">Assumptions – Model Form</h3>
+<span class="math display">\[\begin{align*}
+y = \color{black}{\beta_o + \beta_1 x_1} + \epsilon \quad \mbox{   where   } \quad \epsilon \overset{\mbox{ind}}{\sim}N\left(0, \sigma_{\epsilon} \right)
+\end{align*}\]</span>
+<p><strong>Assumption</strong>: The model form is appropriate.</p>
+<p><strong>Question</strong>: How do we check this assumption?</p>
+<div class="fragment">
+<p><strong>One option</strong>: Scatterplot(s)</p>
+<div class="columns">
+<div class="column">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk12mon_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center" width="3000"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk12mon_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center" width="3000"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="assumptions-model-form-1">Assumptions – Model Form</h3>
+<span class="math display">\[\begin{align*}
+y = \color{black}{\beta_o + \beta_1 x_1} + \epsilon \quad \mbox{   where   } \quad \epsilon \overset{\mbox{ind}}{\sim}N\left(0, \sigma_{\epsilon} \right)
+\end{align*}\]</span>
+<p><strong>Assumption</strong>: The model form is appropriate.</p>
+<p><strong>Question</strong>: How do we check this assumption?</p>
+<p><strong>Better option</strong> (especially when have more than 1 explanatory variable): <strong>Residual Plot</strong></p>
+<div class="columns">
+<div class="column">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk12mon_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center" width="3000"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk12mon_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center" width="3000"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="assumption-checking">Assumption Checking</h3>
+<p><strong>Question</strong>: What if the assumptions aren’t all satisfied?</p>
+<ul>
+<li class="fragment"><p>Try transforming the data and building the model again.</p></li>
+<li class="fragment"><p>Use a modeling technique beyond linear regression.</p></li>
+</ul>
+<div class="fragment">
+<p><strong>Question</strong>: What if the assumptions are all (roughly) satisfied?</p>
+</div>
+<ul>
+<li class="fragment">Can now start answering your inference questions!</li>
+</ul>
+</section></section>
+<section>
+<section id="lets-now-look-at-an-example-and-learn-how-to-create-qq-plots-and-residual-plots-in-r." class="title-slide slide level1 center">
+<h1>Let’s now look at an example and learn how to create qq-plots and residual plots in <code>R</code>.</h1>
+
+</section>
+<section class="slide level2">
+
+<h3 id="example-covid-and-candle-ratings">Example: COVID and Candle Ratings</h3>
+<p><a href="https://twitter.com/kate_ptrv/status/1332398768659050496">Kate Petrova created a dataset</a> that made the rounds on Twitter:</p>
+<p><img data-src="img/kate_petrova_candles.jpg" style="width:55.0%"></p>
+</section>
+<section id="covid-and-candle-ratings" class="slide level2 smaller">
+<h2>COVID and Candle Ratings</h2>
+<p>She posted all her data and code to GitHub and I did some light wrangling so that we could answer the question:</p>
 <blockquote>
-<p>Mission: “Make and keep current a comprehensive inventory and analysis of the present and prospective conditions of and requirements for the renewable resources of the forest and rangelands of the US.”</p>
+<p>Do we have evidence that early in the pandemic the association between time and Amazon rating varies by whether or not a candle is scented and in particular, that scented candles have a steeper decline in ratings over time?</p>
 </blockquote>
-</div></div>
-<div class="fragment">
-<p>Need a <strong>random sample</strong> of ground plots to say something about the state of our nation’s forests!</p>
+<p>In other words, do we have evidence that we should allow the slopes to vary?</p>
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> all,</span>
+<span id="cb1-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Date,</span>
+<span id="cb1-3"><a></a>                     <span class="at">y =</span> Rating,</span>
+<span id="cb1-4"><a></a>                     <span class="at">color =</span> Type)) <span class="sc">+</span></span>
+<span id="cb1-5"><a></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb1-6"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm) <span class="sc">+</span></span>
+<span id="cb1-7"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk12mon_files/figure-revealjs/candles-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
+</figure>
 </div>
+</div>
+</div></div>
 </section>
 <section class="slide level2">
 
-<h3 id="fia-simple-random-sampling">FIA: Simple Random Sampling</h3>
+<h3 id="covid-and-candle-ratings-1">COVID and Candle Ratings</h3>
+<p>Checking assumptions:</p>
+<p><strong>Assumption</strong>: The cases are independent of each other.</p>
+<p><strong>Question</strong>: What needs to be true about the candles sampled?</p>
+</section>
+<section id="assumption-checking-in-r" class="slide level2">
+<h2>Assumption Checking in <code>R</code></h2>
+<p>The <code>R</code> package we will use to check model assumptions is called <code>gglm</code> and was written by one of my former Reed students (and now Reed faculty member), Grayson White.</p>
 <div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li class="fragment">Break the landscape up into equally sized plots (~1 acre).</li>
-<li class="fragment">Number each plot from 1 to 28,635,520.</li>
-<li class="fragment">Use a <strong>random</strong> mechanism to sample 4773 plots.</li>
-</ul>
-<div class="fragment">
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">28635520</span>, <span class="at">size =</span> <span class="dv">4773</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-2"><a></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 19677521 13764464 13204944 14222166  9051285 23169205</code></pre>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
+<div class="column" style="width:10%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk04wed_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
+<p><img data-src="https://raw.githubusercontent.com/graysonwhite/gglm/master/figs/gglm.gif" class="quarto-figure quarto-figure-center"></p>
 </figure>
 </div>
 </div>
 </div>
+</div><div class="column" style="width:90%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(gglm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div></div>
-<div class="fragment">
-<p>Thoughts on this sampling design?</p>
+<p>First need to fit the model:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">glimpse</span>(all)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 610
+Columns: 3
+$ Date   &lt;date&gt; 2020-01-21, 2020-01-22, 2020-01-23, 2020-01-24, 2020-01-25, 20…
+$ Rating &lt;dbl&gt; 4.500000, 3.909091, 4.857143, 4.461538, 4.800000, 4.416667, 4.6…
+$ Type   &lt;chr&gt; "scented", "scented", "scented", "scented", "scented", "scented…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Rating <span class="sc">~</span> Date <span class="sc">*</span> Type, <span class="at">data =</span> all)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2">
 
-<h3 id="fia-cluster-random-sampling">FIA: Cluster Random Sampling</h3>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li class="fragment">Break the landscape up into equally sized plots (~1 acre).</li>
-<li class="fragment">Put each plot in a cluster.
-<ul>
-<li class="fragment">For our example: cluster = county.</li>
-</ul></li>
-<li class="fragment">Number each cluster.</li>
-<li class="fragment">Use a <strong>random</strong> mechanism to sample 2 clusters.</li>
-<li class="fragment">Sample <strong>all</strong> plots in those 2 clusters.</li>
-</ul>
-<div class="fragment">
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">67</span>, <span class="at">size =</span> <span class="dv">2</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 58 34</code></pre>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="cell" data-layout-align="center">
+<h3 id="qq-plot">qq-plot</h3>
+<p><strong>Assumption</strong>: The errors are normally distributed.</p>
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co"># Normal qq plot</span></span>
+<span id="cb6-2"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> mod) <span class="sc">+</span></span>
+<span id="cb6-3"><a></a>  <span class="fu">stat_normal_qq</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk04wed_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
+<p><img data-src="data100_wk12mon_files/figure-revealjs/qqplot-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
 </div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="residual-plot">Residual Plot</h3>
+<p><strong>Assumption</strong>: The variability in the errors is constant.</p>
+<p><strong>Assumption</strong>: The model form is appropriate.</p>
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># Residual plot</span></span>
+<span id="cb7-2"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> mod) <span class="sc">+</span></span>
+<span id="cb7-3"><a></a>  <span class="fu">stat_fitted_resid</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk12mon_files/figure-revealjs/residual-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
+</figure>
+</div>
 </div>
 </div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="hypothesis-testing">Hypothesis Testing</h3>
+<p><strong>Question</strong>: What tests is <code>get_regression_table()</code> conducting?</p>
+<p>For the moment, let’s focus on the equal slopes model.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Rating <span class="sc">~</span> Date <span class="sc">+</span> Type, <span class="at">data =</span> all)</span>
+<span id="cb8-2"><a></a><span class="fu">get_regression_table</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 7
+  term            estimate std_error statistic p_value lower_ci upper_ci
+  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+1 intercept         36.0       6.54       5.50       0   23.1     48.8  
+2 Date              -0.002     0         -4.93       0   -0.002   -0.001
+3 Type: unscented    0.833     0.063     13.2        0    0.709    0.957</code></pre>
+</div>
+</div>
+<p><strong>In General</strong>:</p>
+<p><span class="math display">\[
+H_o: \beta_j = 0 \quad \mbox{assuming all other predictors are in the model}
+\]</span> <span class="math display">\[
+H_a: \beta_j \neq 0 \quad \mbox{assuming all other predictors are in the model}
+\]</span></p>
+</section>
+<section class="slide level2">
+
+<h3 id="hypothesis-testing-1">Hypothesis Testing</h3>
+<p><strong>Question</strong>: What tests is <code>get_regression_table()</code> conducting?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Rating <span class="sc">~</span> Date <span class="sc">+</span> Type, <span class="at">data =</span> all)</span>
+<span id="cb10-2"><a></a><span class="fu">get_regression_table</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 7
+  term            estimate std_error statistic p_value lower_ci upper_ci
+  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+1 intercept         36.0       6.54       5.50       0   23.1     48.8  
+2 Date              -0.002     0         -4.93       0   -0.002   -0.001
+3 Type: unscented    0.833     0.063     13.2        0    0.709    0.957</code></pre>
+</div>
+</div>
+<p><strong>For our Example</strong>:</p>
+<p><strong>Row 2</strong>:</p>
+<p><span class="math display">\[
+H_o: \beta_1 = 0 \quad \mbox{given Type is already in the model}
+\]</span> <span class="math display">\[
+H_a: \beta_1 \neq 0 \quad \mbox{given Type is already in the model}
+\]</span></p>
+</section>
+<section class="slide level2">
+
+<h3 id="hypothesis-testing-2">Hypothesis Testing</h3>
+<p><strong>Question</strong>: What tests is <code>get_regression_table()</code> conducting?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Rating <span class="sc">~</span> Date <span class="sc">+</span> Type, <span class="at">data =</span> all)</span>
+<span id="cb12-2"><a></a><span class="fu">get_regression_table</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 7
+  term            estimate std_error statistic p_value lower_ci upper_ci
+  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+1 intercept         36.0       6.54       5.50       0   23.1     48.8  
+2 Date              -0.002     0         -4.93       0   -0.002   -0.001
+3 Type: unscented    0.833     0.063     13.2        0    0.709    0.957</code></pre>
+</div>
+</div>
+<p><strong>For our Example</strong>:</p>
+<p><strong>Row 3</strong>:</p>
+<p><span class="math display">\[
+H_o: \beta_2 = 0 \quad \mbox{given Date is already in the model}
+\]</span> <span class="math display">\[
+H_a: \beta_2 \neq 0 \quad \mbox{given Date is already in the model}
+\]</span></p>
+</section>
+<section class="slide level2">
+
+<h3 id="hypothesis-testing-3">Hypothesis Testing</h3>
+<p><strong>Question</strong>: What tests is <code>get_regression_table()</code> conducting?</p>
+<p><strong>In General</strong>:</p>
+<p><span class="math display">\[
+H_o: \beta_j = 0 \quad \mbox{assuming all other predictors are in the model}
+\]</span> <span class="math display">\[
+H_a: \beta_j \neq 0 \quad \mbox{assuming all other predictors are in the model}
+\]</span></p>
+<p>Test Statistic: It is a Z-score:</p>
+<p><span class="math display">\[
+t = \frac{\hat{\beta}_j - 0}{SE(\hat{\beta}_j)}
+\]</span></p>
+<p>When <span class="math inline">\(H_o\)</span> is true and the model assumptions are met, it is well approximated by a <span class="math inline">\(t\)</span> random variable.</p>
+</section>
+<section id="our-example" class="slide level2 smaller">
+<h2>Our Example</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">get_regression_table</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 7
+  term            estimate std_error statistic p_value lower_ci upper_ci
+  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+1 intercept         36.0       6.54       5.50       0   23.1     48.8  
+2 Date              -0.002     0         -4.93       0   -0.002   -0.001
+3 Type: unscented    0.833     0.063     13.2        0    0.709    0.957</code></pre>
+</div>
+</div>
+<p><strong>Row 3</strong>:</p>
+<p><span class="math display">\[
+H_o: \beta_2 = 0 \quad \mbox{given Date is already in the model}
+\]</span> <span class="math display">\[
+H_a: \beta_2 \neq 0 \quad \mbox{given Date is already in the model}
+\]</span></p>
+<p>Test Statistic:</p>
+<p><span class="math display">\[
+t = \frac{\hat{\beta}_2 - 0}{SE(\hat{\beta}_2)} = \frac{0.831 - 0}{0.063} = 13.2
+\]</span></p>
 <div class="fragment">
-<p>Thoughts on this sampling design?</p>
+<p>with p-value: Probability of the test statistic being 13.2 or larger AND -13.2 or smaller.</p>
+<p>Because the p-value is essentially equal to zero, there is evidence that including whether or not the candle is scented adds useful information to the linear regression model for Amazon ratings that already controls for date.</p>
 </div>
 </section>
 <section class="slide level2">
 
-<h3 id="fia-cluster-random-sampling-1">FIA: Cluster Random Sampling</h3>
-<div class="columns">
-<div class="column" style="width:50%;">
+<h3 id="example">Example</h3>
+<p>Do we have evidence that early in the pandemic the association between time and Amazon rating varies by whether or not a candle is scented and in particular, that scented candles have a steeper decline in ratings over time?</p>
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> all, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.Date</span>(Date),</span>
+<span id="cb16-2"><a></a>                                 <span class="at">y =</span> Rating,</span>
+<span id="cb16-3"><a></a>                                 <span class="at">color =</span> Type)) <span class="sc">+</span></span>
+<span id="cb16-4"><a></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb16-5"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk12mon_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
+</figure>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="example-1">Example</h3>
+<p>Do we have evidence that early in the pandemic the association between time and Amazon rating varies by whether or not a candle is scented and in particular, that scented candles have a steeper decline in ratings over time?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Rating <span class="sc">~</span> Date <span class="sc">*</span> Type, <span class="at">data =</span> all)</span>
+<span id="cb17-2"><a></a><span class="fu">get_regression_table</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 7
+  term               estimate std_error statistic p_value lower_ci upper_ci
+  &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+1 intercept            52.3       9.14       5.72   0       34.4     70.3  
+2 Date                 -0.003     0         -5.31   0       -0.004   -0.002
+3 Type: unscented     -32.3      13.0       -2.48   0.013  -57.8     -6.72 
+4 Date:Typeunscented    0.002     0.001      2.54   0.011    0        0.003</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="one-more-example-prices-of-houses-in-saratoga-springs-ny">One More Example – Prices of Houses in Saratoga Springs, NY</h3>
+<p>Does whether or not a house has central air conditioning relate to its price for houses in Saratoga Springs?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">library</span>(mosaicData)</span>
+<span id="cb19-2"><a></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> centralAir, <span class="at">data =</span> SaratogaHouses)</span>
+<span id="cb19-3"><a></a><span class="fu">get_regression_table</span>(mod1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 7
+  term           estimate std_error statistic p_value lower_ci upper_ci
+  &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+1 intercept       254904.     3685.      69.2       0  247676.  262132.
+2 centralAir: No  -67882.     4634.     -14.6       0  -76971.  -58794.</code></pre>
+</div>
+</div>
+<p>Potential confounding variables?</p>
+</section>
+<section class="slide level2">
+
+<h3 id="one-more-example-prices-of-houses-in-saratoga-springs-ny-1">One More Example – Prices of Houses in Saratoga Springs, NY</h3>
 <div>
 <ul>
-<li>Break the landscape up into equally sized plots (~1 acre).</li>
-<li>Put each plot in a cluster.
+<li>Want to <strong>control for</strong> many explanatory variables
 <ul>
-<li>For our example: cluster = county.</li>
+<li>Notice that you generally don’t include interaction terms for the control variables.</li>
 </ul></li>
-<li>Number each cluster.</li>
-<li>Use a <strong>random</strong> mechanism to sample 2 clusters.</li>
-<li>Take a <strong>simple random sample</strong> within the sampled clusters.</li>
 </ul>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">67</span>, <span class="at">size =</span> <span class="dv">2</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">get_regression_table</span>(mod1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 37 19</code></pre>
+<pre><code># A tibble: 2 × 7
+  term           estimate std_error statistic p_value lower_ci upper_ci
+  &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+1 intercept       254904.     3685.      69.2       0  247676.  262132.
+2 centralAir: No  -67882.     4634.     -14.6       0  -76971.  -58794.</code></pre>
 </div>
-</div>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:---</span>, <span class="at">size =</span> <span class="sc">---</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="data100_wk04wed_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
-<div class="fragment">
-<p>Subsampling within each sampled cluster is much more common than subsampling the whole sampled cluster!</p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="fia-cluster-random-sampling-2">FIA: Cluster Random Sampling</h3>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/pa_googlemaps.png" class="quarto-figure quarto-figure-center" style="width:95.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="data100_wk04wed_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
-<ul>
-<li class="fragment"><p>Are our clusters based on counties <strong>homogeneous</strong>?</p></li>
-<li class="fragment"><p>Why is <strong>homogeneity</strong> important for cluster sampling?</p></li>
-</ul>
-</section>
-<section class="slide level2">
-
-<h3 id="fia-stratified-random-sampling">FIA: Stratified Random Sampling</h3>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li class="fragment">Break the landscape up into equally sized plots (~1 acre).</li>
-<li class="fragment">Put each plot in a stratum.
-<ul>
-<li class="fragment">For our example: stratum = county.</li>
-</ul></li>
-<li class="fragment">Take a <strong>simple random sample</strong> within every stratum.
-<ul>
-<li class="fragment">Don’t have to be equally sized!</li>
-</ul></li>
-</ul>
-<div class="fragment">
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co"># Do this for each stratum</span></span>
-<span id="cb8-2"><a></a><span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:---</span>, <span class="at">size =</span> <span class="sc">---</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="data100_wk04wed_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
-<div class="fragment">
-<p>Thoughts on this sampling design?</p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="fia-systematic-random-sampling">FIA: Systematic Random Sampling</h3>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p>This is FIA’s <strong>actual</strong> sampling design (okay, slightly simplified).</p>
-<ul>
-<li class="fragment">Break the landscape up into equally sized plots (~1 acre).</li>
-<li class="fragment">Number each plot from 1 to 28,635,520.</li>
-<li class="fragment">Use a <strong>random</strong> mechanism to pick starting point. Then sample about once every 6000 acres.</li>
-</ul>
-<div class="fragment">
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">28635520</span>, <span class="at">size =</span> <span class="dv">1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> livingArea <span class="sc">+</span> age <span class="sc">+</span> bathrooms <span class="sc">+</span> centralAir, <span class="at">data =</span> SaratogaHouses)</span>
+<span id="cb23-2"><a></a><span class="fu">get_regression_table</span>(mod2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2555450</code></pre>
+<pre><code># A tibble: 5 × 7
+  term           estimate std_error statistic p_value lower_ci upper_ci
+  &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+1 intercept       26749.    7127.       3.75    0      12770.   40728. 
+2 livingArea         91.7      3.80    24.1     0         84.2     99.1
+3 age               -15.7     61.0     -0.257   0.797   -135.     104. 
+4 bathrooms       20968.    3802.       5.52    0      13511.   28426. 
+5 centralAir: No -23819.    3648.      -6.53    0     -30974.  -16665. </code></pre>
 </div>
 </div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="data100_wk04wed_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
-<div class="fragment">
-<p>Why is this design <strong>better</strong> than simple random sampling?</p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 class="smaller" id="national-health-and-nutrition-examination-survey">National Health and Nutrition Examination Survey</h3>
-<div class="columns">
-<div class="column" style="width:20%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/nhanes_logo.jpg" class="quarto-figure quarto-figure-center"></p>
-</figure>
-</div>
-</div><div class="column" style="width:80%;">
-<blockquote>
-<p>Mission: “Assess the health and nutritional status of adults and children in the United States.”</p>
-</blockquote>
-</div></div>
-<p>How are these data collected?</p>
-</section>
-<section class="slide level2">
-
-<h3 id="nhanes-sampling-design">NHANES Sampling Design</h3>
-<ul>
-<li class="fragment"><p><strong>Stage 1</strong>: US is stratified by geography and distribution of minority populations. Counties are randomly selected within each stratum.</p></li>
-<li class="fragment"><p><strong>Stage 2</strong>: From the sampled counties, city blocks are randomly selected. (City blocks are clusters.)</p></li>
-<li class="fragment"><p><strong>Stage 3</strong>: From sampled city blocks, households are randomly selected. (Households are clusters.)</p></li>
-<li class="fragment"><p><strong>Stage 4</strong>: From sampled households, people are randomly selected. For the sampled households, a mobile health vehicle goes to the house and medical professionals take the necessary measurements.</p></li>
-</ul>
-<div class="fragment">
-<p><strong>Why don’t they use simple random sampling?</strong></p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="careful-using-non-simple-random-sample-data">Careful Using Non-Simple Random Sample Data</h3>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="data100_wk04wed_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column fragment" style="width:50%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="data100_wk04wed_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
-<ul>
-<li class="fragment">If you are dealing with data collected using a complex sampling design, come chat with me!</li>
-</ul>
-</section>
-<section>
-<section id="detour-data-ethics" class="title-slide slide level1 center">
-<h1>Detour: Data Ethics</h1>
-
-</section>
-<section class="slide level2">
-
-<h3 id="data-ethics">Data Ethics</h3>
-<blockquote>
-<p>“Good statistical practice is fundamentally based on transparent assumptions, reproducible results, and valid interpretations.” – Committee on Professional Ethics of the American Statistical Association (ASA)</p>
-</blockquote>
-<p>The ASA has created <a href="https://www.amstat.org/ASA/Your-Career/Ethical-Guidelines-for-Statistical-Practice.aspx">“Ethical Guidelines for Statistical Practice”</a></p>
-<div class="fragment">
-<p>→ These guidelines are for EVERYONE doing statistical work.</p>
-</div>
-<div class="fragment">
-<p>→ There are ethical decisions at all steps of the Data Analysis Process.</p>
-</div>
-<div class="fragment">
-<p>→ We will periodically refer to specific guidelines throughout this class.</p>
-</div>
-<div class="fragment">
-<blockquote>
-<p>“Above all, professionalism in statistical practice presumes the goal of advancing knowledge while avoiding harm; using statistics in pursuit of unethical ends is inherently unethical.”</p>
-</blockquote>
-</div>
-</section>
-<section id="responsibilities-to-research-subjects" class="slide level2">
-<h2>Responsibilities to Research Subjects</h2>
-<blockquote>
-<p>“The ethical statistician protects and respects the rights and interests of human and animal subjects at all stages of their involvement in a project. This includes respondents to the census or to surveys, those whose data are contained in administrative records, and subjects of physically or psychologically invasive research.”</p>
-</blockquote>
-</section>
-<section class="slide level2">
-
-<h3 id="responsibilities-to-research-subjects-1">Responsibilities to Research Subjects</h3>
-<p>Why do you think the <code>Age</code> variable maxes out at 80?</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="data100_wk04wed_files/figure-revealjs/unnamed-chunk-17-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="fragment">
-<blockquote>
-<p>“Protects the privacy and confidentiality of research subjects and data concerning them, whether obtained from the subjects directly, other persons, or existing records.”</p>
-</blockquote>
-</div>
-</section>
-<section id="detour-from-our-detour" class="slide level2">
-<h2>Detour from Our Detour</h2>
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb11-2"><a></a><span class="fu">library</span>(NHANES)</span>
-<span id="cb11-3"><a></a></span>
-<span id="cb11-4"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> NHANES, </span>
-<span id="cb11-5"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Age,</span>
-<span id="cb11-6"><a></a>                     <span class="at">y =</span> Height)) <span class="sc">+</span></span>
-<span id="cb11-7"><a></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb11-8"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">color =</span> <span class="st">"skyblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="data100_wk04wed_files/figure-revealjs/points-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
-</figure>
-</div>
-</div>
-</div></div>
-</section>
-<section id="detour-from-our-detour-1" class="slide level2">
-<h2>Detour from Our Detour</h2>
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb12-2"><a></a><span class="fu">library</span>(NHANES)</span>
-<span id="cb12-3"><a></a><span class="fu">library</span>(emojifont)</span>
-<span id="cb12-4"><a></a></span>
-<span id="cb12-5"><a></a></span>
-<span id="cb12-6"><a></a>NHANES <span class="ot">&lt;-</span> <span class="fu">mutate</span>(NHANES, </span>
-<span id="cb12-7"><a></a>          <span class="at">heart =</span> <span class="fu">fontawesome</span>(<span class="st">"fa-heart"</span>))</span>
-<span id="cb12-8"><a></a></span>
-<span id="cb12-9"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> NHANES, </span>
-<span id="cb12-10"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Age,</span>
-<span id="cb12-11"><a></a>                     <span class="at">y =</span> Height,</span>
-<span id="cb12-12"><a></a>                     <span class="at">label =</span> heart)) <span class="sc">+</span></span>
-<span id="cb12-13"><a></a>  <span class="fu">geom_text</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"red"</span>,</span>
-<span id="cb12-14"><a></a>            <span class="at">family=</span><span class="st">'fontawesome-webfont'</span>,</span>
-<span id="cb12-15"><a></a>            <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
-<span id="cb12-16"><a></a>  <span class="fu">stat_smooth</span>(<span class="at">color =</span> <span class="st">"deeppink"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="data100_wk04wed_files/figure-revealjs/hearts-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
-</figure>
-</div>
-</div>
-</div></div>
-</section>
-<section class="slide level2">
-
-<h3 id="further-down-the-rabbit-hole">Further Down the Rabbit Hole</h3>
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># Generate heart coordinates</span></span>
-<span id="cb13-2"><a></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span>pi,pi,<span class="fl">0.04</span>)</span>
-<span id="cb13-3"><a></a>x <span class="ot">&lt;-</span> <span class="dv">16</span><span class="sc">*</span><span class="fl">0.25</span><span class="sc">*</span>(<span class="dv">3</span><span class="sc">*</span><span class="fu">sin</span>(t) <span class="sc">-</span> <span class="fu">sin</span>(<span class="dv">3</span><span class="sc">*</span>t))</span>
-<span id="cb13-4"><a></a>y <span class="ot">&lt;-</span> <span class="dv">13</span><span class="sc">*</span><span class="fu">cos</span>(t) <span class="sc">-</span> <span class="dv">5</span><span class="sc">*</span><span class="fu">cos</span>(<span class="dv">2</span><span class="sc">*</span>t) <span class="sc">-</span> <span class="fu">cos</span>(<span class="dv">4</span><span class="sc">*</span>t)</span>
-<span id="cb13-5"><a></a>heart_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y)  <span class="sc">%&gt;%</span></span>
-<span id="cb13-6"><a></a>  <span class="fu">mutate</span>(<span class="at">heart =</span> <span class="fu">fontawesome</span>(<span class="st">"fa-heart"</span>))</span>
-<span id="cb13-7"><a></a></span>
-<span id="cb13-8"><a></a><span class="co"># Make Valentine graph!</span></span>
-<span id="cb13-9"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> heart_data, </span>
-<span id="cb13-10"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y,</span>
-<span id="cb13-11"><a></a>                     <span class="at">label =</span> heart)) <span class="sc">+</span></span>
-<span id="cb13-12"><a></a>  <span class="fu">geom_text</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"deeppink"</span>,</span>
-<span id="cb13-13"><a></a>            <span class="at">family=</span><span class="st">'fontawesome-webfont'</span>,</span>
-<span id="cb13-14"><a></a>            <span class="at">size =</span> <span class="dv">7</span>) <span class="sc">+</span></span>
-<span id="cb13-15"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span> </span>
-<span id="cb13-16"><a></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">2</span>, </span>
-<span id="cb13-17"><a></a>           <span class="at">label =</span> <span class="st">"Happy Valentine's Day"</span>, <span class="at">size =</span> <span class="dv">10</span>,</span>
-<span id="cb13-18"><a></a>           <span class="at">color =</span> <span class="st">"deeppink3"</span>) <span class="sc">+</span> </span>
-<span id="cb13-19"><a></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">label =</span> <span class="st">"Insert Name"</span>,</span>
-<span id="cb13-20"><a></a>           <span class="at">size =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"deeppink3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="data100_wk04wed_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
-</figure>
-</div>
-</div>
-</div></div>
 </section></section>
 <section>
-<section id="back-to-data-collection" class="title-slide slide level1 center">
-<h1>Back to Data Collection</h1>
+<section id="now-lets-shift-our-focus-to-estimation-and-prediction" class="title-slide slide level1 center">
+<h1>Now let’s shift our focus to estimation and prediction!</h1>
 
-</section>
-<section id="who-are-the-data-supposed-to-represent-4" class="slide level2">
-<h2>Who are the data supposed to represent?</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/week4.005.jpeg" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
-</figure>
-</div>
-</section>
-<section id="who-are-the-data-supposed-to-represent-5" class="slide level2">
-<h2>Who are the data supposed to represent?</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/week4.006.jpeg" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
-</figure>
-</div>
-<p><strong>Key questions:</strong></p>
-<ul>
-<li class="fragment">What evidence is there that the <strong>respondents</strong> are <strong>representative</strong> of the <strong>population</strong>?</li>
-<li class="fragment">Who is present? Who is absent?</li>
-<li class="fragment">Who is overrepresented? Who is underrepresented?</li>
-</ul>
-</section>
-<section id="nonresponse-bias" class="slide level2">
-<h2>Nonresponse bias</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/sampling.003.jpeg" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
-</figure>
-</div>
-<p><strong>Nonresponse bias</strong>: The respondents are <strong>systematically</strong> different from the non-respondents for the variables of interest.</p>
 </section>
 <section class="slide level2">
 
-<h3 id="come-back-to-literary-digest-example">Come Back to Literary Digest Example</h3>
-<p>Of the 10 million people surveyed, more than 2.4 million responded with 57% indicating that they would vote for Republican Alf Landon in the upcoming presidential election instead of the current President Franklin Delano Roosevelt.</p>
-<p><br></p>
-<p><strong>Non-response bias</strong>?</p>
-</section>
-<section id="tackling-nonresponse-bias" class="slide level2">
-<h2>Tackling Nonresponse bias</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/sampling.003.jpeg" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
-</figure>
-</div>
-<ul>
-<li class="fragment"><p>Use <strong>multiple modes</strong> (mail, phone, in-person) and <strong>multiple attempts</strong> for reaching sampled cases.</p></li>
-<li class="fragment"><p>Explore key demographic variables to see how respondents and non-respondents vary.</p></li>
-<li class="fragment"><p>Take a survey stats course to learn how to create survey weights to adjust for potential nonresponse bias.</p></li>
-</ul>
-</section>
-<section id="is-bigger-always-better" class="slide level2">
-<h2>Is Bigger Always Better?</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/sampling.004.jpeg" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
-</figure>
-</div>
-<p>For our <strong>Literary Digest Example</strong>, Gallup predicted Roosevelt would win based on a survey of <strong>50,000</strong> people (instead of 2.4 million).</p>
-</section>
-<section class="slide level2">
-
-<h3 id="big-data-paradox">Big Data Paradox</h3>
-<div class="columns">
-<div class="column" style="width:20%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/meng.jpg" class="quarto-figure quarto-figure-center"></p>
-</figure>
-</div>
-</div><div class="column" style="width:80%;">
-<blockquote>
-<p>“Without taking data quality into account, population inferences with Big Data are subject to a Big Data Paradox: the more the data, the surer we fool ourselves.” – Xiao-Li Meng</p>
-</blockquote>
-</div></div>
-<p><strong>Example:</strong></p>
-<ul>
-<li class="fragment"><p>During Spring of 2021, Delphi-Facebook estimated vaccine uptake at 70% and U.S. Census estimated it at 67%.</p></li>
-<li class="fragment"><p>The CDC reported it to be 53%.</p></li>
-</ul>
+<h3 id="estimation">Estimation</h3>
+<p><strong>Typical Inferential Question:</strong></p>
+<p>After controlling for the other explanatory variables, what is the range of plausible values for <span class="math inline">\(\beta_j\)</span> (which summarizes the relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x_j\)</span>)?</p>
 <div class="fragment">
-<p>And, once we learn about <strong>quantifying uncertainty</strong>, we will see that large sample sizes produce very small measures of uncertainty.</p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="big-data-paradox-1">Big Data Paradox</h3>
-<div class="columns">
-<div class="column" style="width:20%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/meng.jpg" class="quarto-figure quarto-figure-center"></p>
-</figure>
-</div>
-</div><div class="column" style="width:80%;">
-<blockquote>
-<p>“If you have the resources, invest in data quality far more than you invest in data quantity. Bad-quality data is essentially wiping out the power you think you have. That’s always been a problem, but it’s magnified now because we have big data.” – Xiao-Li Meng</p>
-</blockquote>
-</div></div>
-</section>
-<section id="thoughts-on-sampling" class="slide level2">
-<h2>Thoughts on Sampling</h2>
-<ul>
-<li class="fragment"><p><strong>Random</strong> sampling is important to ensure the sample is <strong>representative</strong> of the population.</p>
-<ul>
-<li class="fragment">Word we will use: <strong>generalizability</strong></li>
-</ul></li>
-<li class="fragment"><p>Representativeness isn’t about <strong>size</strong>.</p>
-<ul>
-<li class="fragment">Small random samples will tend to be more representative than large non-random samples.</li>
-</ul></li>
-<li class="fragment"><p>However, I bet most samples you will encounter <strong>won’t</strong> have arisen from a random mechanism.</p></li>
-<li class="fragment"><p>How do we draw conclusions about the population from <strong>non-random samples</strong>?</p>
-<ul>
-<li class="fragment">Determinee if your sampled cases (and respondents) are systematically different from the non-sampled cases (and non-respondents) for the variables you care about.</li>
-<li class="fragment">Adjust your population of interest.</li>
-<li class="fragment">Take a survey stats course to learn how to adjust the sample to make it more representative.</li>
-</ul></li>
-</ul>
-</section></section>
-<section>
-<section id="now-lets-shift-our-discussion-to-the-conclusions-we-can-draw-from-the-sample-we-have." class="title-slide slide level1 center">
-<h1>Now let’s shift our discussion to the conclusions we can draw from the sample we have.</h1>
-
-</section>
-<section class="slide level2">
-
-<h3 id="typical-analysis-goals">Typical Analysis Goals</h3>
-<p><strong>Descriptive</strong>: Want to estimate quantities related to the population.</p>
-<p>→ <em>How many trees are in Alaska?</em></p>
-<div class="fragment">
-<p><strong>Predictive</strong>: Want to predict the value of a variable.</p>
-<p>→ <em>Can I use remotely sensed data to predict forest types in Alaska?</em></p>
-</div>
-<div class="fragment">
-<p><strong>Causal</strong>: Want to determine if changes in a variable cause changes in another variable.</p>
-<p>→ <em>Are insects causing the increased mortality rates for pinyon-juniper woodlands?</em></p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="typical-analysis-goals-1">Typical Analysis Goals</h3>
-<p>For these goals will differentiate between the roles of the variables:</p>
-<ul>
-<li class="fragment"><p><strong>Response variable</strong>: Variable I want to better understand</p></li>
-<li class="fragment"><p><strong>Explanatory/predictor variables</strong>: Variables I think might explain/predict the response variable</p></li>
-</ul>
-<div class="fragment">
-<p>→ <em>How many trees are in Alaska?</em></p>
-<p>→ <em>Can I use remotely sensed data to predict forest types in Alaska?</em></p>
-<p>→ <em>Are insects causing the increased mortality rates for pinyon-juniper woodlands?</em></p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="key-mechanism-for-causal-goal">Key Mechanism for Causal Goal</h3>
-<p><strong>Random assignment</strong>: Cases are randomly assigned to categories of the <strong>explanatory variable</strong></p>
-<ul>
-<li class="fragment">If the data were collected using <strong>random assignment</strong>, then can determine if the explanatory variable <strong>causes</strong> changes in the response variable.</li>
-</ul>
-<div class="fragment">
-<p><strong>Example</strong>: <a href="https://www.nih.gov/news-events/nih-research-matters/experimental-coronavirus-vaccine-highly-effective">COVID Vaccine Trials</a></p>
-<p>To study the effectiveness of the Moderna vaccine (mRNA-1273), researchers carried out a study on over 30,000 adult volunteers with no known previous COVID-19 infection. Volunteers were randomly assigned to either receive two doses of the vaccine or two shots of saline. The incidence of symptomatic COVID-19 was 94% lower in those who received the vaccine than those who did not.</p>
-<p><strong>Question</strong>: Why does random assignment allow us to conclude that this vaccine was effective at preventing (early strains of) COVID-19?</p>
-</div>
-</section>
-<section id="careful-with-non-random-assignment-data" class="slide level2">
-<h2>Careful with Non-Random Assignment Data</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p>We have data on the number of Methodist ministers in New England and the number of barrels of rum imported into Boston each year. The data range from 1860 to 1940.</p>
-<ul>
-<li class="fragment">Should we conclude that ministers drink a lot of rum? Or maybe that rum drinking encourages church attendance?</li>
-</ul>
-</div><div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="data100_wk04wed_files/figure-revealjs/unnamed-chunk-19-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">get_regression_table</span>(mod2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 7
+  term           estimate std_error statistic p_value lower_ci upper_ci
+  &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+1 intercept       26749.    7127.       3.75    0      12770.   40728. 
+2 livingArea         91.7      3.80    24.1     0         84.2     99.1
+3 age               -15.7     61.0     -0.257   0.797   -135.     104. 
+4 bathrooms       20968.    3802.       5.52    0      13511.   28426. 
+5 centralAir: No -23819.    3648.      -6.53    0     -30974.  -16665. </code></pre>
 </div>
 </div>
 </div>
-</div></div>
-<ul>
-<li class="fragment"><p><strong>Confounding variable</strong>: A third variable that is associated with both the explanatory variable and the response variable.</p></li>
-<li class="fragment"><p>Unclear if the explanatory variable or the confounder (or some other variable) is causing changes in the response.</p></li>
-</ul>
 </section>
-<section id="causal-inference" class="slide level2">
-<h2>Causal Inference</h2>
-<ul>
-<li class="fragment"><strong>Spurious relationship</strong>: Two variables are associated but not causally related
-<ul>
-<li class="fragment">In the age of big data, lots of good examples <a href="https://tylervigen.com/spurious-correlations">out there</a>.</li>
-</ul></li>
-</ul>
-<div class="fragment">
-<p>→ <em>“Correlation does not imply causation.”</em></p>
-</div>
-<div class="fragment">
-<p>→ <em>“Correlation does not imply not causation.”</em></p>
-</div>
-<ul>
-<li class="fragment"><strong>Causal inference</strong>: Methods for finding causal relationships even when the data were collected without random assignment.</li>
-</ul>
-</section></section>
-<section>
-<section id="types-of-studies" class="title-slide slide level1 center">
-<h1>Types of Studies</h1>
+<section class="slide level2">
 
+<h3 id="prediction">Prediction</h3>
+<p><strong>Typical Inferential Question:</strong></p>
+<p>While <span class="math inline">\(\hat{y}\)</span> is a point estimate for <span class="math inline">\(y\)</span>, can we also get an interval estimate for <span class="math inline">\(y\)</span>? In other words, can we get a range of plausible <strong>predictions</strong> for <span class="math inline">\(y\)</span>?</p>
 </section>
-<section id="observational-studies" class="slide level2">
-<h2>Observational Studies</h2>
+<section id="two-types-of-predictions" class="slide level2">
+<h2>Two Types of Predictions</h2>
+<div class="columns">
+<div class="column">
+<h4 id="confidence-interval-for-the-mean-response">Confidence Interval for the <strong>Mean Response</strong></h4>
+<p>→ Defined at given values of the explanatory variables</p>
+<p>→ Estimates the <span style="color: orange;">average</span> response</p>
+<p>→ Centered at <span class="math inline">\(\hat{y}\)</span></p>
+<p>→ <span style="color: orange;">Smaller</span> SE</p>
+</div><div class="column">
+<h4 id="prediction-interval-for-an-individual-response">Prediction Interval for an <strong>Individual Response</strong></h4>
+<p>→ Defined at given values of the explanatory variables</p>
+<p>→ Predicts the response of a <span style="color: orange;">single,</span> new observation</p>
+<p>→ Centered at <span class="math inline">\(\hat{y}\)</span></p>
+<p>→ <span style="color: orange;">Larger</span> SE</p>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="ci-for-mean-response-at-a-given-level-of-x">CI for mean response at a given level of X:</h3>
+<p>We want to construct a 95% CI for the average price of Saratoga Houses (in 2006!) where the houses meet the following conditions: 1500 square feet, 20 years old, 2 bathrooms, and have central air.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>house_of_interest <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">livingArea =</span> <span class="dv">1500</span>, <span class="at">age =</span> <span class="dv">20</span>,</span>
+<span id="cb27-2"><a></a>                                 <span class="at">bathrooms =</span> <span class="dv">2</span>, <span class="at">centralAir =</span> <span class="st">"Yes"</span>)</span>
+<span id="cb27-3"><a></a><span class="fu">predict</span>(mod2, house_of_interest, <span class="at">interval =</span> <span class="st">"confidence"</span>, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       fit      lwr      upr
+1 205876.7 199919.1 211834.3</code></pre>
+</div>
+</div>
 <ul>
-<li class="fragment"><p>A study in which the researchers don’t actively control the value of any variable, but simply observe the values as they naturally exist.</p></li>
-<li class="fragment"><p><strong>Example</strong>: Hand washing study</p>
-<ul>
-<li class="fragment">To estimate what percent of people in the US wash their hands after using a public restroom, researchers pretended to comb their hair while observing 6000 people in public restrooms throughout the United States. They found that 85% of the people who were observed washed their hands after going to the bathroom.</li>
-</ul></li>
+<li class="fragment"><strong>Interpretation</strong>: We are 95% confident that the average price of 20 year old, 1500 square feet Saratoga houses with central air and 2 bathrooms is between $199,919 and $211834.</li>
 </ul>
 </section>
-<section id="randomized-experiment" class="slide level2">
-<h2>(Randomized) Experiment</h2>
+<section class="slide level2">
+
+<h3 id="pi-for-a-new-y-at-a-given-level-of-x">PI for a new Y at a given level of X:</h3>
+<p>Say we want to construct a 95% PI for the price of an <strong>individual</strong> house that meets the following conditions: 1500 square feet, 20 years old, 2 bathrooms, and have central air.</p>
+<p><strong>Notice</strong>: Predicting for a new observation not the mean!</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">predict</span>(mod2, house_of_interest, <span class="at">interval =</span> <span class="st">"prediction"</span>, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       fit      lwr      upr
+1 205876.7 73884.51 337868.9</code></pre>
+</div>
+</div>
 <ul>
-<li class="fragment"><p>A study in which the researcher actively controls one or more of the explanatory variables through random assignment.</p></li>
-<li class="fragment"><p><strong>Example</strong>: COVID Trial</p></li>
-<li class="fragment"><p>Common features:</p>
-<ul>
-<li class="fragment"><strong>Control</strong> group that gets no treatment or a standard treatment</li>
-<li class="fragment"><strong>Placebo</strong>: A fake treatment to control for the <strong>placebo effect</strong> where if people believe they are receiving a treatment, they may experience the desired effect regardless of whether the treatment is any good.</li>
-<li class="fragment"><strong>Blinding</strong>: When the subjects and/or researchers don’t know the explanatory group assignments.</li>
-</ul></li>
+<li class="fragment"><strong>Interpretation</strong>: For a 20 year old, 1500 square feet Saratoga house with central air and 2 bathrooms, we predict, with 95% confidence, that the price will be between $73,885 and $337,869.</li>
 </ul>
 </section>
-<section id="thoughts-on-data-collection-goals" class="slide level2">
-<h2>Thoughts on Data Collection Goals</h2>
+<section id="reminders" class="slide level2">
+<h2>Reminders</h2>
 <ul>
-<li class="fragment"><p>Random assignment allows you to explore <strong>causal</strong> relationships between your explanatory variables and the predictor variables because the randomization makes the explanatory groups roughly similar.</p></li>
-<li class="fragment"><p>How do we draw causal conclusions from studies without random assignment?</p>
+<li class="fragment">No lab on Friday this week.<br>
+</li>
+<li class="fragment">Instead you will spend Wednesday’s class time (3 - 4:20pm) as lab time:
 <ul>
-<li class="fragment">With extreme care! Try to <strong>control</strong> for all possible confounding variables.</li>
-<li class="fragment">Discuss the associations/correlations you found. Use domain knowledge to address potentially causal links.</li>
-<li class="fragment">Take more stats to learn more about causal inference.</li>
+<li class="fragment">Lecture quiz (covering today and last Monday)</li>
+<li class="fragment">Practice</li>
+<li class="fragment">Start problem set 8.</li>
 </ul></li>
-<li class="fragment"><p>But also consider the goals of your analysis. Often the research question isn’t causal.</p></li>
-<li class="fragment"><p><strong>Bottom Line:</strong> We often have to use imperfect data to make decisions.</p></li>
 </ul>
 
 <div class="quarto-auto-generated-content">
@@ -1455,7 +1345,7 @@
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
