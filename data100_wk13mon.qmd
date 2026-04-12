@@ -1,0 +1,837 @@
+---
+pagetitle: "Other Models"
+format: 
+  revealjs:
+    html-math-method: mathjax
+    chalkboard: true
+    incremental: true
+    theme: [default, custom.scss]
+#    multiplex: true
+    height: 900
+    width: 1600
+    slide-number: c
+    auto-stretch: false
+    callout-appearance: simple
+    pdf-max-pages-per-slide: 1
+    menu: 
+      side: right
+      numbers: true
+    code-overflow: wrap
+#    fontsize: 20
+execute:
+  echo: true
+  warning: false
+  message: false
+  fig-asp: 0.75
+  fig-width: 8
+#  fig-align: center
+  fig-dpi: 500
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+# Some global options still not available in quarto
+ knitr::opts_chunk$set(fig.align = 'center')
+library(knitr)
+library(tidyverse)
+theme_update(text = element_text(size = 13))
+```
+
+------------------------------------------------------------------------
+
+::: columns
+::: {.column .center width="45%"}
+![](img/DAW.png){width="90%"}
+:::
+
+::: {.column .center width="55%"}
+[Other Models]{.custom-title}
+
+<br> <br> <br>
+
+[Kelly McConville]{.custom-subtitle}
+
+[DATA 100 <br> Week 13 \| Spring 2026]{.custom-subtitle}
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Announcements
+
+-   **Extra Credit Lecture Quiz**
+-   Don't forget to get your data science credit.
+
+### Goals for Today
+
+::: columns
+::: column
+-   Other Models
+-   Analyzing categorical data
+:::
+
+::: column
+
+:::
+:::
+
+
+------------------------------------------------------------------------
+
+## What other models/techniques to learn?
+
+Two examples:
+
+-   Chi-squared tests: 
+    -  Case where the test statistic is more involved.
+-   Logistic regression
+    -   Response variable: binary, categorical variable
+    -   Explanatory variables: Can be a mix of categorical and quantitative variables
+-   Non-parametric modeling
+    -   Don't require a specific global relationship between response variable and explanatory variable(s)
+
+
+
+
+---
+
+### Inference for Categorical Variables
+
+Consider the situation where:
+
+-   Response variable: categorical
+
+-   Explanatory variable: categorical
+
+-   Parameter of interest: $p_1 - p_2$
+
+    -   This parameter of interest only makes sense if **both** variables only have two categories.
+
+::: fragment
+It is time to learn how to study the relationship between two categorical variables when **at least one has more than two categories.**
+:::
+
+------------------------------------------------------------------------
+
+### Hypotheses
+
+$H_o$: The two variables are independent.
+
+$H_a$: The two variables are dependent.
+
+------------------------------------------------------------------------
+
+### Example
+
+Near-sightedness typically develops during the childhood years. Quinn, Shin, Maguire, and Stone (1999) explored whether there is a relationship between the type of light children were exposed to and their eye health based on questionnaires filled out by the children's parents at a university pediatric ophthalmology clinic.
+
+```{r}
+library(tidyverse)
+library(infer)
+
+# Import data
+eye_data <- read_csv("data/eye_lighting.csv")
+
+# Contingency table
+eye_data %>%
+  count(Lighting, Eye)
+```
+
+------------------------------------------------------------------------
+
+### Eyesight Example
+
+Does there appear to be a relationship/dependence?
+
+```{r}
+#| output-location: column
+
+ggplot(data = eye_data, 
+       mapping = aes(x = Lighting,
+                     fill = Eye)) + 
+  geom_bar(position = "fill")
+```
+
+------------------------------------------------------------------------
+
+### Test Statistic
+
+Need a test statistic!
+
+-   Won't be a single sample statistic.
+
+-   Needs to measure the discrepancy between the observed sample and the sample we'd expect to see if $H_o$ (no relationship) were true.
+
+-   Would be nice if its null distribution could be approximated by a known probability model.
+
+------------------------------------------------------------------------
+
+## Sample Result Tables
+
+::: columns
+::: column
+#### Observed Sample Table
+
+```{r}
+table(eye_data$Eye, eye_data$Lighting) %>%
+  addmargins() %>%
+  kable(format = "html")
+```
+:::
+
+::: column
+#### Expected Sample Table
+
+**Question**: If $H_o$ were correct, is this the table that we'd expect to see?
+
+```{r, echo=FALSE}
+Ho_dat <- data.frame(Eye = rep(c("Far", "Near", "Normal"), times = 53*3),
+                     Lighting = rep(c("dark", "night", "room"), each = 53*3))
+table(Ho_dat$Eye, Ho_dat$Lighting) %>%
+  addmargins() %>%
+  kable(format = "html")
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Sample Result Tables
+
+::: columns
+::: column
+#### Observed Sample Table
+
+```{r}
+table(eye_data$Eye, eye_data$Lighting) %>%
+  addmargins() %>%
+  kable(format = "html")
+```
+:::
+
+::: column
+#### Expected Sample Table
+
+**Question**: If $H_o$ were correct, what table would we expect to see?
+
+Want a $H_o$ table that respects the overall eye condition proportions:
+
+$$\hat{p}_{far} = 91/479$$
+
+$$\hat{p}_{nor} = 251/479$$
+
+$$\hat{p}_{nea} = 137/479$$
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Sample Result Tables {.smaller}
+
+::: columns
+::: column
+#### Observed Sample Table
+
+```{r}
+table(eye_data$Eye, eye_data$Lighting) %>%
+  addmargins() %>%
+  kable(format = "html")
+```
+:::
+
+::: column
+#### Expected Sample Table
+
+**Question**: If $H_o$ were correct, what table would we expect to see?
+
+|        |         dark |        night |        room | Sum |
+|:-------|-------------:|-------------:|------------:|----:|
+| Far    |  (91/479)172 |  (91/479)232 |  (91/479)75 |  91 |
+| Near   | (137/479)172 | (137/479)232 | (137/479)75 | 137 |
+| Normal | (251/479)172 | (251/479)232 | (251/479)75 | 251 |
+| Sum    |          172 |          232 |          75 | 479 |
+:::
+:::
+
+Still have the same totals but distributed the values differently within the table
+
+------------------------------------------------------------------------
+
+## Sample Result Tables
+
+::: columns
+::: column
+#### Observed Sample Table
+
+```{r}
+table(eye_data$Eye, eye_data$Lighting) %>%
+  addmargins() %>%
+  kable(format = "html")
+```
+:::
+
+::: column
+#### Expected Sample Table
+
+**Question**: If $H_o$ were correct, what table would we expect to see?
+
+```{r, echo = FALSE}
+round(chisq.test(table(eye_data$Eye, eye_data$Lighting))$exp, 1) %>%
+  addmargins() %>%
+  kable(format = "html")
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+### Expected Table
+
+::: columns
+::: column
+How does this table represent $H_o$?
+
+```{r, echo = FALSE}
+round(chisq.test(table(eye_data$Eye, eye_data$Lighting))$exp, 2) %>%
+  addmargins() %>%
+  kable(format = "html")
+```
+:::
+
+::: column
+```{r, echo = FALSE}
+chisq.test(table(eye_data$Eye, eye_data$Lighting))$exp %>%
+  as_tibble(rownames = "Eye") %>%
+  pivot_longer(2:4, names_to = "Lighting") %>%
+  ggplot(mapping = aes(x = Lighting, fill = Eye, y = value)) +
+  geom_col(position = "fill")
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+### Test Statistic
+
+Want the test statistic to quantify the difference between the observed table and the expected table.
+
+::: columns
+::: column
+|        | dark | night | room | Sum |
+|:-------|-----:|------:|-----:|----:|
+| Far    |   40 |    39 |   12 |  91 |
+| Near   |   18 |    78 |   41 | 137 |
+| Normal |  114 |   115 |   22 | 251 |
+| Sum    |  172 |   232 |   75 | 479 |
+:::
+
+::: column
+|        |   dark |  night |  room | Sum |
+|:-------|-------:|-------:|------:|----:|
+| Far    |  32.68 |  44.08 | 14.25 |  91 |
+| Near   |  49.19 |  66.35 | 21.45 | 137 |
+| Normal |  90.13 | 121.57 | 39.30 | 251 |
+| Sum    | 172.00 | 232.00 | 75.00 | 479 |
+:::
+:::
+
+::: fragment
+For each cell: Compute a **Z-score**!
+
+```{=tex}
+\begin{align*}
+\mbox{Z-score} &= \frac{\mbox{stat - mean}}{\mbox{SE}} \\
+& = \frac{\mbox{observed - expected}}{\sqrt{\mbox{expected}}}
+\end{align*}
+```
+:::
+
+------------------------------------------------------------------------
+
+### Test Statistic
+
+Want the test statistic to quantify the difference between the observed table and the expected table.
+
+```{r, echo = FALSE}
+round(chisq.test(table(eye_data$Eye, eye_data$Lighting))$residuals, 2) %>%
+  kable(format = "html")
+```
+
+------------------------------------------------------------------------
+
+### Test Statistic
+
+**Test Statistic Formula:**
+
+```{=tex}
+\begin{align*}
+\chi^2 = \sum \left(\frac{\mbox{observed - expected}}{\sqrt{\mbox{expected}}} \right)^2
+\end{align*}
+```
+```{r}
+#| output-location: column
+
+library(infer)
+#Compute Chi-square test stat
+test_stat <- eye_data %>%
+  specify(Eye ~ Lighting) %>%
+  calculate(stat = "Chisq") 
+test_stat
+```
+
+Questions:
+
+1.  Is a test statistic **unusual** if it is a large number or a small number?
+2.  Is 56.5 **unusual** under $H_o$?
+
+------------------------------------------------------------------------
+
+### Generating the Null Distribution
+
+```{r}
+#| output-location: column
+
+# Construct null distribution
+null_dist <- eye_data %>%
+  specify(Eye ~ Lighting) %>%
+  hypothesize(null = "independence") %>%
+  generate(reps = 1000, type = "permute") %>%
+  calculate(stat = "Chisq")
+
+
+visualize(null_dist)
+```
+
+------------------------------------------------------------------------
+
+### The Null Distribution
+
+::: columns
+::: column
+**Key Observations about the distribution**:
+
+Smallest possible value?
+
+Shape?
+
+Is our observed test statistic of 56.5 unusual?
+:::
+
+::: column
+```{r, echo = FALSE}
+visualize(null_dist)
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+### The P-value
+
+```{r}
+# Compute p-value
+null_dist %>%
+  get_pvalue(obs_stat = test_stat, direction = "greater")
+```
+
+------------------------------------------------------------------------
+
+### Approximating the Null Distribution
+
+If there are at least 5 observations in each cell, then the test statistic can be approximated by a 
+
+$$
+\chi^2(df = (k - 1)(j - 1)) \mbox{ random variable}
+$$ where 
+
+* $k$ is the number of categories in the response variable
+* $j$ is the number of categories in the explanatory variable.
+* The $df$ controls the center and spread of the distribution.
+
+------------------------------------------------------------------------
+
+### The Chi-Squared Test
+
+```{r}
+chisq_test(eye_data, Eye ~ Lighting)
+```
+
+-   Conclusions?
+
+-   Causal link between room lighting at bedtime and eye conditions?
+
+-   Decisions, decisions...
+
+
+
+# Another Example
+
+----
+
+
+## In your opinion, which sentence is more gramatically correct?
+
+<br>
+
+<br>
+
+[Version 1: "It's important for a person to be honest, kind and loyal." ]{.custom-subtitle}
+
+[Version 2: "It's important for a person to be honest, kind, and loyal." ]{.custom-subtitle}
+
+
+----
+
+
+## How would you write the following sentence?
+
+<br>
+
+<br>
+
+[Version 1: "Some experts say it's important to drink milk, but the data are inconclusive." ]{.custom-subtitle}
+
+[Version 2: "Some experts say it's important to drink milk, but the data is inconclusive." ]{.custom-subtitle}
+
+
+---
+
+### Grammar and Education
+
+In 2014, [Fivethirtyeight.com and SurveyMonkey](https://fivethirtyeight.com/features/elitist-superfluous-or-popular-we-polled-americans-on-the-oxford-comma/) ran a poll asking people about their opinions on the oxford comma and data.  We want to use these data to investigate if there is a relationship between someone's level of education and their grammar opinions.
+
+```{r}
+# Data loading and wrangling
+
+grammar <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/comma-survey/comma-survey.csv") %>%
+  mutate(oxford_comma = if_else(`In your opinion, which sentence is more gramatically correct?` == "It's important for a person to be honest, kind, and loyal.",
+                                "for",
+                                "against")) %>%
+  mutate(Education = fct_collapse(Education, 
+                                  `High School or Less` = c("Less than high school degree",
+                                                            "High school degree"))) %>%
+  mutate(Education = fct_relevel(Education, "High School or Less", "Some college or Associate degree")) %>%
+  mutate(data = if_else(`How would you write the following sentence?` == "Some experts say it's important to drink milk, but the data are inconclusive.", "plural", "singular")) %>%
+  drop_na(data, Education, oxford_comma) 
+
+```
+
+
+
+
+```{r}
+#| eval: false
+#| echo: false
+
+grammar <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/comma-survey/comma-survey.csv") %>%
+  mutate(oxford_comma = if_else(`In your opinion, which sentence is more gramatically correct?` == "It's important for a person to be honest, kind, and loyal.", "for",
+                                "against")) %>%
+  rename(grammar_importance = `In your opinion, how important or unimportant is proper use of grammar?`) %>%
+  mutate(grammar_importance = fct_relevel(grammar_importance, "Very unimportant",
+                                          "Somewhat unimportant",
+                                          "Neither important nor unimportant (neutral)",
+                                          "Somewhat important",
+                                          "Very important"),
+         Education = fct_collapse(Education, `High School or Less` = c("Less than high school degree",
+                                                                       "High school degree"))) %>%
+  mutate(Education = fct_relevel(Education, "High School or Less", "Some college or Associate degree")) %>%
+  mutate(data = if_else(`How would you write the following sentence?` == "Some experts say it's important to drink milk, but the data are inconclusive.", "plural", "singular")) %>%
+  drop_na(data, Education, oxford_comma) 
+
+
+# comma %>%
+#   count(grammar_importance, oxford_comma)
+# 
+# comma %>%
+#   count(Education, oxford_comma)
+# comma %>%
+#   count(`Location (Census Region)`, oxford_comma)
+```
+
+
+---
+
+### Grammar and Education
+
+What story do these graphs tell?  Does education level appear to have a stronger relationship with preference for the oxford comma or with whether the word "data" is singular or plural?
+
+
+::: columns
+
+::: column
+
+```{r}
+#| echo: false
+ggplot(data = grammar, mapping = aes(x = Education, fill = oxford_comma)) +
+  geom_bar(position = "fill") + 
+  theme(axis.text.x =
+          element_text(angle = 45,
+                       vjust = 1,
+                       hjust = 1))
+```
+
+:::
+
+::: column
+
+
+
+
+```{r}
+#| echo: false
+
+ggplot(data = grammar, mapping = aes(x = Education, fill = data)) +
+  geom_bar(position = "fill") + 
+  theme(axis.text.x =
+          element_text(angle = 45,
+                       vjust = 1,
+                       hjust = 1))
+```
+
+:::
+
+:::
+
+
+---
+
+### Grammar and Education
+
+Check conditions!
+
+::: columns
+
+::: column
+
+```{r}
+
+count(grammar, Education, oxford_comma)
+```
+
+
+:::
+
+::: column
+
+```{r}
+count(grammar, Education, data)
+```
+
+:::
+
+:::
+
+---
+
+### Grammar and Education
+
+Run tests.
+
+
+::: columns
+
+::: column
+
+```{r}
+chisq_test(grammar, oxford_comma ~ Education)
+```
+
+
+:::
+
+::: column
+
+```{r}
+chisq_test(grammar, data ~ Education)
+```
+
+:::
+
+:::
+
+* Why do both tests have 3 degrees of freedom?
+
+* Which test statistic is more unusual under the null?  Does this agree with what you saw in the graph?
+
+* How to interpret one of the p-values in context?
+
+* Conclusions?
+
+
+# Other Models
+
+------------------------------------------------------------------------
+
+### Logistic Regression
+
+**Response variable**: A **categorical** variable with **two** categories
+
+```{=tex}
+\begin{align*}
+Y =   \left\{
+\begin{array}{ll}
+      1 & \mbox{success} \\
+      0 & \mbox{failure} \\
+\end{array} 
+\right.  
+\end{align*}
+```
+::: fragment
+$Y \sim$ Bernoulli $(p)$ where $p = P(Y = 1) = P(\mbox{success})$.
+:::
+
+::: fragment
+**Explanatory variables**: Can be a mix of categorical and quantitative
+:::
+
+::: fragment
+**Goal**: Build a model for $P(Y = 1)$.
+:::
+
+------------------------------------------------------------------------
+
+### Why can't we use linear regression?
+
+::: columns
+::: column
+-   Regression line = estimated **probability** of success
+
+-   For valid values of $x$, we are predicting the probability is less than 0 or greater than 1.
+
+-   The estimated probabilities based on the logistic regression model are bounded between 0 and 1.
+:::
+
+::: column
+```{r, echo=FALSE}
+set.seed(40)
+x <- c(runif(20, 0, .6), runif(20, 0.4, 1))
+y <- c(rep(0, 20), rep(1, 20))
+dat <- data.frame(x, y)
+ggplot(dat, aes(x, y)) +
+  geom_point(alpha = 0.5, size = 3) +
+  geom_smooth(method = lm, se = FALSE) + 
+  labs(y = "P(Y = 1)") +
+  geom_smooth(method = 'glm', method.args = list(family = "binomial"), se = FALSE, color = "deeppink")
+```
+:::
+:::
+
+::: fragment
+What does the **logistic regression model** look like?
+:::
+
+------------------------------------------------------------------------
+
+### Logistic Regression Model
+
+```{=tex}
+\begin{align*}
+\log\left(\frac{P(Y = 1)}{1  - P(Y = 1)}  \right) &= \beta_o + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p 
+\end{align*}
+```
+::: fragment
+Left hand side has many interpretations:
+
+```{=tex}
+\begin{align*}
+\mbox{LHS} &= \log\left(\frac{P(Y = 1)}{1  - P(Y = 1)}  \right)\\ 
+&= \log \left( \mbox{odds (of success)}  \right)\\
+&= \mbox{logit}(P(Y = 1))
+\end{align*}
+```
+Note:
+
+$$ 
+\mbox{odds} = \frac{\mbox{prob of success}}{\mbox{prob of failure}}
+$$
+:::
+
+------------------------------------------------------------------------
+
+### Example
+
+Let's return to the Palmer Penguins dataset and build a model that predicts whether a penguin is a **Chinstrap** or a **Adelie**.
+
+```{r}
+#| output-location: column
+
+knitr::include_graphics("img/penguins.png")
+
+library(palmerpenguins)
+
+penguins2 <- penguins %>%
+  filter(species != "Gentoo") %>%
+  mutate(species_num = 
+           if_else(species == "Chinstrap",
+                   1, 0)) %>%
+  drop_na(species_num, flipper_length_mm)
+
+count(penguins2, species)
+```
+
+------------------------------------------------------------------------
+
+### Example
+
+```{r}
+#| output-location: column
+
+ggplot(data = penguins2, 
+       mapping = aes(x = flipper_length_mm,
+                     y = species_num)) +
+  geom_jitter(size = 3, alpha = 0.4,
+              width = 0, height = 0.05) + 
+  labs(y = "P(Y = 1)")  +
+  geom_smooth(method = 'glm',
+              method.args = 
+                list(family = "binomial"))
+```
+
+------------------------------------------------------------------------
+
+### Example
+
+```{r}
+mod <- glm(species ~ flipper_length_mm, family = "binomial",
+           data = penguins2)
+library(broom)
+tidy(mod)
+```
+
+
+But what do the coefficient estimates $\hat{\beta}_o = -25.8$ and $\hat{\beta}_1 = 0.129$ represent?
+
+------
+
+## Interpreting Coefficients
+
+$$
+\exp \left( \hat{\beta}_1 \right) = \frac{\mbox{odds of being Chinstrap for flipper length t + 1 mm}}{\mbox{odds of being Chinstrap for flipper length t mm}}
+$$
+
+```{r}
+exp(0.129)
+```
+
+
+The odds that a penguin in Chinstrap instead of Adelie is 1.138 times the odds of a penguin whose flipper is 1 mm shorter.
+
+
+----
+
+
+## Inference
+
+Is flipper length a useful explanatory variable?
+
+```{r}
+tidy(mod)
+```
+
+
+
+# There are LOTS of models out there beyond regression!  Next time, consider classification trees.
+
+

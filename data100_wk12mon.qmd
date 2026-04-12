@@ -41,7 +41,7 @@ theme_update(text = element_text(size = 13))
 
 ------------------------------------------------------------------------
 
-::: columns
+::::: columns
 ::: {.column .center width="45%"}
 ![](img/DAW.png){width="90%"}
 :::
@@ -55,21 +55,21 @@ theme_update(text = element_text(size = 13))
 
 [DATA 100 <br> Week 12 \| Spring 2026]{.custom-subtitle}
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
 ## Announcements
 
--   No lab on Friday this week.  
--   Instead you will spend Wednesday's class time (3 - 4:20pm) as lab time: 
-    - Lecture quiz (covering today and last Monday)
-    - Practice
-    - Start problem set 8.
+-   No lab on Friday this week.\
+-   Instead you will spend Wednesday's class time (3 - 4:20pm) as lab time:
+    -   Lecture quiz (covering today and last Monday)
+    -   Practice
+    -   Start problem set 8.
 
 ### Goals for Today
 
-::: columns
+::::: columns
 ::: column
 -   Recap **multiple linear regression**
 
@@ -81,8 +81,7 @@ theme_update(text = element_text(size = 13))
 
 -   **Estimation** and **prediction** inference for linear regression
 :::
-:::
-
+:::::
 
 # Exam Reflections
 
@@ -202,11 +201,10 @@ Let's unpack these assumptions!
 
 For ease of visualization, let's assume a **simple** linear regression model:
 
-```{=tex}
 \begin{align*}
 y = \beta_o + \beta_1 x_1 + \epsilon \quad \mbox{   where   } \quad \epsilon \overset{\color{black}{\mbox{ind}}}{\sim}N\left(0, \sigma_{\epsilon} \right)
 \end{align*}
-```
+
 **Assumption**: The cases are independent of each other.
 
 **Question**: How do we check this assumption?
@@ -227,7 +225,7 @@ $$
 
 **Assumption**: The errors are normally distributed.
 
-::: columns
+::::: columns
 ::: column
 **Question**: How do we check this assumption?
 :::
@@ -235,12 +233,12 @@ $$
 ::: column
 Recall the residual: $e = y - \hat{y}$
 :::
-:::
+:::::
 
-::: fragment
+:::::: fragment
 **QQ-plot:** Plot the residuals against the quantiles of a normal distribution!
 
-::: columns
+::::: columns
 ::: column
 ```{r, echo = FALSE, fig.asp = .6, fig.width = 6}
 set.seed(11131)
@@ -259,18 +257,17 @@ ggplot(data = dat , mapping = aes(sample = res2)) +
   stat_qq_line()
 ```
 :::
-:::
-:::
+:::::
+::::::
 
 ------------------------------------------------------------------------
 
 ## Assumptions -- Mean of Errors
 
-```{=tex}
 \begin{align*}
 y = \beta_o + \beta_1 x_1 + \epsilon \quad \mbox{   where   } \quad \epsilon \overset{\mbox{ind}}{\sim}N\left(\color{black}{0}, \sigma_{\epsilon} \right)
 \end{align*}
-```
+
 **Assumption**: The points will, on average, fall on the line.
 
 **Question**: How do we check this assumption?
@@ -289,19 +286,18 @@ $$
 
 ## Assumptions -- Constant Variance
 
-```{=tex}
 \begin{align*}
 y = \beta_o + \beta_1 x_1 + \epsilon \quad \mbox{   where   } \quad \epsilon \overset{\mbox{ind}}{\sim}N\left(0, \color{black}{\sigma_{\epsilon}} \right)
 \end{align*}
-```
+
 **Assumption**: The variability in the errors is constant.
 
 **Question**: How do we check this assumption?
 
-::: fragment
+:::::: fragment
 **One option**: Scatterplot
 
-::: columns
+::::: columns
 ::: column
 ```{r, echo = FALSE, fig.asp = .6, fig.width = 6}
 set.seed(21)
@@ -329,25 +325,24 @@ ggplot(data = dat , mapping = aes(x = x,
   geom_smooth(method = lm, se = FALSE)
 ```
 :::
-:::
-:::
+:::::
+::::::
 
 ------------------------------------------------------------------------
 
 ## Assumptions -- Constant Variance
 
-```{=tex}
 \begin{align*}
 y = \beta_o + \beta_1 x_1 + \epsilon \quad \mbox{   where   } \quad \epsilon \overset{\mbox{ind}}{\sim}N\left(0, \color{black}{\sigma_{\epsilon}} \right)
 \end{align*}
-```
+
 **Assumption**: The variability in the errors is constant.
 
 **Question**: How do we check this assumption?
 
 **Better option** (especially when have more than 1 explanatory variable): **Residual Plot**
 
-::: columns
+::::: columns
 ::: column
 ```{r, echo = FALSE, fig.asp = .6, fig.width = 6}
 set.seed(21)
@@ -376,25 +371,24 @@ ggplot(data = mod2) +
   stat_fitted_resid()
 ```
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
 ### Assumptions -- Model Form
 
-```{=tex}
 \begin{align*}
 y = \color{black}{\beta_o + \beta_1 x_1} + \epsilon \quad \mbox{   where   } \quad \epsilon \overset{\mbox{ind}}{\sim}N\left(0, \sigma_{\epsilon} \right)
 \end{align*}
-```
+
 **Assumption**: The model form is appropriate.
 
 **Question**: How do we check this assumption?
 
-::: fragment
+:::::: fragment
 **One option**: Scatterplot(s)
 
-::: columns
+::::: columns
 ::: column
 ```{r, echo = FALSE, fig.asp = .6, fig.width = 6}
 set.seed(21)
@@ -422,25 +416,24 @@ ggplot(data = dat , mapping = aes(x = x,
   geom_smooth(method = lm, se = FALSE)
 ```
 :::
-:::
-:::
+:::::
+::::::
 
 ------------------------------------------------------------------------
 
 ### Assumptions -- Model Form
 
-```{=tex}
 \begin{align*}
 y = \color{black}{\beta_o + \beta_1 x_1} + \epsilon \quad \mbox{   where   } \quad \epsilon \overset{\mbox{ind}}{\sim}N\left(0, \sigma_{\epsilon} \right)
 \end{align*}
-```
+
 **Assumption**: The model form is appropriate.
 
 **Question**: How do we check this assumption?
 
 **Better option** (especially when have more than 1 explanatory variable): **Residual Plot**
 
-::: columns
+::::: columns
 ::: column
 ```{r, echo = FALSE, fig.asp = .6, fig.width = 6}
 
@@ -460,7 +453,7 @@ ggplot(data = mod2) +
   stat_fitted_resid()
 ```
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -555,7 +548,7 @@ Checking assumptions:
 
 The `R` package we will use to check model assumptions is called `gglm` and was written by one of my former Reed students (and now Reed faculty member), Grayson White.
 
-::: columns
+::::: columns
 ::: {.column width="10%"}
 ```{r, echo = FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/graysonwhite/gglm/master/figs/gglm.gif")
@@ -567,7 +560,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/graysonwhite/gglm/mas
 library(gglm)
 ```
 :::
-:::
+:::::
 
 First need to fit the model:
 
@@ -717,7 +710,6 @@ $$
 ::: fragment
 with p-value: Probability of the test statistic being 13.2 or larger AND -13.2 or smaller.
 
-
 Because the p-value is essentially equal to zero, there is evidence that including whether or not the candle is scented adds useful information to the linear regression model for Amazon ratings that already controls for date.
 :::
 
@@ -788,7 +780,6 @@ get_regression_table(mod2)
 After controlling for the other explanatory variables, what is the range of plausible values for $\beta_j$ (which summarizes the relationship between $y$ and $x_j$)?
 
 ::: fragment
-
 ```{r}
 get_regression_table(mod2)
 ```
@@ -806,7 +797,7 @@ While $\hat{y}$ is a point estimate for $y$, can we also get an interval estimat
 
 ## Two Types of Predictions
 
-::: columns
+::::: columns
 ::: column
 #### Confidence Interval for the **Mean Response**
 
@@ -830,7 +821,7 @@ While $\hat{y}$ is a point estimate for $y$, can we also get an interval estimat
 
 → [Larger]{style="color: orange;"} SE
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -861,12 +852,12 @@ predict(mod2, house_of_interest, interval = "prediction", level = 0.95)
 
 -   **Interpretation**: For a 20 year old, 1500 square feet Saratoga house with central air and 2 bathrooms, we predict, with 95% confidence, that the price will be between \$73,885 and \$337,869.
 
----
+------------------------------------------------------------------------
 
 ## Reminders
 
--   No lab on Friday this week.  
--   Instead you will spend Wednesday's class time (3 - 4:20pm) as lab time: 
-    - Lecture quiz (covering today and last Monday)
-    - Practice
-    - Start problem set 8.
+-   No lab on Friday this week.\
+-   Instead you will spend Wednesday's class time (3 - 4:20pm) as lab time:
+    -   Lecture quiz (covering today and last Monday)
+    -   Practice
+    -   Start problem set 8.
