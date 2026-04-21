@@ -1,0 +1,494 @@
+---
+pagetitle: "Classification Trees"
+format: 
+  revealjs:
+    html-math-method: mathjax
+    chalkboard: true
+    incremental: true
+    theme: [default, custom.scss]
+#    multiplex: true
+    height: 900
+    width: 1600
+    slide-number: c
+    auto-stretch: false
+    callout-appearance: simple
+    pdf-max-pages-per-slide: 1
+    menu: 
+      side: right
+      numbers: true
+    code-overflow: wrap
+#    fontsize: 20
+execute:
+  echo: true
+  warning: false
+  message: false
+  fig-asp: 0.75
+  fig-width: 8
+#  fig-align: center
+  fig-dpi: 500
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+# Some global options still not available in quarto
+ knitr::opts_chunk$set(fig.align = 'center')
+library(knitr)
+library(tidyverse)
+theme_update(text = element_text(size = 13))
+```
+
+------------------------------------------------------------------------
+
+::::: columns
+::: {.column .center width="45%"}
+![](img/DAW.png){width="90%"}
+:::
+
+::: {.column .center width="55%"}
+[Logistic Regression + Classification Trees]{.custom-title}
+
+
+[Kelly McConville]{.custom-subtitle}
+
+[DATA 100 <br> Week 13 \| Spring 2026]{.custom-subtitle}
+:::
+:::::
+
+------------------------------------------------------------------------
+
+## Announcements
+
+-   Don't forget to get your data science activity credit.
+
+### Goals for Today
+
+::::: columns
+::: column
+-   Logistic Regression
+-   Classification Trees
+:::
+
+::: column
+
+-  Installing R and RStudio on your computer
+:::
+:::::
+
+
+
+
+# Models for Categorical Response Variables
+
+------------------------------------------------------------------------
+
+### Logistic Regression
+
+**Response variable**: A **categorical** variable with **two** categories
+
+\begin{align*}
+Y =   \left\{
+\begin{array}{ll}
+      1 & \mbox{success} \\
+      0 & \mbox{failure} \\
+\end{array} 
+\right.  
+\end{align*}
+
+::: fragment
+$Y \sim$ Bernoulli $(p)$ where $p = P(Y = 1) = P(\mbox{success})$.
+:::
+
+::: fragment
+**Explanatory variables**: Can be a mix of categorical and quantitative
+:::
+
+::: fragment
+**Goal**: Build a model for $P(Y = 1)$.
+:::
+
+------------------------------------------------------------------------
+
+### Why can't we use linear regression?
+
+::::: columns
+::: column
+-   Regression line = estimated **probability** of success
+
+-   For valid values of $x$, we are predicting the probability is less than 0 or greater than 1.
+
+-   The estimated probabilities based on the logistic regression model are bounded between 0 and 1.
+:::
+
+::: column
+```{r, echo=FALSE}
+set.seed(40)
+x <- c(runif(20, 0, .6), runif(20, 0.4, 1))
+y <- c(rep(0, 20), rep(1, 20))
+dat <- data.frame(x, y)
+ggplot(dat, aes(x, y)) +
+  geom_point(alpha = 0.5, size = 3) +
+  geom_smooth(method = lm, se = FALSE) + 
+  labs(y = "P(Y = 1)") +
+  geom_smooth(method = 'glm', method.args = list(family = "binomial"), se = FALSE, color = "deeppink")
+```
+:::
+:::::
+
+::: fragment
+What does the **logistic regression model** look like?
+:::
+
+------------------------------------------------------------------------
+
+### Logistic Regression Model
+
+\begin{align*}
+\log\left(\frac{P(Y = 1)}{1  - P(Y = 1)}  \right) &= \beta_o + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p 
+\end{align*}
+
+::: fragment
+Left hand side has many interpretations:
+
+\begin{align*}
+\mbox{LHS} &= \log\left(\frac{P(Y = 1)}{1  - P(Y = 1)}  \right)\\ 
+&= \log \left( \mbox{odds (of success)}  \right)\\
+&= \mbox{logit}(P(Y = 1))
+\end{align*}
+
+Note:
+
+$$ 
+\mbox{odds} = \frac{\mbox{prob of success}}{\mbox{prob of failure}}
+$$
+:::
+
+------------------------------------------------------------------------
+
+### Example
+
+Let's return to the Palmer Penguins dataset and build a model that predicts whether a penguin is a **Chinstrap** or a **Adelie**.
+
+```{r}
+#| output-location: column
+
+library(palmerpenguins)
+
+penguins2 <- penguins %>%
+  filter(species != "Gentoo") %>%
+  mutate(species_num = if_else(species == "Chinstrap",
+                               1, 0)) %>%
+  drop_na(species_num, flipper_length_mm)
+
+count(penguins2, species)
+```
+
+------------------------------------------------------------------------
+
+### Example
+
+```{r}
+#| output-location: column
+
+ggplot(data = penguins2, 
+       mapping = aes(x = flipper_length_mm,
+                     y = species_num)) +
+  geom_jitter(size = 3, alpha = 0.4,
+              width = 0, height = 0.05) + 
+  labs(y = "P(Y = 1)")  +
+  geom_smooth(method = 'glm',
+              method.args = 
+                list(family = "binomial"))
+```
+
+------------------------------------------------------------------------
+
+### Example
+
+```{r}
+mod <- glm(species ~ flipper_length_mm, family = "binomial",
+           data = penguins2)
+library(broom)
+tidy(mod)
+```
+
+But what do the coefficient estimates $\hat{\beta}_o = -25.8$ and $\hat{\beta}_1 = 0.129$ represent?
+
+------------------------------------------------------------------------
+
+## Interpreting Coefficients
+
+$$
+\exp \left( \hat{\beta}_1 \right) = \frac{\mbox{odds of being Chinstrap for flipper length t + 1 mm}}{\mbox{odds of being Chinstrap for flipper length t mm}}
+$$
+
+```{r}
+exp(0.129)
+```
+
+The odds that a penguin in Chinstrap instead of Adelie is 1.138 times the odds of a penguin whose flipper is 1 mm shorter.
+
+------------------------------------------------------------------------
+
+## Inference
+
+Is flipper length a useful explanatory variable?
+
+```{r}
+tidy(mod)
+```
+
+## Is a Penguin's Sex a Good Predictor of Species?
+
+Can also try a categorical predictor.
+
+```{r}
+#| output-location: column
+
+penguins2 %>%
+  drop_na(sex) %>%
+ggplot(mapping = aes(x = sex,
+                     fill = species)) +
+  geom_bar(position = "fill")
+```
+
+
+## Logistic Regression with a Categorical Explanatory Variable
+
+
+```{r}
+mod2 <- glm(species ~ sex, family = "binomial",
+           data = penguins2)
+tidy(mod2)
+```
+
+Is sex a useful explanatory variable?
+
+
+## Multiple Logistic Regression
+
+Similar to linear regression, can have a mix of categorical and quantitative predictors.
+
+```{r}
+#| output-location: column
+
+penguins2 %>%
+  drop_na(sex) %>%
+ggplot(mapping = aes(x = flipper_length_mm,
+                     y = species_num, 
+                     color = sex)) +
+  geom_jitter(size = 3, alpha = 0.4,
+              width = 0, height = 0.05) + 
+  labs(y = "P(Y = 1)")  +
+  geom_smooth(method = 'glm',
+              method.args = 
+                list(family = "binomial"))
+```
+
+
+## Multiple Logistic Regression
+
+```{r}
+mod3 <- glm(species ~ flipper_length_mm + sex, family = "binomial",
+           data = penguins2)
+tidy(mod3)
+
+1/exp(-0.982)
+```
+
+
+* Controlling for flipper length, the odds that a female penguin is a Chinstrap instead of an Adelie is 2.67 times the odds a male penguin is a Chinstrap instead of an Adelie.  
+
+-----
+
+### New Data Example
+
+Let's look at the `PASeniors` dataset, which is a sample of PA high school seniors in 2019.  Can we build a model to predict whether or not a student will select "happy" as the answer to the question "When you grow up, would you prefer to be famous, happy, healthy, or rich?"
+
+```{r}
+#| output-location: column
+
+library(Lock5Data)
+data("PASeniors2019")
+
+PASeniors <- PASeniors2019 %>%
+  drop_na(WorkHours, Preference) %>%
+  filter(Preference != "") %>%
+  mutate(PreferenceH = case_when(
+    Preference == "Happy" ~ "Picked Happy", 
+    Preference != "Happy" ~ "Something Else"
+  ),
+  PreferenceH_num = case_when(
+    Preference == "Happy" ~ 1,
+    Preference != "Happy" ~ 0
+  ))
+
+count(PASeniors, PreferenceH)
+```
+
+------------------------------------------------------------------------
+
+### Example
+
+```{r}
+#| output-location: column
+
+ggplot(data = PASeniors, 
+       mapping = aes(x = Sleep1,
+                     y = PreferenceH_num)) +
+  geom_jitter(size = 3, alpha = 0.1,
+              width = 0, height = 0.05) + 
+  labs(y = "P(Y = 1)") +
+  geom_smooth(method = 'glm',
+              method.args = 
+                list(family = "binomial"))
+```
+
+------------------------------------------------------------------------
+
+### Example
+
+::: columns
+::: column
+This is what an helpful explanatory variable looks like!
+
+```{r, echo=FALSE}
+set.seed(40)
+x <- c(runif(20, 0, .6), runif(20, 0.4, 1))
+y <- c(rep(0, 20), rep(1, 20))
+dat <- data.frame(x, y)
+ggplot(dat, aes(x, y)) +
+  geom_point(alpha = 0.5, size = 3) +
+  labs(y = "P(Y = 1)") +
+  geom_smooth(method = 'glm', method.args = list(family = "binomial"), se = FALSE, color = "deeppink")
+```
+:::
+
+::: column
+This is what an unhelpful explanatory variable looks like!
+
+```{r, echo = FALSE}
+ggplot(data = PASeniors, 
+       mapping = aes(x = Sleep1,
+                     y = PreferenceH_num)) +
+  geom_jitter(size = 3, alpha = 0.1,
+              width = 0, height = 0.05) + 
+  labs(y = "P(Y = 1)") +
+  geom_smooth(method = 'glm',
+              method.args = 
+                list(family = "binomial"))
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+### Logistic Regression Table
+
+```{r}
+happy_mod <- glm(PreferenceH_num ~ Sleep1, data = PASeniors)
+library(broom)
+tidy(happy_mod)
+```
+
+I tried several variables and struggled to build a useful logistic regression model.
+
+# There are LOTS of models out there beyond regression!  Let's return to tree models.
+
+------------------------------------------------------------------------
+
+
+### Classification Trees
+
+::: nonincremental
+
+-   Split and split and split... sample into two groups based on an explanatory variable.
+    -   Wants groups to be homogeneous as possible for the response variable.
+-   **Stop** splitting when it is no longer very predictively useful to do so.
+
+:::
+
+::: columns
+::: {.column width="15%"}
+:::
+
+::: {.column width="70%"}
+```{r, echo = FALSE, fig.width = 12, fig.asp = 0.5}
+library(rpart)
+happy_tree <- rpart(PreferenceH ~ Sleep1 + GetToSchool +
+                      TextsSent + VideoGameHours + Gender, 
+                    method = "class",
+                    data = PASeniors)
+
+library(rattle)
+happy_tree_pruned <- prune(happy_tree, cp = .02)
+fancyRpartPlot(happy_tree_pruned, cex  =  2, caption = "", type = 4)
+```
+:::
+
+::: {.column width="15%"}
+:::
+:::
+
+------------------------------------------------------------------------
+
+### Classification Trees
+
+```{r, echo = FALSE, fig.width = 12, fig.asp = 0.5}
+
+happy_tree <- rpart(PreferenceH ~ Sleep1 + GetToSchool + TextsSent +
+                      VideoGameHours + Gender, data = PASeniors,
+                    method = "class",
+                    control = rpart.control(cp = 0, minsplit = 2,
+                                           minbucket = 5))
+#printcp(happy_tree)
+happy_tree_pruned <- prune(happy_tree, cp = 0.0109649 + 0.00001)
+fancyRpartPlot(happy_tree_pruned, cex  =  .8, caption = "", type = 4)
+```
+
+
+
+
+------------------------------------------------------------------------
+
+### Classification Trees
+
+Can handle more than two categories for the response variable!
+
+```{r, echo = FALSE, fig.width = 12, fig.asp = 0.5}
+
+pref_tree <- rpart(Preference ~ Sleep1 + GetToSchool + TextsSent +
+                      VideoGameHours + Gender, data = PASeniors,
+                    method = "class",
+                    control = rpart.control(cp = 0, minsplit = 2,
+                                           minbucket = 5))
+
+#printcp(pref_tree)
+pref_tree_pruned <- prune(pref_tree, cp = 0.01315789 + 0.00001)
+fancyRpartPlot(pref_tree_pruned, cex  =  .8, caption = "", type = 4)
+```
+
+
+-----
+
+
+## Coding the Classication Tree
+
+```{r, eval = FALSE, fig.width = 12, fig.asp = 0.5}
+# Fit the tree
+pref_tree <- rpart(Preference ~ Sleep1 + GetToSchool + TextsSent + VideoGameHours + Gender, 
+                   data = PASeniors, method = "class",
+                   control = rpart.control(cp = 0, minsplit = 2, minbucket = 5))
+
+# Look at the performance at different cp values
+printcp(pref_tree)
+
+# Prune the tree based on a specific cp
+pref_tree_pruned <- prune(pref_tree, cp = 0.01315789 + 0.00001)
+
+# Graph the tree
+fancyRpartPlot(pref_tree_pruned, cex  =  .8, caption = "", type = 4)
+```
+
+# Installing R and RStudio

@@ -10,7 +10,7 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.57">
 
-  <title>DATA 100 – Decisions, Decisions</title>
+  <title>DATA 100 – Classification Trees</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -28,6 +28,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -333,380 +398,466 @@
 <div class="column center" style="width:45%;">
 <p><img data-src="img/DAW.png" style="width:90.0%"></p>
 </div><div class="column center" style="width:55%;">
-<p><span class="custom-title">Decisions, Decisions</span></p>
-<p><br> <br> <br></p>
+<p><span class="custom-title">Logistic Regression + Classification Trees</span></p>
 <p><span class="custom-subtitle">Kelly McConville</span></p>
-<p><span class="custom-subtitle">DATA 100 <br> Week 10 | Spring 2026</span></p>
+<p><span class="custom-subtitle">DATA 100 <br> Week 13 | Spring 2026</span></p>
 </div></div>
 </section>
 <section id="announcements" class="slide level2">
 <h2>Announcements</h2>
-<div>
 <ul>
-<li>🎉 We are now accepting <strong>data science student fellow applications</strong> for DATA 100.
-<ul>
-<li>About 10-12 hours of work per week.<br>
-</li>
-<li>Primary responsibilities: Work on a collaborative, mentored data or AI project, attend relevant meetings, and participate in DCDS ambassador activities.</li>
-</ul></li>
+<li class="fragment">Don’t forget to get your data science activity credit.</li>
 </ul>
-</div>
 <h3 id="goals-for-today">Goals for Today</h3>
 <div class="columns">
 <div class="column">
 <ul>
-<li class="fragment">Coding goals (DATA 100 &amp; beyond)</li>
-<li class="fragment">Advice on the next data science class</li>
+<li class="fragment">Logistic Regression</li>
+<li class="fragment">Classification Trees</li>
 </ul>
 </div><div class="column">
 <ul>
-<li class="fragment">Hypothesis testing example</li>
-<li class="fragment"><strong>Decisions</strong> in a hypothesis test
-<ul>
-<li class="fragment">Types of errors</li>
-</ul></li>
-<li class="fragment">The <strong>power</strong> of a hypothesis test</li>
+<li class="fragment">Installing R and RStudio on your computer</li>
 </ul>
 </div></div>
 </section>
 <section>
-<section id="now-that-you-have-discovered-your-love-of-data-what-class-should-you-take-next" class="title-slide slide level1 center">
-<h1>Now that you have discovered your love of data, what class should you take next?</h1>
+<section id="models-for-categorical-response-variables" class="title-slide slide level1 center">
+<h1>Models for Categorical Response Variables</h1>
 
-</section>
-<section id="that-next-data-science-class" class="slide level2">
-<h2>That Next Data Science Class</h2>
-<ul>
-<li class="fragment"><p>But first… <strong>Common Question</strong>: How should I describe my post-DATA 100 coding abilities?</p></li>
-<li class="fragment"><p><strong>Potential Answer</strong>: You have learned how to write code <strong>to analyze data</strong>. This includes visualization (<code>ggplot2</code>), data wrangling (<code>dplyr</code>), data importation (<code>readr</code>), modeling, inference (<code>infer</code>) and communication (with <code>Quarto</code>).</p></li>
-<li class="fragment"><p><strong>Follow-up Question</strong>: So what coding is there left to learn?</p></li>
-<li class="fragment"><p><strong>Answer</strong>: Learning how to <strong>program</strong>. This includes topics such as control flow, iteration, creating functions, and vectorization. Also, learning how to use an <strong>AI tool</strong> effectively and ethically to support your code generation and how to debug AI code suggestions.</p></li>
-</ul>
-</section>
-<section id="that-next-coding-class" class="slide level2">
-<h2>That Next Coding Class</h2>
-<div>
-<ul>
-<li>CSCI 187. Creative Computing &amp; Society: Computing, Creativity &amp; the Social Good.</li>
-<li>CSCI 203. Introduction to Computer Science.</li>
-<li>ANOP 203. Introduction to Programming for Business Analytics.</li>
-</ul>
-</div>
-</section>
-<section id="that-next-modeling-course" class="slide level2">
-<h2>That Next Modeling Course</h2>
-<div>
-<ul>
-<li>STAT 217. Statistics II</li>
-<li>CSCI 349. Applied Machine Learning.</li>
-<li>ANOP 330. Predictive Analytics: Machine Learning Fundamentals for Business.</li>
-<li>Many of the upper-level stats courses are modeling courses (but they do have pre-reqs).</li>
-</ul>
-</div>
-</section>
-<section id="that-next-visualization-course" class="slide level2">
-<h2>That Next Visualization Course</h2>
-<div>
-<ul>
-<li>STAT 230. Data Visualization &amp; Computing</li>
-<li>ANOP 270. Data Visualization for Business Analytics.</li>
-</ul>
-</div>
-</section></section>
-<section id="feel-free-to-stop-by-office-hours-or-send-me-a-slack-note-if-you-have-advising-questions" class="title-slide slide level1 center">
-<h1>Feel free to stop by office hours or send me a Slack note if you have advising questions!</h1>
-
-</section>
-
-<section>
-<section id="now-a-closer-look-at-the-conclusions-of-a-hypothesis-test" class="title-slide slide level1 center">
-<h1>Now: A closer look at the conclusions of a hypothesis test</h1>
-
-</section>
-<section id="hypothesis-testing-framework" class="slide level2">
-<h2>Hypothesis Testing Framework</h2>
-<ul>
-<li class="fragment"><p>Set-up hypotheses:</p>
-<ul>
-<li class="fragment">Be able to express in words and in terms of parameters.</li>
-</ul></li>
-<li class="fragment"><p>Collect data.</p></li>
-<li class="fragment"><p>Assume <span class="math inline">\(H_o\)</span> is correct.</p></li>
-<li class="fragment"><p>Compute a p-value to quantify the likelihood of the sample results using a test statistic.</p></li>
-<li class="fragment"><p><strong>Draw a conclusion about the alternative hypothesis.</strong></p></li>
-</ul>
 </section>
 <section class="slide level2">
 
-<h3 id="hypothesis-testing-decisions-decisions">Hypothesis Testing: Decisions, Decisions</h3>
-<p>Once you get to the end of a hypothesis test you make one of two decisions:</p>
-<ul>
-<li class="fragment">P-value is small.
-<ul>
-<li class="fragment">Reject <span class="math inline">\(H_o\)</span>.</li>
-<li class="fragment"><strong>I have evidence for</strong> <span class="math inline">\(H_a\)</span>.</li>
-</ul></li>
-<li class="fragment">P-value is not small.
-<ul>
-<li class="fragment">Fail to reject <span class="math inline">\(H_o\)</span>.</li>
-<li class="fragment"><strong>I don’t have evidence for</strong> <span class="math inline">\(H_a\)</span>.</li>
-</ul></li>
-</ul>
+<h3 id="logistic-regression">Logistic Regression</h3>
+<p><strong>Response variable</strong>: A <strong>categorical</strong> variable with <strong>two</strong> categories</p>
+<p><span class="math display">\[\begin{align*}
+Y =   \left\{
+\begin{array}{ll}
+      1 &amp; \mbox{success} \\
+      0 &amp; \mbox{failure} \\
+\end{array}
+\right.  
+\end{align*}\]</span></p>
 <div class="fragment">
-<p>Sometimes we make the correct decision. Sometimes we make a mistake.</p>
+<p><span class="math inline">\(Y \sim\)</span> Bernoulli <span class="math inline">\((p)\)</span> where <span class="math inline">\(p = P(Y = 1) = P(\mbox{success})\)</span>.</p>
+</div>
+<div class="fragment">
+<p><strong>Explanatory variables</strong>: Can be a mix of categorical and quantitative</p>
+</div>
+<div class="fragment">
+<p><strong>Goal</strong>: Build a model for <span class="math inline">\(P(Y = 1)\)</span>.</p>
 </div>
 </section>
 <section class="slide level2">
 
-<h3 id="hypothesis-testing-decisions-decisions-1">Hypothesis Testing: Decisions, Decisions</h3>
-<p>Let’s create a table of potential outcomes.</p>
-<p><br> <br><br><br><br><br><br><br><br> <br> <br></p>
-<p><span class="math inline">\(\alpha\)</span> = prob of Type I error <strong>under repeated sampling</strong> = prob reject <span class="math inline">\(H_o\)</span> when it is true</p>
-<p><span class="math inline">\(\beta\)</span> = prob of Type II error <strong>under repeated sampling</strong> = prob fail to reject <span class="math inline">\(H_o\)</span> when <span class="math inline">\(H_a\)</span> is true.</p>
-</section>
-<section class="slide level2">
-
-<h3 id="hypothesis-testing-decisions-decisions-2">Hypothesis Testing: Decisions, Decisions</h3>
-<p>Typically set <span class="math inline">\(\alpha\)</span> level beforehand.</p>
-<p>Use <span class="math inline">\(\alpha\)</span> to determine “small” for a p-value.</p>
-<div>
-<ul>
-<li>P-value <del>is</del> <del>small</del> <span class="math inline">\(&lt; \alpha\)</span>.
-<ul>
-<li>I have evidence for <span class="math inline">\(H_a\)</span>. Reject <span class="math inline">\(H_o\)</span>.</li>
-</ul></li>
-<li>P-value <del>is</del> <del>not</del> <del>small</del> <span class="math inline">\(\geq \alpha\)</span>.
-<ul>
-<li>I don’t have evidence for <span class="math inline">\(H_a\)</span>. Fail to reject <span class="math inline">\(H_o\)</span>.</li>
-</ul></li>
-</ul>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="hypothesis-testing-decisions-decisions-3">Hypothesis Testing: Decisions, Decisions</h3>
-<p><strong>Question</strong>: How do I select <span class="math inline">\(\alpha\)</span>?</p>
-<ul>
-<li class="fragment"><p>Will depend on the convention in your field.</p></li>
-<li class="fragment"><p>Want a small <span class="math inline">\(\alpha\)</span> and a small <span class="math inline">\(\beta\)</span>. But they are related.</p>
-<ul>
-<li class="fragment"><strong>The smaller</strong> <span class="math inline">\(\alpha\)</span> is the larger <span class="math inline">\(\beta\)</span> will be.</li>
-</ul></li>
-<li class="fragment"><p>Choose a lower <span class="math inline">\(\alpha\)</span> (e.g., 0.01, 0.001) when the Type I error is worse and a higher <span class="math inline">\(\alpha\)</span> (e.g., 0.1) when the Type II error is worse.</p></li>
-<li class="fragment"><p>Can’t easily compute <span class="math inline">\(\beta\)</span>. Why?</p></li>
-<li class="fragment"><p>One more important term:</p>
-<ul>
-<li class="fragment"><strong>Power</strong> = probability reject <span class="math inline">\(H_o\)</span> when the alternative is true.</li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level2">
-
-<h3 id="example">Example</h3>
-<p>Suppose we have a baseball player who has been a 0.250 career hitter who suddenly improves to be a 0.333 hitter. He wants a raise but needs to convince his manager that he has genuinely improved. The manager offers to examine his performance in 20 at-bats.</p>
+<h3 id="why-cant-we-use-linear-regression">Why can’t we use linear regression?</h3>
 <div class="columns">
 <div class="column">
-<p>Ho:</p>
+<ul>
+<li class="fragment"><p>Regression line = estimated <strong>probability</strong> of success</p></li>
+<li class="fragment"><p>For valid values of <span class="math inline">\(x\)</span>, we are predicting the probability is less than 0 or greater than 1.</p></li>
+<li class="fragment"><p>The estimated probabilities based on the logistic regression model are bounded between 0 and 1.</p></li>
+</ul>
 </div><div class="column">
-<p>Ha:</p>
-</div></div>
-<div class="columns">
-<div class="column">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk10mon_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
+<p><img data-src="data100_wk13wed_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
 </div>
 </div>
+</div></div>
+<div class="fragment">
+<p>What does the <strong>logistic regression model</strong> look like?</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="logistic-regression-model">Logistic Regression Model</h3>
+<p><span class="math display">\[\begin{align*}
+\log\left(\frac{P(Y = 1)}{1  - P(Y = 1)}  \right) &amp;= \beta_o + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p
+\end{align*}\]</span></p>
+<div class="fragment">
+<p>Left hand side has many interpretations:</p>
+<p><span class="math display">\[\begin{align*}
+\mbox{LHS} &amp;= \log\left(\frac{P(Y = 1)}{1  - P(Y = 1)}  \right)\\
+&amp;= \log \left( \mbox{odds (of success)}  \right)\\
+&amp;= \mbox{logit}(P(Y = 1))
+\end{align*}\]</span></p>
+<p>Note:</p>
+<p><span class="math display">\[
+\mbox{odds} = \frac{\mbox{prob of success}}{\mbox{prob of failure}}
+\]</span></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="example">Example</h3>
+<p>Let’s return to the Palmer Penguins dataset and build a model that predicts whether a penguin is a <strong>Chinstrap</strong> or a <strong>Adelie</strong>.</p>
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb1-2"><a></a></span>
+<span id="cb1-3"><a></a>penguins2 <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb1-4"><a></a>  <span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">"Gentoo"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-5"><a></a>  <span class="fu">mutate</span>(<span class="at">species_num =</span> <span class="fu">if_else</span>(species <span class="sc">==</span> <span class="st">"Chinstrap"</span>,</span>
+<span id="cb1-6"><a></a>                               <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-7"><a></a>  <span class="fu">drop_na</span>(species_num, flipper_length_mm)</span>
+<span id="cb1-8"><a></a></span>
+<span id="cb1-9"><a></a><span class="fu">count</span>(penguins2, species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
-<div>
-<ul>
-<li><p>When <span class="math inline">\(\alpha\)</span> is set to <span class="math inline">\(0.05\)</span>, he needs to hit 9 or more to get a small enough p-value to reject <span class="math inline">\(H_o\)</span>.</p></li>
-<li><p>When <span class="math inline">\(\alpha\)</span> is set to <span class="math inline">\(0.05\)</span>, the power of this test is 0.187.</p></li>
-<li><p>Why is the power <strong>so low</strong>?</p></li>
-<li><p>What aspects of the test could the baseball player change to <strong>increase the power</strong> of the test?</p></li>
-</ul>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  species       n
+  &lt;fct&gt;     &lt;int&gt;
+1 Adelie      151
+2 Chinstrap    68</code></pre>
 </div>
 </div></div>
 </section>
 <section class="slide level2">
 
 <h3 id="example-1">Example</h3>
-<p>Suppose we have a baseball player who has been a 0.250 career hitter who suddenly improves to be a 0.333 hitter. He wants a raise but needs to convince his manager that he has genuinely improved. The manager offers to examine his performance in <del>20</del> 100 at-bats.</p>
-<p><strong>What will happen to the power of the test if we increase the sample size?</strong></p>
-<div class="columns">
+<div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins2, </span>
+<span id="cb3-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
+<span id="cb3-3"><a></a>                     <span class="at">y =</span> species_num)) <span class="sc">+</span></span>
+<span id="cb3-4"><a></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>,</span>
+<span id="cb3-5"><a></a>              <span class="at">width =</span> <span class="dv">0</span>, <span class="at">height =</span> <span class="fl">0.05</span>) <span class="sc">+</span> </span>
+<span id="cb3-6"><a></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"P(Y = 1)"</span>)  <span class="sc">+</span></span>
+<span id="cb3-7"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">'glm'</span>,</span>
+<span id="cb3-8"><a></a>              <span class="at">method.args =</span> </span>
+<span id="cb3-9"><a></a>                <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"binomial"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk10mon_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
+<p><img data-src="data100_wk13wed_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
-</div>
-</div>
-</div><div class="column">
-<div>
-<ul>
-<li><p>Increasing the sample size increases the power.</p></li>
-<li><p>When <span class="math inline">\(\alpha\)</span> is set to <span class="math inline">\(0.05\)</span> and the sample size is now 100, the power of this test is 0.56.</p></li>
-</ul>
 </div>
 </div></div>
 </section>
 <section class="slide level2">
 
 <h3 id="example-2">Example</h3>
-<p>Suppose we have a baseball player who has been a 0.250 career hitter who suddenly improves to be a 0.333 hitter. He wants a raise but needs to convince his manager that he has genuinely improved. The manager offers to examine his performance in <del>20</del> 100 at-bats.</p>
-<p><strong>What will happen to the power of the test if we increase</strong> <span class="math inline">\(\alpha\)</span> to 0.1?</p>
-<div class="columns">
-<div class="column">
 <div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(species <span class="sc">~</span> flipper_length_mm, <span class="at">family =</span> <span class="st">"binomial"</span>,</span>
+<span id="cb4-2"><a></a>           <span class="at">data =</span> penguins2)</span>
+<span id="cb4-3"><a></a><span class="fu">library</span>(broom)</span>
+<span id="cb4-4"><a></a><span class="fu">tidy</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term              estimate std.error statistic     p.value
+  &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+1 (Intercept)        -25.8      4.90       -5.26 0.000000141
+2 flipper_length_mm    0.129    0.0253      5.12 0.000000299</code></pre>
+</div>
+</div>
+<p>But what do the coefficient estimates <span class="math inline">\(\hat{\beta}_o = -25.8\)</span> and <span class="math inline">\(\hat{\beta}_1 = 0.129\)</span> represent?</p>
+</section>
+<section id="interpreting-coefficients" class="slide level2">
+<h2>Interpreting Coefficients</h2>
+<p><span class="math display">\[
+\exp \left( \hat{\beta}_1 \right) = \frac{\mbox{odds of being Chinstrap for flipper length t + 1 mm}}{\mbox{odds of being Chinstrap for flipper length t mm}}
+\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">exp</span>(<span class="fl">0.129</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.13769</code></pre>
+</div>
+</div>
+<p>The odds that a penguin in Chinstrap instead of Adelie is 1.138 times the odds of a penguin whose flipper is 1 mm shorter.</p>
+</section>
+<section id="inference" class="slide level2">
+<h2>Inference</h2>
+<p>Is flipper length a useful explanatory variable?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">tidy</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term              estimate std.error statistic     p.value
+  &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+1 (Intercept)        -25.8      4.90       -5.26 0.000000141
+2 flipper_length_mm    0.129    0.0253      5.12 0.000000299</code></pre>
+</div>
+</div>
+</section>
+<section id="is-a-penguins-sex-a-good-predictor-of-species" class="slide level2">
+<h2>Is a Penguin’s Sex a Good Predictor of Species?</h2>
+<p>Can also try a categorical predictor.</p>
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>penguins2 <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a></a>  <span class="fu">drop_na</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sex,</span>
+<span id="cb10-4"><a></a>                     <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb10-5"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk10mon_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
+<p><img data-src="data100_wk13wed_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
 </div>
+</div></div>
+</section>
+<section id="logistic-regression-with-a-categorical-explanatory-variable" class="slide level2">
+<h2>Logistic Regression with a Categorical Explanatory Variable</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>mod2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(species <span class="sc">~</span> sex, <span class="at">family =</span> <span class="st">"binomial"</span>,</span>
+<span id="cb11-2"><a></a>           <span class="at">data =</span> penguins2)</span>
+<span id="cb11-3"><a></a><span class="fu">tidy</span>(mod2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term         estimate std.error statistic  p.value
+  &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept) -7.64e- 1     0.208 -3.68e+ 0 0.000233
+2 sexmale      2.51e-15     0.294  8.56e-15 1.000   </code></pre>
 </div>
+</div>
+<p>Is sex a useful explanatory variable?</p>
+</section>
+<section id="multiple-logistic-regression" class="slide level2">
+<h2>Multiple Logistic Regression</h2>
+<p>Similar to linear regression, can have a mix of categorical and quantitative predictors.</p>
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>penguins2 <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a></a>  <span class="fu">drop_na</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
+<span id="cb13-4"><a></a>                     <span class="at">y =</span> species_num, </span>
+<span id="cb13-5"><a></a>                     <span class="at">color =</span> sex)) <span class="sc">+</span></span>
+<span id="cb13-6"><a></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>,</span>
+<span id="cb13-7"><a></a>              <span class="at">width =</span> <span class="dv">0</span>, <span class="at">height =</span> <span class="fl">0.05</span>) <span class="sc">+</span> </span>
+<span id="cb13-8"><a></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"P(Y = 1)"</span>)  <span class="sc">+</span></span>
+<span id="cb13-9"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">'glm'</span>,</span>
+<span id="cb13-10"><a></a>              <span class="at">method.args =</span> </span>
+<span id="cb13-11"><a></a>                <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"binomial"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
-<div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk13wed_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
+</figure>
+</div>
+</div>
+</div></div>
+</section>
+<section id="multiple-logistic-regression-1" class="slide level2">
+<h2>Multiple Logistic Regression</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>mod3 <span class="ot">&lt;-</span> <span class="fu">glm</span>(species <span class="sc">~</span> flipper_length_mm <span class="sc">+</span> sex, <span class="at">family =</span> <span class="st">"binomial"</span>,</span>
+<span id="cb14-2"><a></a>           <span class="at">data =</span> penguins2)</span>
+<span id="cb14-3"><a></a><span class="fu">tidy</span>(mod3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  term              estimate std.error statistic      p.value
+  &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+1 (Intercept)        -31.5      5.73       -5.49 0.0000000391
+2 flipper_length_mm    0.162    0.0300      5.39 0.0000000722
+3 sexmale             -0.982    0.373      -2.64 0.00840     </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="dv">1</span><span class="sc">/</span><span class="fu">exp</span>(<span class="sc">-</span><span class="fl">0.982</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.66979</code></pre>
+</div>
+</div>
 <ul>
-<li>Increasing <span class="math inline">\(\alpha\)</span> increases the power.
-<ul>
-<li>Decreases <span class="math inline">\(\beta\)</span>.</li>
-</ul></li>
-<li>When <span class="math inline">\(\alpha\)</span> is set to <span class="math inline">\(0.1\)</span> and the sample size is 100, the power of this test is 0.63.</li>
+<li class="fragment">Controlling for flipper length, the odds that a female penguin is a Chinstrap instead of an Adelie is 2.67 times the odds a male penguin is a Chinstrap instead of an Adelie.</li>
 </ul>
+</section>
+<section class="slide level2">
+
+<h3 id="new-data-example">New Data Example</h3>
+<p>Let’s look at the <code>PASeniors</code> dataset, which is a sample of PA high school seniors in 2019. Can we build a model to predict whether or not a student will select “happy” as the answer to the question “When you grow up, would you prefer to be famous, happy, healthy, or rich?”</p>
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">library</span>(Lock5Data)</span>
+<span id="cb18-2"><a></a><span class="fu">data</span>(<span class="st">"PASeniors2019"</span>)</span>
+<span id="cb18-3"><a></a></span>
+<span id="cb18-4"><a></a>PASeniors <span class="ot">&lt;-</span> PASeniors2019 <span class="sc">%&gt;%</span></span>
+<span id="cb18-5"><a></a>  <span class="fu">drop_na</span>(WorkHours, Preference) <span class="sc">%&gt;%</span></span>
+<span id="cb18-6"><a></a>  <span class="fu">filter</span>(Preference <span class="sc">!=</span> <span class="st">""</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-7"><a></a>  <span class="fu">mutate</span>(<span class="at">PreferenceH =</span> <span class="fu">case_when</span>(</span>
+<span id="cb18-8"><a></a>    Preference <span class="sc">==</span> <span class="st">"Happy"</span> <span class="sc">~</span> <span class="st">"Picked Happy"</span>, </span>
+<span id="cb18-9"><a></a>    Preference <span class="sc">!=</span> <span class="st">"Happy"</span> <span class="sc">~</span> <span class="st">"Something Else"</span></span>
+<span id="cb18-10"><a></a>  ),</span>
+<span id="cb18-11"><a></a>  <span class="at">PreferenceH_num =</span> <span class="fu">case_when</span>(</span>
+<span id="cb18-12"><a></a>    Preference <span class="sc">==</span> <span class="st">"Happy"</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb18-13"><a></a>    Preference <span class="sc">!=</span> <span class="st">"Happy"</span> <span class="sc">~</span> <span class="dv">0</span></span>
+<span id="cb18-14"><a></a>  ))</span>
+<span id="cb18-15"><a></a></span>
+<span id="cb18-16"><a></a><span class="fu">count</span>(PASeniors, PreferenceH)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output cell-output-stdout">
+<pre><code>     PreferenceH   n
+1   Picked Happy 295
+2 Something Else 152</code></pre>
 </div>
 </div></div>
 </section>
 <section class="slide level2">
 
 <h3 id="example-3">Example</h3>
-<p>Suppose we have a baseball player who has been a 0.250 career hitter who suddenly improves to be a <del>0.333</del> 0.400 hitter. He wants a raise but needs to convince his manager that he has genuinely improved. The manager offers to examine his performance in <del>20</del> 100 at-bats.</p>
-<p><strong>What will happen to the power of the test if he is an even better player?</strong></p>
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> PASeniors, </span>
+<span id="cb20-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sleep1,</span>
+<span id="cb20-3"><a></a>                     <span class="at">y =</span> PreferenceH_num)) <span class="sc">+</span></span>
+<span id="cb20-4"><a></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>,</span>
+<span id="cb20-5"><a></a>              <span class="at">width =</span> <span class="dv">0</span>, <span class="at">height =</span> <span class="fl">0.05</span>) <span class="sc">+</span> </span>
+<span id="cb20-6"><a></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"P(Y = 1)"</span>) <span class="sc">+</span></span>
+<span id="cb20-7"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">'glm'</span>,</span>
+<span id="cb20-8"><a></a>              <span class="at">method.args =</span> </span>
+<span id="cb20-9"><a></a>                <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"binomial"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk13wed_files/figure-revealjs/unnamed-chunk-13-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
+</figure>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="example-4">Example</h3>
 <div class="columns">
 <div class="column">
+<p>This is what an helpful explanatory variable looks like!</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk10mon_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
+<p><img data-src="data100_wk13wed_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
 </div>
 </div>
 </div><div class="column">
-<div>
-<ul>
-<li><p><strong>Effect size</strong>: Difference between true value of the parameter and null value.</p>
-<ul>
-<li>Often standardized.</li>
-</ul></li>
-<li><p>Increasing the effect size increases the power.</p></li>
-<li><p>When <span class="math inline">\(\alpha\)</span> is set to <span class="math inline">\(0.1\)</span>, the sample size is 100, and the true probability of hitting the ball is 0.4, the power of this test is 0.95.</p></li>
-</ul>
-</div>
-</div></div>
-</section></section>
-<section>
-<section id="will-talk-about-computing-power-later" class="title-slide slide level1 center">
-<h1>Will talk about computing power later!</h1>
-
-</section>
-<section id="thoughts-on-power" class="slide level2">
-<h2>Thoughts on Power</h2>
-<ul>
-<li class="fragment"><p>What aspects of the test did the player actually have control over?</p></li>
-<li class="fragment"><p>Why is it easier to set <span class="math inline">\(\alpha\)</span> than to set <span class="math inline">\(\beta\)</span> or power?</p></li>
-<li class="fragment"><p>Considering power before collecting data is very important!</p></li>
-<li class="fragment"><p>The danger of under-powered studies</p>
-<ul>
-<li class="fragment">EX: Turning right at a red light</li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level2">
-
-<h3 id="reporting-results-in-journal-articles">Reporting Results in Journal Articles</h3>
+<p>This is what an unhelpful explanatory variable looks like!</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/bem_honorton_1994_results.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+<p><img data-src="data100_wk13wed_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
 </div>
 </div>
+</div></div>
 </section>
 <section class="slide level2">
 
-<h3 id="statistical-inference-zoom-out-estimation">Statistical Inference Zoom Out – Estimation</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/ci_diagram_sim.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
-</figure>
+<h3 id="logistic-regression-table">Logistic Regression Table</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>happy_mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(PreferenceH_num <span class="sc">~</span> Sleep1, <span class="at">data =</span> PASeniors)</span>
+<span id="cb21-2"><a></a><span class="fu">library</span>(broom)</span>
+<span id="cb21-3"><a></a><span class="fu">tidy</span>(happy_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error statistic   p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)   0.542     0.134      4.04  0.0000626
+2 Sleep1        0.0177    0.0199     0.890 0.374    </code></pre>
 </div>
-<div class="fragment">
-<p><strong>Question</strong>: How did folks do inference before computers?</p>
 </div>
+<p>I tried several variables and struggled to build a useful logistic regression model.</p>
+</section></section>
+<section>
+<section id="there-are-lots-of-models-out-there-beyond-regression-lets-return-to-tree-models." class="title-slide slide level1 center">
+<h1>There are LOTS of models out there beyond regression! Let’s return to tree models.</h1>
+
 </section>
 <section class="slide level2">
 
-<h3 id="statistical-inference-zoom-out-testing">Statistical Inference Zoom Out – Testing</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/hyp_testing_diagram_sim.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-<div class="fragment">
-<p><strong>Question</strong>: How did folks do inference before computers?</p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="statistical-inference-zoom-out-estimation-1">Statistical Inference Zoom Out – Estimation</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/ci_diagram.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
-</figure>
-</div>
-<p><strong>Question</strong>: How did folks do inference before computers?</p>
-</section>
-<section class="slide level2">
-
-<h3 id="statistical-inference-zoom-out-testing-1">Statistical Inference Zoom Out – Testing</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/hyp_testing_diagram.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-<p><strong>Question</strong>: How did folks do inference before computers?</p>
-</section>
-<section id="reminders" class="slide level2">
-<h2>Reminders:</h2>
+<h3 id="classification-trees">Classification Trees</h3>
 <div>
 <ul>
-<li>🎉 We are now accepting <strong>data science student fellow applications</strong> for DATA 100.
+<li>Split and split and split… sample into two groups based on an explanatory variable.
 <ul>
-<li>About 10-12 hours of work per week.<br>
-</li>
-<li>Primary responsibilities: Work on a collaborative, mentored data or AI project, attend relevant meetings, and participate in DCDS ambassador activities.</li>
+<li>Wants groups to be homogeneous as possible for the response variable.</li>
 </ul></li>
+<li><strong>Stop</strong> splitting when it is no longer very predictively useful to do so.</li>
 </ul>
 </div>
+<div class="columns">
+<div class="column" style="width:15%;">
+
+</div><div class="column" style="width:70%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk13wed_files/figure-revealjs/unnamed-chunk-17-1.png" class="quarto-figure quarto-figure-center" width="6000"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:15%;">
+
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="classification-trees-1">Classification Trees</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk13wed_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center" width="6000"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="classification-trees-2">Classification Trees</h3>
+<p>Can handle more than two categories for the response variable!</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk13wed_files/figure-revealjs/unnamed-chunk-19-1.png" class="quarto-figure quarto-figure-center" width="6000"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="coding-the-classication-tree" class="slide level2">
+<h2>Coding the Classication Tree</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="co"># Fit the tree</span></span>
+<span id="cb23-2"><a></a>pref_tree <span class="ot">&lt;-</span> <span class="fu">rpart</span>(Preference <span class="sc">~</span> Sleep1 <span class="sc">+</span> GetToSchool <span class="sc">+</span> TextsSent <span class="sc">+</span> VideoGameHours <span class="sc">+</span> Gender, </span>
+<span id="cb23-3"><a></a>                   <span class="at">data =</span> PASeniors, <span class="at">method =</span> <span class="st">"class"</span>,</span>
+<span id="cb23-4"><a></a>                   <span class="at">control =</span> <span class="fu">rpart.control</span>(<span class="at">cp =</span> <span class="dv">0</span>, <span class="at">minsplit =</span> <span class="dv">2</span>, <span class="at">minbucket =</span> <span class="dv">5</span>))</span>
+<span id="cb23-5"><a></a></span>
+<span id="cb23-6"><a></a><span class="co"># Look at the performance at different cp values</span></span>
+<span id="cb23-7"><a></a><span class="fu">printcp</span>(pref_tree)</span>
+<span id="cb23-8"><a></a></span>
+<span id="cb23-9"><a></a><span class="co"># Prune the tree based on a specific cp</span></span>
+<span id="cb23-10"><a></a>pref_tree_pruned <span class="ot">&lt;-</span> <span class="fu">prune</span>(pref_tree, <span class="at">cp =</span> <span class="fl">0.01315789</span> <span class="sc">+</span> <span class="fl">0.00001</span>)</span>
+<span id="cb23-11"><a></a></span>
+<span id="cb23-12"><a></a><span class="co"># Graph the tree</span></span>
+<span id="cb23-13"><a></a><span class="fu">fancyRpartPlot</span>(pref_tree_pruned, <span class="at">cex  =</span>  .<span class="dv">8</span>, <span class="at">caption =</span> <span class="st">""</span>, <span class="at">type =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section id="installing-r-and-rstudio" class="title-slide slide level1 center">
+<h1>Installing R and RStudio</h1>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
