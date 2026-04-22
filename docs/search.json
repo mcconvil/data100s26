@@ -823,7 +823,7 @@
     "href": "index.html",
     "title": "DATA 100: Introduction to Data Science",
     "section": "",
-    "text": "The lecture slides (both in HTML and PDF) will be posted here. \n\n\n\n\nClass Period\nHTML Slides\nPDF Slides\n\n\n\n\nWeek 1, Wed\n\n\n\n\nWeek 2, Mon\n\n\n\n\nWeek 2, Wed\n\n\n\n\nWeek 3, Mon\n\n\n\n\nWeek 3, Wed\n\n\n\n\nWeek 4, Mon\n\n\n\n\nWeek 4, Wed\n\n\n\n\nWeek 5, Mon\n\n\n\n\nWeek 6, Mon\n\n\n\n\nWeek 6, Wed\n\n\n\n\nWeek 7, Mon\n\n\n\n\nWeek 7, Wed\n\n\n\n\nWeek 8, Mon\n\n\n\n\nWeek 8, Wed\n\n\n\n\nWeek 9, Mon\n\n\n\n\nWeek 9, Wed\n\n\n\n\nWeek 10, Mon\n\n\n\n\nWeek 10, Wed\n\n\n\n\nWeek 11, Mon\n\n\n\n\nWeek 12, Mon\n\n\n\n\nWeek 13, Mon"
+    "text": "The lecture slides (both in HTML and PDF) will be posted here. \n\n\n\n\nClass Period\nHTML Slides\nPDF Slides\n\n\n\n\nWeek 1, Wed\n\n\n\n\nWeek 2, Mon\n\n\n\n\nWeek 2, Wed\n\n\n\n\nWeek 3, Mon\n\n\n\n\nWeek 3, Wed\n\n\n\n\nWeek 4, Mon\n\n\n\n\nWeek 4, Wed\n\n\n\n\nWeek 5, Mon\n\n\n\n\nWeek 6, Mon\n\n\n\n\nWeek 6, Wed\n\n\n\n\nWeek 7, Mon\n\n\n\n\nWeek 7, Wed\n\n\n\n\nWeek 8, Mon\n\n\n\n\nWeek 8, Wed\n\n\n\n\nWeek 9, Mon\n\n\n\n\nWeek 9, Wed\n\n\n\n\nWeek 10, Mon\n\n\n\n\nWeek 10, Wed\n\n\n\n\nWeek 11, Mon\n\n\n\n\nWeek 12, Mon\n\n\n\n\nWeek 13, Mon\n\n\n\n\nWeek 13, Wed"
   },
   {
     "objectID": "data100wk11mon.html#announcements",
@@ -1334,7 +1334,7 @@
     "href": "data100_wk09wed.html#hypothesis-testing-in-r-2",
     "title": "DATA 100",
     "section": "Hypothesis Testing in R",
-    "text": "Hypothesis Testing in R\n\n\n# Compute p-value\np_value &lt;- null_dist %&gt;%\n  get_p_value(obs_stat = test_stat,\n              direction = \"right\")\np_value\n\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1   0.001\n\n\n\nInterpretation of \\(p\\)-value: If ESP doesn’t exist, the probability of observing 106 or more correct identifications out of 329 trials equals 0.001.\n\n\nConclusion: Since it is so unlikely (i.e., practically impossible) to have seen such unusual results if ESP doesn’t exist, these data suggest that ESP does exist."
+    "text": "Hypothesis Testing in R\n\n\n# Compute p-value\np_value &lt;- null_dist %&gt;%\n  get_p_value(obs_stat = test_stat,\n              direction = \"right\")\np_value\n\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1   0.004\n\n\n\nInterpretation of \\(p\\)-value: If ESP doesn’t exist, the probability of observing 106 or more correct identifications out of 329 trials equals 0.004.\n\n\nConclusion: Since it is so unlikely (i.e., practically impossible) to have seen such unusual results if ESP doesn’t exist, these data suggest that ESP does exist."
   },
   {
     "objectID": "data100_wk09wed.html#penguins-example",
