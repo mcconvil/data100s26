@@ -2728,5 +2728,19 @@
     "title": "DATA 100",
     "section": "Fluency isn’t Truth",
     "text": "Fluency isn’t Truth\n\nOutput from AI models sounds human-like.\nPeople often believe it is true.\n\nThe model is just a predictive engine.\n\nLots of examples of hallucinations!\n\nCitations\nMedical dosages\nCode\n\nNeed to always have a human verify output!"
+  },
+  {
+    "objectID": "data100_wk14mon.html#vibe-coding-1",
+    "href": "data100_wk14mon.html#vibe-coding-1",
+    "title": "DATA 100",
+    "section": "Vibe coding",
+    "text": "Vibe coding\nThe new paradigm of coding work:\n\nFrom “The AI Coding Trap” by Chris Loy"
+  },
+  {
+    "objectID": "data100_wk14mon.html#ai-driven-engineering",
+    "href": "data100_wk14mon.html#ai-driven-engineering",
+    "title": "DATA 100",
+    "section": "AI-Driven Engineering",
+    "text": "AI-Driven Engineering\nLoy defines two different types of coding with AI tools:\n\n“AI-driven engineering: employing best practices, foregrounding human understanding of the code, moving slowly to make development sustainable.”\n\n\n“Vibe coding: throwing caution to the wind and implementing at speed, sacrificing understanding for delivery velocity, hitting an eventual wall of unsalvageable, messy code.”\n\n\nNote: We will still use the more common term of “vibe coding” but will advocate for “vibe coding + human review + iteration”."
   }
 ]

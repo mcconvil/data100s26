@@ -265,6 +265,35 @@ XXX: insert graph of AI skills from advisory board
     + A strong understanding of what you want the AI code to produce.
         + Don't let it take you down the wrong rabbit hole.
     + Taste! Don't produce AI slop (i.e., generic, vanilla graphs).
+    
+---
+
+## Vibe coding
+
+The new paradigm of coding work:
+
+![](img/ai-coding-3-chris-loy.svg)
+
+
+From ["The AI Coding Trap" by Chris Loy](https://chrisloy.dev/post/2025/09/28/the-ai-coding-trap)
+    
+
+---
+
+## AI-Driven Engineering
+
+Loy defines two different types of coding with AI tools:
+
+> "AI-driven engineering: employing best practices, foregrounding human understanding of the code, moving slowly to make development sustainable."
+
+> "Vibe coding: throwing caution to the wind and implementing at speed, sacrificing understanding for delivery velocity, hitting an eventual wall of unsalvageable, messy code."
+
+![](img/ai-coding-8-chris-loy.svg)
+
+
+
+Note: We will still use the more common term of "vibe coding" but will advocate for "vibe coding + human review + iteration".
+    
         
 ---
 
