@@ -41,7 +41,7 @@ theme_update(text = element_text(size = 13))
 
 ------------------------------------------------------------------------
 
-::: columns
+::::: columns
 ::: {.column .center width="45%"}
 ![](img/DAW.png){width="90%"}
 :::
@@ -55,27 +55,34 @@ theme_update(text = element_text(size = 13))
 
 [DATA 100 <br> Week 13 \| Spring 2026]{.custom-subtitle}
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
 ## Announcements
 
 -   **Extra Credit Lecture Quiz**
--   Don't forget to get your data science credit.
+-   Don't forget to get your data science activity credit.
 
 ### Goals for Today
 
-::: columns
+::::: columns
 ::: column
 -   Other Models
 -   Analyzing categorical data
 :::
 
 ::: column
+:::
+:::::
 
-:::
-:::
+
+
+# Please make sure to fill out the DATA 100 Course Evaluations.
+
+[We appreciate constructive feedback.]{.custom-subtitle}
+
+[For all of your course evaluations be mindful of [unconscious and unintentional biases](https://benschmidt.org/profGender).]{.custom-subtitle}
 
 
 ------------------------------------------------------------------------
@@ -84,18 +91,15 @@ theme_update(text = element_text(size = 13))
 
 Two examples:
 
--   Chi-squared tests: 
-    -  Case where the test statistic is more involved.
+-   Chi-squared tests:
+    -   Case where the test statistic is more involved.
 -   Logistic regression
     -   Response variable: binary, categorical variable
     -   Explanatory variables: Can be a mix of categorical and quantitative variables
 -   Non-parametric modeling
     -   Don't require a specific global relationship between response variable and explanatory variable(s)
 
-
-
-
----
+------------------------------------------------------------------------
 
 ### Inference for Categorical Variables
 
@@ -170,7 +174,7 @@ Need a test statistic!
 
 ## Sample Result Tables
 
-::: columns
+::::: columns
 ::: column
 #### Observed Sample Table
 
@@ -194,13 +198,13 @@ table(Ho_dat$Eye, Ho_dat$Lighting) %>%
   kable(format = "html")
 ```
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
 ## Sample Result Tables
 
-::: columns
+::::: columns
 ::: column
 #### Observed Sample Table
 
@@ -224,13 +228,13 @@ $$\hat{p}_{nor} = 251/479$$
 
 $$\hat{p}_{nea} = 137/479$$
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
 ## Sample Result Tables {.smaller}
 
-::: columns
+::::: columns
 ::: column
 #### Observed Sample Table
 
@@ -253,7 +257,7 @@ table(eye_data$Eye, eye_data$Lighting) %>%
 | Normal | (251/479)172 | (251/479)232 | (251/479)75 | 251 |
 | Sum    |          172 |          232 |          75 | 479 |
 :::
-:::
+:::::
 
 Still have the same totals but distributed the values differently within the table
 
@@ -261,7 +265,7 @@ Still have the same totals but distributed the values differently within the tab
 
 ## Sample Result Tables
 
-::: columns
+::::: columns
 ::: column
 #### Observed Sample Table
 
@@ -283,13 +287,13 @@ round(chisq.test(table(eye_data$Eye, eye_data$Lighting))$exp, 1) %>%
   kable(format = "html")
 ```
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
 ### Expected Table
 
-::: columns
+::::: columns
 ::: column
 How does this table represent $H_o$?
 
@@ -309,7 +313,7 @@ chisq.test(table(eye_data$Eye, eye_data$Lighting))$exp %>%
   geom_col(position = "fill")
 ```
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -317,7 +321,7 @@ chisq.test(table(eye_data$Eye, eye_data$Lighting))$exp %>%
 
 Want the test statistic to quantify the difference between the observed table and the expected table.
 
-::: columns
+::::: columns
 ::: column
 |        | dark | night | room | Sum |
 |:-------|-----:|------:|-----:|----:|
@@ -335,17 +339,15 @@ Want the test statistic to quantify the difference between the observed table an
 | Normal |  90.13 | 121.57 | 39.30 | 251 |
 | Sum    | 172.00 | 232.00 | 75.00 | 479 |
 :::
-:::
+:::::
 
 ::: fragment
 For each cell: Compute a **Z-score**!
 
-```{=tex}
 \begin{align*}
 \mbox{Z-score} &= \frac{\mbox{stat - mean}}{\mbox{SE}} \\
 & = \frac{\mbox{observed - expected}}{\sqrt{\mbox{expected}}}
 \end{align*}
-```
 :::
 
 ------------------------------------------------------------------------
@@ -365,11 +367,10 @@ round(chisq.test(table(eye_data$Eye, eye_data$Lighting))$residuals, 2) %>%
 
 **Test Statistic Formula:**
 
-```{=tex}
 \begin{align*}
 \chi^2 = \sum \left(\frac{\mbox{observed - expected}}{\sqrt{\mbox{expected}}} \right)^2
 \end{align*}
-```
+
 ```{r}
 #| output-location: column
 
@@ -408,7 +409,7 @@ visualize(null_dist)
 
 ### The Null Distribution
 
-::: columns
+::::: columns
 ::: column
 **Key Observations about the distribution**:
 
@@ -424,7 +425,7 @@ Is our observed test statistic of 56.5 unusual?
 visualize(null_dist)
 ```
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -440,15 +441,15 @@ null_dist %>%
 
 ### Approximating the Null Distribution
 
-If there are at least 5 observations in each cell, then the test statistic can be approximated by a 
+If there are at least 5 observations in each cell, then the test statistic can be approximated by a
 
 $$
 \chi^2(df = (k - 1)(j - 1)) \mbox{ random variable}
-$$ where 
+$$ where
 
-* $k$ is the number of categories in the response variable
-* $j$ is the number of categories in the explanatory variable.
-* The $df$ controls the center and spread of the distribution.
+-   $k$ is the number of categories in the response variable
+-   $j$ is the number of categories in the explanatory variable.
+-   The $df$ controls the center and spread of the distribution.
 
 ------------------------------------------------------------------------
 
@@ -464,12 +465,9 @@ chisq_test(eye_data, Eye ~ Lighting)
 
 -   Decisions, decisions...
 
-
-
 # Another Example
 
-----
-
+------------------------------------------------------------------------
 
 ## In your opinion, which sentence is more gramatically correct?
 
@@ -477,13 +475,11 @@ chisq_test(eye_data, Eye ~ Lighting)
 
 <br>
 
-[Version 1: "It's important for a person to be honest, kind and loyal." ]{.custom-subtitle}
+[Version 1: "It's important for a person to be honest, kind and loyal."]{.custom-subtitle}
 
-[Version 2: "It's important for a person to be honest, kind, and loyal." ]{.custom-subtitle}
+[Version 2: "It's important for a person to be honest, kind, and loyal."]{.custom-subtitle}
 
-
-----
-
+------------------------------------------------------------------------
 
 ## How would you write the following sentence?
 
@@ -491,16 +487,15 @@ chisq_test(eye_data, Eye ~ Lighting)
 
 <br>
 
-[Version 1: "Some experts say it's important to drink milk, but the data are inconclusive." ]{.custom-subtitle}
+[Version 1: "Some experts say it's important to drink milk, but the data are inconclusive."]{.custom-subtitle}
 
-[Version 2: "Some experts say it's important to drink milk, but the data is inconclusive." ]{.custom-subtitle}
+[Version 2: "Some experts say it's important to drink milk, but the data is inconclusive."]{.custom-subtitle}
 
-
----
+------------------------------------------------------------------------
 
 ### Grammar and Education
 
-In 2014, [Fivethirtyeight.com and SurveyMonkey](https://fivethirtyeight.com/features/elitist-superfluous-or-popular-we-polled-americans-on-the-oxford-comma/) ran a poll asking people about their opinions on the oxford comma and data.  We want to use these data to investigate if there is a relationship between someone's level of education and their grammar opinions.
+In 2014, [Fivethirtyeight.com and SurveyMonkey](https://fivethirtyeight.com/features/elitist-superfluous-or-popular-we-polled-americans-on-the-oxford-comma/) ran a poll asking people about their opinions on the oxford comma and data. We want to use these data to investigate if there is a relationship between someone's level of education and their grammar opinions.
 
 ```{r}
 # Data loading and wrangling
@@ -517,9 +512,6 @@ grammar <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/mast
   drop_na(data, Education, oxford_comma) 
 
 ```
-
-
-
 
 ```{r}
 #| eval: false
@@ -550,18 +542,14 @@ grammar <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/mast
 #   count(`Location (Census Region)`, oxford_comma)
 ```
 
-
----
+------------------------------------------------------------------------
 
 ### Grammar and Education
 
-What story do these graphs tell?  Does education level appear to have a stronger relationship with preference for the oxford comma or with whether the word "data" is singular or plural?
+What story do these graphs tell? Does education level appear to have a stronger relationship with preference for the oxford comma or with whether the word "data" is singular or plural?
 
-
-::: columns
-
+::::: columns
 ::: column
-
 ```{r}
 #| echo: false
 ggplot(data = grammar, mapping = aes(x = Education, fill = oxford_comma)) +
@@ -571,14 +559,9 @@ ggplot(data = grammar, mapping = aes(x = Education, fill = oxford_comma)) +
                        vjust = 1,
                        hjust = 1))
 ```
-
 :::
 
 ::: column
-
-
-
-
 ```{r}
 #| echo: false
 
@@ -589,76 +572,57 @@ ggplot(data = grammar, mapping = aes(x = Education, fill = data)) +
                        vjust = 1,
                        hjust = 1))
 ```
-
 :::
+:::::
 
-:::
-
-
----
+------------------------------------------------------------------------
 
 ### Grammar and Education
 
 Check conditions!
 
-::: columns
-
+::::: columns
 ::: column
-
 ```{r}
 
 count(grammar, Education, oxford_comma)
 ```
-
-
 :::
 
 ::: column
-
 ```{r}
 count(grammar, Education, data)
 ```
-
 :::
+:::::
 
-:::
-
----
+------------------------------------------------------------------------
 
 ### Grammar and Education
 
 Run tests.
 
-
-::: columns
-
+::::: columns
 ::: column
-
 ```{r}
 chisq_test(grammar, oxford_comma ~ Education)
 ```
-
-
 :::
 
 ::: column
-
 ```{r}
 chisq_test(grammar, data ~ Education)
 ```
-
 :::
+:::::
 
-:::
+-   Why do both tests have 3 degrees of freedom?
 
-* Why do both tests have 3 degrees of freedom?
+-   Which test statistic is more unusual under the null? Does this agree with what you saw in the graph?
 
-* Which test statistic is more unusual under the null?  Does this agree with what you saw in the graph?
+-   How to interpret one of the p-values in context?
 
-* How to interpret one of the p-values in context?
-
-* Conclusions?
-
+-   Conclusions?
 
 # Other Models
 
@@ -668,7 +632,6 @@ chisq_test(grammar, data ~ Education)
 
 **Response variable**: A **categorical** variable with **two** categories
 
-```{=tex}
 \begin{align*}
 Y =   \left\{
 \begin{array}{ll}
@@ -677,7 +640,7 @@ Y =   \left\{
 \end{array} 
 \right.  
 \end{align*}
-```
+
 ::: fragment
 $Y \sim$ Bernoulli $(p)$ where $p = P(Y = 1) = P(\mbox{success})$.
 :::
@@ -694,7 +657,7 @@ $Y \sim$ Bernoulli $(p)$ where $p = P(Y = 1) = P(\mbox{success})$.
 
 ### Why can't we use linear regression?
 
-::: columns
+::::: columns
 ::: column
 -   Regression line = estimated **probability** of success
 
@@ -716,7 +679,7 @@ ggplot(dat, aes(x, y)) +
   geom_smooth(method = 'glm', method.args = list(family = "binomial"), se = FALSE, color = "deeppink")
 ```
 :::
-:::
+:::::
 
 ::: fragment
 What does the **logistic regression model** look like?
@@ -726,21 +689,19 @@ What does the **logistic regression model** look like?
 
 ### Logistic Regression Model
 
-```{=tex}
 \begin{align*}
 \log\left(\frac{P(Y = 1)}{1  - P(Y = 1)}  \right) &= \beta_o + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p 
 \end{align*}
-```
+
 ::: fragment
 Left hand side has many interpretations:
 
-```{=tex}
 \begin{align*}
 \mbox{LHS} &= \log\left(\frac{P(Y = 1)}{1  - P(Y = 1)}  \right)\\ 
 &= \log \left( \mbox{odds (of success)}  \right)\\
 &= \mbox{logit}(P(Y = 1))
 \end{align*}
-```
+
 Note:
 
 $$ 
@@ -800,10 +761,9 @@ library(broom)
 tidy(mod)
 ```
 
-
 But what do the coefficient estimates $\hat{\beta}_o = -25.8$ and $\hat{\beta}_1 = 0.129$ represent?
 
-------
+------------------------------------------------------------------------
 
 ## Interpreting Coefficients
 
@@ -815,12 +775,9 @@ $$
 exp(0.129)
 ```
 
-
 The odds that a penguin in Chinstrap instead of Adelie is 1.138 times the odds of a penguin whose flipper is 1 mm shorter.
 
-
-----
-
+------------------------------------------------------------------------
 
 ## Inference
 
@@ -830,8 +787,4 @@ Is flipper length a useful explanatory variable?
 tidy(mod)
 ```
 
-
-
-# There are LOTS of models out there beyond regression!  Next time, consider classification trees.
-
-
+# There are LOTS of models out there beyond regression! Next time, consider classification trees.

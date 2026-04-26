@@ -45,7 +45,7 @@ library(tidyverse)
 theme_update(text = element_text(size = 16))
 ```
 
-::: columns
+::::: columns
 ::: {.column .center width="45%"}
 ![](img/DAW.png){width="90%"}
 :::
@@ -59,7 +59,7 @@ theme_update(text = element_text(size = 16))
 
 [DATA 100 <br> Week 8 \| Spring 2026]{.custom-subtitle}
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -69,18 +69,15 @@ theme_update(text = element_text(size = 16))
 -   Load the relevant packages at the top of the Quarto document.
 
 ::: fragment
-
 ```{r}
 library(tidyverse)
 library(moderndive)
 ```
-
 :::
-
 
 ### Goals for Today
 
-::: columns
+::::: columns
 ::: column
 -   Models beyond linear regression
 -   Modeling & Ethics: Algorithmic bias
@@ -91,57 +88,47 @@ library(moderndive)
 -   Sampling variability
 -   Sampling distributions
 :::
-:::
-
-
------
-  
-### Beyond Linear Regression
-  
-  
-::::: columns
-::: column
-
-**Neural Networks**
-  
-* What people are talking about right now when they say *"AI models*.
-
-* Linear regression on steroids:
-    + Layers and layers of transformed linear regression models.
-    + In simple linear regression we have two model parameters: $\beta_o$ and $\beta_1$.
-    + In Gemini 3 Flash, there are between 1.2 and 1.8 trillion parameters.
-
-* Won't fit in DATA 100 but will interact with fitted models.
-
-:::
-
-
-::: column
-
-**Regression Trees**
-
-* Useful if 
-    + Have a lot of categorical variables (with many categories).
-    + Expect local interaction effects.
-* When the response variable is categorical, then called **Classification Trees**.
-* Let's explore fitting and interpreting these models.
-
-
-:::
 :::::
 
+------------------------------------------------------------------------
+
+### Beyond Linear Regression
+
+::::: columns
+::: column
+**Neural Networks**
+
+-   What people are talking about right now when they say *"AI models*.
+
+-   Linear regression on steroids:
+
+    -   Layers and layers of transformed linear regression models.
+    -   In simple linear regression we have two model parameters: $\beta_o$ and $\beta_1$.
+    -   In Gemini 3 Flash, there are between 1.2 and 1.8 trillion parameters.
+
+-   Won't fit in DATA 100 but will interact with fitted models.
+:::
+
+::: column
+**Regression Trees**
+
+-   Useful if
+    -   Have a lot of categorical variables (with many categories).
+    -   Expect local interaction effects.
+-   When the response variable is categorical, then called **Classification Trees**.
+-   Let's explore fitting and interpreting these models.
+:::
+:::::
 
 ------------------------------------------------------------------------
 
 ### Example: Return to the Candy Example
 
-* Want to predict when a candy will win!
-* Let's focus on just the categorical explanatory variables.
-  + Though trees can handle both types.
+-   Want to predict when a candy will win!
+-   Let's focus on just the categorical explanatory variables.
+    -   Though trees can handle both types.
 
 ::: fragment
-
-
 ```{r}
 # Wrangling the data
 candy <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/candy-power-ranking/candy-data.csv") %>%
@@ -154,10 +141,7 @@ candy <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master
 glimpse(candy)
 
 ```
-
-
 :::
-
 
 ------------------------------------------------------------------------
 
@@ -167,16 +151,12 @@ glimpse(candy)
 -   Split sample into two groups based on an explanatory variable.
     -   Wants groups to be homogeneous as possible for the response variable.
 
-
-
-::: fragment
-
-::: columns
+::::::: fragment
+:::::: columns
 ::: {.column width="25%"}
 :::
 
 ::: {.column width="50%"}
-
 ```{r}
 #| echo: false
 library(rpart)
@@ -190,17 +170,12 @@ fancyRpartPlot(candy_tree_pruned, cex  =  2, caption = "",
                type = 4)
 
 ```
-
-
-
 :::
 
 ::: {.column width="25%"}
 :::
-:::
-
-:::
-
+::::::
+:::::::
 
 ------------------------------------------------------------------------
 
@@ -208,16 +183,12 @@ fancyRpartPlot(candy_tree_pruned, cex  =  2, caption = "",
 
 -   Split the subgroups to make subsubgroups that are even more homogeneous.
 
-
-
-::: fragment
-
-::: columns
+::::::: fragment
+:::::: columns
 ::: {.column width="20%"}
 :::
 
 ::: {.column width="60%"}
-
 ```{r}
 #| echo: false
 candy_tree_pruned <- prune(candy_tree, cp = 0.044027)
@@ -225,17 +196,12 @@ fancyRpartPlot(candy_tree_pruned, cex  =  1, caption = "",
                type = 4)
 
 ```
-
-
-
 :::
 
 ::: {.column width="20%"}
 :::
-:::
-
-:::
-
+::::::
+:::::::
 
 ------------------------------------------------------------------------
 
@@ -243,16 +209,12 @@ fancyRpartPlot(candy_tree_pruned, cex  =  1, caption = "",
 
 -   Keep going until you have a big tree.
 
-
-
-::: fragment
-
-::: columns
+::::::: fragment
+:::::: columns
 ::: {.column width="20%"}
 :::
 
 ::: {.column width="60%"}
-
 ```{r}
 #| echo: false
 candy_tree_pruned <- prune(candy_tree, cp = 0)
@@ -260,18 +222,12 @@ fancyRpartPlot(candy_tree_pruned, cex  =  1, caption = "",
                type = 4)
 
 ```
-
-
-
 :::
 
 ::: {.column width="20%"}
 :::
-:::
-
-:::
-
-
+::::::
+:::::::
 
 ------------------------------------------------------------------------
 
@@ -279,16 +235,12 @@ fancyRpartPlot(candy_tree_pruned, cex  =  1, caption = "",
 
 -   Then prune back the splits that aren't very predictive/useful to get the optimal tree.
 
-
-
-::: fragment
-
-::: columns
+::::::: fragment
+:::::: columns
 ::: {.column width="20%"}
 :::
 
 ::: {.column width="60%"}
-
 ```{r}
 #| echo: false
 candy_tree_pruned <- prune(candy_tree, cp = 0.011298)
@@ -296,24 +248,18 @@ fancyRpartPlot(candy_tree_pruned, cex  =  1, caption = "",
                type = 4)
 
 ```
-
-
-
 :::
 
 ::: {.column width="20%"}
 :::
-:::
+::::::
+:::::::
 
-:::
-
-
-----
+------------------------------------------------------------------------
 
 ### Coding Regression Trees
 
 Let's see how to code up what we just did.
-
 
 ```{r}
 # Package to fit the tree
@@ -326,18 +272,16 @@ library(rattle)
 set.seed(3344)
 ```
 
-----
+------------------------------------------------------------------------
 
 ### Coding Regression Trees
 
 ::: nonincremental
-
-* Fit the regression tree.
-* `cp` = complexity parameter
-    + `cp = 0` (Grow a very large tree).
-    + `minsplit` = smallest tree allowed.
-    + `minbucket` = how many cases need to be in each bucket of the tree.
-    
+-   Fit the regression tree.
+-   `cp` = complexity parameter
+    -   `cp = 0` (Grow a very large tree).
+    -   `minsplit` = smallest tree allowed.
+    -   `minbucket` = how many cases need to be in each bucket of the tree.
 :::
 
 ```{r}
@@ -348,57 +292,41 @@ candy_tree <- rpart(winpercent ~ ., data = candy,
                                             minbucket = 10))
 ```
 
----
+------------------------------------------------------------------------
 
 ### Coding Regression Trees
 
 ::: nonincremental
-
-* Look at the amount of error for different cost penalties.
-* Pick the `cp` where the `xerror` is the lowest (or nearly the lowest).
-
+-   Look at the amount of error for different cost penalties.
+-   Pick the `cp` where the `xerror` is the lowest (or nearly the lowest).
 :::
 
 ```{r}
 printcp(candy_tree)
 ```
 
----
+------------------------------------------------------------------------
 
 ### Coding Regression Trees
 
 Best `cp` for this example is just above 0.011297.
 
-::: fragment
-
-::: columns
+::::::: fragment
+:::::: columns
 ::: {.column width="25%"}
 :::
 
 ::: {.column width="50%"}
-
-
 ```{r}
 candy_tree_pruned <- prune(candy_tree, cp = 0.011297 + 0.000001)
 fancyRpartPlot(candy_tree_pruned, cex  =  1, caption = "", type = 4)
 ```
-
-
-
-
 :::
 
 ::: {.column width="25%"}
 :::
-:::
-
-:::
-
-
-
-
-
-
+::::::
+:::::::
 
 ------------------------------------------------------------------------
 
@@ -414,11 +342,6 @@ twix
 predict(candy_tree_pruned, newdata = twix)
 
 ```
-
-
-
-
-
 
 # Data Ethics: Algorithmic Bias
 
@@ -497,8 +420,8 @@ summarize(ce, meanFINCBTAX = mean(FINCBTAX))
 
 Like with regression, need to distinguish between the **population** and the **sample**
 
-::: columns
-::: column
+::::::: columns
+:::: column
 ::: nonincremental
 -   **Parameters**:
     -   Based on the **population**
@@ -506,9 +429,9 @@ Like with regression, need to distinguish between the **population** and the **s
     -   EX: $\beta_o$ and $\beta_1$
     -   EX: $\mu$ = population mean
 :::
-:::
+::::
 
-::: column
+:::: column
 ::: nonincremental
 -   **Statistics**:
     -   Based on the **sample** data
@@ -517,8 +440,8 @@ Like with regression, need to distinguish between the **population** and the **s
     -   EX: $\hat{\beta}_o$ and $\hat{\beta}_1$
     -   EX: $\bar{x}$ = sample mean
 :::
-:::
-:::
+::::
+:::::::
 
 ------------------------------------------------------------------------
 
@@ -561,7 +484,7 @@ get_regression_table(modPoll)
 
 The [news and journal articles](https://www.pewresearch.org/fact-tank/2019/12/17/more-u-s-homeowners-say-they-are-considering-home-solar-panels/) are also giving us uncertainty estimates:
 
-::: columns
+::::: columns
 ::: column
 ```{r  out.width = "55%", echo=FALSE, fig.align='center'}
 include_graphics("img/solar_panels.png") 
@@ -573,7 +496,7 @@ include_graphics("img/solar_panels.png")
 include_graphics("img/margin_of_error.png") 
 ```
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -607,12 +530,8 @@ Best guess?
 
 -   The corresponding (sample) statistic
 
-
-
-
 ::: fragment
 **Example**: What one word would you use to describe Bucknell?
-
 :::
 
 ------------------------------------------------------------------------
@@ -629,7 +548,7 @@ Need two new concepts:
 
 -   The **sampling distribution** of a statistic
 
-# Let's learn about these ideas through an activity! 
+# Let's learn about these ideas through an activity!
 
 ------------------------------------------------------------------------
 
@@ -655,7 +574,7 @@ Steps to Construct an (Approximate) Sampling Distribution:
 include_graphics("img/samp_dist.png") 
 ```
 
-::: columns
+::::: columns
 ::: column
 -   Center? Shape?
 
@@ -669,7 +588,4 @@ include_graphics("img/samp_dist.png")
 
 -   What happens to the center/spread/shape if the true parameter changes?
 :::
-:::
-
-
-
+:::::
