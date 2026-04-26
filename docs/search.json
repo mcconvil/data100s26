@@ -2588,5 +2588,89 @@
     "title": "DATA 100",
     "section": "Reminders:",
     "text": "Reminders:\n\nRemember to come to office hours and post twice to Slack by Friday!"
+  },
+  {
+    "objectID": "data100_wk14mon.html#keyword",
+    "href": "data100_wk14mon.html#keyword",
+    "title": "DATA 100",
+    "section": "",
+    "text": "Before we get started…\n\n\nGo to burl.live/stat to provide the words or phrases you think of when you hear “statistical thinking.”"
+  },
+  {
+    "objectID": "data100_wk14mon.html#announcements",
+    "href": "data100_wk14mon.html#announcements",
+    "title": "DATA 100",
+    "section": "Announcements",
+    "text": "Announcements\n\nOral exam sign-ups will be released right after class on Slack\nExtra Credit Lecture Quiz: Due In-Person at 3pm (start of lab) on Friday, May 1st\nExam Rewrites: Due on Gradescope at noon on Monday, March 4th\n\nGoals for Today\n\n\n\nStatistical thinking\nRevisit course learning objectives\n\n\n\nAI and data work"
+  },
+  {
+    "objectID": "data100_wk14mon.html#terms-terms-terms",
+    "href": "data100_wk14mon.html#terms-terms-terms",
+    "title": "DATA 100",
+    "section": "Terms, Terms, Terms",
+    "text": "Terms, Terms, Terms\n\n\n\n\n\nAI = artificial intelligence\n\nModels that try to predict outcomes.\n\nGenAI = AI models that produce text, images, and videos in response to prompts.\nLLMs = large language models\n\nCan produce text that is very similar to human written text."
+  },
+  {
+    "objectID": "data100_wk14mon.html#how-are-llms-so-good-at-producing-human-like-text",
+    "href": "data100_wk14mon.html#how-are-llms-so-good-at-producing-human-like-text",
+    "title": "DATA 100",
+    "section": "How are LLMs so good at producing human-like text?",
+    "text": "How are LLMs so good at producing human-like text?\n\n\n\n\nUse neural networks, a very flexible type of AI model.\n\n\n\n\n\n\nBuilt on very, very large datasets.\n\nThink “the internet”."
+  },
+  {
+    "objectID": "data100_wk14mon.html#ai-and-the-classroom",
+    "href": "data100_wk14mon.html#ai-and-the-classroom",
+    "title": "DATA 100",
+    "section": "AI and the Classroom",
+    "text": "AI and the Classroom\n\n\n\n“AI promises compelling benefits—such as saving time in busy lives and helping your work to appear more creative or clever—but there are many important but invisible tradeoffs in using it, especially in the classroom. Therefore, at least in school, there’s good reason not to use or rely on AI/LLMs while you’re still learning new skills and growing as a person, even if it’s ok to use it in future jobs where producing work is more important than learning.” – Patrick Lin, Philosophy Professor at Cal Poly"
+  },
+  {
+    "objectID": "data100_wk14mon.html#ethical-use-of-genai",
+    "href": "data100_wk14mon.html#ethical-use-of-genai",
+    "title": "DATA 100",
+    "section": "Ethical use of GenAI",
+    "text": "Ethical use of GenAI\n\nYou evaluate the relevance, usefulness, and accuracy of GenAI outputs.\nYou understand the potential harms of GenAI.\n\nOn the environment (e.g., data centers)\nOn the labor market (especially entry-level jobs).\nOn society (eg., facial recognition software, revenge porn, deepfakes).\n\nYou examine the privacy and data security risks of GenAI.\nYou credit GenAI contributions in your work through appropriate citations."
+  },
+  {
+    "objectID": "data100_wk14mon.html#developing-your-data-ai-literacy-at-bucknell",
+    "href": "data100_wk14mon.html#developing-your-data-ai-literacy-at-bucknell",
+    "title": "DATA 100",
+    "section": "Developing your Data & AI Literacy at Bucknell",
+    "text": "Developing your Data & AI Literacy at Bucknell\n\nAbout developing reasoning\n\nNot just learning definitions and formulae\nNot just memorizing arbitrary rules (p-value \\(&lt;\\) 0.05, sample size \\(&gt;\\) 30)\nConsider the appropriateness of AI for the task at hand.\n\nRequires judgment that takes time to develop\n\nConsider taking DATA 101: Foundations of AI!"
+  },
+  {
+    "objectID": "data100_wk14mon.html#ai-skills-to-develop",
+    "href": "data100_wk14mon.html#ai-skills-to-develop",
+    "title": "DATA 100",
+    "section": "AI Skills to Develop",
+    "text": "AI Skills to Develop\nXXX: insert graph of AI skills from advisory board"
+  },
+  {
+    "objectID": "data100_wk14mon.html#vibe-coding",
+    "href": "data100_wk14mon.html#vibe-coding",
+    "title": "DATA 100",
+    "section": "Vibe coding",
+    "text": "Vibe coding\n\nVibe coding is where an AI tool generates code based on prompts from a person.\nImportant skills to develop:\n\nAbility to review and debug the AI generated code.\nAbility to prompt the AI tool for better code.\nA strong understanding of what you want the AI code to produce.\n\nDon’t let it take you down the wrong rabbit hole.\n\nTaste! Don’t produce AI slop (i.e., generic, vanilla graphs)."
+  },
+  {
+    "objectID": "data100_wk14mon.html#setting-up-pipelines-for-engaging-with-llms-in-a-structured-way-and-using-the-model-output",
+    "href": "data100_wk14mon.html#setting-up-pipelines-for-engaging-with-llms-in-a-structured-way-and-using-the-model-output",
+    "title": "DATA 100",
+    "section": "Setting up pipelines for engaging with LLMs in a structured way and using the model output",
+    "text": "Setting up pipelines for engaging with LLMs in a structured way and using the model output\n\nThe ellmer package is great for this!\nAsking LLMs to output responses into a dataframe so they are easier to analyze.\nImportant skills to develop:\n\nAbility to evaluate the AI output.\nAbility to engage with an LLM in R and not just via chatbots."
+  },
+  {
+    "objectID": "data100_wk14mon.html#increasing-efficiency-by-incorporating-ai-into-time-intensive-steps-of-the-research-process.",
+    "href": "data100_wk14mon.html#increasing-efficiency-by-incorporating-ai-into-time-intensive-steps-of-the-research-process.",
+    "title": "DATA 100",
+    "section": "Increasing efficiency by incorporating AI into time-intensive steps of the research process.",
+    "text": "Increasing efficiency by incorporating AI into time-intensive steps of the research process.\n\nExample:\n\nDetecting dance movements in children\n\nImportant skills to develop:\n\nUnderstanding what steps AI can actually speed up.\nComparing the AI output to the human output."
+  },
+  {
+    "objectID": "data100_wk14mon.html#fluency-isnt-truth",
+    "href": "data100_wk14mon.html#fluency-isnt-truth",
+    "title": "DATA 100",
+    "section": "Fluency isn’t Truth",
+    "text": "Fluency isn’t Truth\n\nOutput from AI models sounds human-like.\nPeople often believe it is true.\n\nThe model is just a predictive engine.\n\nLots of examples of hallucinations!\n\nCitations\nMedical dosages\nCode\n\nNeed to always have a human verify output!"
   }
 ]
