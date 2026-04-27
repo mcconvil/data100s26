@@ -51,7 +51,7 @@ Go to [burl.live/stat](https://burl.live/stat) to provide the words or phrases y
 
 ------------------------------------------------------------------------
 
-::: columns
+::::: columns
 ::: {.column .center width="45%"}
 ![](img/DAW.png){width="90%"}
 :::
@@ -65,7 +65,7 @@ Go to [burl.live/stat](https://burl.live/stat) to provide the words or phrases y
 
 [DATA 100 <br> Week 14 \| Spring 2026]{.custom-subtitle}
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -77,21 +77,18 @@ Go to [burl.live/stat](https://burl.live/stat) to provide the words or phrases y
 
 ### Goals for Today
 
-::: columns
+::::: columns
 ::: column
 -   Statistical thinking
 -   Revisit course learning objectives
-
 :::
 
 ::: column
--  AI and data work
+-   AI and data work
 :::
-:::
+:::::
 
------
-
-
+------------------------------------------------------------------------
 
 # What have we learned in DATA 100?
 
@@ -99,7 +96,7 @@ Go to [burl.live/stat](https://burl.live/stat) to provide the words or phrases y
 
 #### (Some of the) Course Learning Objectives
 
-::: columns
+::::: columns
 ::: {.column .center width="45%"}
 ![](img/DAW.png){width="90%"}
 :::
@@ -119,119 +116,104 @@ Go to [burl.live/stat](https://burl.live/stat) to provide the words or phrases y
 
 -   Develop a **reproducible** workflow using `R` Quarto documents.
 :::
-:::
+:::::
 
-#  This class has focused on developing our data skills. Now let's shift our focus to AI's impact on data work.  
+# This class has focused on developing our data skills. Now let's shift our focus to AI's impact on data work.
 
----
+------------------------------------------------------------------------
 
 ## Terms, Terms, Terms
 
-::: columns
+::::: columns
 ::: {.column .center width="50%"}
 ![](img/terms.png){width="80%"}
 :::
 
 ::: {.column width="50%"}
+-   **AI** = artificial intelligence
 
-* **AI** = artificial intelligence
-    + Models that try to predict outcomes.
-    
-* **GenAI** = AI models that produce text, images, and videos in response to prompts.
+    -   Models that try to predict outcomes.
 
-* **LLMs** = large language models
-    + Can produce text that is very similar to human written text.
+-   **GenAI** = AI models that produce text, images, and videos in response to prompts.
 
+-   **LLMs** = large language models
+
+    -   Can produce text that is very similar to human written text.
 :::
+:::::
 
-:::
-
----
+------------------------------------------------------------------------
 
 ## How are LLMs so good at producing human-like text?
 
-::: columns
+:::::: columns
 ::: {.column .center width="50%"}
 ![](img/neural_network.png){width="80%"}
 
-
-* Use neural networks, a very flexible type of AI model.
-
+-   Use neural networks, a very flexible type of AI model.
 :::
 
-::: {.column .center width="50%"}
-
+:::: {.column .center width="50%"}
 ::: fragment
-
 ![](img/big_data.png){width="80%"}
 :::
 
-* Built on very, very large datasets.
-    + Think "the internet".
+-   Built on very, very large datasets.
+    -   Think "the internet".
+::::
+::::::
 
-
-
-:::
-
-:::
-
----
+------------------------------------------------------------------------
 
 ## AI and the Classroom
 
-::: columns
+::::: columns
 ::: {.column width="80%"}
-
 > "AI promises compelling benefits—such as saving time in busy lives and helping your work to appear more creative or clever—but there are many important but invisible tradeoffs in using it, especially in the classroom. Therefore, at least in school, **there’s good reason not to use or rely on AI/LLMs while you’re still learning new skills and growing as a person**, even if it’s ok to use it in future jobs where producing work is more important than learning." -- Patrick Lin, Philosophy Professor at Cal Poly
+:::
 
-::: 
 ::: {.column .center width="20%"}
-
 <br>
 
-
 ![](img/patrick_lin.webp)
-
 :::
+:::::
 
-:::
-
----
+------------------------------------------------------------------------
 
 ## Fluency isn't Truth
 
-* Output from AI models sounds human-like.
+-   Output from AI models sounds human-like.
 
-* People often believe it is true.
-    + The model is just a predictive engine.
+-   People often believe it is true.
 
-* Lots of examples of hallucinations!
-    + Citations
-    + Medical dosages
-    + Code
-    
-* Need to always have a human verify output!
+    -   The model is just a predictive engine.
 
+-   Lots of examples of hallucinations!
 
+    -   Citations
+    -   Medical dosages
+    -   Code
 
----
+-   Need to always have a human verify output!
+
+------------------------------------------------------------------------
 
 ## Ethical use of GenAI
 
-* You evaluate the relevance, usefulness, and accuracy of GenAI outputs.
+-   You evaluate the relevance, usefulness, and accuracy of GenAI outputs.
 
-* You understand the potential harms of GenAI.
-    + On the environment (e.g., data centers)
-    + On the labor market (especially entry-level jobs).
-    + On society (eg., facial recognition software, revenge porn, deepfakes).
+-   You understand the potential harms of GenAI.
 
-* You examine the privacy and data security risks of GenAI.
+    -   On the environment (e.g., data centers)
+    -   On the labor market (especially entry-level jobs).
+    -   On society (eg., facial recognition software, revenge porn, deepfakes).
 
-* You credit GenAI contributions in your work through appropriate citations.
+-   You examine the privacy and data security risks of GenAI.
 
+-   You credit GenAI contributions in your work through appropriate citations.
 
----
-
+------------------------------------------------------------------------
 
 ## Developing your Data & AI Literacy at Bucknell
 
@@ -240,33 +222,58 @@ Go to [burl.live/stat](https://burl.live/stat) to provide the words or phrases y
     -   Not just learning definitions and formulae
     -   Not just memorizing arbitrary rules (p-value $<$ 0.05, sample size $>$ 30)
     -   Consider the appropriateness of AI for the task at hand.
-    
-    
+
 -   Requires **judgment** that takes time to develop
-    -  Consider taking DATA 101: Foundations of AI!
 
----
+    -   Consider taking DATA 101: Foundations of AI!
 
-## AI Skills to Develop
-
-XXX: insert graph of AI skills from advisory board
 
 
 # How is AI impacting data work?
 
----
+-------
+
+
+## Building new tools
+
+::::: columns
+
+
+::: {.column .center width="75%"}
+
+* Simon Couch was one of my former Reed students.
+
+* He has created `R` packages to support data analysis.
+
+* Starting in late 2024, shifted focus to `R` packages that allow data scientists to engage with LLMs in `R`.  
+
+* There is demand for people who like to program and want to experiment with ways to leverage LLMs for data work!
+
+:::
+
+::: {.column .center width="25%"}
+![](img/simon-couch.png){width="90%"}
+:::
+
+:::::
+
+
+
+
+
+------------------------------------------------------------------------
 
 ## Vibe coding
 
-* Vibe coding is where an AI tool generates code based on prompts from a person.
-* Important skills to develop:
-    + Ability to review and debug the AI generated code.
-    + Ability to prompt the AI tool for better code.
-    + A strong understanding of what you want the AI code to produce.
-        + Don't let it take you down the wrong rabbit hole.
-    + Taste! Don't produce AI slop (i.e., generic, vanilla graphs).
-    
----
+-   Vibe coding is where an AI tool generates code based on prompts from a person.
+-   Important skills to develop:
+    -   Ability to review and debug the AI generated code.
+    -   Ability to prompt the AI tool for better code.
+    -   A strong understanding of what you want the AI code to produce.
+        -   Don't let it take you down the wrong rabbit hole.
+    -   Taste! Don't produce AI slop (i.e., generic, vanilla graphs).
+
+------------------------------------------------------------------------
 
 ## Vibe coding
 
@@ -274,11 +281,9 @@ The new paradigm of coding work:
 
 ![](img/ai-coding-3-chris-loy.svg)
 
-
 From ["The AI Coding Trap" by Chris Loy](https://chrisloy.dev/post/2025/09/28/the-ai-coding-trap)
-    
 
----
+------------------------------------------------------------------------
 
 ## AI-Driven Engineering
 
@@ -290,30 +295,26 @@ Loy defines two different types of coding with AI tools:
 
 ![](img/ai-coding-8-chris-loy.svg)
 
-
-
 Note: We will still use the more common term of "vibe coding" but will advocate for "vibe coding + human review + iteration".
-    
-        
----
 
-##  Setting up pipelines for engaging with LLMs in a structured way and using the model output
+------------------------------------------------------------------------
 
-* The `ellmer` package is great for this!
-* Asking LLMs to output responses into a dataframe so they are easier to analyze.
-* Important skills to develop:
-    + Ability to evaluate the AI output.
-    + Ability to engage with an LLM in `R` and not just via chatbots.
+## Setting up pipelines for engaging with LLMs in a structured way and using the model output
 
----
+-   The `ellmer` package is great for this!
+-   Asking LLMs to output responses into a dataframe so they are easier to analyze.
+-   Important skills to develop:
+    -   Ability to evaluate the AI output.
+    -   Ability to engage with an LLM in `R` and not just via chatbots.
+
+------------------------------------------------------------------------
 
 ## Increasing efficiency by incorporating AI into time-intensive steps of the research process.
 
-* Example: 
-    + Detecting dance movements in children
-* Important skills to develop:
-    + Understanding what steps AI can actually speed up.
-    + Comparing the AI output to the human output.
-    
-# Activity: Let's experiment by vibe coding with Gemini.  Open the Vibe Coding project in Posit Cloud.
+-   Example:
+    -   Detecting dance movements in children
+-   Important skills to develop:
+    -   Understanding what steps AI can actually speed up.
+    -   Comparing the AI output to the human output.
 
+# Activity: Let's experiment by vibe coding with Gemini. Open the Vibe Coding project in Posit Cloud.

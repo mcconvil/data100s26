@@ -823,63 +823,735 @@
     "href": "index.html",
     "title": "DATA 100: Introduction to Data Science",
     "section": "",
-    "text": "The lecture slides (both in HTML and PDF) will be posted here. \n\n\n\n\nClass Period\nHTML Slides\nPDF Slides\n\n\n\n\nWeek 1, Wed\n\n\n\n\nWeek 2, Mon\n\n\n\n\nWeek 2, Wed\n\n\n\n\nWeek 3, Mon\n\n\n\n\nWeek 3, Wed\n\n\n\n\nWeek 4, Mon\n\n\n\n\nWeek 4, Wed\n\n\n\n\nWeek 5, Mon\n\n\n\n\nWeek 6, Mon\n\n\n\n\nWeek 6, Wed\n\n\n\n\nWeek 7, Mon\n\n\n\n\nWeek 7, Wed\n\n\n\n\nWeek 8, Mon\n\n\n\n\nWeek 8, Wed\n\n\n\n\nWeek 9, Mon\n\n\n\n\nWeek 9, Wed\n\n\n\n\nWeek 10, Mon\n\n\n\n\nWeek 10, Wed\n\n\n\n\nWeek 11, Mon\n\n\n\n\nWeek 12, Mon\n\n\n\n\nWeek 13, Mon\n\n\n\n\nWeek 13, Wed"
+    "text": "The lecture slides (both in HTML and PDF) will be posted here. \n\n\n\n\nClass Period\nHTML Slides\nPDF Slides\n\n\n\n\nWeek 1, Wed\n\n\n\n\nWeek 2, Mon\n\n\n\n\nWeek 2, Wed\n\n\n\n\nWeek 3, Mon\n\n\n\n\nWeek 3, Wed\n\n\n\n\nWeek 4, Mon\n\n\n\n\nWeek 4, Wed\n\n\n\n\nWeek 5, Mon\n\n\n\n\nWeek 6, Mon\n\n\n\n\nWeek 6, Wed\n\n\n\n\nWeek 7, Mon\n\n\n\n\nWeek 7, Wed\n\n\n\n\nWeek 8, Mon\n\n\n\n\nWeek 8, Wed\n\n\n\n\nWeek 9, Mon\n\n\n\n\nWeek 9, Wed\n\n\n\n\nWeek 10, Mon\n\n\n\n\nWeek 10, Wed\n\n\n\n\nWeek 11, Mon\n\n\n\n\nWeek 12, Mon\n\n\n\n\nWeek 13, Mon\n\n\n\n\nWeek 13, Wed\n\n\n\n\nWeek 14, Mon"
   },
   {
-    "objectID": "data100wk11mon.html#announcements",
-    "href": "data100wk11mon.html#announcements",
+    "objectID": "data100_wk14mon.html#keyword",
+    "href": "data100_wk14mon.html#keyword",
+    "title": "DATA 100",
+    "section": "",
+    "text": "Before we get started…\n\n\nGo to burl.live/stat to provide the words or phrases you think of when you hear “statistical thinking.”"
+  },
+  {
+    "objectID": "data100_wk14mon.html#announcements",
+    "href": "data100_wk14mon.html#announcements",
     "title": "DATA 100",
     "section": "Announcements",
-    "text": "Announcements\n\nExam this week:\n\nIn-class on Wed\nOral on Fri. (Sign-ups are in Slack.)\n\n\nGoals for Today\n\n\n\nDiscuss more random variable-based inference.\n\n\n\nCompare methods of inference."
+    "text": "Announcements\n\nOral exam sign-ups will be released right after class on Slack\nExtra Credit Lecture Quiz: Due In-Person at 3pm (start of lab) on Friday, May 1st\nExam Rewrites: Due on Gradescope at noon on Monday, March 4th\n\nGoals for Today\n\n\n\nStatistical thinking\nRevisit course learning objectives\n\n\n\nAI and data work"
   },
   {
-    "objectID": "data100wk11mon.html#data-example",
-    "href": "data100wk11mon.html#data-example",
+    "objectID": "data100_wk14mon.html#terms-terms-terms",
+    "href": "data100_wk14mon.html#terms-terms-terms",
     "title": "DATA 100",
-    "section": "Data Example",
-    "text": "Data Example\nWe have data on a random sub-sample of the 2010 American Community Survey. The American Community Survey is given every year to a random sample of US residents.\n\n# Libraries\nlibrary(tidyverse)\nlibrary(Lock5Data)\n\n# Data\ndata(ACS)\n# Focus on adults\nACS_adults &lt;- filter(ACS, Age &gt;= 18)\n\nglimpse(ACS_adults)\n\nRows: 10,000\nColumns: 9\n$ Sex             &lt;int&gt; 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, …\n$ Age             &lt;int&gt; 56, 59, 61, 40, 60, 74, 57, 41, 30, 43, 69, 68, 27, 67…\n$ Married         &lt;int&gt; 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, …\n$ Income          &lt;dbl&gt; 70.0, 1.4, 0.0, 60.0, 43.0, 0.0, 65.0, 0.0, 100.0, 100…\n$ HoursWk         &lt;int&gt; 40, 3, 12, 40, 40, 0, 45, 0, 55, 40, 0, 0, 10, 20, 60,…\n$ Race            &lt;chr&gt; \"Black\", \"White\", \"White\", \"White\", \"White\", \"Black\", …\n$ USCitizen       &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …\n$ HealthInsurance &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, …\n$ Language        &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …"
+    "section": "Terms, Terms, Terms",
+    "text": "Terms, Terms, Terms\n\n\n\n\n\nAI = artificial intelligence\n\nModels that try to predict outcomes.\n\nGenAI = AI models that produce text, images, and videos in response to prompts.\nLLMs = large language models\n\nCan produce text that is very similar to human written text."
   },
   {
-    "objectID": "data100wk11mon.html#difference-in-proportions-1",
-    "href": "data100wk11mon.html#difference-in-proportions-1",
+    "objectID": "data100_wk14mon.html#how-are-llms-so-good-at-producing-human-like-text",
+    "href": "data100_wk14mon.html#how-are-llms-so-good-at-producing-human-like-text",
     "title": "DATA 100",
-    "section": "Difference in Proportions",
-    "text": "Difference in Proportions\nLet’s try to determine if there’s a relationship between US citizenship and marriage status.\n\n\n# Exploratory data analysis\nggplot(data = ACS_adults, \n       mapping = aes(x = factor(USCitizen),\n                     fill  = factor(Married))) +\n  geom_bar(position = \"fill\")\n\n\n\n\n\n\n\n\n\n\n\n# Sample size\nACS_adults %&gt;%\n  count(Married, USCitizen)\n\n\n  Married USCitizen    n\n1       0         0  270\n2       0         1 5072\n3       1         0  307\n4       1         1 4351"
+    "section": "How are LLMs so good at producing human-like text?",
+    "text": "How are LLMs so good at producing human-like text?\n\n\n\n\nUse neural networks, a very flexible type of AI model.\n\n\n\n\n\n\nBuilt on very, very large datasets.\n\nThink “the internet”."
   },
   {
-    "objectID": "data100wk11mon.html#difference-in-means-1",
-    "href": "data100wk11mon.html#difference-in-means-1",
+    "objectID": "data100_wk14mon.html#ai-and-the-classroom",
+    "href": "data100_wk14mon.html#ai-and-the-classroom",
     "title": "DATA 100",
-    "section": "Difference in Means",
-    "text": "Difference in Means\nLet’s estimate the average hours worked per week between married and unmarried US residents.\n\n\n# Exploratory data analysis\nggplot(data = ACS_adults, mapping = aes(x = HoursWk)) +\n  geom_histogram() +\n  facet_wrap(~Married, ncol = 1)\n\n\n\n\n\n\n\n\n\n\n\n# Sample size\nACS_adults %&gt;%\n  drop_na(HoursWk) %&gt;%\n  count(Married)\n\n\n  Married    n\n1       0 5342\n2       1 4658"
+    "section": "AI and the Classroom",
+    "text": "AI and the Classroom\n\n\n\n“AI promises compelling benefits—such as saving time in busy lives and helping your work to appear more creative or clever—but there are many important but invisible tradeoffs in using it, especially in the classroom. Therefore, at least in school, there’s good reason not to use or rely on AI/LLMs while you’re still learning new skills and growing as a person, even if it’s ok to use it in future jobs where producing work is more important than learning.” – Patrick Lin, Philosophy Professor at Cal Poly"
   },
   {
-    "objectID": "data100_wk08mon.html#announcements",
-    "href": "data100_wk08mon.html#announcements",
+    "objectID": "data100_wk14mon.html#fluency-isnt-truth",
+    "href": "data100_wk14mon.html#fluency-isnt-truth",
+    "title": "DATA 100",
+    "section": "Fluency isn’t Truth",
+    "text": "Fluency isn’t Truth\n\nOutput from AI models sounds human-like.\nPeople often believe it is true.\n\nThe model is just a predictive engine.\n\nLots of examples of hallucinations!\n\nCitations\nMedical dosages\nCode\n\nNeed to always have a human verify output!"
+  },
+  {
+    "objectID": "data100_wk14mon.html#ethical-use-of-genai",
+    "href": "data100_wk14mon.html#ethical-use-of-genai",
+    "title": "DATA 100",
+    "section": "Ethical use of GenAI",
+    "text": "Ethical use of GenAI\n\nYou evaluate the relevance, usefulness, and accuracy of GenAI outputs.\nYou understand the potential harms of GenAI.\n\nOn the environment (e.g., data centers)\nOn the labor market (especially entry-level jobs).\nOn society (eg., facial recognition software, revenge porn, deepfakes).\n\nYou examine the privacy and data security risks of GenAI.\nYou credit GenAI contributions in your work through appropriate citations."
+  },
+  {
+    "objectID": "data100_wk14mon.html#developing-your-data-ai-literacy-at-bucknell",
+    "href": "data100_wk14mon.html#developing-your-data-ai-literacy-at-bucknell",
+    "title": "DATA 100",
+    "section": "Developing your Data & AI Literacy at Bucknell",
+    "text": "Developing your Data & AI Literacy at Bucknell\n\nAbout developing reasoning\n\nNot just learning definitions and formulae\nNot just memorizing arbitrary rules (p-value \\(&lt;\\) 0.05, sample size \\(&gt;\\) 30)\nConsider the appropriateness of AI for the task at hand.\n\nRequires judgment that takes time to develop\n\nConsider taking DATA 101: Foundations of AI!"
+  },
+  {
+    "objectID": "data100_wk14mon.html#building-new-tools",
+    "href": "data100_wk14mon.html#building-new-tools",
+    "title": "DATA 100",
+    "section": "Building new tools",
+    "text": "Building new tools\n\n\n\nSimon Couch was one of my former Reed students.\nHe has created R packages to support data analysis.\nStarting in late 2024, shifted focus to R packages that allow data scientists to engage with LLMs in R.\nThere is demand for people who like to program and want to experiment with ways to leverage LLMs for data work!"
+  },
+  {
+    "objectID": "data100_wk14mon.html#vibe-coding",
+    "href": "data100_wk14mon.html#vibe-coding",
+    "title": "DATA 100",
+    "section": "Vibe coding",
+    "text": "Vibe coding\n\nVibe coding is where an AI tool generates code based on prompts from a person.\nImportant skills to develop:\n\nAbility to review and debug the AI generated code.\nAbility to prompt the AI tool for better code.\nA strong understanding of what you want the AI code to produce.\n\nDon’t let it take you down the wrong rabbit hole.\n\nTaste! Don’t produce AI slop (i.e., generic, vanilla graphs)."
+  },
+  {
+    "objectID": "data100_wk14mon.html#vibe-coding-1",
+    "href": "data100_wk14mon.html#vibe-coding-1",
+    "title": "DATA 100",
+    "section": "Vibe coding",
+    "text": "Vibe coding\nThe new paradigm of coding work:\n\nFrom “The AI Coding Trap” by Chris Loy"
+  },
+  {
+    "objectID": "data100_wk14mon.html#ai-driven-engineering",
+    "href": "data100_wk14mon.html#ai-driven-engineering",
+    "title": "DATA 100",
+    "section": "AI-Driven Engineering",
+    "text": "AI-Driven Engineering\nLoy defines two different types of coding with AI tools:\n\n“AI-driven engineering: employing best practices, foregrounding human understanding of the code, moving slowly to make development sustainable.”\n\n\n“Vibe coding: throwing caution to the wind and implementing at speed, sacrificing understanding for delivery velocity, hitting an eventual wall of unsalvageable, messy code.”\n\n\nNote: We will still use the more common term of “vibe coding” but will advocate for “vibe coding + human review + iteration”."
+  },
+  {
+    "objectID": "data100_wk14mon.html#setting-up-pipelines-for-engaging-with-llms-in-a-structured-way-and-using-the-model-output",
+    "href": "data100_wk14mon.html#setting-up-pipelines-for-engaging-with-llms-in-a-structured-way-and-using-the-model-output",
+    "title": "DATA 100",
+    "section": "Setting up pipelines for engaging with LLMs in a structured way and using the model output",
+    "text": "Setting up pipelines for engaging with LLMs in a structured way and using the model output\n\nThe ellmer package is great for this!\nAsking LLMs to output responses into a dataframe so they are easier to analyze.\nImportant skills to develop:\n\nAbility to evaluate the AI output.\nAbility to engage with an LLM in R and not just via chatbots."
+  },
+  {
+    "objectID": "data100_wk14mon.html#increasing-efficiency-by-incorporating-ai-into-time-intensive-steps-of-the-research-process.",
+    "href": "data100_wk14mon.html#increasing-efficiency-by-incorporating-ai-into-time-intensive-steps-of-the-research-process.",
+    "title": "DATA 100",
+    "section": "Increasing efficiency by incorporating AI into time-intensive steps of the research process.",
+    "text": "Increasing efficiency by incorporating AI into time-intensive steps of the research process.\n\nExample:\n\nDetecting dance movements in children\n\nImportant skills to develop:\n\nUnderstanding what steps AI can actually speed up.\nComparing the AI output to the human output."
+  },
+  {
+    "objectID": "data100_wk03wed.html#announcements",
+    "href": "data100_wk03wed.html#announcements",
     "title": "DATA 100",
     "section": "Announcements",
-    "text": "Announcements\n\nRemember that the code in your problem sets should be your own.\nLoad the relevant packages at the top of the Quarto document.\n\n\n\nlibrary(tidyverse)\nlibrary(moderndive)\n\n\nGoals for Today\n\n\n\nModels beyond linear regression\nModeling & Ethics: Algorithmic bias\nQuantifying uncertainty\n\n\n\nSampling variability\nSampling distributions"
+    "text": "Announcements\n\n\nCode a Valentine: Feb 10th, Taylor 212\n\n\nGoals for Today\n\n\n\nConsider measures for summarizing quantitative data\n\nCenter\nSpread/variability\n\nConsider measures for summarizing categorical data\n\n\n\nDefine data wrangling\nLearn to use functions in the dplyr package to summarize and wrangle data"
   },
   {
-    "objectID": "data100_wk08mon.html#integrity-of-data-and-methods",
-    "href": "data100_wk08mon.html#integrity-of-data-and-methods",
+    "objectID": "data100_wk03wed.html#load-necessary-packages",
+    "href": "data100_wk03wed.html#load-necessary-packages",
     "title": "DATA 100",
-    "section": "Integrity of Data and Methods",
-    "text": "Integrity of Data and Methods\n\n“The ethical statistical practitioner seeks to understand and mitigate known or suspected limitations, defects, or biases in the data or methods and communicates potential impacts on the interpretation, conclusions, recommendations, decisions, or other results of statistical practices.”\n\n\n“For models and algorithms designed to inform or implement decisions repeatedly, develops and/or implements plans to validate assumptions and assess performance over time, as needed. Considers criteria and mitigation plans for model or algorithm failure and retirement.”"
+    "section": "Load Necessary Packages",
+    "text": "Load Necessary Packages\n\n\n\n\n\ndplyr is part of the tidyverse collection of data science packages.\n\n# Load necessary packages\nlibrary(tidyverse)"
   },
   {
-    "objectID": "data100_wk08mon.html#sampling-distribution-of-a-statistic",
-    "href": "data100_wk08mon.html#sampling-distribution-of-a-statistic",
+    "objectID": "data100_wk03wed.html#import-the-data",
+    "href": "data100_wk03wed.html#import-the-data",
     "title": "DATA 100",
-    "section": "Sampling Distribution of a Statistic",
-    "text": "Sampling Distribution of a Statistic\nSteps to Construct an (Approximate) Sampling Distribution:\n\nDecide on a sample size, \\(n\\).\nRandomly select a sample of size \\(n\\) from the population.\nCompute the sample statistic.\nPut the sample back in.\nRepeat Steps 2 - 4 many (1000+) times."
+    "section": "Import the Data",
+    "text": "Import the Data\n\njuly_2019 &lt;- read_csv(\"data/july_2019.csv\")\n\n# Inspect the data\nglimpse(july_2019)\n\nRows: 192\nColumns: 8\n$ DateTime  &lt;chr&gt; \"07/04/2019 12:00:00 AM\", \"07/04/2019 12:15:00 AM\", \"07/04/2…\n$ Day       &lt;chr&gt; \"Thursday\", \"Thursday\", \"Thursday\", \"Thursday\", \"Thursday\", …\n$ Date      &lt;date&gt; 2019-07-04, 2019-07-04, 2019-07-04, 2019-07-04, 2019-07-04,…\n$ Time      &lt;time&gt; 00:00:00, 00:15:00, 00:30:00, 00:45:00, 01:00:00, 01:15:00,…\n$ Total     &lt;dbl&gt; 2, 3, 2, 0, 3, 2, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, …\n$ Westbound &lt;dbl&gt; 2, 3, 1, 0, 2, 2, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, …\n$ Eastbound &lt;dbl&gt; 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, …\n$ Occasion  &lt;chr&gt; \"Fourth of July\", \"Fourth of July\", \"Fourth of July\", \"Fourt…"
   },
   {
-    "objectID": "data100_wk08mon.html#sampling-distribution-of-a-statistic-1",
-    "href": "data100_wk08mon.html#sampling-distribution-of-a-statistic-1",
+    "objectID": "data100_wk03wed.html#summarizing-data",
+    "href": "data100_wk03wed.html#summarizing-data",
     "title": "DATA 100",
-    "section": "Sampling Distribution of a Statistic",
-    "text": "Sampling Distribution of a Statistic\n\n\n\n\n\n\n\n\n\n\n\n\nCenter? Shape?\nSpread?\n\nStandard error = standard deviation of the statistic\n\n\n\n\nWhat happens to the center/spread/shape as we increase the sample size?\nWhat happens to the center/spread/shape if the true parameter changes?"
+    "section": "Summarizing Data",
+    "text": "Summarizing Data\nHard to do by eyeballing a spreadsheet with many rows!\n\n\n\n\n\n\nDateTime\nDay\nDate\nTime\nTotal\nWestbound\nEastbound\nOccasion\n\n\n\n\n07/04/2019 06:00:00 AM\nThursday\n2019-07-04\n06:00:00\n1\n1\n0\nFourth of July\n\n\n07/04/2019 06:15:00 AM\nThursday\n2019-07-04\n06:15:00\n4\n0\n4\nFourth of July\n\n\n07/04/2019 06:30:00 AM\nThursday\n2019-07-04\n06:30:00\n9\n1\n8\nFourth of July\n\n\n07/04/2019 06:45:00 AM\nThursday\n2019-07-04\n06:45:00\n5\n0\n5\nFourth of July\n\n\n07/04/2019 07:00:00 AM\nThursday\n2019-07-04\n07:00:00\n3\n3\n0\nFourth of July\n\n\n07/04/2019 07:15:00 AM\nThursday\n2019-07-04\n07:15:00\n2\n0\n2\nFourth of July\n\n\n07/04/2019 07:30:00 AM\nThursday\n2019-07-04\n07:30:00\n5\n2\n3\nFourth of July\n\n\n07/04/2019 07:45:00 AM\nThursday\n2019-07-04\n07:45:00\n2\n0\n2\nFourth of July"
+  },
+  {
+    "objectID": "data100_wk03wed.html#summarizing-data-visually",
+    "href": "data100_wk03wed.html#summarizing-data-visually",
+    "title": "DATA 100",
+    "section": "Summarizing Data Visually",
+    "text": "Summarizing Data Visually\n\n\n\n\n\n\n\n\n\n\n\n\n\nFor a quantitative variable, want to answer:\n\nWhat is an average value?\nWhat is the trend/shape of the variable?\nHow much variation is there from case to case?\n\n\n\nNeed to learn key summary statistics: Numerical values computed based on the observed cases."
+  },
+  {
+    "objectID": "data100_wk03wed.html#measures-of-center",
+    "href": "data100_wk03wed.html#measures-of-center",
+    "title": "DATA 100",
+    "section": "Measures of Center",
+    "text": "Measures of Center\n\n\nMean: Average of all the observations\n\n\\(n\\) = Number of cases (sample size)\n\\(x_i\\) = value of the i-th observation\nDenote by \\(\\bar{x}\\)\n\n\\[\n\\bar{x}  = \\frac{1}{n} \\sum_{i = 1}^n x_i\n\\]\n\n# Test out on first 6 values\nhead(july_2019$Total)\n\n[1] 2 3 2 0 3 2\n\n\n\nCompute with a dplyr function:\n\nsummarize(july_2019, mean_bikes = mean(Total))\n\n# A tibble: 1 × 1\n  mean_bikes\n       &lt;dbl&gt;\n1       17.1"
+  },
+  {
+    "objectID": "data100_wk03wed.html#measures-of-center-1",
+    "href": "data100_wk03wed.html#measures-of-center-1",
+    "title": "DATA 100",
+    "section": "Measures of Center",
+    "text": "Measures of Center\n\n\nMedian: Middle value\n\nHalf of the data falls below the median\nDenote by \\(m\\)\nIf \\(n\\) is even, then it is the average of the middle two values\n\n\n# Test out on first 6 values\nhead(july_2019$Total)\n\n[1] 2 3 2 0 3 2\n\n\n\nCompute with a dplyr function:\n\nsummarize(july_2019, median_bikes = median(Total))\n\n# A tibble: 1 × 1\n  median_bikes\n         &lt;dbl&gt;\n1           11"
+  },
+  {
+    "objectID": "data100_wk03wed.html#measures-of-center-2",
+    "href": "data100_wk03wed.html#measures-of-center-2",
+    "title": "DATA 100",
+    "section": "Measures of Center",
+    "text": "Measures of Center\n\n\nWhy is the mean larger than the median?\n\nsummarize(july_2019, mean_bikes = mean(Total),\n          median_bikes = median(Total))\n\n# A tibble: 1 × 2\n  mean_bikes median_bikes\n       &lt;dbl&gt;        &lt;dbl&gt;\n1       17.1           11"
+  },
+  {
+    "objectID": "data100_wk03wed.html#computing-measures-of-center-by-groups",
+    "href": "data100_wk03wed.html#computing-measures-of-center-by-groups",
+    "title": "DATA 100",
+    "section": "Computing Measures of Center by Groups",
+    "text": "Computing Measures of Center by Groups\nQuestion: Were there more bikes, on average, for Fourth of July or for the normal Thursday?"
+  },
+  {
+    "objectID": "data100_wk03wed.html#computing-measures-of-center-by-groups-1",
+    "href": "data100_wk03wed.html#computing-measures-of-center-by-groups-1",
+    "title": "DATA 100",
+    "section": "Computing Measures of Center by Groups",
+    "text": "Computing Measures of Center by Groups\nHandy dplyr function: group_by()\n\njuly_2019_grouped &lt;- group_by(july_2019, Occasion)\njuly_2019_grouped\n\n# A tibble: 192 × 8\n# Groups:   Occasion [2]\n   DateTime            Day   Date       Time  Total Westbound Eastbound Occasion\n   &lt;chr&gt;               &lt;chr&gt; &lt;date&gt;     &lt;tim&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   \n 1 07/04/2019 12:00:0… Thur… 2019-07-04 00:00     2         2         0 Fourth …\n 2 07/04/2019 12:15:0… Thur… 2019-07-04 00:15     3         3         0 Fourth …\n 3 07/04/2019 12:30:0… Thur… 2019-07-04 00:30     2         1         1 Fourth …\n 4 07/04/2019 12:45:0… Thur… 2019-07-04 00:45     0         0         0 Fourth …\n 5 07/04/2019 01:00:0… Thur… 2019-07-04 01:00     3         2         1 Fourth …\n 6 07/04/2019 01:15:0… Thur… 2019-07-04 01:15     2         2         0 Fourth …\n 7 07/04/2019 01:30:0… Thur… 2019-07-04 01:30     1         1         0 Fourth …\n 8 07/04/2019 01:45:0… Thur… 2019-07-04 01:45     0         0         0 Fourth …\n 9 07/04/2019 02:00:0… Thur… 2019-07-04 02:00     0         0         0 Fourth …\n10 07/04/2019 02:15:0… Thur… 2019-07-04 02:15     0         0         0 Fourth …\n# ℹ 182 more rows"
+  },
+  {
+    "objectID": "data100_wk03wed.html#computing-measures-of-center-by-groups-2",
+    "href": "data100_wk03wed.html#computing-measures-of-center-by-groups-2",
+    "title": "DATA 100",
+    "section": "Computing Measures of Center by Groups",
+    "text": "Computing Measures of Center by Groups\n\n\nCompute summary statistics on the grouped data frame:\n\njuly_2019_grouped &lt;- group_by(july_2019, Occasion)\nsummarize(july_2019_grouped,\n          mean_bikes = mean(Total),\n          median_bikes = median(Total))\n\n# A tibble: 2 × 3\n  Occasion        mean_bikes median_bikes\n  &lt;chr&gt;                &lt;dbl&gt;        &lt;dbl&gt;\n1 Fourth of July        10.0          9  \n2 Normal Thursday       24.2         14.5"
+  },
+  {
+    "objectID": "data100_wk03wed.html#chaining-dplyr-operations",
+    "href": "data100_wk03wed.html#chaining-dplyr-operations",
+    "title": "DATA 100",
+    "section": "Chaining dplyr Operations",
+    "text": "Chaining dplyr Operations\n\n\nInstead of:\n\njuly_2019_grouped &lt;- group_by(july_2019, Occasion)\nsummarize(july_2019_grouped,\n          mean_bikes = mean(Total),\n          median_bikes = median(Total))\n\n# A tibble: 2 × 3\n  Occasion        mean_bikes median_bikes\n  &lt;chr&gt;                &lt;dbl&gt;        &lt;dbl&gt;\n1 Fourth of July        10.0          9  \n2 Normal Thursday       24.2         14.5\n\n\n\nUse the pipe:\n\njuly_2019 %&gt;%\n  group_by(Occasion) %&gt;%\n  summarize(mean_bikes = mean(Total),\n          median_bikes = median(Total))\n\n# A tibble: 2 × 3\n  Occasion        mean_bikes median_bikes\n  &lt;chr&gt;                &lt;dbl&gt;        &lt;dbl&gt;\n1 Fourth of July        10.0          9  \n2 Normal Thursday       24.2         14.5\n\n\n\n\n\nWhy pipe?\n\n\n\n\nYou can also use |&gt;, which is newer and often referred to as the “base R pipe.”"
+  },
+  {
+    "objectID": "data100_wk03wed.html#measures-of-variability",
+    "href": "data100_wk03wed.html#measures-of-variability",
+    "title": "DATA 100",
+    "section": "Measures of Variability",
+    "text": "Measures of Variability\n\nWant a statistic that captures how much observations deviate from the mean\n\n\n\n\nFind how much each observation deviates from the mean.\nCompute the average of the deviations.\n\n\\[\n\\frac{1}{n} \\sum_{i = 1}^n (x_i - \\bar{x})\n\\]\n\n\n# Test out on first 6 values\nhead(july_2019$Total)\n\n[1] 2 3 2 0 3 2\n\n\n\n\nProblem?"
+  },
+  {
+    "objectID": "data100_wk03wed.html#measures-of-variability-1",
+    "href": "data100_wk03wed.html#measures-of-variability-1",
+    "title": "DATA 100",
+    "section": "Measures of Variability",
+    "text": "Measures of Variability\n\nWant a statistic that captures how much observations deviate from the mean\n\n\n\nHere is my NEW proposal:\n\nFind how much each observation deviates from the mean.\nCompute the average of the squared deviations.\n\n\n\n# Test out on first 6 values\nhead(july_2019$Total)\n\n[1] 2 3 2 0 3 2"
+  },
+  {
+    "objectID": "data100_wk03wed.html#measures-of-variability-2",
+    "href": "data100_wk03wed.html#measures-of-variability-2",
+    "title": "DATA 100",
+    "section": "Measures of Variability",
+    "text": "Measures of Variability\n\nWant a statistic that captures how much observations deviate from the mean\n\n\n\nHere is my ACTUAL formula:\n\nFind how much each observation deviates from the mean.\nCompute the (nearly) average of the squared deviations.\nCalled sample variance \\(s^2\\).\n\n\\[\ns^2 = \\frac{1}{n - 1} \\sum_{i = 1}^n (x_i - \\bar{x})^2\n\\]\n\nCompute with a dplyr function:\n\nsummarize(july_2019, var_bikes = var(Total))\n\n# A tibble: 1 × 1\n  var_bikes\n      &lt;dbl&gt;\n1      454."
+  },
+  {
+    "objectID": "data100_wk03wed.html#measures-of-variability-3",
+    "href": "data100_wk03wed.html#measures-of-variability-3",
+    "title": "DATA 100",
+    "section": "Measures of Variability",
+    "text": "Measures of Variability\n\nWant a statistic that captures how much observations deviate from the mean\n\n\n\n\nFind how much each observation deviates from the mean.\nCompute the (nearly) average of the squared deviations.\nCalled sample variance \\(s^2\\).\nThe square root of the sample variance is called the sample standard deviation \\(s\\).\n\n\\[\ns = \\sqrt{\\frac{1}{n - 1} \\sum_{i = 1}^n (x_i - \\bar{x})^2}\n\\]\n\nCompute with a dplyr function:\n\nsummarize(july_2019, var_bikes = var(Total),\n          sd_bikes = sd(Total))\n\n# A tibble: 1 × 2\n  var_bikes sd_bikes\n      &lt;dbl&gt;    &lt;dbl&gt;\n1      454.     21.3"
+  },
+  {
+    "objectID": "data100_wk03wed.html#measures-of-variability-4",
+    "href": "data100_wk03wed.html#measures-of-variability-4",
+    "title": "DATA 100",
+    "section": "Measures of Variability",
+    "text": "Measures of Variability\n\n\n\nIn addition to the sample standard deviation and the sample variance, there is the sample interquartile range (IQR):\n\n\\[\n\\mbox{IQR} = \\mbox{Q}_3 - \\mbox{Q}_1\n\\]\n\nCompute with a dplyr function:\n\nsummarize(july_2019, iqr_bikes = IQR(Total))\n\n# A tibble: 1 × 1\n  iqr_bikes\n      &lt;dbl&gt;\n1        16"
+  },
+  {
+    "objectID": "data100_wk03wed.html#comparing-measures-of-variability",
+    "href": "data100_wk03wed.html#comparing-measures-of-variability",
+    "title": "DATA 100",
+    "section": "Comparing Measures of Variability",
+    "text": "Comparing Measures of Variability\n\nWhich is more robust to outliers, the IQR or \\(s\\)?\nWhich is more commonly used, the IQR or \\(s\\)?\n\n\njuly_2019 %&gt;%\n  group_by(Occasion) %&gt;%\nsummarize(sd_bikes = sd(Total),\n          iqr_bikes = IQR(Total))\n\n# A tibble: 2 × 3\n  Occasion        sd_bikes iqr_bikes\n  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;\n1 Fourth of July      8.30      14  \n2 Normal Thursday    27.2       27.2"
+  },
+  {
+    "objectID": "data100_wk03wed.html#return-to-the-buffalo-bills-data",
+    "href": "data100_wk03wed.html#return-to-the-buffalo-bills-data",
+    "title": "DATA 100",
+    "section": "Return to the Buffalo Bills Data",
+    "text": "Return to the Buffalo Bills Data\n\n# Pull in the dataset on all teams\nnfl_outcomes_2018 &lt;- read_csv(\"https://data.scorenetwork.org/data/nfl_mahomes_era_games.csv\")\n\n# Focus on just the Bills\nbuf &lt;- filter(nfl_outcomes_2018, home_team == \"BUF\" | away_team == \"BUF\") %&gt;%\n  mutate(where = if_else(home_team == \"BUF\", \"home\", \"away\"))"
+  },
+  {
+    "objectID": "data100_wk03wed.html#frequency-table",
+    "href": "data100_wk03wed.html#frequency-table",
+    "title": "DATA 100",
+    "section": "Frequency Table",
+    "text": "Frequency Table\n\n\n\ncount(buf, game_type)\n\n# A tibble: 4 × 2\n  game_type     n\n  &lt;chr&gt;     &lt;int&gt;\n1 CON           1\n2 DIV           4\n3 REG          98\n4 WC            5\n\n\n\n\nggplot(data = buf, \n       mapping = aes(x = game_type)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "data100_wk03wed.html#frequency-table-1",
+    "href": "data100_wk03wed.html#frequency-table-1",
+    "title": "DATA 100",
+    "section": "Frequency Table",
+    "text": "Frequency Table\n\n\n\ncount(buf, game_type)\n\n# A tibble: 4 × 2\n  game_type     n\n  &lt;chr&gt;     &lt;int&gt;\n1 CON           1\n2 DIV           4\n3 REG          98\n4 WC            5\n\n\n\n\ncount(buf, game_type, sort = TRUE)\n\n# A tibble: 4 × 2\n  game_type     n\n  &lt;chr&gt;     &lt;int&gt;\n1 REG          98\n2 WC            5\n3 DIV           4\n4 CON           1"
+  },
+  {
+    "objectID": "data100_wk03wed.html#geom_col-example",
+    "href": "data100_wk03wed.html#geom_col-example",
+    "title": "DATA 100",
+    "section": "geom_col() Example",
+    "text": "geom_col() Example\n\n\nggplot(data = game_counts,\n       mapping = aes(x = game_type,\n                     y = n)) +\n  geom_col()"
+  },
+  {
+    "objectID": "data100_wk03wed.html#contingency-table",
+    "href": "data100_wk03wed.html#contingency-table",
+    "title": "DATA 100",
+    "section": "Contingency Table",
+    "text": "Contingency Table\n\n\n\ncount(buf, where, game_outcome)\n\n# A tibble: 4 × 3\n  where game_outcome     n\n  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt;\n1 away             0    29\n2 away             1    22\n3 home             0    17\n4 home             1    40\n\n\n\n\nggplot(data = buf, \n    mapping = aes(x = where, \n                  fill = as.factor(game_outcome))) +\n  geom_bar(position = \"dodge\") +\n  theme(legend.position = \"bottom\")"
+  },
+  {
+    "objectID": "data100_wk03wed.html#conditional-proportions",
+    "href": "data100_wk03wed.html#conditional-proportions",
+    "title": "DATA 100",
+    "section": "Conditional Proportions",
+    "text": "Conditional Proportions\n\n\n\nBeyond raw counts, we often summarize categorical data with conditional proportions.\n\nEspecially when looking for relationships!\n\n\n\n\nggplot(data = buf, \n    mapping = aes(x = where, \n                  fill = as.factor(game_outcome))) +\n  geom_bar(position = \"fill\") +\n  theme(legend.position = \"bottom\")"
+  },
+  {
+    "objectID": "data100_wk03wed.html#conditional-proportions-1",
+    "href": "data100_wk03wed.html#conditional-proportions-1",
+    "title": "DATA 100",
+    "section": "Conditional Proportions",
+    "text": "Conditional Proportions\n\n\n\ncount(buf, where, game_outcome)\n\n# A tibble: 4 × 3\n  where game_outcome     n\n  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt;\n1 away             0    29\n2 away             1    22\n3 home             0    17\n4 home             1    40\n\n\n\n\ncount(buf, where, game_outcome) %&gt;%\n  group_by(where) %&gt;%\n  mutate(prop = n/sum(n))\n\n# A tibble: 4 × 4\n# Groups:   where [2]\n  where game_outcome     n  prop\n  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;\n1 away             0    29 0.569\n2 away             1    22 0.431\n3 home             0    17 0.298\n4 home             1    40 0.702\n\n\n\n\nThe dplyr function mutate() adds new column(s) to your data frame."
+  },
+  {
+    "objectID": "data100_wk03wed.html#conditional-proportions-2",
+    "href": "data100_wk03wed.html#conditional-proportions-2",
+    "title": "DATA 100",
+    "section": "Conditional Proportions",
+    "text": "Conditional Proportions\n\n\n\ncount(buf, where, game_outcome) %&gt;%\n  group_by(where) %&gt;%\n  mutate(prop = n/sum(n))\n\n# A tibble: 4 × 4\n# Groups:   where [2]\n  where game_outcome     n  prop\n  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;\n1 away             0    29 0.569\n2 away             1    22 0.431\n3 home             0    17 0.298\n4 home             1    40 0.702\n\n\n\n\ncount(buf, where, game_outcome) %&gt;%\n  group_by(game_outcome) %&gt;%\n  mutate(prop = n/sum(n))\n\n# A tibble: 4 × 4\n# Groups:   game_outcome [2]\n  where game_outcome     n  prop\n  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;\n1 away             0    29 0.630\n2 away             1    22 0.355\n3 home             0    17 0.370\n4 home             1    40 0.645\n\n\n\nHow does the interpretation change based on which variable you condition on?"
+  },
+  {
+    "objectID": "data100_wk03wed.html#dplyr-for-data-wrangling",
+    "href": "data100_wk03wed.html#dplyr-for-data-wrangling",
+    "title": "DATA 100",
+    "section": "dplyr for Data Wrangling",
+    "text": "dplyr for Data Wrangling\n\nSeven common wrangling verbs:\n\nsummarize()\ncount()\n\nmutate()\n\nselect()\nfilter()\narrange()\n---_join()\n\nOne action:\n\ngroup_by()"
+  },
+  {
+    "objectID": "data100_wk03wed.html#return-to-mutate",
+    "href": "data100_wk03wed.html#return-to-mutate",
+    "title": "DATA 100",
+    "section": "Return to mutate()",
+    "text": "Return to mutate()\n\n\nAdd new variables\n\ncount(buf, where, game_outcome) %&gt;%\n  group_by(where) %&gt;%\n  mutate(prop = n/sum(n))\n\n# A tibble: 4 × 4\n# Groups:   where [2]\n  where game_outcome     n  prop\n  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;\n1 away             0    29 0.569\n2 away             1    22 0.431\n3 home             0    17 0.298\n4 home             1    40 0.702\n\n\n\nModify existing variables\n\nclass(buf$game_outcome)\n\n[1] \"numeric\"\n\nbuf &lt;- buf %&gt;%\n  mutate(game_outcome = as.factor(game_outcome))\nclass(buf$game_outcome)\n\n[1] \"factor\""
+  },
+  {
+    "objectID": "data100_wk03wed.html#select-extract-variables",
+    "href": "data100_wk03wed.html#select-extract-variables",
+    "title": "DATA 100",
+    "section": "select(): Extract variables",
+    "text": "select(): Extract variables\n\nbuf %&gt;%\n  select(where, game_outcome)\n\n# A tibble: 108 × 2\n   where game_outcome\n   &lt;chr&gt; &lt;fct&gt;       \n 1 away  1           \n 2 home  0           \n 3 away  0           \n 4 away  1           \n 5 home  1           \n 6 away  1           \n 7 away  1           \n 8 home  0           \n 9 home  0           \n10 away  0           \n# ℹ 98 more rows"
+  },
+  {
+    "objectID": "data100_wk03wed.html#motivation-for-filter",
+    "href": "data100_wk03wed.html#motivation-for-filter",
+    "title": "DATA 100",
+    "section": "Motivation for filter()",
+    "text": "Motivation for filter()\n\ncount(nfl_outcomes_2018, home_team, sort = TRUE)\n\n# A tibble: 33 × 2\n   home_team     n\n   &lt;chr&gt;     &lt;int&gt;\n 1 KC           64\n 2 BUF          57\n 3 SF           55\n 4 BAL          54\n 5 NO           54\n 6 TB           54\n 7 GB           53\n 8 HOU          53\n 9 LA           53\n10 PHI          53\n# ℹ 23 more rows"
+  },
+  {
+    "objectID": "data100_wk03wed.html#filter-extract-cases",
+    "href": "data100_wk03wed.html#filter-extract-cases",
+    "title": "DATA 100",
+    "section": "filter(): Extract cases",
+    "text": "filter(): Extract cases\n\nbuf &lt;- filter(nfl_outcomes_2018, home_team == \"BUF\" | away_team == \"BUF\") \ncount(buf, home_team, sort = TRUE)\n\n# A tibble: 29 × 2\n   home_team     n\n   &lt;chr&gt;     &lt;int&gt;\n 1 BUF          57\n 2 MIA           6\n 3 NE            6\n 4 NYJ           6\n 5 KC            5\n 6 TEN           3\n 7 BAL           2\n 8 HOU           2\n 9 ARI           1\n10 CHI           1\n# ℹ 19 more rows\n\n# Why is this useful?\nbuf &lt;- buf %&gt;%\n  mutate(where = if_else(home_team == \"BUF\", \"home\", \"away\"))\ncount(buf, where)\n\n# A tibble: 2 × 2\n  where     n\n  &lt;chr&gt; &lt;int&gt;\n1 away     51\n2 home     57"
+  },
+  {
+    "objectID": "data100_wk03wed.html#arrange-sort-the-cases",
+    "href": "data100_wk03wed.html#arrange-sort-the-cases",
+    "title": "DATA 100",
+    "section": "arrange(): Sort the cases",
+    "text": "arrange(): Sort the cases\n\n\n\nbuf %&gt;%\n  arrange(score_diff) %&gt;%\n  select(home_team, away_team, home_score, away_score, score_diff)\n\n# A tibble: 108 × 5\n   home_team away_team home_score away_score score_diff\n   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;\n 1 MIA       BUF                0         35        -35\n 2 WAS       BUF                3         37        -34\n 3 BUF       CHI                9         41        -32\n 4 NYJ       BUF               10         41        -31\n 5 DEN       BUF               19         48        -29\n 6 NE        BUF                9         38        -29\n 7 NYJ       BUF               17         45        -28\n 8 BUF       IND               15         41        -26\n 9 NO        BUF                6         31        -25\n10 CHI       BUF               13         35        -22\n# ℹ 98 more rows\n\n\n\n\nbuf %&gt;%\n  arrange(desc(score_diff)) %&gt;%\n  select(home_team, away_team, home_score, away_score, score_diff)\n\n# A tibble: 108 × 5\n   home_team away_team home_score away_score score_diff\n   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;\n 1 BAL       BUF               47          3         44\n 2 BUF       HOU               40          0         40\n 3 BUF       PIT               38          3         35\n 4 BUF       TEN               41          7         34\n 5 IND       BUF               37          5         32\n 6 BUF       MIA               56         26         30\n 7 BUF       NE                47         17         30\n 8 BUF       LV                38         10         28\n 9 BUF       MIA               48         20         28\n10 TEN       BUF               42         16         26\n# ℹ 98 more rows"
+  },
+  {
+    "objectID": "data100_wk03wed.html#reminders",
+    "href": "data100_wk03wed.html#reminders",
+    "title": "DATA 100",
+    "section": "Reminders",
+    "text": "Reminders\n\nCode a Valentine: Feb 10th, Taylor 212"
+  },
+  {
+    "objectID": "data100_wk12mon.html#announcements",
+    "href": "data100_wk12mon.html#announcements",
+    "title": "DATA 100",
+    "section": "Announcements",
+    "text": "Announcements\n\nNo lab on Friday this week.\n\nInstead you will spend Wednesday’s class time (3 - 4:20pm) as lab time:\n\nLecture quiz (covering today and last Monday)\nPractice\nStart problem set 8.\n\n\nGoals for Today\n\n\n\nRecap multiple linear regression\nCheck assumptions for linear regression inference\n\n\n\nHypothesis testing for linear regression\nEstimation and prediction inference for linear regression"
+  },
+  {
+    "objectID": "data100_wk12mon.html#multiple-linear-regression",
+    "href": "data100_wk12mon.html#multiple-linear-regression",
+    "title": "DATA 100",
+    "section": "Multiple Linear Regression",
+    "text": "Multiple Linear Regression\nLinear regression is a flexible class of models that allow for:\n\n\nBoth quantitative and categorical explanatory variables.\nMultiple explanatory variables.\nCurved relationships between the response variable and the explanatory variable.\nBUT the response variable is quantitative.\n\n\n\nIn this week’s p-set you will explore the importance of controlling for key explanatory variables when making inferences about relationships."
+  },
+  {
+    "objectID": "data100_wk12mon.html#assumptions-independence",
+    "href": "data100_wk12mon.html#assumptions-independence",
+    "title": "DATA 100",
+    "section": "Assumptions – Independence",
+    "text": "Assumptions – Independence\nFor ease of visualization, let’s assume a simple linear regression model:\n\\[\\begin{align*}\ny = \\beta_o + \\beta_1 x_1 + \\epsilon \\quad \\mbox{   where   } \\quad \\epsilon \\overset{\\color{black}{\\mbox{ind}}}{\\sim}N\\left(0, \\sigma_{\\epsilon} \\right)\n\\end{align*}\\]\nAssumption: The cases are independent of each other.\nQuestion: How do we check this assumption?\n\nConsider how the data were collected."
+  },
+  {
+    "objectID": "data100_wk12mon.html#assumptions-normality",
+    "href": "data100_wk12mon.html#assumptions-normality",
+    "title": "DATA 100",
+    "section": "Assumptions – Normality",
+    "text": "Assumptions – Normality\n\\[\n\\begin{align*}\ny = \\beta_o + \\beta_1 x_1 + \\epsilon \\quad \\mbox{   where   } \\quad \\epsilon \\overset{\\mbox{ind}}{\\sim}\\color{black}{N} \\left(0, \\sigma_{\\epsilon} \\right)\n\\end{align*}\n\\]\nAssumption: The errors are normally distributed.\n\n\nQuestion: How do we check this assumption?\n\nRecall the residual: \\(e = y - \\hat{y}\\)\n\n\nQQ-plot: Plot the residuals against the quantiles of a normal distribution!"
+  },
+  {
+    "objectID": "data100_wk12mon.html#assumptions-mean-of-errors",
+    "href": "data100_wk12mon.html#assumptions-mean-of-errors",
+    "title": "DATA 100",
+    "section": "Assumptions – Mean of Errors",
+    "text": "Assumptions – Mean of Errors\n\\[\\begin{align*}\ny = \\beta_o + \\beta_1 x_1 + \\epsilon \\quad \\mbox{   where   } \\quad \\epsilon \\overset{\\mbox{ind}}{\\sim}N\\left(\\color{black}{0}, \\sigma_{\\epsilon} \\right)\n\\end{align*}\\]\nAssumption: The points will, on average, fall on the line.\nQuestion: How do we check this assumption?\n\nIf you use the Method of Least Squares, then you don’t have to check.\nIt will be true by construction:\n\\[\n\\sum e = 0\n\\]"
+  },
+  {
+    "objectID": "data100_wk12mon.html#assumptions-constant-variance",
+    "href": "data100_wk12mon.html#assumptions-constant-variance",
+    "title": "DATA 100",
+    "section": "Assumptions – Constant Variance",
+    "text": "Assumptions – Constant Variance\n\\[\\begin{align*}\ny = \\beta_o + \\beta_1 x_1 + \\epsilon \\quad \\mbox{   where   } \\quad \\epsilon \\overset{\\mbox{ind}}{\\sim}N\\left(0, \\color{black}{\\sigma_{\\epsilon}} \\right)\n\\end{align*}\\]\nAssumption: The variability in the errors is constant.\nQuestion: How do we check this assumption?\n\nOne option: Scatterplot"
+  },
+  {
+    "objectID": "data100_wk12mon.html#assumptions-constant-variance-1",
+    "href": "data100_wk12mon.html#assumptions-constant-variance-1",
+    "title": "DATA 100",
+    "section": "Assumptions – Constant Variance",
+    "text": "Assumptions – Constant Variance\n\\[\\begin{align*}\ny = \\beta_o + \\beta_1 x_1 + \\epsilon \\quad \\mbox{   where   } \\quad \\epsilon \\overset{\\mbox{ind}}{\\sim}N\\left(0, \\color{black}{\\sigma_{\\epsilon}} \\right)\n\\end{align*}\\]\nAssumption: The variability in the errors is constant.\nQuestion: How do we check this assumption?\nBetter option (especially when have more than 1 explanatory variable): Residual Plot"
+  },
+  {
+    "objectID": "data100_wk12mon.html#covid-and-candle-ratings",
+    "href": "data100_wk12mon.html#covid-and-candle-ratings",
+    "title": "DATA 100",
+    "section": "COVID and Candle Ratings",
+    "text": "COVID and Candle Ratings\nShe posted all her data and code to GitHub and I did some light wrangling so that we could answer the question:\n\nDo we have evidence that early in the pandemic the association between time and Amazon rating varies by whether or not a candle is scented and in particular, that scented candles have a steeper decline in ratings over time?\n\nIn other words, do we have evidence that we should allow the slopes to vary?\n\n\nggplot(data = all,\n       mapping = aes(x = Date,\n                     y = Rating,\n                     color = Type)) +\n  geom_point(alpha = 0.4) +\n  geom_smooth(method = lm) +\n  theme(legend.position = \"bottom\")"
+  },
+  {
+    "objectID": "data100_wk12mon.html#assumption-checking-in-r",
+    "href": "data100_wk12mon.html#assumption-checking-in-r",
+    "title": "DATA 100",
+    "section": "Assumption Checking in R",
+    "text": "Assumption Checking in R\nThe R package we will use to check model assumptions is called gglm and was written by one of my former Reed students (and now Reed faculty member), Grayson White.\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(gglm)\n\n\nFirst need to fit the model:\n\nglimpse(all)\n\nRows: 610\nColumns: 3\n$ Date   &lt;date&gt; 2020-01-21, 2020-01-22, 2020-01-23, 2020-01-24, 2020-01-25, 20…\n$ Rating &lt;dbl&gt; 4.500000, 3.909091, 4.857143, 4.461538, 4.800000, 4.416667, 4.6…\n$ Type   &lt;chr&gt; \"scented\", \"scented\", \"scented\", \"scented\", \"scented\", \"scented…\n\nmod &lt;- lm(Rating ~ Date * Type, data = all)"
+  },
+  {
+    "objectID": "data100_wk12mon.html#our-example",
+    "href": "data100_wk12mon.html#our-example",
+    "title": "DATA 100",
+    "section": "Our Example",
+    "text": "Our Example\n\nget_regression_table(mod)\n\n# A tibble: 3 × 7\n  term            estimate std_error statistic p_value lower_ci upper_ci\n  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n1 intercept         36.0       6.54       5.50       0   23.1     48.8  \n2 Date              -0.002     0         -4.93       0   -0.002   -0.001\n3 Type: unscented    0.833     0.063     13.2        0    0.709    0.957\n\n\nRow 3:\n\\[\nH_o: \\beta_2 = 0 \\quad \\mbox{given Date is already in the model}\n\\] \\[\nH_a: \\beta_2 \\neq 0 \\quad \\mbox{given Date is already in the model}\n\\]\nTest Statistic:\n\\[\nt = \\frac{\\hat{\\beta}_2 - 0}{SE(\\hat{\\beta}_2)} = \\frac{0.831 - 0}{0.063} = 13.2\n\\]\n\nwith p-value: Probability of the test statistic being 13.2 or larger AND -13.2 or smaller.\nBecause the p-value is essentially equal to zero, there is evidence that including whether or not the candle is scented adds useful information to the linear regression model for Amazon ratings that already controls for date."
+  },
+  {
+    "objectID": "data100_wk12mon.html#two-types-of-predictions",
+    "href": "data100_wk12mon.html#two-types-of-predictions",
+    "title": "DATA 100",
+    "section": "Two Types of Predictions",
+    "text": "Two Types of Predictions\n\n\nConfidence Interval for the Mean Response\n→ Defined at given values of the explanatory variables\n→ Estimates the average response\n→ Centered at \\(\\hat{y}\\)\n→ Smaller SE\n\nPrediction Interval for an Individual Response\n→ Defined at given values of the explanatory variables\n→ Predicts the response of a single, new observation\n→ Centered at \\(\\hat{y}\\)\n→ Larger SE"
+  },
+  {
+    "objectID": "data100_wk12mon.html#reminders",
+    "href": "data100_wk12mon.html#reminders",
+    "title": "DATA 100",
+    "section": "Reminders",
+    "text": "Reminders\n\nNo lab on Friday this week.\n\nInstead you will spend Wednesday’s class time (3 - 4:20pm) as lab time:\n\nLecture quiz (covering today and last Monday)\nPractice\nStart problem set 8."
+  },
+  {
+    "objectID": "data100_wk10mon.html#announcements",
+    "href": "data100_wk10mon.html#announcements",
+    "title": "DATA 100",
+    "section": "Announcements",
+    "text": "Announcements\n\n\n🎉 We are now accepting data science student fellow applications for DATA 100.\n\nAbout 10-12 hours of work per week.\n\nPrimary responsibilities: Work on a collaborative, mentored data or AI project, attend relevant meetings, and participate in DCDS ambassador activities.\n\n\n\nGoals for Today\n\n\n\nCoding goals (DATA 100 & beyond)\nAdvice on the next data science class\n\n\n\nHypothesis testing example\nDecisions in a hypothesis test\n\nTypes of errors\n\nThe power of a hypothesis test"
+  },
+  {
+    "objectID": "data100_wk10mon.html#that-next-data-science-class",
+    "href": "data100_wk10mon.html#that-next-data-science-class",
+    "title": "DATA 100",
+    "section": "That Next Data Science Class",
+    "text": "That Next Data Science Class\n\nBut first… Common Question: How should I describe my post-DATA 100 coding abilities?\nPotential Answer: You have learned how to write code to analyze data. This includes visualization (ggplot2), data wrangling (dplyr), data importation (readr), modeling, inference (infer) and communication (with Quarto).\nFollow-up Question: So what coding is there left to learn?\nAnswer: Learning how to program. This includes topics such as control flow, iteration, creating functions, and vectorization. Also, learning how to use an AI tool effectively and ethically to support your code generation and how to debug AI code suggestions."
+  },
+  {
+    "objectID": "data100_wk10mon.html#that-next-coding-class",
+    "href": "data100_wk10mon.html#that-next-coding-class",
+    "title": "DATA 100",
+    "section": "That Next Coding Class",
+    "text": "That Next Coding Class\n\n\nCSCI 187. Creative Computing & Society: Computing, Creativity & the Social Good.\nCSCI 203. Introduction to Computer Science.\nANOP 203. Introduction to Programming for Business Analytics."
+  },
+  {
+    "objectID": "data100_wk10mon.html#that-next-modeling-course",
+    "href": "data100_wk10mon.html#that-next-modeling-course",
+    "title": "DATA 100",
+    "section": "That Next Modeling Course",
+    "text": "That Next Modeling Course\n\n\nSTAT 217. Statistics II\nCSCI 349. Applied Machine Learning.\nANOP 330. Predictive Analytics: Machine Learning Fundamentals for Business.\nMany of the upper-level stats courses are modeling courses (but they do have pre-reqs)."
+  },
+  {
+    "objectID": "data100_wk10mon.html#that-next-visualization-course",
+    "href": "data100_wk10mon.html#that-next-visualization-course",
+    "title": "DATA 100",
+    "section": "That Next Visualization Course",
+    "text": "That Next Visualization Course\n\n\nSTAT 230. Data Visualization & Computing\nANOP 270. Data Visualization for Business Analytics."
+  },
+  {
+    "objectID": "data100_wk10mon.html#hypothesis-testing-framework",
+    "href": "data100_wk10mon.html#hypothesis-testing-framework",
+    "title": "DATA 100",
+    "section": "Hypothesis Testing Framework",
+    "text": "Hypothesis Testing Framework\n\nSet-up hypotheses:\n\nBe able to express in words and in terms of parameters.\n\nCollect data.\nAssume \\(H_o\\) is correct.\nCompute a p-value to quantify the likelihood of the sample results using a test statistic.\nDraw a conclusion about the alternative hypothesis."
+  },
+  {
+    "objectID": "data100_wk10mon.html#thoughts-on-power",
+    "href": "data100_wk10mon.html#thoughts-on-power",
+    "title": "DATA 100",
+    "section": "Thoughts on Power",
+    "text": "Thoughts on Power\n\nWhat aspects of the test did the player actually have control over?\nWhy is it easier to set \\(\\alpha\\) than to set \\(\\beta\\) or power?\nConsidering power before collecting data is very important!\nThe danger of under-powered studies\n\nEX: Turning right at a red light"
+  },
+  {
+    "objectID": "data100_wk10mon.html#reminders",
+    "href": "data100_wk10mon.html#reminders",
+    "title": "DATA 100",
+    "section": "Reminders:",
+    "text": "Reminders:\n\n\n🎉 We are now accepting data science student fellow applications for DATA 100.\n\nAbout 10-12 hours of work per week.\n\nPrimary responsibilities: Work on a collaborative, mentored data or AI project, attend relevant meetings, and participate in DCDS ambassador activities."
+  },
+  {
+    "objectID": "data100_wk09wed.html#announcements",
+    "href": "data100_wk09wed.html#announcements",
+    "title": "DATA 100",
+    "section": "Announcements",
+    "text": "Announcements\n\n🎉 We are now accepting data science student fellow applications for DATA 100.\n\nAbout 10-12 hours of work per week.\n\nPrimary responsibilities: Work on a collaborative, mentored data or AI project, attend relevant meetings, and participate in DCDS ambassador activities.\n\n\nGoals for Today\n\n\n\nLearn the language of hypothesis testing (including p-values)\nPractice framing research questions in terms of hypotheses\n\n\n\nLearn how to generate null distributions\nUse infer to conduct hypothesis tests in R"
+  },
+  {
+    "objectID": "data100_wk09wed.html#generating-null-distributions",
+    "href": "data100_wk09wed.html#generating-null-distributions",
+    "title": "DATA 100",
+    "section": "Generating Null Distributions",
+    "text": "Generating Null Distributions\nFor the sample proportion in the ESP Example:\n\n\nSteps:\n\nFlip unfair coin (prop heads = 0.25) 329 times.\nCompute proportion of heads.\nRepeat 1 and 2 many times.\n\n\n\nR code using the infer package:\n\nlibrary(infer)\n\n# Construct data frame of sample results\nesp &lt;- data.frame(guess = c(rep(\"correct\", 106),\n                            rep(\"incorrect\",\n                                329 - 106)))\n\n# Generate Null Distribution\nnull_dist &lt;- esp %&gt;%\n  specify(response = guess, success = \"correct\") %&gt;%\n  hypothesize(null = \"point\", p = 0.25) %&gt;%\n  generate(reps = 1000, type = \"draw\") %&gt;%\n  calculate(stat =\"prop\")\n\n\n\n\nFor different variable types, we will need to move beyond using a coin to conceptualize the null distribution."
+  },
+  {
+    "objectID": "data100_wk09wed.html#hypothesis-testing-in-r",
+    "href": "data100_wk09wed.html#hypothesis-testing-in-r",
+    "title": "DATA 100",
+    "section": "Hypothesis Testing in R",
+    "text": "Hypothesis Testing in R\n\n\n# Compute observed test statistic\ntest_stat &lt;- esp %&gt;%\n  specify(response = guess, success = \"correct\") %&gt;%\n  calculate(stat =\"prop\")\ntest_stat\n\n\nResponse: guess (factor)\n# A tibble: 1 × 1\n   stat\n  &lt;dbl&gt;\n1 0.322\n\ntest_stat &lt;- 106/329\ntest_stat\n\n[1] 0.3221884"
+  },
+  {
+    "objectID": "data100_wk09wed.html#hypothesis-testing-in-r-1",
+    "href": "data100_wk09wed.html#hypothesis-testing-in-r-1",
+    "title": "DATA 100",
+    "section": "Hypothesis Testing in R",
+    "text": "Hypothesis Testing in R\n\n\n# Graph null distribution with test statistic\nvisualize(null_dist) +\n  geom_vline(xintercept = test_stat,\n             color = \"deeppink\", size = 2)"
+  },
+  {
+    "objectID": "data100_wk09wed.html#hypothesis-testing-in-r-2",
+    "href": "data100_wk09wed.html#hypothesis-testing-in-r-2",
+    "title": "DATA 100",
+    "section": "Hypothesis Testing in R",
+    "text": "Hypothesis Testing in R\n\n\n# Compute p-value\np_value &lt;- null_dist %&gt;%\n  get_p_value(obs_stat = test_stat,\n              direction = \"right\")\np_value\n\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1       0\n\n\n\nInterpretation of \\(p\\)-value: If ESP doesn’t exist, the probability of observing 106 or more correct identifications out of 329 trials equals 0.\n\n\nConclusion: Since it is so unlikely (i.e., practically impossible) to have seen such unusual results if ESP doesn’t exist, these data suggest that ESP does exist."
+  },
+  {
+    "objectID": "data100_wk09wed.html#penguins-example",
+    "href": "data100_wk09wed.html#penguins-example",
+    "title": "DATA 100",
+    "section": "Penguins Example",
+    "text": "Penguins Example\nLet’s return to the penguins data and ask if flipper length varies, on average, by the sex of the penguin.\nResearch Question: Does flipper length differ by sex?\nResponse Variable:\n\nExplanatory Variable:\n\nStatistical Hypotheses:"
+  },
+  {
+    "objectID": "data100_wk09wed.html#exploratory-data-analysis",
+    "href": "data100_wk09wed.html#exploratory-data-analysis",
+    "title": "DATA 100",
+    "section": "Exploratory Data Analysis",
+    "text": "Exploratory Data Analysis\n\n\nlibrary(palmerpenguins)\n\npenguins %&gt;%\n  drop_na(sex) %&gt;%\nggplot(mapping = aes(x = sex,\n                     y = flipper_length_mm)) +\n  geom_boxplot()"
+  },
+  {
+    "objectID": "data100_wk09wed.html#two-sided-hypothesis-test",
+    "href": "data100_wk09wed.html#two-sided-hypothesis-test",
+    "title": "DATA 100",
+    "section": "Two-Sided Hypothesis Test",
+    "text": "Two-Sided Hypothesis Test\n\n\n# Compute observed test statistic\ntest_stat &lt;- penguins %&gt;%\n  drop_na(sex) %&gt;%\n  specify(flipper_length_mm ~ sex) %&gt;%\n  calculate(stat =\"diff in means\",\n            order = c(\"female\", \"male\"))\ntest_stat\n\n\nResponse: flipper_length_mm (numeric)\nExplanatory: sex (factor)\n# A tibble: 1 × 1\n   stat\n  &lt;dbl&gt;\n1 -7.14\n\n\n\n# Generate null distribution \nnull_dist &lt;- penguins %&gt;%\n  drop_na(sex) %&gt;%\n  specify(flipper_length_mm ~ sex) %&gt;%\n  hypothesize(null = \"independence\") %&gt;%\n  generate(reps = 1000, type = \"permute\") %&gt;%\n  calculate(stat =\"diff in means\",\n            order = c(\"female\", \"male\"))"
+  },
+  {
+    "objectID": "data100_wk09wed.html#two-sided-hypothesis-test-1",
+    "href": "data100_wk09wed.html#two-sided-hypothesis-test-1",
+    "title": "DATA 100",
+    "section": "Two-Sided Hypothesis Test",
+    "text": "Two-Sided Hypothesis Test\n\n\n# Graph null distribution with test statistic\nvisualize(null_dist) +\n  geom_vline(xintercept = test_stat$stat,\n             color = \"deeppink\", size = 2) +\n  geom_vline(xintercept = abs(test_stat$stat),\n             color = \"deeppink\", size = 2)"
+  },
+  {
+    "objectID": "data100_wk09wed.html#two-sided-hypothesis-test-2",
+    "href": "data100_wk09wed.html#two-sided-hypothesis-test-2",
+    "title": "DATA 100",
+    "section": "Two-Sided Hypothesis Test",
+    "text": "Two-Sided Hypothesis Test\n\n\n# Compute p-value\np_value &lt;- null_dist %&gt;%\n  get_p_value(obs_stat = test_stat,\n              direction = \"two_sided\")\np_value\n\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1       0\n\n\nInterpretation of \\(p\\)-value: If the mean flipper length does not differ by sex in the population, the probability of observing a difference in the sample means of at least 7.142316 mm (in magnitude) is equal to 0.\nConclusion: These data represent evidence that flipper length does vary by sex."
+  },
+  {
+    "objectID": "data100_wk09wed.html#hypothesis-testing-framework-3",
+    "href": "data100_wk09wed.html#hypothesis-testing-framework-3",
+    "title": "DATA 100",
+    "section": "Hypothesis Testing Framework",
+    "text": "Hypothesis Testing Framework\n\nSet-up hypotheses:\n\nBe able to express in words and in terms of parameters.\n\nCollect data.\nAssume \\(H_o\\) is correct.\nCompute a p-value to quantify the likelihood of the sample results using a test statistic."
+  },
+  {
+    "objectID": "data100_wk09wed.html#reminders",
+    "href": "data100_wk09wed.html#reminders",
+    "title": "DATA 100",
+    "section": "Reminders:",
+    "text": "Reminders:\n\n\n🎉 We are now accepting data science student fellow applications for DATA 100.\n\nAbout 10-12 hours of work per week.\n\nPrimary responsibilities: Work on a collaborative, mentored data or AI project, attend relevant meetings, and participate in DCDS ambassador activities."
+  },
+  {
+    "objectID": "data100_wk02mon.html#announcements",
+    "href": "data100_wk02mon.html#announcements",
+    "title": "DATA 100",
+    "section": "Announcements",
+    "text": "Announcements\n\nClass in full swing:\n\nOffice hours:\n\nMine: Tuesdays 2:30 - 4pm, Wednesdays 2-3pm, Taylor 212\nRebecca: Mondays and Wednesdays 4:30 - 6pm, Taylor 210\nGeneral Data Science Office Hours\n\nThe first problem set is due at noon on Thursday in Gradescope."
+  },
+  {
+    "objectID": "data100_wk02mon.html#day-2-goals",
+    "href": "data100_wk02mon.html#day-2-goals",
+    "title": "DATA 100",
+    "section": "Day 2 Goals",
+    "text": "Day 2 Goals\n\nDiscuss course structure & goals (lecture, lab, office hours, assessments…)\nPresent important course policies (engagement, code of conduct, chatGPT, …)\nGet started in RStudio and with Quarto documents"
+  },
+  {
+    "objectID": "data100_wk02mon.html#data-analysis-workflow",
+    "href": "data100_wk02mon.html#data-analysis-workflow",
+    "title": "DATA 100",
+    "section": "Data Analysis Workflow",
+    "text": "Data Analysis Workflow"
+  },
+  {
+    "objectID": "data100_wk02mon.html#forms-of-assessment",
+    "href": "data100_wk02mon.html#forms-of-assessment",
+    "title": "DATA 100",
+    "section": "Forms of Assessment",
+    "text": "Forms of Assessment\n\n\n\nWeekly quizzes:\n\nAddress important concepts covered.\nFind out what is still confusing.\nCan drop one quiz grade.\n\n\n\n\nWeekly problem sets:\n\nPractice concepts.\nTime during lab will be devoted to starting the next p-set.\nCan drop one p-set grade and get 4 extension days.\n\n\n\n\n\n\nExams:\n\nFormat: In-class Exam & Oral Exam.\nWill have two Mid-terms and Final."
+  },
+  {
+    "objectID": "data100_wk02mon.html#forms-of-assessment-1",
+    "href": "data100_wk02mon.html#forms-of-assessment-1",
+    "title": "DATA 100",
+    "section": "Forms of Assessment",
+    "text": "Forms of Assessment\n\nParticipation/Engagement:\n\nIn lecture and lab.\nBy March 6th, must:\n\nAttend at least one office hour.\nPost at least two messages on Slack.\n\nBy the end of the semester, must attend at least one data science event and reflect on the experience in this form"
+  },
+  {
+    "objectID": "data100_wk02mon.html#this-weeks-assessments",
+    "href": "data100_wk02mon.html#this-weeks-assessments",
+    "title": "DATA 100",
+    "section": "This Week’s Assessments",
+    "text": "This Week’s Assessments\n\nTake the weekly quiz in lab.\nTurn in Problem Set 01 by noon on Thursday.\nWill receive Problem Set 02 in lab."
+  },
+  {
+    "objectID": "data100_wk02mon.html#professor-mcconville-in-spring-2023",
+    "href": "data100_wk02mon.html#professor-mcconville-in-spring-2023",
+    "title": "DATA 100",
+    "section": "Professor McConville in Spring 2023",
+    "text": "Professor McConville in Spring 2023\n\n\n\nBBC Science Focus"
+  },
+  {
+    "objectID": "data100_wk02mon.html#professor-mcconville-after-spring-2023",
+    "href": "data100_wk02mon.html#professor-mcconville-after-spring-2023",
+    "title": "DATA 100",
+    "section": "Professor McConville after Spring 2023",
+    "text": "Professor McConville after Spring 2023\n\n\n\n\n\nRicardo IV Tamayo\n\n\n\nGenerative AI Engagements\n\nWent to looooots of talks on generative AI\nTalked to ChatGPT, Gemini, and others\nAttended a workshop on data analysis with AI"
+  },
+  {
+    "objectID": "data100_wk02mon.html#chatgpt",
+    "href": "data100_wk02mon.html#chatgpt",
+    "title": "DATA 100",
+    "section": "",
+    "text": "ChatGPT Strengths\n\nImpressive but dangerous automated data analysis.\n\nHard to determine if its conclusions are based on the data at hand or the data the large language model was built on.\n\n\n\nDATA 100 Goals\n\nLearn that data analysis is a humanistic endeavor where context drives the data analysis process.\n\nStill need to be careful about biases and data quality.\n\n\n\n\n\n\nA personalized tutor (especially for coding) that tells you the answers.\n\n\n\nFor you to learn to code and to think statistically.\n\nThe DATA 100 Teaching Team will help support that learning.\n\n\n\n\n\n\nInstantly generating written blurbs.\n\n\n\nFor you to learn how to communicate about your data work and data ethics."
+  },
+  {
+    "objectID": "data100_wk02mon.html#my-view-on-the-current-role-of-chatgpt-in-data-work",
+    "href": "data100_wk02mon.html#my-view-on-the-current-role-of-chatgpt-in-data-work",
+    "title": "DATA 100",
+    "section": "My View on the (Current) Role of ChatGPT in Data Work",
+    "text": "My View on the (Current) Role of ChatGPT in Data Work\n\nTo generate code to realize fully conceived ideas that aren’t novel or advanced.\nSeasoned data scientist can/should:\n\nVerify the correctness of the code.\nIdentify any assumptions or defaults ChatGPT is employing.\nRun the code in R and draw conclusions based on the data to reduce risk of perpetuating biases that exist in ChatGPT’s training data.\n\nSo, ChatGPT might be useful to you near the end of DATA 100 but will be detrimental to your learning during most of DATA 100."
+  },
+  {
+    "objectID": "data100_wk02mon.html#ai-policy-for-data-100",
+    "href": "data100_wk02mon.html#ai-policy-for-data-100",
+    "title": "DATA 100",
+    "section": "AI Policy for DATA 100",
+    "text": "AI Policy for DATA 100\nWe are going to take a two-pronged approach to AI in the course:\n\n(No AI) For the first 13 weeks of the course, you are not to use AI tools. Therefore, we expect that all work students submit during this period will be their own. This includes code, written work, and oral assessments. During this period, we specifically forbid the use of ChatGPT or any other generative artificial intelligence (AI) tools at all stages of the work process, including preliminary ones, unless the assignment specifically states that it is allowed.\n(AI) Near the end of the course, we will address the question of how AI can help in data work. At that point in the semester, you are free to experiment with various AI tools on assignments.\n\nIn lecture and on individual assignments, we will make it clear which approach to AI students can take. If it is unclear, make sure to ask."
+  },
+  {
+    "objectID": "data100_wk02mon.html#engagement",
+    "href": "data100_wk02mon.html#engagement",
+    "title": "DATA 100",
+    "section": "Engagement",
+    "text": "Engagement\n\n\n \n\n\n\n\n\n\nBeing actively present is key.\n\n\n\nDuring lecture and lab, remove distractions.\n\nWhen we are on our computers, close email, social media, news, etc.\nIf you will be using a computer/tablet for taking notes, please sit in the second row starting next lecture so as not to distract classmates.\nHide your phone.\n\nI have high expectations but know that all of you (regardless of your stats or computing background) have the ability to meet them."
+  },
+  {
+    "objectID": "data100_wk02mon.html#code-of-conduct",
+    "href": "data100_wk02mon.html#code-of-conduct",
+    "title": "DATA 100",
+    "section": "Code of Conduct",
+    "text": "Code of Conduct\n\nWe expect all members of DATA 100 to make participation a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.\n\n\nWe expect everyone to act and interact in ways that contribute to an open, welcoming diverse, inclusive, and healthy community of learners. You can contribute to a positive learning environment by demonstrating empathy and kindness, being respectful of differing viewpoints and experiences, and giving and gracefully accepting constructive feedback.\n\nThis Code of Conduct is adapted from the Contributor Covenant, version 2.0."
+  },
+  {
+    "objectID": "data100_wk02mon.html#ways-to-get-support",
+    "href": "data100_wk02mon.html#ways-to-get-support",
+    "title": "DATA 100",
+    "section": "Ways to Get Support",
+    "text": "Ways to Get Support\n\nAttend, attend, attend when you don’t feel ill\nParticipate in the DATA 100 Slack Workspace\nCome to Office Hours\nCreate study groups with your classmates\n\nDon’t know anyone in the course?\n\nUse Slack or lab to each to know other students in the course!"
+  },
+  {
+    "objectID": "data100_wk02mon.html#language-r-this-r-that-q-what",
+    "href": "data100_wk02mon.html#language-r-this-r-that-q-what",
+    "title": "DATA 100",
+    "section": "Language: R-This, R-That, Q-What?",
+    "text": "Language: R-This, R-That, Q-What?\n\n\n\n \n\n\nR is the name of the programming language.\n\n\n\nRStudio is the pretty interface and is hosted on a Posit Cloud Server.\n\n\n\n\nQuarto is the type of file where we will record all of our work (code, output, narrative)."
+  },
+  {
+    "objectID": "data100_wk02mon.html#main-components-of-rstudio-lay-out",
+    "href": "data100_wk02mon.html#main-components-of-rstudio-lay-out",
+    "title": "DATA 100",
+    "section": "Main Components of RStudio Lay-Out",
+    "text": "Main Components of RStudio Lay-Out"
+  },
+  {
+    "objectID": "data100_wk02mon.html#reminders",
+    "href": "data100_wk02mon.html#reminders",
+    "title": "DATA 100",
+    "section": "Reminders",
+    "text": "Reminders\n\nClass in full swing:\n\nOffice hours:\n\nMine: Tuesdays 2:30 - 4pm, Wednesdays 2-3pm, Taylor 212\nRebecca: Mondays and Wednesdays 4:30 - 6pm, Taylor 210\nGeneral Data Science Office Hours\n\nThe first problem set is due at noon on Thursday in Gradescope."
+  },
+  {
+    "objectID": "data100_wk07wed.html#announcements",
+    "href": "data100_wk07wed.html#announcements",
+    "title": "DATA 100",
+    "section": "Announcements",
+    "text": "Announcements\n\nRemember: Spring Break next week\nFriday: Optional lab, no quiz. But will receive a problem set (due on the Thursday after break).\n\nGoals for Today\n\n\n\nModeling guidance\n\n\n\nA bit of conceptual review"
+  },
+  {
+    "objectID": "data100_wk07wed.html#questions",
+    "href": "data100_wk07wed.html#questions",
+    "title": "DATA 100",
+    "section": "Questions",
+    "text": "Questions\n\nWhen do I put on the hats?\nWhat is \\(\\epsilon\\) (epsilon)?"
+  },
+  {
+    "objectID": "data100_wk07wed.html#model-building-guidance-1",
+    "href": "data100_wk07wed.html#model-building-guidance-1",
+    "title": "DATA 100",
+    "section": "Model Building Guidance",
+    "text": "Model Building Guidance\nShouldn’t we always include the interaction term?\n\n\nGuiding Principle: Occam’s Razor for Modeling\n\n“All other things being equal, simpler models are to be preferred over complex ones.” – ModernDive\n\nGuiding Principle: Consider your modeling goals.\n\n\nThe equal slopes model allows us to control for the intensity of the light and then see the impact of being in the early or late timing groups on the number of flowers.\n\n\n\n\n\n\n\n\n\n\n\n\n\nLater in the course will learn statistical procedures for determining whether or not a particular term should be included in the model."
+  },
+  {
+    "objectID": "data100_wk07wed.html#name-those-functions",
+    "href": "data100_wk07wed.html#name-those-functions",
+    "title": "DATA 100",
+    "section": "Name Those Functions",
+    "text": "Name Those Functions\n\n\nUnwrangled Data\n\nfull\n\n# A tibble: 6 × 4\n  species island bill_length_mm sex   \n  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; \n1 Gentoo  Biscoe           45.2 female\n2 Gentoo  Biscoe           50.5 male  \n3 Adelie  Biscoe           38.8 male  \n4 Gentoo  Biscoe           50.5 male  \n5 Adelie  Dream            37.5 &lt;NA&gt;  \n6 Gentoo  Biscoe           45.3 female\n\n\n\nWrangled Data\n\nwrangled\n\n# A tibble: 5 × 4\n  species island bill_length_mm sex   \n  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; \n1 Gentoo  Biscoe           45.2 female\n2 Gentoo  Biscoe           50.5 male  \n3 Adelie  Biscoe           38.8 male  \n4 Gentoo  Biscoe           50.5 male  \n5 Gentoo  Biscoe           45.3 female\n\n\n\nWhat dplyr function(s) did I use to wrangle these data?"
+  },
+  {
+    "objectID": "data100_wk07wed.html#name-those-functions-1",
+    "href": "data100_wk07wed.html#name-those-functions-1",
+    "title": "DATA 100",
+    "section": "Name Those Functions",
+    "text": "Name Those Functions\n\n\nUnwrangled Data\n\nfull\n\n# A tibble: 6 × 4\n  species island bill_length_mm sex   \n  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; \n1 Gentoo  Biscoe           45.2 female\n2 Gentoo  Biscoe           50.5 male  \n3 Adelie  Biscoe           38.8 male  \n4 Gentoo  Biscoe           50.5 male  \n5 Adelie  Dream            37.5 &lt;NA&gt;  \n6 Gentoo  Biscoe           45.3 female\n\n\n\nWrangled Data\n\nwrangled\n\n# A tibble: 4 × 5\n# Groups:   island [2]\n  species island sex        n     p\n  &lt;fct&gt;   &lt;fct&gt;  &lt;fct&gt;  &lt;int&gt; &lt;dbl&gt;\n1 Adelie  Biscoe male       1   0.2\n2 Adelie  Dream  &lt;NA&gt;       1   1  \n3 Gentoo  Biscoe female     2   0.4\n4 Gentoo  Biscoe male       2   0.4\n\n\n\nWhat dplyr function(s) did I use to wrangle these data?"
+  },
+  {
+    "objectID": "data100_wk07wed.html#name-those-functions-2",
+    "href": "data100_wk07wed.html#name-those-functions-2",
+    "title": "DATA 100",
+    "section": "Name Those Functions",
+    "text": "Name Those Functions\n\n\nUnwrangled Data\n\nfull\n\n# A tibble: 6 × 4\n  species island bill_length_mm sex   \n  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; \n1 Gentoo  Biscoe           45.2 female\n2 Gentoo  Biscoe           50.5 male  \n3 Adelie  Biscoe           38.8 male  \n4 Gentoo  Biscoe           50.5 male  \n5 Adelie  Dream            37.5 &lt;NA&gt;  \n6 Gentoo  Biscoe           45.3 female\n\n\n\nWrangled Data\n\nwrangled\n\n# A tibble: 2 × 2\n  species island\n  &lt;fct&gt;   &lt;fct&gt; \n1 Adelie  Biscoe\n2 Adelie  Dream \n\n\n\nWhat dplyr function(s) did I use to wrangle these data?"
+  },
+  {
+    "objectID": "data100_wk07wed.html#name-those-functions-3",
+    "href": "data100_wk07wed.html#name-those-functions-3",
+    "title": "DATA 100",
+    "section": "Name Those Functions",
+    "text": "Name Those Functions\n\n\nUnwrangled Data\n\nfull\n\n# A tibble: 6 × 4\n  species island bill_length_mm sex   \n  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; \n1 Gentoo  Biscoe           45.2 female\n2 Gentoo  Biscoe           50.5 male  \n3 Adelie  Biscoe           38.8 male  \n4 Gentoo  Biscoe           50.5 male  \n5 Adelie  Dream            37.5 &lt;NA&gt;  \n6 Gentoo  Biscoe           45.3 female\n\n\n\nWrangled Data\n\nwrangled\n\n# A tibble: 1 × 1\n  mean_bill\n      &lt;dbl&gt;\n1      44.6\n\n\n\nWhat dplyr function(s) did I use to wrangle these data?"
+  },
+  {
+    "objectID": "data100_wk07wed.html#reminders",
+    "href": "data100_wk07wed.html#reminders",
+    "title": "DATA 100",
+    "section": "Reminders:",
+    "text": "Reminders:\n\nRemember: Spring Break next week\nFriday: Optional lab, no quiz. But will receive a problem set (due on the Thursday after break)."
   },
   {
     "objectID": "data100_wk04mon.html#announcements",
@@ -1127,634 +1799,60 @@
     "text": "Naming Wrangled Data\nShould I name my new dataframe ce or ce1? In other words, should I write over my original dataframe or should I save a new dataframe?\n\nMy answer:\n\nIs your new dataframe structurally different? If so, give it a new name.\nAre you removing values you will need for a future analysis within the same document? If so, give it a new name.\nAre you just adding to or cleaning the data? If so, then write over the original."
   },
   {
-    "objectID": "data100_wk07wed.html#announcements",
-    "href": "data100_wk07wed.html#announcements",
+    "objectID": "data100_wk08mon.html#announcements",
+    "href": "data100_wk08mon.html#announcements",
     "title": "DATA 100",
     "section": "Announcements",
-    "text": "Announcements\n\nRemember: Spring Break next week\nFriday: Optional lab, no quiz. But will receive a problem set (due on the Thursday after break).\n\nGoals for Today\n\n\n\nModeling guidance\n\n\n\nA bit of conceptual review"
+    "text": "Announcements\n\nRemember that the code in your problem sets should be your own.\nLoad the relevant packages at the top of the Quarto document.\n\n\n\nlibrary(tidyverse)\nlibrary(moderndive)\n\n\nGoals for Today\n\n\n\nModels beyond linear regression\nModeling & Ethics: Algorithmic bias\nQuantifying uncertainty\n\n\n\nSampling variability\nSampling distributions"
   },
   {
-    "objectID": "data100_wk07wed.html#questions",
-    "href": "data100_wk07wed.html#questions",
+    "objectID": "data100_wk08mon.html#integrity-of-data-and-methods",
+    "href": "data100_wk08mon.html#integrity-of-data-and-methods",
     "title": "DATA 100",
-    "section": "Questions",
-    "text": "Questions\n\nWhen do I put on the hats?\nWhat is \\(\\epsilon\\) (epsilon)?"
+    "section": "Integrity of Data and Methods",
+    "text": "Integrity of Data and Methods\n\n“The ethical statistical practitioner seeks to understand and mitigate known or suspected limitations, defects, or biases in the data or methods and communicates potential impacts on the interpretation, conclusions, recommendations, decisions, or other results of statistical practices.”\n\n\n“For models and algorithms designed to inform or implement decisions repeatedly, develops and/or implements plans to validate assumptions and assess performance over time, as needed. Considers criteria and mitigation plans for model or algorithm failure and retirement.”"
   },
   {
-    "objectID": "data100_wk07wed.html#model-building-guidance-1",
-    "href": "data100_wk07wed.html#model-building-guidance-1",
+    "objectID": "data100_wk08mon.html#sampling-distribution-of-a-statistic",
+    "href": "data100_wk08mon.html#sampling-distribution-of-a-statistic",
     "title": "DATA 100",
-    "section": "Model Building Guidance",
-    "text": "Model Building Guidance\nShouldn’t we always include the interaction term?\n\n\nGuiding Principle: Occam’s Razor for Modeling\n\n“All other things being equal, simpler models are to be preferred over complex ones.” – ModernDive\n\nGuiding Principle: Consider your modeling goals.\n\n\nThe equal slopes model allows us to control for the intensity of the light and then see the impact of being in the early or late timing groups on the number of flowers.\n\n\n\n\n\n\n\n\n\n\n\n\n\nLater in the course will learn statistical procedures for determining whether or not a particular term should be included in the model."
+    "section": "Sampling Distribution of a Statistic",
+    "text": "Sampling Distribution of a Statistic\nSteps to Construct an (Approximate) Sampling Distribution:\n\nDecide on a sample size, \\(n\\).\nRandomly select a sample of size \\(n\\) from the population.\nCompute the sample statistic.\nPut the sample back in.\nRepeat Steps 2 - 4 many (1000+) times."
   },
   {
-    "objectID": "data100_wk07wed.html#name-those-functions",
-    "href": "data100_wk07wed.html#name-those-functions",
+    "objectID": "data100_wk08mon.html#sampling-distribution-of-a-statistic-1",
+    "href": "data100_wk08mon.html#sampling-distribution-of-a-statistic-1",
     "title": "DATA 100",
-    "section": "Name Those Functions",
-    "text": "Name Those Functions\n\n\nUnwrangled Data\n\nfull\n\n# A tibble: 6 × 4\n  species island bill_length_mm sex   \n  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; \n1 Gentoo  Biscoe           45.2 female\n2 Gentoo  Biscoe           50.5 male  \n3 Adelie  Biscoe           38.8 male  \n4 Gentoo  Biscoe           50.5 male  \n5 Adelie  Dream            37.5 &lt;NA&gt;  \n6 Gentoo  Biscoe           45.3 female\n\n\n\nWrangled Data\n\nwrangled\n\n# A tibble: 5 × 4\n  species island bill_length_mm sex   \n  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; \n1 Gentoo  Biscoe           45.2 female\n2 Gentoo  Biscoe           50.5 male  \n3 Adelie  Biscoe           38.8 male  \n4 Gentoo  Biscoe           50.5 male  \n5 Gentoo  Biscoe           45.3 female\n\n\n\nWhat dplyr function(s) did I use to wrangle these data?"
+    "section": "Sampling Distribution of a Statistic",
+    "text": "Sampling Distribution of a Statistic\n\n\n\n\n\n\n\n\n\n\n\n\nCenter? Shape?\nSpread?\n\nStandard error = standard deviation of the statistic\n\n\n\n\nWhat happens to the center/spread/shape as we increase the sample size?\nWhat happens to the center/spread/shape if the true parameter changes?"
   },
   {
-    "objectID": "data100_wk07wed.html#name-those-functions-1",
-    "href": "data100_wk07wed.html#name-those-functions-1",
-    "title": "DATA 100",
-    "section": "Name Those Functions",
-    "text": "Name Those Functions\n\n\nUnwrangled Data\n\nfull\n\n# A tibble: 6 × 4\n  species island bill_length_mm sex   \n  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; \n1 Gentoo  Biscoe           45.2 female\n2 Gentoo  Biscoe           50.5 male  \n3 Adelie  Biscoe           38.8 male  \n4 Gentoo  Biscoe           50.5 male  \n5 Adelie  Dream            37.5 &lt;NA&gt;  \n6 Gentoo  Biscoe           45.3 female\n\n\n\nWrangled Data\n\nwrangled\n\n# A tibble: 4 × 5\n# Groups:   island [2]\n  species island sex        n     p\n  &lt;fct&gt;   &lt;fct&gt;  &lt;fct&gt;  &lt;int&gt; &lt;dbl&gt;\n1 Adelie  Biscoe male       1   0.2\n2 Adelie  Dream  &lt;NA&gt;       1   1  \n3 Gentoo  Biscoe female     2   0.4\n4 Gentoo  Biscoe male       2   0.4\n\n\n\nWhat dplyr function(s) did I use to wrangle these data?"
-  },
-  {
-    "objectID": "data100_wk07wed.html#name-those-functions-2",
-    "href": "data100_wk07wed.html#name-those-functions-2",
-    "title": "DATA 100",
-    "section": "Name Those Functions",
-    "text": "Name Those Functions\n\n\nUnwrangled Data\n\nfull\n\n# A tibble: 6 × 4\n  species island bill_length_mm sex   \n  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; \n1 Gentoo  Biscoe           45.2 female\n2 Gentoo  Biscoe           50.5 male  \n3 Adelie  Biscoe           38.8 male  \n4 Gentoo  Biscoe           50.5 male  \n5 Adelie  Dream            37.5 &lt;NA&gt;  \n6 Gentoo  Biscoe           45.3 female\n\n\n\nWrangled Data\n\nwrangled\n\n# A tibble: 2 × 2\n  species island\n  &lt;fct&gt;   &lt;fct&gt; \n1 Adelie  Biscoe\n2 Adelie  Dream \n\n\n\nWhat dplyr function(s) did I use to wrangle these data?"
-  },
-  {
-    "objectID": "data100_wk07wed.html#name-those-functions-3",
-    "href": "data100_wk07wed.html#name-those-functions-3",
-    "title": "DATA 100",
-    "section": "Name Those Functions",
-    "text": "Name Those Functions\n\n\nUnwrangled Data\n\nfull\n\n# A tibble: 6 × 4\n  species island bill_length_mm sex   \n  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; \n1 Gentoo  Biscoe           45.2 female\n2 Gentoo  Biscoe           50.5 male  \n3 Adelie  Biscoe           38.8 male  \n4 Gentoo  Biscoe           50.5 male  \n5 Adelie  Dream            37.5 &lt;NA&gt;  \n6 Gentoo  Biscoe           45.3 female\n\n\n\nWrangled Data\n\nwrangled\n\n# A tibble: 1 × 1\n  mean_bill\n      &lt;dbl&gt;\n1      44.6\n\n\n\nWhat dplyr function(s) did I use to wrangle these data?"
-  },
-  {
-    "objectID": "data100_wk07wed.html#reminders",
-    "href": "data100_wk07wed.html#reminders",
-    "title": "DATA 100",
-    "section": "Reminders:",
-    "text": "Reminders:\n\nRemember: Spring Break next week\nFriday: Optional lab, no quiz. But will receive a problem set (due on the Thursday after break)."
-  },
-  {
-    "objectID": "data100_wk02mon.html#announcements",
-    "href": "data100_wk02mon.html#announcements",
+    "objectID": "data100wk11mon.html#announcements",
+    "href": "data100wk11mon.html#announcements",
     "title": "DATA 100",
     "section": "Announcements",
-    "text": "Announcements\n\nClass in full swing:\n\nOffice hours:\n\nMine: Tuesdays 2:30 - 4pm, Wednesdays 2-3pm, Taylor 212\nRebecca: Mondays and Wednesdays 4:30 - 6pm, Taylor 210\nGeneral Data Science Office Hours\n\nThe first problem set is due at noon on Thursday in Gradescope."
+    "text": "Announcements\n\nExam this week:\n\nIn-class on Wed\nOral on Fri. (Sign-ups are in Slack.)\n\n\nGoals for Today\n\n\n\nDiscuss more random variable-based inference.\n\n\n\nCompare methods of inference."
   },
   {
-    "objectID": "data100_wk02mon.html#day-2-goals",
-    "href": "data100_wk02mon.html#day-2-goals",
+    "objectID": "data100wk11mon.html#data-example",
+    "href": "data100wk11mon.html#data-example",
     "title": "DATA 100",
-    "section": "Day 2 Goals",
-    "text": "Day 2 Goals\n\nDiscuss course structure & goals (lecture, lab, office hours, assessments…)\nPresent important course policies (engagement, code of conduct, chatGPT, …)\nGet started in RStudio and with Quarto documents"
+    "section": "Data Example",
+    "text": "Data Example\nWe have data on a random sub-sample of the 2010 American Community Survey. The American Community Survey is given every year to a random sample of US residents.\n\n# Libraries\nlibrary(tidyverse)\nlibrary(Lock5Data)\n\n# Data\ndata(ACS)\n# Focus on adults\nACS_adults &lt;- filter(ACS, Age &gt;= 18)\n\nglimpse(ACS_adults)\n\nRows: 10,000\nColumns: 9\n$ Sex             &lt;int&gt; 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, …\n$ Age             &lt;int&gt; 56, 59, 61, 40, 60, 74, 57, 41, 30, 43, 69, 68, 27, 67…\n$ Married         &lt;int&gt; 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, …\n$ Income          &lt;dbl&gt; 70.0, 1.4, 0.0, 60.0, 43.0, 0.0, 65.0, 0.0, 100.0, 100…\n$ HoursWk         &lt;int&gt; 40, 3, 12, 40, 40, 0, 45, 0, 55, 40, 0, 0, 10, 20, 60,…\n$ Race            &lt;chr&gt; \"Black\", \"White\", \"White\", \"White\", \"White\", \"Black\", …\n$ USCitizen       &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …\n$ HealthInsurance &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, …\n$ Language        &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …"
   },
   {
-    "objectID": "data100_wk02mon.html#data-analysis-workflow",
-    "href": "data100_wk02mon.html#data-analysis-workflow",
+    "objectID": "data100wk11mon.html#difference-in-proportions-1",
+    "href": "data100wk11mon.html#difference-in-proportions-1",
     "title": "DATA 100",
-    "section": "Data Analysis Workflow",
-    "text": "Data Analysis Workflow"
+    "section": "Difference in Proportions",
+    "text": "Difference in Proportions\nLet’s try to determine if there’s a relationship between US citizenship and marriage status.\n\n\n# Exploratory data analysis\nggplot(data = ACS_adults, \n       mapping = aes(x = factor(USCitizen),\n                     fill  = factor(Married))) +\n  geom_bar(position = \"fill\")\n\n\n\n\n\n\n\n\n\n\n\n# Sample size\nACS_adults %&gt;%\n  count(Married, USCitizen)\n\n\n  Married USCitizen    n\n1       0         0  270\n2       0         1 5072\n3       1         0  307\n4       1         1 4351"
   },
   {
-    "objectID": "data100_wk02mon.html#forms-of-assessment",
-    "href": "data100_wk02mon.html#forms-of-assessment",
+    "objectID": "data100wk11mon.html#difference-in-means-1",
+    "href": "data100wk11mon.html#difference-in-means-1",
     "title": "DATA 100",
-    "section": "Forms of Assessment",
-    "text": "Forms of Assessment\n\n\n\nWeekly quizzes:\n\nAddress important concepts covered.\nFind out what is still confusing.\nCan drop one quiz grade.\n\n\n\n\nWeekly problem sets:\n\nPractice concepts.\nTime during lab will be devoted to starting the next p-set.\nCan drop one p-set grade and get 4 extension days.\n\n\n\n\n\n\nExams:\n\nFormat: In-class Exam & Oral Exam.\nWill have two Mid-terms and Final."
-  },
-  {
-    "objectID": "data100_wk02mon.html#forms-of-assessment-1",
-    "href": "data100_wk02mon.html#forms-of-assessment-1",
-    "title": "DATA 100",
-    "section": "Forms of Assessment",
-    "text": "Forms of Assessment\n\nParticipation/Engagement:\n\nIn lecture and lab.\nBy March 6th, must:\n\nAttend at least one office hour.\nPost at least two messages on Slack.\n\nBy the end of the semester, must attend at least one data science event and reflect on the experience in this form"
-  },
-  {
-    "objectID": "data100_wk02mon.html#this-weeks-assessments",
-    "href": "data100_wk02mon.html#this-weeks-assessments",
-    "title": "DATA 100",
-    "section": "This Week’s Assessments",
-    "text": "This Week’s Assessments\n\nTake the weekly quiz in lab.\nTurn in Problem Set 01 by noon on Thursday.\nWill receive Problem Set 02 in lab."
-  },
-  {
-    "objectID": "data100_wk02mon.html#professor-mcconville-in-spring-2023",
-    "href": "data100_wk02mon.html#professor-mcconville-in-spring-2023",
-    "title": "DATA 100",
-    "section": "Professor McConville in Spring 2023",
-    "text": "Professor McConville in Spring 2023\n\n\n\nBBC Science Focus"
-  },
-  {
-    "objectID": "data100_wk02mon.html#professor-mcconville-after-spring-2023",
-    "href": "data100_wk02mon.html#professor-mcconville-after-spring-2023",
-    "title": "DATA 100",
-    "section": "Professor McConville after Spring 2023",
-    "text": "Professor McConville after Spring 2023\n\n\n\n\n\nRicardo IV Tamayo\n\n\n\nGenerative AI Engagements\n\nWent to looooots of talks on generative AI\nTalked to ChatGPT, Gemini, and others\nAttended a workshop on data analysis with AI"
-  },
-  {
-    "objectID": "data100_wk02mon.html#chatgpt",
-    "href": "data100_wk02mon.html#chatgpt",
-    "title": "DATA 100",
-    "section": "",
-    "text": "ChatGPT Strengths\n\nImpressive but dangerous automated data analysis.\n\nHard to determine if its conclusions are based on the data at hand or the data the large language model was built on.\n\n\n\nDATA 100 Goals\n\nLearn that data analysis is a humanistic endeavor where context drives the data analysis process.\n\nStill need to be careful about biases and data quality.\n\n\n\n\n\n\nA personalized tutor (especially for coding) that tells you the answers.\n\n\n\nFor you to learn to code and to think statistically.\n\nThe DATA 100 Teaching Team will help support that learning.\n\n\n\n\n\n\nInstantly generating written blurbs.\n\n\n\nFor you to learn how to communicate about your data work and data ethics."
-  },
-  {
-    "objectID": "data100_wk02mon.html#my-view-on-the-current-role-of-chatgpt-in-data-work",
-    "href": "data100_wk02mon.html#my-view-on-the-current-role-of-chatgpt-in-data-work",
-    "title": "DATA 100",
-    "section": "My View on the (Current) Role of ChatGPT in Data Work",
-    "text": "My View on the (Current) Role of ChatGPT in Data Work\n\nTo generate code to realize fully conceived ideas that aren’t novel or advanced.\nSeasoned data scientist can/should:\n\nVerify the correctness of the code.\nIdentify any assumptions or defaults ChatGPT is employing.\nRun the code in R and draw conclusions based on the data to reduce risk of perpetuating biases that exist in ChatGPT’s training data.\n\nSo, ChatGPT might be useful to you near the end of DATA 100 but will be detrimental to your learning during most of DATA 100."
-  },
-  {
-    "objectID": "data100_wk02mon.html#ai-policy-for-data-100",
-    "href": "data100_wk02mon.html#ai-policy-for-data-100",
-    "title": "DATA 100",
-    "section": "AI Policy for DATA 100",
-    "text": "AI Policy for DATA 100\nWe are going to take a two-pronged approach to AI in the course:\n\n(No AI) For the first 13 weeks of the course, you are not to use AI tools. Therefore, we expect that all work students submit during this period will be their own. This includes code, written work, and oral assessments. During this period, we specifically forbid the use of ChatGPT or any other generative artificial intelligence (AI) tools at all stages of the work process, including preliminary ones, unless the assignment specifically states that it is allowed.\n(AI) Near the end of the course, we will address the question of how AI can help in data work. At that point in the semester, you are free to experiment with various AI tools on assignments.\n\nIn lecture and on individual assignments, we will make it clear which approach to AI students can take. If it is unclear, make sure to ask."
-  },
-  {
-    "objectID": "data100_wk02mon.html#engagement",
-    "href": "data100_wk02mon.html#engagement",
-    "title": "DATA 100",
-    "section": "Engagement",
-    "text": "Engagement\n\n\n \n\n\n\n\n\n\nBeing actively present is key.\n\n\n\nDuring lecture and lab, remove distractions.\n\nWhen we are on our computers, close email, social media, news, etc.\nIf you will be using a computer/tablet for taking notes, please sit in the second row starting next lecture so as not to distract classmates.\nHide your phone.\n\nI have high expectations but know that all of you (regardless of your stats or computing background) have the ability to meet them."
-  },
-  {
-    "objectID": "data100_wk02mon.html#code-of-conduct",
-    "href": "data100_wk02mon.html#code-of-conduct",
-    "title": "DATA 100",
-    "section": "Code of Conduct",
-    "text": "Code of Conduct\n\nWe expect all members of DATA 100 to make participation a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.\n\n\nWe expect everyone to act and interact in ways that contribute to an open, welcoming diverse, inclusive, and healthy community of learners. You can contribute to a positive learning environment by demonstrating empathy and kindness, being respectful of differing viewpoints and experiences, and giving and gracefully accepting constructive feedback.\n\nThis Code of Conduct is adapted from the Contributor Covenant, version 2.0."
-  },
-  {
-    "objectID": "data100_wk02mon.html#ways-to-get-support",
-    "href": "data100_wk02mon.html#ways-to-get-support",
-    "title": "DATA 100",
-    "section": "Ways to Get Support",
-    "text": "Ways to Get Support\n\nAttend, attend, attend when you don’t feel ill\nParticipate in the DATA 100 Slack Workspace\nCome to Office Hours\nCreate study groups with your classmates\n\nDon’t know anyone in the course?\n\nUse Slack or lab to each to know other students in the course!"
-  },
-  {
-    "objectID": "data100_wk02mon.html#language-r-this-r-that-q-what",
-    "href": "data100_wk02mon.html#language-r-this-r-that-q-what",
-    "title": "DATA 100",
-    "section": "Language: R-This, R-That, Q-What?",
-    "text": "Language: R-This, R-That, Q-What?\n\n\n\n \n\n\nR is the name of the programming language.\n\n\n\nRStudio is the pretty interface and is hosted on a Posit Cloud Server.\n\n\n\n\nQuarto is the type of file where we will record all of our work (code, output, narrative)."
-  },
-  {
-    "objectID": "data100_wk02mon.html#main-components-of-rstudio-lay-out",
-    "href": "data100_wk02mon.html#main-components-of-rstudio-lay-out",
-    "title": "DATA 100",
-    "section": "Main Components of RStudio Lay-Out",
-    "text": "Main Components of RStudio Lay-Out"
-  },
-  {
-    "objectID": "data100_wk02mon.html#reminders",
-    "href": "data100_wk02mon.html#reminders",
-    "title": "DATA 100",
-    "section": "Reminders",
-    "text": "Reminders\n\nClass in full swing:\n\nOffice hours:\n\nMine: Tuesdays 2:30 - 4pm, Wednesdays 2-3pm, Taylor 212\nRebecca: Mondays and Wednesdays 4:30 - 6pm, Taylor 210\nGeneral Data Science Office Hours\n\nThe first problem set is due at noon on Thursday in Gradescope."
-  },
-  {
-    "objectID": "data100_wk09wed.html#announcements",
-    "href": "data100_wk09wed.html#announcements",
-    "title": "DATA 100",
-    "section": "Announcements",
-    "text": "Announcements\n\n🎉 We are now accepting data science student fellow applications for DATA 100.\n\nAbout 10-12 hours of work per week.\n\nPrimary responsibilities: Work on a collaborative, mentored data or AI project, attend relevant meetings, and participate in DCDS ambassador activities.\n\n\nGoals for Today\n\n\n\nLearn the language of hypothesis testing (including p-values)\nPractice framing research questions in terms of hypotheses\n\n\n\nLearn how to generate null distributions\nUse infer to conduct hypothesis tests in R"
-  },
-  {
-    "objectID": "data100_wk09wed.html#generating-null-distributions",
-    "href": "data100_wk09wed.html#generating-null-distributions",
-    "title": "DATA 100",
-    "section": "Generating Null Distributions",
-    "text": "Generating Null Distributions\nFor the sample proportion in the ESP Example:\n\n\nSteps:\n\nFlip unfair coin (prop heads = 0.25) 329 times.\nCompute proportion of heads.\nRepeat 1 and 2 many times.\n\n\n\nR code using the infer package:\n\nlibrary(infer)\n\n# Construct data frame of sample results\nesp &lt;- data.frame(guess = c(rep(\"correct\", 106),\n                            rep(\"incorrect\",\n                                329 - 106)))\n\n# Generate Null Distribution\nnull_dist &lt;- esp %&gt;%\n  specify(response = guess, success = \"correct\") %&gt;%\n  hypothesize(null = \"point\", p = 0.25) %&gt;%\n  generate(reps = 1000, type = \"draw\") %&gt;%\n  calculate(stat =\"prop\")\n\n\n\n\nFor different variable types, we will need to move beyond using a coin to conceptualize the null distribution."
-  },
-  {
-    "objectID": "data100_wk09wed.html#hypothesis-testing-in-r",
-    "href": "data100_wk09wed.html#hypothesis-testing-in-r",
-    "title": "DATA 100",
-    "section": "Hypothesis Testing in R",
-    "text": "Hypothesis Testing in R\n\n\n# Compute observed test statistic\ntest_stat &lt;- esp %&gt;%\n  specify(response = guess, success = \"correct\") %&gt;%\n  calculate(stat =\"prop\")\ntest_stat\n\n\nResponse: guess (factor)\n# A tibble: 1 × 1\n   stat\n  &lt;dbl&gt;\n1 0.322\n\ntest_stat &lt;- 106/329\ntest_stat\n\n[1] 0.3221884"
-  },
-  {
-    "objectID": "data100_wk09wed.html#hypothesis-testing-in-r-1",
-    "href": "data100_wk09wed.html#hypothesis-testing-in-r-1",
-    "title": "DATA 100",
-    "section": "Hypothesis Testing in R",
-    "text": "Hypothesis Testing in R\n\n\n# Graph null distribution with test statistic\nvisualize(null_dist) +\n  geom_vline(xintercept = test_stat,\n             color = \"deeppink\", size = 2)"
-  },
-  {
-    "objectID": "data100_wk09wed.html#hypothesis-testing-in-r-2",
-    "href": "data100_wk09wed.html#hypothesis-testing-in-r-2",
-    "title": "DATA 100",
-    "section": "Hypothesis Testing in R",
-    "text": "Hypothesis Testing in R\n\n\n# Compute p-value\np_value &lt;- null_dist %&gt;%\n  get_p_value(obs_stat = test_stat,\n              direction = \"right\")\np_value\n\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1   0.004\n\n\n\nInterpretation of \\(p\\)-value: If ESP doesn’t exist, the probability of observing 106 or more correct identifications out of 329 trials equals 0.004.\n\n\nConclusion: Since it is so unlikely (i.e., practically impossible) to have seen such unusual results if ESP doesn’t exist, these data suggest that ESP does exist."
-  },
-  {
-    "objectID": "data100_wk09wed.html#penguins-example",
-    "href": "data100_wk09wed.html#penguins-example",
-    "title": "DATA 100",
-    "section": "Penguins Example",
-    "text": "Penguins Example\nLet’s return to the penguins data and ask if flipper length varies, on average, by the sex of the penguin.\nResearch Question: Does flipper length differ by sex?\nResponse Variable:\n\nExplanatory Variable:\n\nStatistical Hypotheses:"
-  },
-  {
-    "objectID": "data100_wk09wed.html#exploratory-data-analysis",
-    "href": "data100_wk09wed.html#exploratory-data-analysis",
-    "title": "DATA 100",
-    "section": "Exploratory Data Analysis",
-    "text": "Exploratory Data Analysis\n\n\nlibrary(palmerpenguins)\n\npenguins %&gt;%\n  drop_na(sex) %&gt;%\nggplot(mapping = aes(x = sex,\n                     y = flipper_length_mm)) +\n  geom_boxplot()"
-  },
-  {
-    "objectID": "data100_wk09wed.html#two-sided-hypothesis-test",
-    "href": "data100_wk09wed.html#two-sided-hypothesis-test",
-    "title": "DATA 100",
-    "section": "Two-Sided Hypothesis Test",
-    "text": "Two-Sided Hypothesis Test\n\n\n# Compute observed test statistic\ntest_stat &lt;- penguins %&gt;%\n  drop_na(sex) %&gt;%\n  specify(flipper_length_mm ~ sex) %&gt;%\n  calculate(stat =\"diff in means\",\n            order = c(\"female\", \"male\"))\ntest_stat\n\n\nResponse: flipper_length_mm (numeric)\nExplanatory: sex (factor)\n# A tibble: 1 × 1\n   stat\n  &lt;dbl&gt;\n1 -7.14\n\n\n\n# Generate null distribution \nnull_dist &lt;- penguins %&gt;%\n  drop_na(sex) %&gt;%\n  specify(flipper_length_mm ~ sex) %&gt;%\n  hypothesize(null = \"independence\") %&gt;%\n  generate(reps = 1000, type = \"permute\") %&gt;%\n  calculate(stat =\"diff in means\",\n            order = c(\"female\", \"male\"))"
-  },
-  {
-    "objectID": "data100_wk09wed.html#two-sided-hypothesis-test-1",
-    "href": "data100_wk09wed.html#two-sided-hypothesis-test-1",
-    "title": "DATA 100",
-    "section": "Two-Sided Hypothesis Test",
-    "text": "Two-Sided Hypothesis Test\n\n\n# Graph null distribution with test statistic\nvisualize(null_dist) +\n  geom_vline(xintercept = test_stat$stat,\n             color = \"deeppink\", size = 2) +\n  geom_vline(xintercept = abs(test_stat$stat),\n             color = \"deeppink\", size = 2)"
-  },
-  {
-    "objectID": "data100_wk09wed.html#two-sided-hypothesis-test-2",
-    "href": "data100_wk09wed.html#two-sided-hypothesis-test-2",
-    "title": "DATA 100",
-    "section": "Two-Sided Hypothesis Test",
-    "text": "Two-Sided Hypothesis Test\n\n\n# Compute p-value\np_value &lt;- null_dist %&gt;%\n  get_p_value(obs_stat = test_stat,\n              direction = \"two_sided\")\np_value\n\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1       0\n\n\nInterpretation of \\(p\\)-value: If the mean flipper length does not differ by sex in the population, the probability of observing a difference in the sample means of at least 7.142316 mm (in magnitude) is equal to 0.\nConclusion: These data represent evidence that flipper length does vary by sex."
-  },
-  {
-    "objectID": "data100_wk09wed.html#hypothesis-testing-framework-3",
-    "href": "data100_wk09wed.html#hypothesis-testing-framework-3",
-    "title": "DATA 100",
-    "section": "Hypothesis Testing Framework",
-    "text": "Hypothesis Testing Framework\n\nSet-up hypotheses:\n\nBe able to express in words and in terms of parameters.\n\nCollect data.\nAssume \\(H_o\\) is correct.\nCompute a p-value to quantify the likelihood of the sample results using a test statistic."
-  },
-  {
-    "objectID": "data100_wk09wed.html#reminders",
-    "href": "data100_wk09wed.html#reminders",
-    "title": "DATA 100",
-    "section": "Reminders:",
-    "text": "Reminders:\n\n\n🎉 We are now accepting data science student fellow applications for DATA 100.\n\nAbout 10-12 hours of work per week.\n\nPrimary responsibilities: Work on a collaborative, mentored data or AI project, attend relevant meetings, and participate in DCDS ambassador activities."
-  },
-  {
-    "objectID": "data100_wk10mon.html#announcements",
-    "href": "data100_wk10mon.html#announcements",
-    "title": "DATA 100",
-    "section": "Announcements",
-    "text": "Announcements\n\n\n🎉 We are now accepting data science student fellow applications for DATA 100.\n\nAbout 10-12 hours of work per week.\n\nPrimary responsibilities: Work on a collaborative, mentored data or AI project, attend relevant meetings, and participate in DCDS ambassador activities.\n\n\n\nGoals for Today\n\n\n\nCoding goals (DATA 100 & beyond)\nAdvice on the next data science class\n\n\n\nHypothesis testing example\nDecisions in a hypothesis test\n\nTypes of errors\n\nThe power of a hypothesis test"
-  },
-  {
-    "objectID": "data100_wk10mon.html#that-next-data-science-class",
-    "href": "data100_wk10mon.html#that-next-data-science-class",
-    "title": "DATA 100",
-    "section": "That Next Data Science Class",
-    "text": "That Next Data Science Class\n\nBut first… Common Question: How should I describe my post-DATA 100 coding abilities?\nPotential Answer: You have learned how to write code to analyze data. This includes visualization (ggplot2), data wrangling (dplyr), data importation (readr), modeling, inference (infer) and communication (with Quarto).\nFollow-up Question: So what coding is there left to learn?\nAnswer: Learning how to program. This includes topics such as control flow, iteration, creating functions, and vectorization. Also, learning how to use an AI tool effectively and ethically to support your code generation and how to debug AI code suggestions."
-  },
-  {
-    "objectID": "data100_wk10mon.html#that-next-coding-class",
-    "href": "data100_wk10mon.html#that-next-coding-class",
-    "title": "DATA 100",
-    "section": "That Next Coding Class",
-    "text": "That Next Coding Class\n\n\nCSCI 187. Creative Computing & Society: Computing, Creativity & the Social Good.\nCSCI 203. Introduction to Computer Science.\nANOP 203. Introduction to Programming for Business Analytics."
-  },
-  {
-    "objectID": "data100_wk10mon.html#that-next-modeling-course",
-    "href": "data100_wk10mon.html#that-next-modeling-course",
-    "title": "DATA 100",
-    "section": "That Next Modeling Course",
-    "text": "That Next Modeling Course\n\n\nSTAT 217. Statistics II\nCSCI 349. Applied Machine Learning.\nANOP 330. Predictive Analytics: Machine Learning Fundamentals for Business.\nMany of the upper-level stats courses are modeling courses (but they do have pre-reqs)."
-  },
-  {
-    "objectID": "data100_wk10mon.html#that-next-visualization-course",
-    "href": "data100_wk10mon.html#that-next-visualization-course",
-    "title": "DATA 100",
-    "section": "That Next Visualization Course",
-    "text": "That Next Visualization Course\n\n\nSTAT 230. Data Visualization & Computing\nANOP 270. Data Visualization for Business Analytics."
-  },
-  {
-    "objectID": "data100_wk10mon.html#hypothesis-testing-framework",
-    "href": "data100_wk10mon.html#hypothesis-testing-framework",
-    "title": "DATA 100",
-    "section": "Hypothesis Testing Framework",
-    "text": "Hypothesis Testing Framework\n\nSet-up hypotheses:\n\nBe able to express in words and in terms of parameters.\n\nCollect data.\nAssume \\(H_o\\) is correct.\nCompute a p-value to quantify the likelihood of the sample results using a test statistic.\nDraw a conclusion about the alternative hypothesis."
-  },
-  {
-    "objectID": "data100_wk10mon.html#thoughts-on-power",
-    "href": "data100_wk10mon.html#thoughts-on-power",
-    "title": "DATA 100",
-    "section": "Thoughts on Power",
-    "text": "Thoughts on Power\n\nWhat aspects of the test did the player actually have control over?\nWhy is it easier to set \\(\\alpha\\) than to set \\(\\beta\\) or power?\nConsidering power before collecting data is very important!\nThe danger of under-powered studies\n\nEX: Turning right at a red light"
-  },
-  {
-    "objectID": "data100_wk10mon.html#reminders",
-    "href": "data100_wk10mon.html#reminders",
-    "title": "DATA 100",
-    "section": "Reminders:",
-    "text": "Reminders:\n\n\n🎉 We are now accepting data science student fellow applications for DATA 100.\n\nAbout 10-12 hours of work per week.\n\nPrimary responsibilities: Work on a collaborative, mentored data or AI project, attend relevant meetings, and participate in DCDS ambassador activities."
-  },
-  {
-    "objectID": "data100_wk12mon.html#announcements",
-    "href": "data100_wk12mon.html#announcements",
-    "title": "DATA 100",
-    "section": "Announcements",
-    "text": "Announcements\n\nNo lab on Friday this week.\n\nInstead you will spend Wednesday’s class time (3 - 4:20pm) as lab time:\n\nLecture quiz (covering today and last Monday)\nPractice\nStart problem set 8.\n\n\nGoals for Today\n\n\n\nRecap multiple linear regression\nCheck assumptions for linear regression inference\n\n\n\nHypothesis testing for linear regression\nEstimation and prediction inference for linear regression"
-  },
-  {
-    "objectID": "data100_wk12mon.html#multiple-linear-regression",
-    "href": "data100_wk12mon.html#multiple-linear-regression",
-    "title": "DATA 100",
-    "section": "Multiple Linear Regression",
-    "text": "Multiple Linear Regression\nLinear regression is a flexible class of models that allow for:\n\n\nBoth quantitative and categorical explanatory variables.\nMultiple explanatory variables.\nCurved relationships between the response variable and the explanatory variable.\nBUT the response variable is quantitative.\n\n\n\nIn this week’s p-set you will explore the importance of controlling for key explanatory variables when making inferences about relationships."
-  },
-  {
-    "objectID": "data100_wk12mon.html#assumptions-independence",
-    "href": "data100_wk12mon.html#assumptions-independence",
-    "title": "DATA 100",
-    "section": "Assumptions – Independence",
-    "text": "Assumptions – Independence\nFor ease of visualization, let’s assume a simple linear regression model:\n\\[\\begin{align*}\ny = \\beta_o + \\beta_1 x_1 + \\epsilon \\quad \\mbox{   where   } \\quad \\epsilon \\overset{\\color{black}{\\mbox{ind}}}{\\sim}N\\left(0, \\sigma_{\\epsilon} \\right)\n\\end{align*}\\]\nAssumption: The cases are independent of each other.\nQuestion: How do we check this assumption?\n\nConsider how the data were collected."
-  },
-  {
-    "objectID": "data100_wk12mon.html#assumptions-normality",
-    "href": "data100_wk12mon.html#assumptions-normality",
-    "title": "DATA 100",
-    "section": "Assumptions – Normality",
-    "text": "Assumptions – Normality\n\\[\n\\begin{align*}\ny = \\beta_o + \\beta_1 x_1 + \\epsilon \\quad \\mbox{   where   } \\quad \\epsilon \\overset{\\mbox{ind}}{\\sim}\\color{black}{N} \\left(0, \\sigma_{\\epsilon} \\right)\n\\end{align*}\n\\]\nAssumption: The errors are normally distributed.\n\n\nQuestion: How do we check this assumption?\n\nRecall the residual: \\(e = y - \\hat{y}\\)\n\n\nQQ-plot: Plot the residuals against the quantiles of a normal distribution!"
-  },
-  {
-    "objectID": "data100_wk12mon.html#assumptions-mean-of-errors",
-    "href": "data100_wk12mon.html#assumptions-mean-of-errors",
-    "title": "DATA 100",
-    "section": "Assumptions – Mean of Errors",
-    "text": "Assumptions – Mean of Errors\n\\[\\begin{align*}\ny = \\beta_o + \\beta_1 x_1 + \\epsilon \\quad \\mbox{   where   } \\quad \\epsilon \\overset{\\mbox{ind}}{\\sim}N\\left(\\color{black}{0}, \\sigma_{\\epsilon} \\right)\n\\end{align*}\\]\nAssumption: The points will, on average, fall on the line.\nQuestion: How do we check this assumption?\n\nIf you use the Method of Least Squares, then you don’t have to check.\nIt will be true by construction:\n\\[\n\\sum e = 0\n\\]"
-  },
-  {
-    "objectID": "data100_wk12mon.html#assumptions-constant-variance",
-    "href": "data100_wk12mon.html#assumptions-constant-variance",
-    "title": "DATA 100",
-    "section": "Assumptions – Constant Variance",
-    "text": "Assumptions – Constant Variance\n\\[\\begin{align*}\ny = \\beta_o + \\beta_1 x_1 + \\epsilon \\quad \\mbox{   where   } \\quad \\epsilon \\overset{\\mbox{ind}}{\\sim}N\\left(0, \\color{black}{\\sigma_{\\epsilon}} \\right)\n\\end{align*}\\]\nAssumption: The variability in the errors is constant.\nQuestion: How do we check this assumption?\n\nOne option: Scatterplot"
-  },
-  {
-    "objectID": "data100_wk12mon.html#assumptions-constant-variance-1",
-    "href": "data100_wk12mon.html#assumptions-constant-variance-1",
-    "title": "DATA 100",
-    "section": "Assumptions – Constant Variance",
-    "text": "Assumptions – Constant Variance\n\\[\\begin{align*}\ny = \\beta_o + \\beta_1 x_1 + \\epsilon \\quad \\mbox{   where   } \\quad \\epsilon \\overset{\\mbox{ind}}{\\sim}N\\left(0, \\color{black}{\\sigma_{\\epsilon}} \\right)\n\\end{align*}\\]\nAssumption: The variability in the errors is constant.\nQuestion: How do we check this assumption?\nBetter option (especially when have more than 1 explanatory variable): Residual Plot"
-  },
-  {
-    "objectID": "data100_wk12mon.html#covid-and-candle-ratings",
-    "href": "data100_wk12mon.html#covid-and-candle-ratings",
-    "title": "DATA 100",
-    "section": "COVID and Candle Ratings",
-    "text": "COVID and Candle Ratings\nShe posted all her data and code to GitHub and I did some light wrangling so that we could answer the question:\n\nDo we have evidence that early in the pandemic the association between time and Amazon rating varies by whether or not a candle is scented and in particular, that scented candles have a steeper decline in ratings over time?\n\nIn other words, do we have evidence that we should allow the slopes to vary?\n\n\nggplot(data = all,\n       mapping = aes(x = Date,\n                     y = Rating,\n                     color = Type)) +\n  geom_point(alpha = 0.4) +\n  geom_smooth(method = lm) +\n  theme(legend.position = \"bottom\")"
-  },
-  {
-    "objectID": "data100_wk12mon.html#assumption-checking-in-r",
-    "href": "data100_wk12mon.html#assumption-checking-in-r",
-    "title": "DATA 100",
-    "section": "Assumption Checking in R",
-    "text": "Assumption Checking in R\nThe R package we will use to check model assumptions is called gglm and was written by one of my former Reed students (and now Reed faculty member), Grayson White.\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(gglm)\n\n\nFirst need to fit the model:\n\nglimpse(all)\n\nRows: 610\nColumns: 3\n$ Date   &lt;date&gt; 2020-01-21, 2020-01-22, 2020-01-23, 2020-01-24, 2020-01-25, 20…\n$ Rating &lt;dbl&gt; 4.500000, 3.909091, 4.857143, 4.461538, 4.800000, 4.416667, 4.6…\n$ Type   &lt;chr&gt; \"scented\", \"scented\", \"scented\", \"scented\", \"scented\", \"scented…\n\nmod &lt;- lm(Rating ~ Date * Type, data = all)"
-  },
-  {
-    "objectID": "data100_wk12mon.html#our-example",
-    "href": "data100_wk12mon.html#our-example",
-    "title": "DATA 100",
-    "section": "Our Example",
-    "text": "Our Example\n\nget_regression_table(mod)\n\n# A tibble: 3 × 7\n  term            estimate std_error statistic p_value lower_ci upper_ci\n  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n1 intercept         36.0       6.54       5.50       0   23.1     48.8  \n2 Date              -0.002     0         -4.93       0   -0.002   -0.001\n3 Type: unscented    0.833     0.063     13.2        0    0.709    0.957\n\n\nRow 3:\n\\[\nH_o: \\beta_2 = 0 \\quad \\mbox{given Date is already in the model}\n\\] \\[\nH_a: \\beta_2 \\neq 0 \\quad \\mbox{given Date is already in the model}\n\\]\nTest Statistic:\n\\[\nt = \\frac{\\hat{\\beta}_2 - 0}{SE(\\hat{\\beta}_2)} = \\frac{0.831 - 0}{0.063} = 13.2\n\\]\n\nwith p-value: Probability of the test statistic being 13.2 or larger AND -13.2 or smaller.\nBecause the p-value is essentially equal to zero, there is evidence that including whether or not the candle is scented adds useful information to the linear regression model for Amazon ratings that already controls for date."
-  },
-  {
-    "objectID": "data100_wk12mon.html#two-types-of-predictions",
-    "href": "data100_wk12mon.html#two-types-of-predictions",
-    "title": "DATA 100",
-    "section": "Two Types of Predictions",
-    "text": "Two Types of Predictions\n\n\nConfidence Interval for the Mean Response\n→ Defined at given values of the explanatory variables\n→ Estimates the average response\n→ Centered at \\(\\hat{y}\\)\n→ Smaller SE\n\nPrediction Interval for an Individual Response\n→ Defined at given values of the explanatory variables\n→ Predicts the response of a single, new observation\n→ Centered at \\(\\hat{y}\\)\n→ Larger SE"
-  },
-  {
-    "objectID": "data100_wk12mon.html#reminders",
-    "href": "data100_wk12mon.html#reminders",
-    "title": "DATA 100",
-    "section": "Reminders",
-    "text": "Reminders\n\nNo lab on Friday this week.\n\nInstead you will spend Wednesday’s class time (3 - 4:20pm) as lab time:\n\nLecture quiz (covering today and last Monday)\nPractice\nStart problem set 8."
-  },
-  {
-    "objectID": "data100_wk03wed.html#announcements",
-    "href": "data100_wk03wed.html#announcements",
-    "title": "DATA 100",
-    "section": "Announcements",
-    "text": "Announcements\n\n\nCode a Valentine: Feb 10th, Taylor 212\n\n\nGoals for Today\n\n\n\nConsider measures for summarizing quantitative data\n\nCenter\nSpread/variability\n\nConsider measures for summarizing categorical data\n\n\n\nDefine data wrangling\nLearn to use functions in the dplyr package to summarize and wrangle data"
-  },
-  {
-    "objectID": "data100_wk03wed.html#load-necessary-packages",
-    "href": "data100_wk03wed.html#load-necessary-packages",
-    "title": "DATA 100",
-    "section": "Load Necessary Packages",
-    "text": "Load Necessary Packages\n\n\n\n\n\ndplyr is part of the tidyverse collection of data science packages.\n\n# Load necessary packages\nlibrary(tidyverse)"
-  },
-  {
-    "objectID": "data100_wk03wed.html#import-the-data",
-    "href": "data100_wk03wed.html#import-the-data",
-    "title": "DATA 100",
-    "section": "Import the Data",
-    "text": "Import the Data\n\njuly_2019 &lt;- read_csv(\"data/july_2019.csv\")\n\n# Inspect the data\nglimpse(july_2019)\n\nRows: 192\nColumns: 8\n$ DateTime  &lt;chr&gt; \"07/04/2019 12:00:00 AM\", \"07/04/2019 12:15:00 AM\", \"07/04/2…\n$ Day       &lt;chr&gt; \"Thursday\", \"Thursday\", \"Thursday\", \"Thursday\", \"Thursday\", …\n$ Date      &lt;date&gt; 2019-07-04, 2019-07-04, 2019-07-04, 2019-07-04, 2019-07-04,…\n$ Time      &lt;time&gt; 00:00:00, 00:15:00, 00:30:00, 00:45:00, 01:00:00, 01:15:00,…\n$ Total     &lt;dbl&gt; 2, 3, 2, 0, 3, 2, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, …\n$ Westbound &lt;dbl&gt; 2, 3, 1, 0, 2, 2, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, …\n$ Eastbound &lt;dbl&gt; 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, …\n$ Occasion  &lt;chr&gt; \"Fourth of July\", \"Fourth of July\", \"Fourth of July\", \"Fourt…"
-  },
-  {
-    "objectID": "data100_wk03wed.html#summarizing-data",
-    "href": "data100_wk03wed.html#summarizing-data",
-    "title": "DATA 100",
-    "section": "Summarizing Data",
-    "text": "Summarizing Data\nHard to do by eyeballing a spreadsheet with many rows!\n\n\n\n\n\n\nDateTime\nDay\nDate\nTime\nTotal\nWestbound\nEastbound\nOccasion\n\n\n\n\n07/04/2019 06:00:00 AM\nThursday\n2019-07-04\n06:00:00\n1\n1\n0\nFourth of July\n\n\n07/04/2019 06:15:00 AM\nThursday\n2019-07-04\n06:15:00\n4\n0\n4\nFourth of July\n\n\n07/04/2019 06:30:00 AM\nThursday\n2019-07-04\n06:30:00\n9\n1\n8\nFourth of July\n\n\n07/04/2019 06:45:00 AM\nThursday\n2019-07-04\n06:45:00\n5\n0\n5\nFourth of July\n\n\n07/04/2019 07:00:00 AM\nThursday\n2019-07-04\n07:00:00\n3\n3\n0\nFourth of July\n\n\n07/04/2019 07:15:00 AM\nThursday\n2019-07-04\n07:15:00\n2\n0\n2\nFourth of July\n\n\n07/04/2019 07:30:00 AM\nThursday\n2019-07-04\n07:30:00\n5\n2\n3\nFourth of July\n\n\n07/04/2019 07:45:00 AM\nThursday\n2019-07-04\n07:45:00\n2\n0\n2\nFourth of July"
-  },
-  {
-    "objectID": "data100_wk03wed.html#summarizing-data-visually",
-    "href": "data100_wk03wed.html#summarizing-data-visually",
-    "title": "DATA 100",
-    "section": "Summarizing Data Visually",
-    "text": "Summarizing Data Visually\n\n\n\n\n\n\n\n\n\n\n\n\n\nFor a quantitative variable, want to answer:\n\nWhat is an average value?\nWhat is the trend/shape of the variable?\nHow much variation is there from case to case?\n\n\n\nNeed to learn key summary statistics: Numerical values computed based on the observed cases."
-  },
-  {
-    "objectID": "data100_wk03wed.html#measures-of-center",
-    "href": "data100_wk03wed.html#measures-of-center",
-    "title": "DATA 100",
-    "section": "Measures of Center",
-    "text": "Measures of Center\n\n\nMean: Average of all the observations\n\n\\(n\\) = Number of cases (sample size)\n\\(x_i\\) = value of the i-th observation\nDenote by \\(\\bar{x}\\)\n\n\\[\n\\bar{x}  = \\frac{1}{n} \\sum_{i = 1}^n x_i\n\\]\n\n# Test out on first 6 values\nhead(july_2019$Total)\n\n[1] 2 3 2 0 3 2\n\n\n\nCompute with a dplyr function:\n\nsummarize(july_2019, mean_bikes = mean(Total))\n\n# A tibble: 1 × 1\n  mean_bikes\n       &lt;dbl&gt;\n1       17.1"
-  },
-  {
-    "objectID": "data100_wk03wed.html#measures-of-center-1",
-    "href": "data100_wk03wed.html#measures-of-center-1",
-    "title": "DATA 100",
-    "section": "Measures of Center",
-    "text": "Measures of Center\n\n\nMedian: Middle value\n\nHalf of the data falls below the median\nDenote by \\(m\\)\nIf \\(n\\) is even, then it is the average of the middle two values\n\n\n# Test out on first 6 values\nhead(july_2019$Total)\n\n[1] 2 3 2 0 3 2\n\n\n\nCompute with a dplyr function:\n\nsummarize(july_2019, median_bikes = median(Total))\n\n# A tibble: 1 × 1\n  median_bikes\n         &lt;dbl&gt;\n1           11"
-  },
-  {
-    "objectID": "data100_wk03wed.html#measures-of-center-2",
-    "href": "data100_wk03wed.html#measures-of-center-2",
-    "title": "DATA 100",
-    "section": "Measures of Center",
-    "text": "Measures of Center\n\n\nWhy is the mean larger than the median?\n\nsummarize(july_2019, mean_bikes = mean(Total),\n          median_bikes = median(Total))\n\n# A tibble: 1 × 2\n  mean_bikes median_bikes\n       &lt;dbl&gt;        &lt;dbl&gt;\n1       17.1           11"
-  },
-  {
-    "objectID": "data100_wk03wed.html#computing-measures-of-center-by-groups",
-    "href": "data100_wk03wed.html#computing-measures-of-center-by-groups",
-    "title": "DATA 100",
-    "section": "Computing Measures of Center by Groups",
-    "text": "Computing Measures of Center by Groups\nQuestion: Were there more bikes, on average, for Fourth of July or for the normal Thursday?"
-  },
-  {
-    "objectID": "data100_wk03wed.html#computing-measures-of-center-by-groups-1",
-    "href": "data100_wk03wed.html#computing-measures-of-center-by-groups-1",
-    "title": "DATA 100",
-    "section": "Computing Measures of Center by Groups",
-    "text": "Computing Measures of Center by Groups\nHandy dplyr function: group_by()\n\njuly_2019_grouped &lt;- group_by(july_2019, Occasion)\njuly_2019_grouped\n\n# A tibble: 192 × 8\n# Groups:   Occasion [2]\n   DateTime            Day   Date       Time  Total Westbound Eastbound Occasion\n   &lt;chr&gt;               &lt;chr&gt; &lt;date&gt;     &lt;tim&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   \n 1 07/04/2019 12:00:0… Thur… 2019-07-04 00:00     2         2         0 Fourth …\n 2 07/04/2019 12:15:0… Thur… 2019-07-04 00:15     3         3         0 Fourth …\n 3 07/04/2019 12:30:0… Thur… 2019-07-04 00:30     2         1         1 Fourth …\n 4 07/04/2019 12:45:0… Thur… 2019-07-04 00:45     0         0         0 Fourth …\n 5 07/04/2019 01:00:0… Thur… 2019-07-04 01:00     3         2         1 Fourth …\n 6 07/04/2019 01:15:0… Thur… 2019-07-04 01:15     2         2         0 Fourth …\n 7 07/04/2019 01:30:0… Thur… 2019-07-04 01:30     1         1         0 Fourth …\n 8 07/04/2019 01:45:0… Thur… 2019-07-04 01:45     0         0         0 Fourth …\n 9 07/04/2019 02:00:0… Thur… 2019-07-04 02:00     0         0         0 Fourth …\n10 07/04/2019 02:15:0… Thur… 2019-07-04 02:15     0         0         0 Fourth …\n# ℹ 182 more rows"
-  },
-  {
-    "objectID": "data100_wk03wed.html#computing-measures-of-center-by-groups-2",
-    "href": "data100_wk03wed.html#computing-measures-of-center-by-groups-2",
-    "title": "DATA 100",
-    "section": "Computing Measures of Center by Groups",
-    "text": "Computing Measures of Center by Groups\n\n\nCompute summary statistics on the grouped data frame:\n\njuly_2019_grouped &lt;- group_by(july_2019, Occasion)\nsummarize(july_2019_grouped,\n          mean_bikes = mean(Total),\n          median_bikes = median(Total))\n\n# A tibble: 2 × 3\n  Occasion        mean_bikes median_bikes\n  &lt;chr&gt;                &lt;dbl&gt;        &lt;dbl&gt;\n1 Fourth of July        10.0          9  \n2 Normal Thursday       24.2         14.5"
-  },
-  {
-    "objectID": "data100_wk03wed.html#chaining-dplyr-operations",
-    "href": "data100_wk03wed.html#chaining-dplyr-operations",
-    "title": "DATA 100",
-    "section": "Chaining dplyr Operations",
-    "text": "Chaining dplyr Operations\n\n\nInstead of:\n\njuly_2019_grouped &lt;- group_by(july_2019, Occasion)\nsummarize(july_2019_grouped,\n          mean_bikes = mean(Total),\n          median_bikes = median(Total))\n\n# A tibble: 2 × 3\n  Occasion        mean_bikes median_bikes\n  &lt;chr&gt;                &lt;dbl&gt;        &lt;dbl&gt;\n1 Fourth of July        10.0          9  \n2 Normal Thursday       24.2         14.5\n\n\n\nUse the pipe:\n\njuly_2019 %&gt;%\n  group_by(Occasion) %&gt;%\n  summarize(mean_bikes = mean(Total),\n          median_bikes = median(Total))\n\n# A tibble: 2 × 3\n  Occasion        mean_bikes median_bikes\n  &lt;chr&gt;                &lt;dbl&gt;        &lt;dbl&gt;\n1 Fourth of July        10.0          9  \n2 Normal Thursday       24.2         14.5\n\n\n\n\n\nWhy pipe?\n\n\n\n\nYou can also use |&gt;, which is newer and often referred to as the “base R pipe.”"
-  },
-  {
-    "objectID": "data100_wk03wed.html#measures-of-variability",
-    "href": "data100_wk03wed.html#measures-of-variability",
-    "title": "DATA 100",
-    "section": "Measures of Variability",
-    "text": "Measures of Variability\n\nWant a statistic that captures how much observations deviate from the mean\n\n\n\n\nFind how much each observation deviates from the mean.\nCompute the average of the deviations.\n\n\\[\n\\frac{1}{n} \\sum_{i = 1}^n (x_i - \\bar{x})\n\\]\n\n\n# Test out on first 6 values\nhead(july_2019$Total)\n\n[1] 2 3 2 0 3 2\n\n\n\n\nProblem?"
-  },
-  {
-    "objectID": "data100_wk03wed.html#measures-of-variability-1",
-    "href": "data100_wk03wed.html#measures-of-variability-1",
-    "title": "DATA 100",
-    "section": "Measures of Variability",
-    "text": "Measures of Variability\n\nWant a statistic that captures how much observations deviate from the mean\n\n\n\nHere is my NEW proposal:\n\nFind how much each observation deviates from the mean.\nCompute the average of the squared deviations.\n\n\n\n# Test out on first 6 values\nhead(july_2019$Total)\n\n[1] 2 3 2 0 3 2"
-  },
-  {
-    "objectID": "data100_wk03wed.html#measures-of-variability-2",
-    "href": "data100_wk03wed.html#measures-of-variability-2",
-    "title": "DATA 100",
-    "section": "Measures of Variability",
-    "text": "Measures of Variability\n\nWant a statistic that captures how much observations deviate from the mean\n\n\n\nHere is my ACTUAL formula:\n\nFind how much each observation deviates from the mean.\nCompute the (nearly) average of the squared deviations.\nCalled sample variance \\(s^2\\).\n\n\\[\ns^2 = \\frac{1}{n - 1} \\sum_{i = 1}^n (x_i - \\bar{x})^2\n\\]\n\nCompute with a dplyr function:\n\nsummarize(july_2019, var_bikes = var(Total))\n\n# A tibble: 1 × 1\n  var_bikes\n      &lt;dbl&gt;\n1      454."
-  },
-  {
-    "objectID": "data100_wk03wed.html#measures-of-variability-3",
-    "href": "data100_wk03wed.html#measures-of-variability-3",
-    "title": "DATA 100",
-    "section": "Measures of Variability",
-    "text": "Measures of Variability\n\nWant a statistic that captures how much observations deviate from the mean\n\n\n\n\nFind how much each observation deviates from the mean.\nCompute the (nearly) average of the squared deviations.\nCalled sample variance \\(s^2\\).\nThe square root of the sample variance is called the sample standard deviation \\(s\\).\n\n\\[\ns = \\sqrt{\\frac{1}{n - 1} \\sum_{i = 1}^n (x_i - \\bar{x})^2}\n\\]\n\nCompute with a dplyr function:\n\nsummarize(july_2019, var_bikes = var(Total),\n          sd_bikes = sd(Total))\n\n# A tibble: 1 × 2\n  var_bikes sd_bikes\n      &lt;dbl&gt;    &lt;dbl&gt;\n1      454.     21.3"
-  },
-  {
-    "objectID": "data100_wk03wed.html#measures-of-variability-4",
-    "href": "data100_wk03wed.html#measures-of-variability-4",
-    "title": "DATA 100",
-    "section": "Measures of Variability",
-    "text": "Measures of Variability\n\n\n\nIn addition to the sample standard deviation and the sample variance, there is the sample interquartile range (IQR):\n\n\\[\n\\mbox{IQR} = \\mbox{Q}_3 - \\mbox{Q}_1\n\\]\n\nCompute with a dplyr function:\n\nsummarize(july_2019, iqr_bikes = IQR(Total))\n\n# A tibble: 1 × 1\n  iqr_bikes\n      &lt;dbl&gt;\n1        16"
-  },
-  {
-    "objectID": "data100_wk03wed.html#comparing-measures-of-variability",
-    "href": "data100_wk03wed.html#comparing-measures-of-variability",
-    "title": "DATA 100",
-    "section": "Comparing Measures of Variability",
-    "text": "Comparing Measures of Variability\n\nWhich is more robust to outliers, the IQR or \\(s\\)?\nWhich is more commonly used, the IQR or \\(s\\)?\n\n\njuly_2019 %&gt;%\n  group_by(Occasion) %&gt;%\nsummarize(sd_bikes = sd(Total),\n          iqr_bikes = IQR(Total))\n\n# A tibble: 2 × 3\n  Occasion        sd_bikes iqr_bikes\n  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;\n1 Fourth of July      8.30      14  \n2 Normal Thursday    27.2       27.2"
-  },
-  {
-    "objectID": "data100_wk03wed.html#return-to-the-buffalo-bills-data",
-    "href": "data100_wk03wed.html#return-to-the-buffalo-bills-data",
-    "title": "DATA 100",
-    "section": "Return to the Buffalo Bills Data",
-    "text": "Return to the Buffalo Bills Data\n\n# Pull in the dataset on all teams\nnfl_outcomes_2018 &lt;- read_csv(\"https://data.scorenetwork.org/data/nfl_mahomes_era_games.csv\")\n\n# Focus on just the Bills\nbuf &lt;- filter(nfl_outcomes_2018, home_team == \"BUF\" | away_team == \"BUF\") %&gt;%\n  mutate(where = if_else(home_team == \"BUF\", \"home\", \"away\"))"
-  },
-  {
-    "objectID": "data100_wk03wed.html#frequency-table",
-    "href": "data100_wk03wed.html#frequency-table",
-    "title": "DATA 100",
-    "section": "Frequency Table",
-    "text": "Frequency Table\n\n\n\ncount(buf, game_type)\n\n# A tibble: 4 × 2\n  game_type     n\n  &lt;chr&gt;     &lt;int&gt;\n1 CON           1\n2 DIV           4\n3 REG          98\n4 WC            5\n\n\n\n\nggplot(data = buf, \n       mapping = aes(x = game_type)) +\n  geom_bar()"
-  },
-  {
-    "objectID": "data100_wk03wed.html#frequency-table-1",
-    "href": "data100_wk03wed.html#frequency-table-1",
-    "title": "DATA 100",
-    "section": "Frequency Table",
-    "text": "Frequency Table\n\n\n\ncount(buf, game_type)\n\n# A tibble: 4 × 2\n  game_type     n\n  &lt;chr&gt;     &lt;int&gt;\n1 CON           1\n2 DIV           4\n3 REG          98\n4 WC            5\n\n\n\n\ncount(buf, game_type, sort = TRUE)\n\n# A tibble: 4 × 2\n  game_type     n\n  &lt;chr&gt;     &lt;int&gt;\n1 REG          98\n2 WC            5\n3 DIV           4\n4 CON           1"
-  },
-  {
-    "objectID": "data100_wk03wed.html#geom_col-example",
-    "href": "data100_wk03wed.html#geom_col-example",
-    "title": "DATA 100",
-    "section": "geom_col() Example",
-    "text": "geom_col() Example\n\n\nggplot(data = game_counts,\n       mapping = aes(x = game_type,\n                     y = n)) +\n  geom_col()"
-  },
-  {
-    "objectID": "data100_wk03wed.html#contingency-table",
-    "href": "data100_wk03wed.html#contingency-table",
-    "title": "DATA 100",
-    "section": "Contingency Table",
-    "text": "Contingency Table\n\n\n\ncount(buf, where, game_outcome)\n\n# A tibble: 4 × 3\n  where game_outcome     n\n  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt;\n1 away             0    29\n2 away             1    22\n3 home             0    17\n4 home             1    40\n\n\n\n\nggplot(data = buf, \n    mapping = aes(x = where, \n                  fill = as.factor(game_outcome))) +\n  geom_bar(position = \"dodge\") +\n  theme(legend.position = \"bottom\")"
-  },
-  {
-    "objectID": "data100_wk03wed.html#conditional-proportions",
-    "href": "data100_wk03wed.html#conditional-proportions",
-    "title": "DATA 100",
-    "section": "Conditional Proportions",
-    "text": "Conditional Proportions\n\n\n\nBeyond raw counts, we often summarize categorical data with conditional proportions.\n\nEspecially when looking for relationships!\n\n\n\n\nggplot(data = buf, \n    mapping = aes(x = where, \n                  fill = as.factor(game_outcome))) +\n  geom_bar(position = \"fill\") +\n  theme(legend.position = \"bottom\")"
-  },
-  {
-    "objectID": "data100_wk03wed.html#conditional-proportions-1",
-    "href": "data100_wk03wed.html#conditional-proportions-1",
-    "title": "DATA 100",
-    "section": "Conditional Proportions",
-    "text": "Conditional Proportions\n\n\n\ncount(buf, where, game_outcome)\n\n# A tibble: 4 × 3\n  where game_outcome     n\n  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt;\n1 away             0    29\n2 away             1    22\n3 home             0    17\n4 home             1    40\n\n\n\n\ncount(buf, where, game_outcome) %&gt;%\n  group_by(where) %&gt;%\n  mutate(prop = n/sum(n))\n\n# A tibble: 4 × 4\n# Groups:   where [2]\n  where game_outcome     n  prop\n  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;\n1 away             0    29 0.569\n2 away             1    22 0.431\n3 home             0    17 0.298\n4 home             1    40 0.702\n\n\n\n\nThe dplyr function mutate() adds new column(s) to your data frame."
-  },
-  {
-    "objectID": "data100_wk03wed.html#conditional-proportions-2",
-    "href": "data100_wk03wed.html#conditional-proportions-2",
-    "title": "DATA 100",
-    "section": "Conditional Proportions",
-    "text": "Conditional Proportions\n\n\n\ncount(buf, where, game_outcome) %&gt;%\n  group_by(where) %&gt;%\n  mutate(prop = n/sum(n))\n\n# A tibble: 4 × 4\n# Groups:   where [2]\n  where game_outcome     n  prop\n  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;\n1 away             0    29 0.569\n2 away             1    22 0.431\n3 home             0    17 0.298\n4 home             1    40 0.702\n\n\n\n\ncount(buf, where, game_outcome) %&gt;%\n  group_by(game_outcome) %&gt;%\n  mutate(prop = n/sum(n))\n\n# A tibble: 4 × 4\n# Groups:   game_outcome [2]\n  where game_outcome     n  prop\n  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;\n1 away             0    29 0.630\n2 away             1    22 0.355\n3 home             0    17 0.370\n4 home             1    40 0.645\n\n\n\nHow does the interpretation change based on which variable you condition on?"
-  },
-  {
-    "objectID": "data100_wk03wed.html#dplyr-for-data-wrangling",
-    "href": "data100_wk03wed.html#dplyr-for-data-wrangling",
-    "title": "DATA 100",
-    "section": "dplyr for Data Wrangling",
-    "text": "dplyr for Data Wrangling\n\nSeven common wrangling verbs:\n\nsummarize()\ncount()\n\nmutate()\n\nselect()\nfilter()\narrange()\n---_join()\n\nOne action:\n\ngroup_by()"
-  },
-  {
-    "objectID": "data100_wk03wed.html#return-to-mutate",
-    "href": "data100_wk03wed.html#return-to-mutate",
-    "title": "DATA 100",
-    "section": "Return to mutate()",
-    "text": "Return to mutate()\n\n\nAdd new variables\n\ncount(buf, where, game_outcome) %&gt;%\n  group_by(where) %&gt;%\n  mutate(prop = n/sum(n))\n\n# A tibble: 4 × 4\n# Groups:   where [2]\n  where game_outcome     n  prop\n  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;\n1 away             0    29 0.569\n2 away             1    22 0.431\n3 home             0    17 0.298\n4 home             1    40 0.702\n\n\n\nModify existing variables\n\nclass(buf$game_outcome)\n\n[1] \"numeric\"\n\nbuf &lt;- buf %&gt;%\n  mutate(game_outcome = as.factor(game_outcome))\nclass(buf$game_outcome)\n\n[1] \"factor\""
-  },
-  {
-    "objectID": "data100_wk03wed.html#select-extract-variables",
-    "href": "data100_wk03wed.html#select-extract-variables",
-    "title": "DATA 100",
-    "section": "select(): Extract variables",
-    "text": "select(): Extract variables\n\nbuf %&gt;%\n  select(where, game_outcome)\n\n# A tibble: 108 × 2\n   where game_outcome\n   &lt;chr&gt; &lt;fct&gt;       \n 1 away  1           \n 2 home  0           \n 3 away  0           \n 4 away  1           \n 5 home  1           \n 6 away  1           \n 7 away  1           \n 8 home  0           \n 9 home  0           \n10 away  0           \n# ℹ 98 more rows"
-  },
-  {
-    "objectID": "data100_wk03wed.html#motivation-for-filter",
-    "href": "data100_wk03wed.html#motivation-for-filter",
-    "title": "DATA 100",
-    "section": "Motivation for filter()",
-    "text": "Motivation for filter()\n\ncount(nfl_outcomes_2018, home_team, sort = TRUE)\n\n# A tibble: 33 × 2\n   home_team     n\n   &lt;chr&gt;     &lt;int&gt;\n 1 KC           64\n 2 BUF          57\n 3 SF           55\n 4 BAL          54\n 5 NO           54\n 6 TB           54\n 7 GB           53\n 8 HOU          53\n 9 LA           53\n10 PHI          53\n# ℹ 23 more rows"
-  },
-  {
-    "objectID": "data100_wk03wed.html#filter-extract-cases",
-    "href": "data100_wk03wed.html#filter-extract-cases",
-    "title": "DATA 100",
-    "section": "filter(): Extract cases",
-    "text": "filter(): Extract cases\n\nbuf &lt;- filter(nfl_outcomes_2018, home_team == \"BUF\" | away_team == \"BUF\") \ncount(buf, home_team, sort = TRUE)\n\n# A tibble: 29 × 2\n   home_team     n\n   &lt;chr&gt;     &lt;int&gt;\n 1 BUF          57\n 2 MIA           6\n 3 NE            6\n 4 NYJ           6\n 5 KC            5\n 6 TEN           3\n 7 BAL           2\n 8 HOU           2\n 9 ARI           1\n10 CHI           1\n# ℹ 19 more rows\n\n# Why is this useful?\nbuf &lt;- buf %&gt;%\n  mutate(where = if_else(home_team == \"BUF\", \"home\", \"away\"))\ncount(buf, where)\n\n# A tibble: 2 × 2\n  where     n\n  &lt;chr&gt; &lt;int&gt;\n1 away     51\n2 home     57"
-  },
-  {
-    "objectID": "data100_wk03wed.html#arrange-sort-the-cases",
-    "href": "data100_wk03wed.html#arrange-sort-the-cases",
-    "title": "DATA 100",
-    "section": "arrange(): Sort the cases",
-    "text": "arrange(): Sort the cases\n\n\n\nbuf %&gt;%\n  arrange(score_diff) %&gt;%\n  select(home_team, away_team, home_score, away_score, score_diff)\n\n# A tibble: 108 × 5\n   home_team away_team home_score away_score score_diff\n   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;\n 1 MIA       BUF                0         35        -35\n 2 WAS       BUF                3         37        -34\n 3 BUF       CHI                9         41        -32\n 4 NYJ       BUF               10         41        -31\n 5 DEN       BUF               19         48        -29\n 6 NE        BUF                9         38        -29\n 7 NYJ       BUF               17         45        -28\n 8 BUF       IND               15         41        -26\n 9 NO        BUF                6         31        -25\n10 CHI       BUF               13         35        -22\n# ℹ 98 more rows\n\n\n\n\nbuf %&gt;%\n  arrange(desc(score_diff)) %&gt;%\n  select(home_team, away_team, home_score, away_score, score_diff)\n\n# A tibble: 108 × 5\n   home_team away_team home_score away_score score_diff\n   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;\n 1 BAL       BUF               47          3         44\n 2 BUF       HOU               40          0         40\n 3 BUF       PIT               38          3         35\n 4 BUF       TEN               41          7         34\n 5 IND       BUF               37          5         32\n 6 BUF       MIA               56         26         30\n 7 BUF       NE                47         17         30\n 8 BUF       LV                38         10         28\n 9 BUF       MIA               48         20         28\n10 TEN       BUF               42         16         26\n# ℹ 98 more rows"
-  },
-  {
-    "objectID": "data100_wk03wed.html#reminders",
-    "href": "data100_wk03wed.html#reminders",
-    "title": "DATA 100",
-    "section": "Reminders",
-    "text": "Reminders\n\nCode a Valentine: Feb 10th, Taylor 212"
+    "section": "Difference in Means",
+    "text": "Difference in Means\nLet’s estimate the average hours worked per week between married and unmarried US residents.\n\n\n# Exploratory data analysis\nggplot(data = ACS_adults, mapping = aes(x = HoursWk)) +\n  geom_histogram() +\n  facet_wrap(~Married, ncol = 1)\n\n\n\n\n\n\n\n\n\n\n\n# Sample size\nACS_adults %&gt;%\n  drop_na(HoursWk) %&gt;%\n  count(Married)\n\n\n  Married    n\n1       0 5342\n2       1 4658"
   },
   {
     "objectID": "data100_wk01wed.html#keyword",
@@ -2644,103 +2742,5 @@
     "title": "DATA 100",
     "section": "Reminders:",
     "text": "Reminders:\n\nRemember to come to office hours and post twice to Slack by Friday!"
-  },
-  {
-    "objectID": "data100_wk14mon.html#keyword",
-    "href": "data100_wk14mon.html#keyword",
-    "title": "DATA 100",
-    "section": "",
-    "text": "Before we get started…\n\n\nGo to burl.live/stat to provide the words or phrases you think of when you hear “statistical thinking.”"
-  },
-  {
-    "objectID": "data100_wk14mon.html#announcements",
-    "href": "data100_wk14mon.html#announcements",
-    "title": "DATA 100",
-    "section": "Announcements",
-    "text": "Announcements\n\nOral exam sign-ups will be released right after class on Slack\nExtra Credit Lecture Quiz: Due In-Person at 3pm (start of lab) on Friday, May 1st\nExam Rewrites: Due on Gradescope at noon on Monday, March 4th\n\nGoals for Today\n\n\n\nStatistical thinking\nRevisit course learning objectives\n\n\n\nAI and data work"
-  },
-  {
-    "objectID": "data100_wk14mon.html#terms-terms-terms",
-    "href": "data100_wk14mon.html#terms-terms-terms",
-    "title": "DATA 100",
-    "section": "Terms, Terms, Terms",
-    "text": "Terms, Terms, Terms\n\n\n\n\n\nAI = artificial intelligence\n\nModels that try to predict outcomes.\n\nGenAI = AI models that produce text, images, and videos in response to prompts.\nLLMs = large language models\n\nCan produce text that is very similar to human written text."
-  },
-  {
-    "objectID": "data100_wk14mon.html#how-are-llms-so-good-at-producing-human-like-text",
-    "href": "data100_wk14mon.html#how-are-llms-so-good-at-producing-human-like-text",
-    "title": "DATA 100",
-    "section": "How are LLMs so good at producing human-like text?",
-    "text": "How are LLMs so good at producing human-like text?\n\n\n\n\nUse neural networks, a very flexible type of AI model.\n\n\n\n\n\n\nBuilt on very, very large datasets.\n\nThink “the internet”."
-  },
-  {
-    "objectID": "data100_wk14mon.html#ai-and-the-classroom",
-    "href": "data100_wk14mon.html#ai-and-the-classroom",
-    "title": "DATA 100",
-    "section": "AI and the Classroom",
-    "text": "AI and the Classroom\n\n\n\n“AI promises compelling benefits—such as saving time in busy lives and helping your work to appear more creative or clever—but there are many important but invisible tradeoffs in using it, especially in the classroom. Therefore, at least in school, there’s good reason not to use or rely on AI/LLMs while you’re still learning new skills and growing as a person, even if it’s ok to use it in future jobs where producing work is more important than learning.” – Patrick Lin, Philosophy Professor at Cal Poly"
-  },
-  {
-    "objectID": "data100_wk14mon.html#ethical-use-of-genai",
-    "href": "data100_wk14mon.html#ethical-use-of-genai",
-    "title": "DATA 100",
-    "section": "Ethical use of GenAI",
-    "text": "Ethical use of GenAI\n\nYou evaluate the relevance, usefulness, and accuracy of GenAI outputs.\nYou understand the potential harms of GenAI.\n\nOn the environment (e.g., data centers)\nOn the labor market (especially entry-level jobs).\nOn society (eg., facial recognition software, revenge porn, deepfakes).\n\nYou examine the privacy and data security risks of GenAI.\nYou credit GenAI contributions in your work through appropriate citations."
-  },
-  {
-    "objectID": "data100_wk14mon.html#developing-your-data-ai-literacy-at-bucknell",
-    "href": "data100_wk14mon.html#developing-your-data-ai-literacy-at-bucknell",
-    "title": "DATA 100",
-    "section": "Developing your Data & AI Literacy at Bucknell",
-    "text": "Developing your Data & AI Literacy at Bucknell\n\nAbout developing reasoning\n\nNot just learning definitions and formulae\nNot just memorizing arbitrary rules (p-value \\(&lt;\\) 0.05, sample size \\(&gt;\\) 30)\nConsider the appropriateness of AI for the task at hand.\n\nRequires judgment that takes time to develop\n\nConsider taking DATA 101: Foundations of AI!"
-  },
-  {
-    "objectID": "data100_wk14mon.html#ai-skills-to-develop",
-    "href": "data100_wk14mon.html#ai-skills-to-develop",
-    "title": "DATA 100",
-    "section": "AI Skills to Develop",
-    "text": "AI Skills to Develop\nXXX: insert graph of AI skills from advisory board"
-  },
-  {
-    "objectID": "data100_wk14mon.html#vibe-coding",
-    "href": "data100_wk14mon.html#vibe-coding",
-    "title": "DATA 100",
-    "section": "Vibe coding",
-    "text": "Vibe coding\n\nVibe coding is where an AI tool generates code based on prompts from a person.\nImportant skills to develop:\n\nAbility to review and debug the AI generated code.\nAbility to prompt the AI tool for better code.\nA strong understanding of what you want the AI code to produce.\n\nDon’t let it take you down the wrong rabbit hole.\n\nTaste! Don’t produce AI slop (i.e., generic, vanilla graphs)."
-  },
-  {
-    "objectID": "data100_wk14mon.html#setting-up-pipelines-for-engaging-with-llms-in-a-structured-way-and-using-the-model-output",
-    "href": "data100_wk14mon.html#setting-up-pipelines-for-engaging-with-llms-in-a-structured-way-and-using-the-model-output",
-    "title": "DATA 100",
-    "section": "Setting up pipelines for engaging with LLMs in a structured way and using the model output",
-    "text": "Setting up pipelines for engaging with LLMs in a structured way and using the model output\n\nThe ellmer package is great for this!\nAsking LLMs to output responses into a dataframe so they are easier to analyze.\nImportant skills to develop:\n\nAbility to evaluate the AI output.\nAbility to engage with an LLM in R and not just via chatbots."
-  },
-  {
-    "objectID": "data100_wk14mon.html#increasing-efficiency-by-incorporating-ai-into-time-intensive-steps-of-the-research-process.",
-    "href": "data100_wk14mon.html#increasing-efficiency-by-incorporating-ai-into-time-intensive-steps-of-the-research-process.",
-    "title": "DATA 100",
-    "section": "Increasing efficiency by incorporating AI into time-intensive steps of the research process.",
-    "text": "Increasing efficiency by incorporating AI into time-intensive steps of the research process.\n\nExample:\n\nDetecting dance movements in children\n\nImportant skills to develop:\n\nUnderstanding what steps AI can actually speed up.\nComparing the AI output to the human output."
-  },
-  {
-    "objectID": "data100_wk14mon.html#fluency-isnt-truth",
-    "href": "data100_wk14mon.html#fluency-isnt-truth",
-    "title": "DATA 100",
-    "section": "Fluency isn’t Truth",
-    "text": "Fluency isn’t Truth\n\nOutput from AI models sounds human-like.\nPeople often believe it is true.\n\nThe model is just a predictive engine.\n\nLots of examples of hallucinations!\n\nCitations\nMedical dosages\nCode\n\nNeed to always have a human verify output!"
-  },
-  {
-    "objectID": "data100_wk14mon.html#vibe-coding-1",
-    "href": "data100_wk14mon.html#vibe-coding-1",
-    "title": "DATA 100",
-    "section": "Vibe coding",
-    "text": "Vibe coding\nThe new paradigm of coding work:\n\nFrom “The AI Coding Trap” by Chris Loy"
-  },
-  {
-    "objectID": "data100_wk14mon.html#ai-driven-engineering",
-    "href": "data100_wk14mon.html#ai-driven-engineering",
-    "title": "DATA 100",
-    "section": "AI-Driven Engineering",
-    "text": "AI-Driven Engineering\nLoy defines two different types of coding with AI tools:\n\n“AI-driven engineering: employing best practices, foregrounding human understanding of the code, moving slowly to make development sustainable.”\n\n\n“Vibe coding: throwing caution to the wind and implementing at speed, sacrificing understanding for delivery velocity, hitting an eventual wall of unsalvageable, messy code.”\n\n\nNote: We will still use the more common term of “vibe coding” but will advocate for “vibe coding + human review + iteration”."
   }
 ]
