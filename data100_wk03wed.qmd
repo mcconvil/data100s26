@@ -481,7 +481,6 @@ summarize(sd_bikes = sd(Total),
 
 ## Return to the Buffalo Bills Data
 
-
 ```{r}
 # Pull in the dataset on all teams
 nfl_outcomes_2018 <- read_csv("https://data.scorenetwork.org/data/nfl_mahomes_era_games.csv")

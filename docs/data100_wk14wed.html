@@ -10,7 +10,7 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.57">
 
-  <title>DATA 100 – Confidence Intervals</title>
+  <title>DATA 100 – Code Smells</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -392,675 +392,465 @@
     <div class="slides">
 
 
-<section>
-<section id="grab-30-notecards-it-is-okay-if-they-already-have-markings-on-them.-and-please-return-the-notecards-to-the-same-spot-after-class." class="title-slide slide level1 unnumbered unlisted center">
-<h1>Grab 30 notecards! It is okay if they already have markings on them. And, please return the notecards to the same spot after class.</h1>
-
-</section>
 <section class="slide level2">
 
 <div class="columns">
 <div class="column center" style="width:45%;">
 <p><img data-src="img/DAW.png" style="width:90.0%"></p>
 </div><div class="column center" style="width:55%;">
-<p><span class="custom-title">Confidence Intervals</span></p>
-<p><br> <br></p>
+<p><span class="custom-title">Developing Coding Taste</span></p>
+<p><br> <br> <br></p>
 <p><span class="custom-subtitle">Kelly McConville</span></p>
-<p><span class="custom-subtitle">DATA 100 <br> Week 8 | Spring 2026</span></p>
+<p><span class="custom-subtitle">DATA 100 <br> Week 14 | Spring 2026</span></p>
 </div></div>
 </section>
 <section id="announcements" class="slide level2">
 <h2>Announcements</h2>
 <ul>
-<li class="fragment">P-Set 5 is due tomorrow at noon.</li>
-<li class="fragment">Interesting sports analytics talk tomorrow at noon in Taylor 212. Sign up to attend: <a href="https://forms.gle/771gNTLQjtUH1Jbo6" class="uri">https://forms.gle/771gNTLQjtUH1Jbo6</a></li>
+<li class="fragment">Oral exam sign-ups in Slack</li>
+<li class="fragment"><strong>Extra Credit Lecture Quiz</strong>: Due In-Person at 3pm (start of lab) on Friday, May 1st</li>
+<li class="fragment"><strong>Exam Rewrites</strong>: Due on Gradescope at noon on Monday, March 4th</li>
 </ul>
 <h3 id="goals-for-today">Goals for Today</h3>
 <div class="columns">
 <div class="column">
 <ul>
-<li class="fragment">Estimation</li>
-<li class="fragment">Sampling distributions</li>
+<li class="fragment">Developing Coding Taste</li>
+<li class="fragment">Code smells</li>
 </ul>
 </div><div class="column">
 <ul>
-<li class="fragment">Bootstrap distributions</li>
-<li class="fragment">Bootstrapped confidence intervals</li>
+<li class="fragment">Learning a new coding task: maps!</li>
 </ul>
 </div></div>
-</section></section>
-<section>
-<section id="the-second-half-of-data-100-is-more-conceptually-difficult." class="title-slide slide level1 center">
-<h1>🤔 The second half of DATA 100 is more conceptually difficult. 🤔</h1>
-<p><span class="custom-subtitle">So keep coming to lecture, to lab, and to office hours to get your questions answered!</span></p>
 </section>
-<section id="statistical-inference" class="slide level2">
-<h2>Statistical Inference</h2>
-<p><strong>Goal</strong>: Draw conclusions about the population based on the sample.</p>
-<p><strong>Main Flavors</strong></p>
+<section id="recap-vibe-coding" class="slide level2">
+<h2>Recap: Vibe coding</h2>
 <ul>
-<li class="fragment"><p>Estimating numerical quantities (parameters).</p></li>
-<li class="fragment"><p>Testing conjectures.</p></li>
+<li class="fragment">Vibe coding is where an AI tool generates code based on prompts from a person.</li>
+<li class="fragment">Important skills to develop:
+<ul>
+<li class="fragment">Ability to review and debug the AI generated code.</li>
+<li class="fragment">Ability to prompt the AI tool for better code.</li>
+<li class="fragment">A strong understanding of what you want the AI code to produce.
+<ul>
+<li class="fragment">Don’t let it take you down the wrong rabbit hole.</li>
+</ul></li>
+<li class="fragment"><strong>Taste!</strong></li>
+</ul></li>
 </ul>
 </section>
-<section id="sampling-distribution-of-a-statistic" class="slide level2">
-<h2>Sampling Distribution of a Statistic</h2>
-<div class="columns">
-<div class="column">
+<section id="ai-driven-engineering" class="slide level2">
+<h2>AI-Driven Engineering</h2>
+<p>Think first and often when coding with AI!</p>
+<blockquote>
+<p>“AI-driven engineering: employing best practices, foregrounding human understanding of the code, moving slowly to make development sustainable.”</p>
+</blockquote>
+<blockquote>
+<p>“Vibe coding: throwing caution to the wind and implementing at speed, sacrificing understanding for delivery velocity, hitting an eventual wall of unsalvageable, messy code.”</p>
+</blockquote>
+<p><img data-src="img/ai-coding-8-chris-loy.svg"></p>
+</section>
+<section id="developing-your-taste-for-well-constructed-code" class="slide level2">
+<h2>Developing Your Taste for Well Constructed Code</h2>
+<ul>
+<li class="fragment">Want code that:
+<ul>
+<li class="fragment">Works.</li>
+<li class="fragment">Is robust.</li>
+<li class="fragment">Is easy to understand.</li>
+<li class="fragment">Is easy to contribute to.</li>
+</ul></li>
+<li class="fragment"><strong>Code smells</strong>: Structures in code that violate at least one of the items above.</li>
+</ul>
+</section>
+<section id="example-bike-counter" class="slide level2">
+<h2>Example: Bike Counter</h2>
+<div>
+<ul>
+<li><p>Let’s return to the Cambridge bike counter data.</p></li>
+<li><p>Import the <a href="https://data.cambridgema.gov/Transportation-Planning/Eco-Totem-Broadway-Bicycle-Count/q8v9-mcfg">data</a>.</p></li>
+</ul>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/samp_dist_prop.jpg" class="quarto-figure quarto-figure-center" style="width:85.0%"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>july_2019 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/july_2019.csv"</span>)</span>
+<span id="cb1-2"><a></a></span>
+<span id="cb1-3"><a></a><span class="co"># Inspect the data</span></span>
+<span id="cb1-4"><a></a><span class="fu">glimpse</span>(july_2019)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 192
+Columns: 8
+$ DateTime  &lt;chr&gt; "07/04/2019 12:00:00 AM", "07/04/2019 12:15:00 AM", "07/04/2…
+$ Day       &lt;chr&gt; "Thursday", "Thursday", "Thursday", "Thursday", "Thursday", …
+$ Date      &lt;date&gt; 2019-07-04, 2019-07-04, 2019-07-04, 2019-07-04, 2019-07-04,…
+$ Time      &lt;time&gt; 00:00:00, 00:15:00, 00:30:00, 00:45:00, 01:00:00, 01:15:00,…
+$ Total     &lt;dbl&gt; 2, 3, 2, 0, 3, 2, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, …
+$ Westbound &lt;dbl&gt; 2, 3, 1, 0, 2, 2, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, …
+$ Eastbound &lt;dbl&gt; 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, …
+$ Occasion  &lt;chr&gt; "Fourth of July", "Fourth of July", "Fourth of July", "Fourt…</code></pre>
 </div>
 </div>
-</div>
-</div><div class="column">
-<p>Steps to Construct an (Approximate) Sampling Distribution:</p>
-<ol type="1">
-<li class="fragment"><p>Decide on a sample size, <span class="math inline">\(n\)</span>.</p></li>
-<li class="fragment"><p>Randomly select a sample of size <span class="math inline">\(n\)</span> from the population.</p></li>
-<li class="fragment"><p>Compute the sample statistic.</p></li>
-<li class="fragment"><p>Put the sample back in.</p></li>
-<li class="fragment"><p>Repeat Steps 2 - 4 many (1000+) times.</p></li>
-</ol>
-</div></div>
+<ul>
+<li class="fragment">Suppose we didn’t have the <code>Total</code> column and wanted to create it by adding <code>Westbound</code> and <code>Eastbound</code>.</li>
+</ul>
 </section>
-<section id="sampling-distribution" class="slide level2">
-<h2>Sampling Distribution</h2>
+<section id="smelly-code" class="slide level2">
+<h2>Smelly Code</h2>
 <div class="columns">
-<div class="column">
+<div class="column" style="width:50%;">
+<p><strong>Smelly Code</strong></p>
 <div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/samp_dist_prop.jpg" class="quarto-figure quarto-figure-center" style="width:85.0%"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>july_2019<span class="sc">$</span>new_T<span class="ot">=</span><span class="fu">rep</span>(<span class="dv">5</span>, <span class="dv">192</span>)</span>
+<span id="cb3-2"><a></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">129</span>){</span>
+<span id="cb3-3"><a></a>  july_2019<span class="sc">$</span>new_T[i]<span class="ot">=</span>july_2019[i,<span class="dv">6</span>]<span class="sc">+</span>july_2019[i,<span class="dv">7</span>]</span>
+<span id="cb3-4"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</div><div class="column" style="width:50%;">
+<p><strong>Not Smelly Code</strong></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>july_2019 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(july_2019, </span>
+<span id="cb4-2"><a></a>                    <span class="at">new_Total =</span> Westbound <span class="sc">+</span> Eastbound)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div><div class="column">
-<ul>
-<li class="fragment"><p>What are some of the key features of a sampling distribution?</p></li>
-<li class="fragment"><p>Key Questions:</p>
-<ul>
-<li class="fragment">How do sampling distributions help us <strong>quantify uncertainty</strong>?</li>
-<li class="fragment">If I am estimating a parameter in a real example, why <strong>won’t</strong> I be able to construct the sampling distribution?</li>
-</ul></li>
-</ul>
 </div></div>
+<div class="fragment">
+<p>Both are correct-ish:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">glimpse</span>(july_2019)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 192
+Columns: 10
+$ DateTime  &lt;chr&gt; "07/04/2019 12:00:00 AM", "07/04/2019 12:15:00 AM", "07/04/2…
+$ Day       &lt;chr&gt; "Thursday", "Thursday", "Thursday", "Thursday", "Thursday", …
+$ Date      &lt;date&gt; 2019-07-04, 2019-07-04, 2019-07-04, 2019-07-04, 2019-07-04,…
+$ Time      &lt;time&gt; 00:00:00, 00:15:00, 00:30:00, 00:45:00, 01:00:00, 01:15:00,…
+$ Total     &lt;dbl&gt; 2, 3, 2, 0, 3, 2, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, …
+$ Westbound &lt;dbl&gt; 2, 3, 1, 0, 2, 2, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, …
+$ Eastbound &lt;dbl&gt; 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, …
+$ Occasion  &lt;chr&gt; "Fourth of July", "Fourth of July", "Fourth of July", "Fourt…
+$ new_T     &lt;list&gt; 2, 3, 2, 0, 3, 2, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1,…
+$ new_Total &lt;dbl&gt; 2, 3, 2, 0, 3, 2, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, …</code></pre>
+</div>
+</div>
+<p>But why is the lefthand code smelly?</p>
+</div>
 </section>
-<section id="lets-construct-some-sampling-distributions-using-r" class="slide level2">
-<h2>Let’s Construct Some Sampling Distributions using <code>R</code>!</h2>
-<p><strong>Important Notes</strong></p>
+<section id="developing-your-taste-for-well-constructed-outputs" class="slide level2">
+<h2>Developing Your Taste for Well Constructed Outputs</h2>
 <ul>
-<li class="fragment"><p>To construct a <strong>sampling distribution</strong> for a statistic, we need access to the entire population so that we can take <strong>repeated samples</strong> from the population.</p>
+<li class="fragment">Want outputs that are:
 <ul>
-<li class="fragment">Population = Trees in parks in Portland, OR</li>
+<li class="fragment">Accurate.</li>
+<li class="fragment">Clear.</li>
+<li class="fragment">Unique.</li>
+<li class="fragment">Provide context.</li>
 </ul></li>
-<li class="fragment"><p>But if we have access to the entire population, then we <strong>know</strong> the value of the population parameter.</p>
+<li class="fragment">Let’s look at some of the final graphs from last class and ask:
 <ul>
-<li class="fragment">Know that 26.6% of trees in Portland parks are Douglas-Fir.</li>
+<li class="fragment">Which graph do you prefer?<br>
+</li>
+<li class="fragment">How could the graphs be improved?</li>
 </ul></li>
-<li class="fragment"><p>The sampling distribution is needed in the exact scenario where we can’t compute it: the scenario where we only have a <strong>single sample</strong>.</p></li>
-<li class="fragment"><p>Right now, we have the <strong>entire population</strong> and are constructing sampling distributions anyway to better understand their behaviors!</p></li>
 </ul>
 </section>
-<section id="new-r-packages" class="slide level2">
-<h2>New <code>R</code> Packages</h2>
+<section id="example-birth-patterns-in-the-us" class="slide level2">
+<h2>Example: Birth Patterns in the US</h2>
 <div class="columns">
 <div class="column" style="width:20%;">
+
+</div><div class="column" style="width:60%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/infer.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="data100_wk14wed_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
-</div><div class="column" style="width:80%;">
-<p><br> <br> <br></p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(infer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Will use <code>infer</code> to conduct statistical inference.</p>
+</div>
+</div><div class="column" style="width:20%;">
+
 </div></div>
+</section>
+<section id="example-birth-patterns-in-the-us-1" class="slide level2">
+<h2>Example: Birth Patterns in the US</h2>
 <div class="columns">
-<div class="column" style="width:3%;">
+<div class="column" style="width:20%;">
 
-</div><div class="column" style="width:12%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/pdxHexSticker.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
-</figure>
-</div>
-</div><div class="column" style="width:5%;">
-
-</div><div class="column">
-<p><br></p>
+</div><div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(pdxTrees)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Will use <code>pdxTrees</code> to access data on trees in Portland, OR parks.</p>
-</div></div>
-</section>
-<section id="our-population-parameter" class="slide level2">
-<h2>Our Population Parameter</h2>
-<p>Grab data on ALL the trees in parks in Portland, OR:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb3-2"><a></a><span class="fu">library</span>(pdxTrees)</span>
-<span id="cb3-3"><a></a>park_trees <span class="ot">&lt;-</span> <span class="fu">get_pdxTrees_parks</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Add variable of interest:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>park_trees <span class="ot">&lt;-</span> park_trees <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a></a>  <span class="fu">mutate</span>(<span class="at">tree_of_interest =</span> <span class="fu">case_when</span>(</span>
-<span id="cb4-3"><a></a>    Common_Name <span class="sc">==</span> <span class="st">"Douglas-Fir"</span> <span class="sc">~</span> <span class="st">"yes"</span>,</span>
-<span id="cb4-4"><a></a>    Common_Name <span class="sc">!=</span> <span class="st">"Douglas-Fir"</span> <span class="sc">~</span> <span class="st">"no"</span></span>
-<span id="cb4-5"><a></a>  ))</span>
-<span id="cb4-6"><a></a><span class="fu">count</span>(park_trees, tree_of_interest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 2
-  tree_of_interest     n
-  &lt;chr&gt;            &lt;int&gt;
-1 no               18751
-2 yes               6783</code></pre>
-</div>
-</div>
-</section>
-<section id="population-parameter" class="slide level2">
-<h2>Population Parameter</h2>
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co"># Population distribution</span></span>
-<span id="cb6-2"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> park_trees, </span>
-<span id="cb6-3"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> tree_of_interest)) <span class="sc">+</span></span>
-<span id="cb6-4"><a></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..prop.., <span class="at">group =</span> <span class="dv">1</span>),</span>
-<span id="cb6-5"><a></a>           <span class="at">stat =</span> <span class="st">"count"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk08wed_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
+<p><img data-src="data100_wk14wed_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># True population parameter</span></span>
-<span id="cb7-2"><a></a><span class="fu">summarize</span>(park_trees, </span>
-<span id="cb7-3"><a></a>          <span class="at">parameter =</span> <span class="fu">mean</span>(tree_of_interest <span class="sc">==</span> <span class="st">"yes"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  parameter
-      &lt;dbl&gt;
-1     0.266</code></pre>
 </div>
+</div><div class="column" style="width:20%;">
+
 </div></div>
 </section>
-<section class="slide level2">
-
-<h3 id="random-samples">Random Samples</h3>
-<p>Let’s look at 4 random samples.</p>
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># Draw random samples</span></span>
-<span id="cb9-2"><a></a>samples <span class="ot">&lt;-</span> park_trees <span class="sc">%&gt;%</span> </span>
-<span id="cb9-3"><a></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">reps =</span> <span class="dv">4</span>)</span>
-<span id="cb9-4"><a></a>  </span>
-<span id="cb9-5"><a></a><span class="co"># Graph the samples</span></span>
-<span id="cb9-6"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> samples, </span>
-<span id="cb9-7"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> tree_of_interest)) <span class="sc">+</span></span>
-<span id="cb9-8"><a></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..prop.., <span class="at">group =</span> <span class="dv">1</span>),</span>
-<span id="cb9-9"><a></a>           <span class="at">stat =</span> <span class="st">"count"</span>) <span class="sc">+</span></span>
-<span id="cb9-10"><a></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> replicate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="data100_wk08wed_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
-</figure>
-</div>
-</div>
-</div></div>
-</section>
-<section class="slide level2">
-
-<h3 id="constructing-the-sampling-distribution">Constructing the Sampling Distribution</h3>
-<p>Now, let’s take 1000 random samples.</p>
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="co"># Construct the sampling distribution</span></span>
-<span id="cb10-2"><a></a>samp_dist <span class="ot">&lt;-</span> park_trees <span class="sc">%&gt;%</span> </span>
-<span id="cb10-3"><a></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">reps =</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb10-4"><a></a>  <span class="fu">group_by</span>(replicate) <span class="sc">%&gt;%</span></span>
-<span id="cb10-5"><a></a>  <span class="fu">summarize</span>(<span class="at">statistic =</span> </span>
-<span id="cb10-6"><a></a>              <span class="fu">mean</span>(tree_of_interest <span class="sc">==</span> <span class="st">"yes"</span>))</span>
-<span id="cb10-7"><a></a></span>
-<span id="cb10-8"><a></a><span class="co"># Graph the sampling distribution</span></span>
-<span id="cb10-9"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> samp_dist, </span>
-<span id="cb10-10"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> statistic)) <span class="sc">+</span></span>
-<span id="cb10-11"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">14</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="data100_wk08wed_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
-</figure>
-</div>
-</div>
-</div></div>
+<section id="example-birth-patterns-in-the-us-2" class="slide level2">
+<h2>Example: Birth Patterns in the US</h2>
 <div class="columns">
-<div class="column" style="width:33%;">
-<ul>
-<li class="fragment">Shape?</li>
-</ul>
-</div><div class="column" style="width:33%;">
-<ul>
-<li class="fragment">Center?</li>
-</ul>
-</div><div class="column" style="width:33%;">
-<ul>
-<li class="fragment">Spread?</li>
-</ul>
-</div></div>
-</section>
-<section class="slide level2">
+<div class="column" style="width:20%;">
 
-<h3 id="properties-of-the-sampling-distribution">Properties of the Sampling Distribution</h3>
-<div class="columns">
-<div class="column">
+</div><div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk08wed_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
+<p><img data-src="data100_wk14wed_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
 </figure>
 </div>
 </div>
 </div>
-</div><div class="column">
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">summarize</span>(samp_dist, <span class="fu">mean</span>(statistic))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  `mean(statistic)`
-              &lt;dbl&gt;
-1             0.271</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">summarize</span>(samp_dist, <span class="fu">sd</span>(statistic))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  `sd(statistic)`
-            &lt;dbl&gt;
-1           0.100</code></pre>
-</div>
-</div>
-</div></div>
-<p>The standard deviation of a sample statistic is called the <strong>standard error</strong>.</p>
-</section>
-<section class="slide level2">
+</div><div class="column" style="width:20%;">
 
-<p>What happens to the sampling distribution if we change the sample size from 20 to 100?</p>
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="co"># Construct the sampling distribution</span></span>
-<span id="cb15-2"><a></a>samp_dist <span class="ot">&lt;-</span> park_trees <span class="sc">%&gt;%</span> </span>
-<span id="cb15-3"><a></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">100</span>, <span class="at">reps =</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb15-4"><a></a>  <span class="fu">group_by</span>(replicate) <span class="sc">%&gt;%</span></span>
-<span id="cb15-5"><a></a>  <span class="fu">summarize</span>(<span class="at">statistic =</span> </span>
-<span id="cb15-6"><a></a>              <span class="fu">mean</span>(tree_of_interest <span class="sc">==</span> <span class="st">"yes"</span>))</span>
-<span id="cb15-7"><a></a></span>
-<span id="cb15-8"><a></a><span class="co"># Graph the sampling distribution</span></span>
-<span id="cb15-9"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> samp_dist, </span>
-<span id="cb15-10"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> statistic)) <span class="sc">+</span></span>
-<span id="cb15-11"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="data100_wk08wed_files/figure-revealjs/unnamed-chunk-13-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">summarize</span>(samp_dist, <span class="fu">mean</span>(statistic), </span>
-<span id="cb16-2"><a></a>          <span class="fu">sd</span>(statistic))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 2
-  `mean(statistic)` `sd(statistic)`
-              &lt;dbl&gt;           &lt;dbl&gt;
-1             0.266          0.0455</code></pre>
-</div>
 </div></div>
 </section>
-<section class="slide level2">
-
-<p>What if we change the true parameter value?</p>
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="co"># Construct the sampling distribution</span></span>
-<span id="cb18-2"><a></a>samp_dist <span class="ot">&lt;-</span> park_trees <span class="sc">%&gt;%</span></span>
-<span id="cb18-3"><a></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">reps =</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb18-4"><a></a>  <span class="fu">group_by</span>(replicate) <span class="sc">%&gt;%</span></span>
-<span id="cb18-5"><a></a>  <span class="fu">summarize</span>(<span class="at">statistic =</span></span>
-<span id="cb18-6"><a></a>              <span class="fu">mean</span>(Common_Name <span class="sc">==</span> </span>
-<span id="cb18-7"><a></a>                     <span class="st">"Japanese Flowering Cherry"</span>))</span>
-<span id="cb18-8"><a></a></span>
-<span id="cb18-9"><a></a><span class="co"># Graph the sampling distribution</span></span>
-<span id="cb18-10"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> samp_dist,</span>
-<span id="cb18-11"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> statistic)) <span class="sc">+</span></span>
-<span id="cb18-12"><a></a>    <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="data100_wk08wed_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">summarize</span>(samp_dist, <span class="fu">mean</span>(statistic),</span>
-<span id="cb19-2"><a></a>          <span class="fu">sd</span>(statistic))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 2
-  `mean(statistic)` `sd(statistic)`
-              &lt;dbl&gt;           &lt;dbl&gt;
-1            0.0164          0.0282</code></pre>
-</div>
-</div></div>
-</section></section>
-<section>
-<section id="on-next-problem-set" class="title-slide slide level1 center">
-<h1>On Next Problem Set:</h1>
-<p><span class="custom-subtitle">Will investigate what happens when we change the parameter of interest to a mean or a correlation coefficient!</span></p>
-</section>
-<section id="key-features-of-a-sampling-distribution" class="slide level2">
-<h2>Key Features of a Sampling Distribution</h2>
-<p>What did we learn about sampling distributions?</p>
+<section id="learn-from-experts-ai" class="slide level2">
+<h2>Learn from Experts &amp; AI</h2>
 <ul>
-<li class="fragment"><p>Centered around the true population parameter.</p></li>
-<li class="fragment"><p>As the sample size increases, the <strong>standard error</strong> (SE) of the statistic decreases.</p></li>
-<li class="fragment"><p>As the sample size increases, the shape of the sampling distribution becomes more bell-shaped and symmetric.</p></li>
-<li class="fragment"><p><strong>Question:</strong> How do sampling distributions help us <strong>quantify uncertainty</strong>?</p></li>
+<li class="fragment"><p><a href="https://github.com/jennybc">Jenny Bryan</a> is a rock star coder. Reading her materials and watching her presentations has made me a better coder.</p></li>
+<li class="fragment"><p>Jenny’s observation:</p></li>
+</ul>
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/cakes.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li class="fragment">But AI can help speed up your ability by helping you learn new code.
+<ul>
+<li class="fragment">As long as you keep <strong>developing your own taste.</strong></li>
+</ul></li>
 </ul>
 </section>
-<section id="estimation" class="slide level2">
-<h2>Estimation</h2>
-<p><strong>Goal</strong>: Estimate the value of a population parameter using data from the sample.</p>
+<section id="suggestions-for-developing-taste-while-vibe-coding" class="slide level2">
+<h2>Suggestions for Developing Taste while Vibe Coding</h2>
 <ul>
-<li class="fragment"><p><strong>Question</strong>: How do I know which population parameter I am interesting in estimating?</p></li>
-<li class="fragment"><p><strong>Answer</strong>: Likely depends on the research question and structure of your data!</p></li>
-<li class="fragment"><p><strong>Point Estimate</strong>: The corresponding statistic</p>
+<li class="fragment">Know what you want.</li>
+</ul>
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/know_what_you_want.png" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <ul>
-<li class="fragment">Single best guess for the parameter</li>
+<li class="fragment">And then <strong>iterate</strong>.</li>
+</ul>
+</section>
+<section id="suggestions-for-developing-taste-while-vibe-coding-1" class="slide level2">
+<h2>Suggestions for Developing Taste while Vibe Coding</h2>
+<ul>
+<li class="fragment">Be curious.
+<ul>
+<li class="fragment">Saw lots of great curiosity on Monday!</li>
 </ul></li>
 </ul>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb21-2"><a></a>ce <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/fmli.csv"</span>)</span>
-<span id="cb21-3"><a></a><span class="fu">summarize</span>(ce, <span class="at">meanFINCBTAX =</span> <span class="fu">mean</span>(FINCBTAX))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  meanFINCBTAX
-         &lt;dbl&gt;
-1       62480.</code></pre>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/curious1.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/curious2.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
 </section>
-<section class="slide level2">
-
-<h3 id="potential-parameters-and-point-estimatesstatistics">Potential Parameters and Point Estimates/Statistics</h3>
+<section id="suggestions-for-developing-taste-while-vibe-coding-2" class="slide level2">
+<h2>Suggestions for Developing Taste while Vibe Coding</h2>
+<ul>
+<li class="fragment">Keep code concise and consistent.
+<ul>
+<li class="fragment">Ex: Don’t load packages at the start of every chunk!</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb7-2"><a></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 </section>
-<section id="confidence-intervals" class="slide level2">
-<h2>Confidence Intervals</h2>
-<div class="columns">
+<section id="suggestions-for-developing-taste-while-vibe-coding-3" class="slide level2">
+<h2>Suggestions for Developing Taste while Vibe Coding</h2>
+<p>Don’t over-comment your code.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co"># Create the plot with a qualitative ColorBrewer palette</span></span>
+<span id="cb8-2"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> Births2015, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> births, <span class="at">color =</span> wday)) <span class="sc">+</span></span>
+<span id="cb8-3"><a></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span>  <span class="co"># Added alpha and size for better visibility</span></span>
+<span id="cb8-4"><a></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span> <span class="co"># Applies the distinct qualitative palette </span></span>
+<span id="cb8-5"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-6"><a></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>, <span class="co"># Moves legend to bottom for a wider plot area</span></span>
+<span id="cb8-7"><a></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>) <span class="co"># Bolds the title for a cleaner look</span></span>
+<span id="cb8-8"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="suggestions-for-developing-taste-while-vibe-coding-4" class="slide level2">
+<h2>Suggestions for Developing Taste while Vibe Coding</h2>
+<p>Be unique and don’t settle for the defaults.</p>
+<div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<p>It is time to move <strong>beyond</strong> just point estimates to interval estimates that quantify our uncertainty.</p>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>Births2015 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(Births2015, <span class="at">when =</span> <span class="fu">if_else</span>(</span>
+<span id="cb9-2"><a></a>  day_of_week <span class="sc">%in%</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>), <span class="st">"Weekend"</span>, <span class="st">"Weekday"</span></span>
+<span id="cb9-3"><a></a>))</span>
+<span id="cb9-4"><a></a></span>
+<span id="cb9-5"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> Births2015,</span>
+<span id="cb9-6"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> births,</span>
+<span id="cb9-7"><a></a>                     <span class="at">color =</span> when)) <span class="sc">+</span></span>
+<span id="cb9-8"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">summarize</span>(ce, <span class="at">meanFINCBTAX =</span> <span class="fu">mean</span>(FINCBTAX))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  meanFINCBTAX
-         &lt;dbl&gt;
-1       62480.</code></pre>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk14wed_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
+</figure>
 </div>
 </div>
 </div></div>
-<ul>
-<li class="fragment"><p><strong>Confidence Interval</strong>: Interval of <strong>plausible</strong> values for a parameter</p></li>
-<li class="fragment"><p><strong>Form</strong>: <span class="math inline">\(\mbox{statistic} \pm \mbox{Margin of Error}\)</span></p></li>
-<li class="fragment"><p><strong>Question</strong>: How do we find the Margin of Error (ME)?</p></li>
-<li class="fragment"><p><strong>Answer</strong>: If the sampling distribution of the statistic is approximately bell-shaped and symmetric, then a statistic will be within 2 SEs of the parameter for 95% of the samples.</p></li>
-<li class="fragment"><p><strong>Form</strong>: <span class="math inline">\(\mbox{statistic} \pm 2\mbox{SE}\)</span></p></li>
-<li class="fragment"><p>Called a 95% confidence interval (CI). (Will discuss the meaning of <strong>confidence</strong> soon)</p></li>
-</ul>
 </section>
-<section id="confidence-intervals-1" class="slide level2">
-<h2>Confidence Intervals</h2>
-<p><strong>95% CI Form</strong>:</p>
-<p><span class="math display">\[
-\mbox{statistic} \pm 2\mbox{SE}
-\]</span></p>
-<p>Let’s use the <code>ce</code> data to produce a CI for the average household income before taxes.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">summarize</span>(ce, <span class="at">meanFINCBTAX =</span> <span class="fu">mean</span>(FINCBTAX))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  meanFINCBTAX
-         &lt;dbl&gt;
-1       62480.</code></pre>
+<section id="suggestions-for-developing-taste-while-vibe-coding-5" class="slide level2">
+<h2>Suggestions for Developing Taste while Vibe Coding</h2>
+<p>Avoid the illusion of context.</p>
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> Births2015,</span>
+<span id="cb10-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> births,</span>
+<span id="cb10-3"><a></a>                     <span class="at">color =</span> when)) <span class="sc">+</span></span>
+<span id="cb10-4"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb10-5"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-6"><a></a>    <span class="at">title =</span> <span class="st">"US Births in 2015 by Day of the Week"</span>,</span>
+<span id="cb10-7"><a></a>    <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb10-8"><a></a>    <span class="at">y =</span> <span class="st">"Number of Births"</span>,</span>
+<span id="cb10-9"><a></a>    <span class="at">color =</span> <span class="st">"Week or Weekend?"</span></span>
+<span id="cb10-10"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="data100_wk14wed_files/figure-revealjs/unnamed-chunk-19-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
+</figure>
 </div>
 </div>
-<p>What else do we need to construct the CI?</p>
-<ul>
-<li class="fragment"><p><strong>Problem</strong>: To compute the SE, we need many samples from the population. We have 1 sample.</p></li>
-<li class="fragment"><p><strong>Solution</strong>: Approximate the sampling distribution using <strong>ONLY OUR ONE SAMPLE!</strong></p></li>
-</ul>
-</section>
-<section class="slide level2">
-
-<h3 id="bootstrap-distribution">Bootstrap Distribution</h3>
-<p>How do we approximate the sampling distribution?</p>
-<div class="columns">
-<div class="column" style="width:&quot;50%;">
-<p><strong>Bootstrap Distribution of a Sample Statistic</strong>:</p>
-<ol type="1">
-<li class="fragment"><p>Take a sample of size <span class="math inline">\(n\)</span> <strong>with replacement</strong> from the sample. Called a bootstrap sample.</p></li>
-<li class="fragment"><p>Compute the statistic on the bootstrap sample.</p></li>
-<li class="fragment"><p>Repeat 1 and 2 many (1000+) times.</p></li>
-</ol>
 </div></div>
 </section>
-<section class="slide level2">
-
-<h3 id="lets-practice-generating-bootstrap-samples">Let’s Practice Generating Bootstrap Samples!</h3>
-<p><strong>Example:</strong> In a recent study, 23 rats showed compassion that surprised scientists. Twenty-three of the 30 rats in the study freed another trapped rat in their cage, even when chocolate served as a distraction and even when the rats would then have to share the chocolate with their freed companion. (Rats, it turns out, love chocolate.) Rats did not open the cage when it was empty or when there was a stuffed animal inside, only when a fellow rat was trapped. We wish to use the sample to estimate the proportion of rats that show empathy in this way.</p>
-<p><strong>Parameter</strong>:</p>
-<p><strong>Statistic</strong>:</p>
-<p>Use your 30 cards to take a bootstrap sample. (Make sure to appropriately label them first!)</p>
-<p>Compute the bootstrap statistic and put it on the class dotplot.</p>
-<p>(Will use these data for one of the problems in the next p-set.)</p>
-</section>
-<section class="slide level2">
-
-<h3 id="sampling-distribution-versus-bootstrap-distribution">Sampling Distribution Versus Bootstrap Distribution</h3>
-<div>
-<ul>
-<li>Data needed:</li>
-</ul>
-<p><br> <br> <br></p>
-<ul>
-<li>Center:</li>
-</ul>
-<p><br> <br> <br></p>
-<ul>
-<li>Spread:</li>
-</ul>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="bootstrapped-confidence-intervals">(Bootstrapped) Confidence Intervals</h3>
-<p><strong>95% CI Form</strong>:</p>
-<p><span class="math display">\[
-\mbox{statistic} \pm 2\mbox{SE}
-\]</span></p>
-<p>We approximate <span class="math inline">\(\mbox{SE}\)</span> with <span class="math inline">\(\widehat{\mbox{SE}}\)</span> = the standard deviation of the bootstrapped statistics.</p>
-<p>Caveats:</p>
-<ul>
-<li class="fragment"><p>Assuming a random sample</p></li>
-<li class="fragment"><p>Even with random samples, sometimes we get non-representative samples. Bootstrapping can’t fix that.</p></li>
-<li class="fragment"><p>Assuming the bootstrap distribution is bell-shaped and symmetric</p></li>
-</ul>
-</section>
-<section class="slide level2">
-
-<h3 id="bootstrapped-confidence-intervals-1">Bootstrapped Confidence Intervals</h3>
-<h4 id="two-methods">Two Methods</h4>
-<p>Assuming random sample and roughly bell-shaped and symmetric bootstrap distribution for both methods.</p>
-<p><strong>SE Method 95% CI</strong>:</p>
-<p><span class="math display">\[
-\mbox{statistic} \pm 2\widehat{\mbox{SE}}
-\]</span></p>
-<p>We approximate <span class="math inline">\(\mbox{SE}\)</span> with <span class="math inline">\(\widehat{\mbox{SE}}\)</span> = the standard deviation of the bootstrapped statistics.</p>
-<p><strong>Percentile Method CI:</strong></p>
-<p>If I want a P% confidence interval, I find the bounds of the middle P% of the bootstrap distribution.</p>
-</section></section>
 <section>
-<section id="how-can-we-construct-bootstrap-distributions-and-bootstrapped-cis-in-r" class="title-slide slide level1 center">
-<h1>How can we construct bootstrap distributions and bootstrapped CIs in R?</h1>
+<section id="lets-learn-something-new-maps-in-r" class="title-slide slide level1 center">
+<h1>Let’s learn something new: Maps in <code>R</code>!</h1>
 
 </section>
-<section id="load-packages-and-data" class="slide level2">
-<h2>Load Packages and Data</h2>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb27-2"><a></a><span class="fu">library</span>(infer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Let’s return to the movies dataset and estimate numerical quantities about Hollywood movies.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="co"># Read in data</span></span>
-<span id="cb28-2"><a></a>movies <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://www.lock5stat.com/datasets2e/HollywoodMovies.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="estimation-for-a-single-mean" class="slide level2">
-<h2>Estimation for a Single Mean</h2>
-<p>What is the average amount of money <span class="math inline">\((\mu)\)</span> made in the opening weekend?</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="co"># Compute the summary statistic</span></span>
-<span id="cb29-2"><a></a>x_bar <span class="ot">&lt;-</span> movies <span class="sc">%&gt;%</span></span>
-<span id="cb29-3"><a></a>  <span class="fu">drop_na</span>(OpeningWeekend) <span class="sc">%&gt;%</span></span>
-<span id="cb29-4"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> OpeningWeekend) <span class="sc">%&gt;%</span></span>
-<span id="cb29-5"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"mean"</span>)</span>
-<span id="cb29-6"><a></a>x_bar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Response: OpeningWeekend (numeric)
-# A tibble: 1 × 1
-   stat
-  &lt;dbl&gt;
-1  20.6</code></pre>
-</div>
-</div>
+<section class="slide level2">
+
+<h3 id="spatial-data">Spatial Data</h3>
 <ul>
-<li class="fragment">Why is our numerical quantity a mean and not a proportion or correlation here?</li>
+<li class="fragment"><p>Data that is linked to the physical world.</p></li>
+<li class="fragment"><p>Visualizing these data on a map (or map-like graph) is a great way to add useful context!</p></li>
+<li class="fragment"><p>Focus on choropleth maps and raster maps.</p></li>
 </ul>
 </section>
-<section id="estimation-for-a-single-mean-1" class="slide level2">
-<h2>Estimation for a Single Mean</h2>
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
-<span id="cb31-2"><a></a></span>
-<span id="cb31-3"><a></a></span>
-<span id="cb31-4"><a></a><span class="co"># Construct bootstrap distribution</span></span>
-<span id="cb31-5"><a></a>bootstrap_dist <span class="ot">&lt;-</span> movies <span class="sc">%&gt;%</span></span>
-<span id="cb31-6"><a></a>  <span class="fu">drop_na</span>(OpeningWeekend) <span class="sc">%&gt;%</span></span>
-<span id="cb31-7"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> OpeningWeekend) <span class="sc">%&gt;%</span></span>
-<span id="cb31-8"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span>  <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"bootstrap"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb31-9"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"mean"</span>)</span>
-<span id="cb31-10"><a></a></span>
-<span id="cb31-11"><a></a><span class="co"># Look at bootstrap distribution</span></span>
-<span id="cb31-12"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> bootstrap_dist, </span>
-<span id="cb31-13"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> stat)) <span class="sc">+</span></span>
-<span id="cb31-14"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
+<section class="slide level2">
+
+<h3 id="static-raster-maps">Static, Raster Maps</h3>
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk08wed_files/figure-revealjs/unnamed-chunk-21-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
+<p><img data-src="img/static_map.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
 </figure>
 </div>
 </div>
-</div></div>
-</section>
-<section id="estimation-for-a-single-mean-se-method" class="slide level2">
-<h2>Estimation for a Single Mean – SE Method</h2>
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="co"># Get confidence interval</span></span>
-<span id="cb32-2"><a></a>ci <span class="ot">&lt;-</span> bootstrap_dist <span class="sc">%&gt;%</span> </span>
-<span id="cb32-3"><a></a>  <span class="fu">get_confidence_interval</span>(<span class="at">type =</span> <span class="st">"se"</span>, <span class="at">level =</span> <span class="fl">0.95</span>,</span>
-<span id="cb32-4"><a></a>                          <span class="at">point_estimate =</span> x_bar)</span>
-<span id="cb32-5"><a></a>ci</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 2
-  lower_ci upper_ci
-     &lt;dbl&gt;    &lt;dbl&gt;
-1     19.0     22.2</code></pre>
 </div>
-</div></div>
-<p><strong>Interpretation:</strong> The point estimate is $ 20.6M. I am 95% confidence that the average amount of money made by all Hollywood movies is between $ 19.0243721M and $ 22.2M.</p>
-<p><strong>Inline <code>R</code> code?</strong></p>
+<p>Source: <a href="https://coronavirus.jhu.edu/map.html">JHU</a></p>
 </section>
-<section id="estimation-for-a-single-mean-2" class="slide level2">
-<h2>Estimation for a Single Mean</h2>
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="co"># Visualize confidence interval</span></span>
-<span id="cb34-2"><a></a>bootstrap_dist <span class="sc">%&gt;%</span></span>
-<span id="cb34-3"><a></a>  <span class="fu">visualize</span>() <span class="sc">+</span></span>
-<span id="cb34-4"><a></a>  <span class="fu">shade_confidence_interval</span>(<span class="at">endpoints =</span> ci)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
+<section class="slide level2">
+
+<h3 id="choropleth-maps">Choropleth Maps</h3>
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data100_wk08wed_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure quarto-figure-center" width="4000"></p>
+<p><img data-src="img/vaccine_rates.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
 </figure>
 </div>
 </div>
-</div></div>
-</section>
-<section id="estimation-for-a-single-mean-percentile-method" class="slide level2">
-<h2>Estimation for a Single Mean – Percentile Method</h2>
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="co"># Get confidence interval </span></span>
-<span id="cb35-2"><a></a>ci_95 <span class="ot">&lt;-</span> bootstrap_dist <span class="sc">%&gt;%</span> </span>
-<span id="cb35-3"><a></a>  <span class="fu">get_confidence_interval</span>(<span class="at">type =</span> <span class="st">"percentile"</span>,</span>
-<span id="cb35-4"><a></a>                          <span class="at">level =</span> <span class="fl">0.95</span>) </span>
-<span id="cb35-5"><a></a>ci_95</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 2
-  lower_ci upper_ci
-     &lt;dbl&gt;    &lt;dbl&gt;
-1     19.0     22.3</code></pre>
 </div>
-</div></div>
+<p>Source: <a href="https://www.theguardian.com/us-news/2021/feb/18/us-vaccine-distribution-tracker-by-state">The Guardian</a></p>
 </section>
-<section id="reminders" class="slide level2">
-<h2>Reminders</h2>
+<section class="slide level2">
+
+<h3 id="interactive-maps">Interactive Maps</h3>
+<p>Can be choropleth or raster maps!</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/climate_change.png" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Source: <a href="https://www.nytimes.com/2020/10/15/learning/whats-going-on-in-this-graph-climate-threats.html">NYTimes</a></p>
+</section>
+<section id="spatial-data-structures" class="slide level2">
+<h2>Spatial Data Structures</h2>
 <ul>
-<li class="fragment">P-Set 5 is due tomorrow at noon.</li>
-<li class="fragment">Interesting sports analytics talk tomorrow at noon in Taylor 212. Sign up to attend: <a href="https://forms.gle/771gNTLQjtUH1Jbo6" class="uri">https://forms.gle/771gNTLQjtUH1Jbo6</a></li>
+<li class="fragment">Often stored in special data structures
+<ul>
+<li class="fragment">Ex: Shapefile(s)</li>
+<li class="fragment">Consist of geometric objects like points, lines, and polygons</li>
+</ul></li>
+<li class="fragment">Visualizing Spatial Data
+<ul>
+<li class="fragment">Need to draw the map</li>
+<li class="fragment">Add metadata on top of the map
+<ul>
+<li class="fragment">Color in regions</li>
+<li class="fragment">Dots</li>
+</ul></li>
+</ul></li>
 </ul>
+</section></section>
+<section id="downloading-materials-from-posit-cloud" class="title-slide slide level1 center">
+<h1>Downloading Materials from Posit Cloud</h1>
+
+</section>
+
+<section id="lets-learn-something-new-mapping-activity-in-posit-cloud" class="title-slide slide level1 center">
+<h1>Let’s Learn Something New: Mapping Activity in Posit Cloud</h1>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 

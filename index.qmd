@@ -31,3 +31,5 @@ The lecture slides (both in HTML and PDF) will be posted here. <!-- Additionally
 | Week 13, Wed | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk13wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk13wed.pdf) |
 | Week 14, Mon | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk14mon.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk14mon.pdf) |
 :::
+| Week 14, Wed | [{{< fa display >}}](https://mcconvil.github.io/data100s26/data100_wk14wed.html) | [{{< fa file-pdf >}}](https://mcconvil.github.io/data100s26/pdfs/data100_wk14wed.pdf) |
+:::
