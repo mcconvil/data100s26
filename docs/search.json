@@ -1645,6 +1645,48 @@
     "text": "Reminders\n\nClass in full swing:\n\nOffice hours:\n\nMine: Tuesdays 2:30 - 4pm, Wednesdays 2-3pm, Taylor 212\nRebecca: Mondays and Wednesdays 4:30 - 6pm, Taylor 210\nGeneral Data Science Office Hours\n\nThe first problem set is due at noon on Thursday in Gradescope."
   },
   {
+    "objectID": "data100_trivia.html#plan",
+    "href": "data100_trivia.html#plan",
+    "title": "DATA 100",
+    "section": "Plan",
+    "text": "Plan\n\nHex cookie decorating\nTalk through upcoming exam\n\nGo to the Final Exam Guidance and Practice on Posit Cloud.\n\nTrivia challenge\n\n1 point for each correct answer\nCategories: Data Wrangling, Data Visualization, Modeling, Miscellaneous\nPrizes!"
+  },
+  {
+    "objectID": "data100_trivia.html#question-2-how-many-columns-and-how-many-rows-will-the-wrangled-data-have",
+    "href": "data100_trivia.html#question-2-how-many-columns-and-how-many-rows-will-the-wrangled-data-have",
+    "title": "DATA 100",
+    "section": "Question 2: How many columns and how many rows will the wrangled data have?",
+    "text": "Question 2: How many columns and how many rows will the wrangled data have?\n\n\n# A tibble: 8 × 4\n  species   island    body_mass_g bill_length_mm\n  &lt;fct&gt;     &lt;fct&gt;           &lt;int&gt;          &lt;dbl&gt;\n1 Adelie    Dream            3650           39  \n2 Adelie    Torgersen        2900           38.6\n3 Gentoo    Biscoe           5050           46.3\n4 Adelie    Dream            4300           41.1\n5 Adelie    Biscoe           4100           41.1\n6 Gentoo    Biscoe           5050           45.1\n7 Chinstrap Dream            4050           49.3\n8 Adelie    Torgersen        4000           44.1\n\n\n\ncount(penguins_small, species, island)"
+  },
+  {
+    "objectID": "data100_trivia.html#question-5-how-many-columns-and-how-many-rows-will-the-wrangled-data-have",
+    "href": "data100_trivia.html#question-5-how-many-columns-and-how-many-rows-will-the-wrangled-data-have",
+    "title": "DATA 100",
+    "section": "Question 5: How many columns and how many rows will the wrangled data have?",
+    "text": "Question 5: How many columns and how many rows will the wrangled data have?\n\n\n# A tibble: 8 × 4\n  species   island    body_mass_g bill_length_mm\n  &lt;fct&gt;     &lt;fct&gt;           &lt;int&gt;          &lt;dbl&gt;\n1 Adelie    Dream            3650           39  \n2 Adelie    Torgersen        2900           38.6\n3 Gentoo    Biscoe           5050           46.3\n4 Adelie    Dream            4300           41.1\n5 Adelie    Biscoe           4100           41.1\n6 Gentoo    Biscoe           5050           45.1\n7 Chinstrap Dream            4050           49.3\n8 Adelie    Torgersen        4000           44.1\n\n\n\npenguins_small %&gt;%\n  group_by(species) %&gt;%\n  summarize(thing1 = mean(body_mass_g), thing2 = IQR(body_mass_g))"
+  },
+  {
+    "objectID": "data100_trivia.html#question-1-supppose-i-want-to-build-a-linear-regression-model-for-the-body-mass-of-a-penguin.-i-plan-to-use-species-adelie-gentoo-and-chinstrap-and-bill-length-in-my-model-with-no-interaction-terms.-when-i-run-get_regression_table-on-my-model-how-many-rows-will-the-output-table-have",
+    "href": "data100_trivia.html#question-1-supppose-i-want-to-build-a-linear-regression-model-for-the-body-mass-of-a-penguin.-i-plan-to-use-species-adelie-gentoo-and-chinstrap-and-bill-length-in-my-model-with-no-interaction-terms.-when-i-run-get_regression_table-on-my-model-how-many-rows-will-the-output-table-have",
+    "title": "DATA 100",
+    "section": "Question 1: Supppose I want to build a linear regression model for the body mass of a penguin. I plan to use species (Adelie, Gentoo, and Chinstrap) and bill length in my model with no interaction terms. When I run get_regression_table() on my model, how many rows will the output table have?",
+    "text": "Question 1: Supppose I want to build a linear regression model for the body mass of a penguin. I plan to use species (Adelie, Gentoo, and Chinstrap) and bill length in my model with no interaction terms. When I run get_regression_table() on my model, how many rows will the output table have?\n\n\n# A tibble: 333 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           36.7          19.3               193        3450\n 5 Adelie  Torgersen           39.3          20.6               190        3650\n 6 Adelie  Torgersen           38.9          17.8               181        3625\n 7 Adelie  Torgersen           39.2          19.6               195        4675\n 8 Adelie  Torgersen           41.1          17.6               182        3200\n 9 Adelie  Torgersen           38.6          21.2               191        3800\n10 Adelie  Torgersen           34.6          21.1               198        4400\n# ℹ 323 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
+  },
+  {
+    "objectID": "data100_trivia.html#question-5-interpret-the-coefficient-associated-with-species-chinstrap.-recall-the-species-are-adelie-chinstrap-and-gentoo.",
+    "href": "data100_trivia.html#question-5-interpret-the-coefficient-associated-with-species-chinstrap.-recall-the-species-are-adelie-chinstrap-and-gentoo.",
+    "title": "DATA 100",
+    "section": "Question 5: Interpret the coefficient associated with species: Chinstrap. (Recall the species are Adelie, Chinstrap, and Gentoo.)",
+    "text": "Question 5: Interpret the coefficient associated with species: Chinstrap. (Recall the species are Adelie, Chinstrap, and Gentoo.)\n\nmod &lt;- lm(body_mass_g ~ species + bill_length_mm, data = penguins)\nget_regression_table(mod)\n\n# A tibble: 4 × 7\n  term               estimate std_error statistic p_value lower_ci upper_ci\n  &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n1 intercept             200.     272.       0.738   0.461   -334.      735.\n2 species: Chinstrap   -877.      88.7     -9.88    0      -1052.     -702.\n3 species: Gentoo       597.      76.4      7.81    0        446.      747.\n4 bill_length_mm         90.3      6.95    13.0     0         76.6     104."
+  },
+  {
+    "objectID": "data100_trivia.html#question-6-interpret-the-coefficient-associated-with-bill_length_mm.",
+    "href": "data100_trivia.html#question-6-interpret-the-coefficient-associated-with-bill_length_mm.",
+    "title": "DATA 100",
+    "section": "Question 6: Interpret the coefficient associated with bill_length_mm.",
+    "text": "Question 6: Interpret the coefficient associated with bill_length_mm.\n\nmod &lt;- lm(body_mass_g ~ species + bill_length_mm, data = penguins)\nget_regression_table(mod)\n\n# A tibble: 4 × 7\n  term               estimate std_error statistic p_value lower_ci upper_ci\n  &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n1 intercept             200.     272.       0.738   0.461   -334.      735.\n2 species: Chinstrap   -877.      88.7     -9.88    0      -1052.     -702.\n3 species: Gentoo       597.      76.4      7.81    0        446.      747.\n4 bill_length_mm         90.3      6.95    13.0     0         76.6     104."
+  },
+  {
     "objectID": "data100_wk09wed.html#announcements",
     "href": "data100_wk09wed.html#announcements",
     "title": "DATA 100",
@@ -1677,7 +1719,7 @@
     "href": "data100_wk09wed.html#hypothesis-testing-in-r-2",
     "title": "DATA 100",
     "section": "Hypothesis Testing in R",
-    "text": "Hypothesis Testing in R\n\n\n# Compute p-value\np_value &lt;- null_dist %&gt;%\n  get_p_value(obs_stat = test_stat,\n              direction = \"right\")\np_value\n\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1   0.002\n\n\n\nInterpretation of \\(p\\)-value: If ESP doesn’t exist, the probability of observing 106 or more correct identifications out of 329 trials equals 0.002.\n\n\nConclusion: Since it is so unlikely (i.e., practically impossible) to have seen such unusual results if ESP doesn’t exist, these data suggest that ESP does exist."
+    "text": "Hypothesis Testing in R\n\n\n# Compute p-value\np_value &lt;- null_dist %&gt;%\n  get_p_value(obs_stat = test_stat,\n              direction = \"right\")\np_value\n\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1   0.003\n\n\n\nInterpretation of \\(p\\)-value: If ESP doesn’t exist, the probability of observing 106 or more correct identifications out of 329 trials equals 0.003.\n\n\nConclusion: Since it is so unlikely (i.e., practically impossible) to have seen such unusual results if ESP doesn’t exist, these data suggest that ESP does exist."
   },
   {
     "objectID": "data100_wk09wed.html#penguins-example",
@@ -2202,7 +2244,7 @@
     "href": "index.html",
     "title": "DATA 100: Introduction to Data Science",
     "section": "",
-    "text": "The lecture slides (both in HTML and PDF) will be posted here. \n\n\n\n\nClass Period\nHTML Slides\nPDF Slides\n\n\n\n\nWeek 1, Wed\n\n\n\n\nWeek 2, Mon\n\n\n\n\nWeek 2, Wed\n\n\n\n\nWeek 3, Mon\n\n\n\n\nWeek 3, Wed\n\n\n\n\nWeek 4, Mon\n\n\n\n\nWeek 4, Wed\n\n\n\n\nWeek 5, Mon\n\n\n\n\nWeek 6, Mon\n\n\n\n\nWeek 6, Wed\n\n\n\n\nWeek 7, Mon\n\n\n\n\nWeek 7, Wed\n\n\n\n\nWeek 8, Mon\n\n\n\n\nWeek 8, Wed\n\n\n\n\nWeek 9, Mon\n\n\n\n\nWeek 9, Wed\n\n\n\n\nWeek 10, Mon\n\n\n\n\nWeek 10, Wed\n\n\n\n\nWeek 11, Mon\n\n\n\n\nWeek 12, Mon\n\n\n\n\nWeek 13, Mon\n\n\n\n\nWeek 13, Wed\n\n\n\n\nWeek 14, Mon\n\n\n\n\n\n\nWeek 14, Wed |  |  |\n:::"
+    "text": "The lecture slides (both in HTML and PDF) will be posted here. \n\n\n\n\nClass Period\nHTML Slides\nPDF Slides\n\n\n\n\nWeek 1, Wed\n\n\n\n\nWeek 2, Mon\n\n\n\n\nWeek 2, Wed\n\n\n\n\nWeek 3, Mon\n\n\n\n\nWeek 3, Wed\n\n\n\n\nWeek 4, Mon\n\n\n\n\nWeek 4, Wed\n\n\n\n\nWeek 5, Mon\n\n\n\n\nWeek 6, Mon\n\n\n\n\nWeek 6, Wed\n\n\n\n\nWeek 7, Mon\n\n\n\n\nWeek 7, Wed\n\n\n\n\nWeek 8, Mon\n\n\n\n\nWeek 8, Wed\n\n\n\n\nWeek 9, Mon\n\n\n\n\nWeek 9, Wed\n\n\n\n\nWeek 10, Mon\n\n\n\n\nWeek 10, Wed\n\n\n\n\nWeek 11, Mon\n\n\n\n\nWeek 12, Mon\n\n\n\n\nWeek 13, Mon\n\n\n\n\nWeek 13, Wed\n\n\n\n\nWeek 14, Mon\n\n\n\n\nWeek 14, Wed\n\n\n\n\nWeek 14, Fri"
   },
   {
     "objectID": "data100_wk13wed.html#announcements",
