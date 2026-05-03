@@ -6,9 +6,8 @@
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.57">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
 
   <title>DATA 100 – Hypothesis Testing</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -29,8 +28,9 @@
       vertical-align: middle;
     }
     /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -41,7 +41,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -94,211 +94,13 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-e0248b3cd49b3562b03075e7d5896c79.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
-
-  .callout {
-    margin-top: 1em;
-    margin-bottom: 1em;  
-    border-radius: .25rem;
-  }
-
-  .callout.callout-style-simple { 
-    padding: 0em 0.5em;
-    border-left: solid #acacac .3rem;
-    border-right: solid 1px silver;
-    border-top: solid 1px silver;
-    border-bottom: solid 1px silver;
-    display: flex;
-  }
-
-  .callout.callout-style-default {
-    border-left: solid #acacac .3rem;
-    border-right: solid 1px silver;
-    border-top: solid 1px silver;
-    border-bottom: solid 1px silver;
-  }
-
-  .callout .callout-body-container {
-    flex-grow: 1;
-  }
-
-  .callout.callout-style-simple .callout-body {
-    font-size: 1rem;
-    font-weight: 400;
-  }
-
-  .callout.callout-style-default .callout-body {
-    font-size: 0.9rem;
-    font-weight: 400;
-  }
-
-  .callout.callout-titled.callout-style-simple .callout-body {
-    margin-top: 0.2em;
-  }
-
-  .callout:not(.callout-titled) .callout-body {
-      display: flex;
-  }
-
-  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
-    padding-left: 1.6em;
-  }
-
-  .callout.callout-titled .callout-header {
-    padding-top: 0.2em;
-    margin-bottom: -0.2em;
-  }
-
-  .callout.callout-titled .callout-title  p {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-  }
-    
-  .callout.callout-titled.callout-style-simple .callout-content  p {
-    margin-top: 0;
-  }
-
-  .callout.callout-titled.callout-style-default .callout-content  p {
-    margin-top: 0.7em;
-  }
-
-  .callout.callout-style-simple div.callout-title {
-    border-bottom: none;
-    font-size: .9rem;
-    font-weight: 600;
-    opacity: 75%;
-  }
-
-  .callout.callout-style-default  div.callout-title {
-    border-bottom: none;
-    font-weight: 600;
-    opacity: 85%;
-    font-size: 0.9rem;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
-
-  .callout.callout-style-default div.callout-content {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
-
-  .callout.callout-style-simple .callout-icon::before {
-    height: 1rem;
-    width: 1rem;
-    display: inline-block;
-    content: "";
-    background-repeat: no-repeat;
-    background-size: 1rem 1rem;
-  }
-
-  .callout.callout-style-default .callout-icon::before {
-    height: 0.9rem;
-    width: 0.9rem;
-    display: inline-block;
-    content: "";
-    background-repeat: no-repeat;
-    background-size: 0.9rem 0.9rem;
-  }
-
-  .callout-title {
-    display: flex
-  }
-    
-  .callout-icon::before {
-    margin-top: 1rem;
-    padding-right: .5rem;
-  }
-
-  .callout.no-icon::before {
-    display: none !important;
-  }
-
-  .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
-  }
-
-  .callout.callout-titled .callout-icon::before {
-    margin-top: .5rem;
-    padding-right: .5rem;
-  }
-
-  .callout:not(.callout-titled) .callout-icon::before {
-    margin-top: 1rem;
-    padding-right: .5rem;
-  }
-
-  /* Callout Types */
-
-  div.callout-note {
-    border-left-color: #4582ec !important;
-  }
-
-  div.callout-note .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
-  }
-
-  div.callout-note.callout-style-default .callout-title {
-    background-color: #dae6fb
-  }
-
-  div.callout-important {
-    border-left-color: #d9534f !important;
-  }
-
-  div.callout-important .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-important.callout-style-default .callout-title {
-    background-color: #f7dddc
-  }
-
-  div.callout-warning {
-    border-left-color: #f0ad4e !important;
-  }
-
-  div.callout-warning .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-warning.callout-style-default .callout-title {
-    background-color: #fcefdc
-  }
-
-  div.callout-tip {
-    border-left-color: #02b875 !important;
-  }
-
-  div.callout-tip .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-tip.callout-style-default .callout-title {
-    background-color: #ccf1e3
-  }
-
-  div.callout-caution {
-    border-left-color: #fd7e14 !important;
-  }
-
-  div.callout-caution .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
-  }
-
-  div.callout-caution.callout-style-default .callout-title {
-    background-color: #ffe5d0
-  }
-
-  </style>
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -406,14 +208,12 @@
 </section>
 <section id="announcements" class="slide level2">
 <h2>Announcements</h2>
-<div>
 <ul>
 <li>Map making in <code>R</code> workshop: Part of the Sustainability Symposium
 <ul>
 <li>Th, March 26, 2:30 - 3:50pm, Taylor 210</li>
 </ul></li>
 </ul>
-</div>
 <h3 id="goals-for-today">Goals for Today</h3>
 <div class="columns">
 <div class="column">
@@ -431,25 +231,25 @@
 <section id="load-packages-and-data" class="slide level2">
 <h2>Load Packages and Data</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a></a><span class="fu">library</span>(infer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(infer)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Let’s return to the movies dataset and estimate numerical quantities about Hollywood movies.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co"># Read in data</span></span>
-<span id="cb2-2"><a></a>movies <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://www.lock5stat.com/datasets2e/HollywoodMovies.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co"># Read in data</span></span>
+<span id="cb2-2"><a></a>movies <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://www.lock5stat.com/datasets2e/HollywoodMovies.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="estimation-for-a-single-mean" class="slide level2">
 <h2>Estimation for a Single Mean</h2>
 <p>What is the average amount of money <span class="math inline">\((\mu)\)</span> made in the opening weekend?</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># Compute the summary statistic</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># Compute the summary statistic</span></span>
 <span id="cb3-2"><a></a>x_bar <span class="ot">&lt;-</span> movies <span class="sc">%&gt;%</span></span>
 <span id="cb3-3"><a></a>  <span class="fu">drop_na</span>(OpeningWeekend) <span class="sc">%&gt;%</span></span>
 <span id="cb3-4"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> OpeningWeekend) <span class="sc">%&gt;%</span></span>
 <span id="cb3-5"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"mean"</span>)</span>
-<span id="cb3-6"><a></a>x_bar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-6"><a></a>x_bar</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response: OpeningWeekend (numeric)
 # A tibble: 1 × 1
@@ -463,7 +263,7 @@
 <h2>Estimation for a Single Mean</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
 <span id="cb5-2"><a></a></span>
 <span id="cb5-3"><a></a></span>
 <span id="cb5-4"><a></a><span class="co"># Construct bootstrap distribution</span></span>
@@ -476,7 +276,7 @@
 <span id="cb5-11"><a></a><span class="co"># Look at bootstrap distribution</span></span>
 <span id="cb5-12"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> bootstrap_dist, </span>
 <span id="cb5-13"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> stat)) <span class="sc">+</span></span>
-<span id="cb5-14"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-14"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">"white"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -491,11 +291,11 @@
 <h2>Estimation for a Single Mean – SE Method</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co"># Get confidence interval</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co"># Get confidence interval</span></span>
 <span id="cb6-2"><a></a>ci <span class="ot">&lt;-</span> bootstrap_dist <span class="sc">%&gt;%</span> </span>
 <span id="cb6-3"><a></a>  <span class="fu">get_confidence_interval</span>(<span class="at">type =</span> <span class="st">"se"</span>, <span class="at">level =</span> <span class="fl">0.95</span>,</span>
 <span id="cb6-4"><a></a>                          <span class="at">point_estimate =</span> x_bar)</span>
-<span id="cb6-5"><a></a>ci</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-5"><a></a>ci</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
@@ -510,10 +310,10 @@
 <h2>Estimation for a Single Mean</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co"># Visualize confidence interval</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co"># Visualize confidence interval</span></span>
 <span id="cb8-2"><a></a>bootstrap_dist <span class="sc">%&gt;%</span></span>
 <span id="cb8-3"><a></a>  <span class="fu">visualize</span>() <span class="sc">+</span></span>
-<span id="cb8-4"><a></a>  <span class="fu">shade_confidence_interval</span>(<span class="at">endpoints =</span> ci)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-4"><a></a>  <span class="fu">shade_confidence_interval</span>(<span class="at">endpoints =</span> ci)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -528,11 +328,11 @@
 <h2>Estimation for a Single Mean – Percentile Method</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># Get confidence interval </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># Get confidence interval </span></span>
 <span id="cb9-2"><a></a>ci_95 <span class="ot">&lt;-</span> bootstrap_dist <span class="sc">%&gt;%</span> </span>
 <span id="cb9-3"><a></a>  <span class="fu">get_confidence_interval</span>(<span class="at">type =</span> <span class="st">"percentile"</span>,</span>
 <span id="cb9-4"><a></a>                          <span class="at">level =</span> <span class="fl">0.95</span>) </span>
-<span id="cb9-5"><a></a>ci_95</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-5"><a></a>ci_95</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
@@ -547,13 +347,13 @@
 <p>What is the difference in average amount of money made in the opening weekend between action movies and dramas <span class="math inline">\((\mu_1 - \mu_2)\)</span>?</p>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># Compute the summary statistic</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># Compute the summary statistic</span></span>
 <span id="cb11-2"><a></a>diff_x_bar <span class="ot">&lt;-</span> movies <span class="sc">%&gt;%</span></span>
 <span id="cb11-3"><a></a>  <span class="fu">drop_na</span>(OpeningWeekend) <span class="sc">%&gt;%</span></span>
 <span id="cb11-4"><a></a>  <span class="fu">filter</span>(Genre <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Drama"</span>, <span class="st">"Action"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb11-5"><a></a>  <span class="fu">specify</span>(OpeningWeekend <span class="sc">~</span> Genre) <span class="sc">%&gt;%</span></span>
 <span id="cb11-6"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>)</span>
-<span id="cb11-7"><a></a>diff_x_bar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-7"><a></a>diff_x_bar</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column">
 <div class="cell-output cell-output-stdout">
 <pre><code>Response: OpeningWeekend (numeric)
@@ -572,7 +372,7 @@ Explanatory: Genre (factor)
 <h2>Estimation for Difference in Means</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># Construct bootstrap distribution</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># Construct bootstrap distribution</span></span>
 <span id="cb13-2"><a></a>bootstrap_dist <span class="ot">&lt;-</span> movies <span class="sc">%&gt;%</span></span>
 <span id="cb13-3"><a></a>  <span class="fu">drop_na</span>(OpeningWeekend) <span class="sc">%&gt;%</span></span>
 <span id="cb13-4"><a></a>  <span class="fu">filter</span>(Genre <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Drama"</span>, <span class="st">"Action"</span>)) <span class="sc">%&gt;%</span></span>
@@ -584,7 +384,7 @@ Explanatory: Genre (factor)
 <span id="cb13-10"><a></a><span class="co"># Look at bootstrap distribution</span></span>
 <span id="cb13-11"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> bootstrap_dist,</span>
 <span id="cb13-12"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> stat)) <span class="sc">+</span></span>
-<span id="cb13-13"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-13"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">"white"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -599,11 +399,11 @@ Explanatory: Genre (factor)
 <h2>Estimation for Difference in Means – SE Method</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co"># Get confidence interval </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co"># Get confidence interval </span></span>
 <span id="cb14-2"><a></a>ci_95 <span class="ot">&lt;-</span> bootstrap_dist <span class="sc">%&gt;%</span> </span>
 <span id="cb14-3"><a></a>  <span class="fu">get_confidence_interval</span>(<span class="at">type =</span> <span class="st">"se"</span>, <span class="at">level =</span> <span class="fl">0.95</span>,</span>
 <span id="cb14-4"><a></a>                          <span class="at">point_estimate =</span> diff_x_bar) </span>
-<span id="cb14-5"><a></a>ci_95</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-5"><a></a>ci_95</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
@@ -618,7 +418,7 @@ Explanatory: Genre (factor)
 <h2>Comparing CIs</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>ci_99 <span class="ot">&lt;-</span> bootstrap_dist <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>ci_99 <span class="ot">&lt;-</span> bootstrap_dist <span class="sc">%&gt;%</span> </span>
 <span id="cb16-2"><a></a>  <span class="fu">get_confidence_interval</span>(<span class="at">type =</span> <span class="st">"se"</span>, <span class="at">level =</span> <span class="fl">0.99</span>,</span>
 <span id="cb16-3"><a></a>                          <span class="at">point_estimate =</span> diff_x_bar)</span>
 <span id="cb16-4"><a></a></span>
@@ -627,7 +427,7 @@ Explanatory: Genre (factor)
 <span id="cb16-7"><a></a>  <span class="fu">shade_confidence_interval</span>(<span class="at">endpoints =</span> ci_99,</span>
 <span id="cb16-8"><a></a>                            <span class="at">fill =</span> <span class="st">"gold1"</span>,</span>
 <span id="cb16-9"><a></a>                            <span class="at">color =</span> <span class="st">"gold3"</span>) <span class="sc">+</span></span>
-<span id="cb16-10"><a></a>  <span class="fu">shade_confidence_interval</span>(<span class="at">endpoints =</span> ci_95) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-10"><a></a>  <span class="fu">shade_confidence_interval</span>(<span class="at">endpoints =</span> ci_95) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -739,26 +539,22 @@ Explanatory: Genre (factor)
 </div>
 </div><div class="column">
 <p>Bem and Honorton conducted extrasensory perception studies:</p>
-<div>
 <ul>
 <li>A “sender” randomly chooses an object out of 4 possible objects and sends that information to a “receiver”.</li>
 <li>The “receiver” is then given a set of 4 possible objects and they must decide which one most resembles the object sent to them.</li>
 </ul>
-</div>
 <p>Out of 329 trials, the “receivers” correctly identified the object 106 times.</p>
 </div></div>
 </section>
 <section id="esp-example" class="slide level2">
 <h2>ESP Example</h2>
 <p>Let’s consider the following questions:</p>
-<div>
 <ol type="a">
 <li><p>If ESP does not exist and the “receivers” are guessing, how often would we expect them to be correct?</p></li>
 <li><p>For each sample (set of 329 trials), do we expect the proportion of correct guesses to be equal? Why or why not?</p></li>
 <li><p>Is it possible to randomly guess correctly 106 out of 329 times (i.e., 32% of the time)?</p></li>
 <li><p>How unusual is it to guess correctly 106 out of 329 times if ESP doesn’t exist?</p></li>
 </ol>
-</div>
 <div class="fragment">
 <p>To help us answer d., we need a <strong>sampling distribution</strong> for the sample proportion where <strong>we assume the “receivers” were purely guessing!</strong></p>
 </div>
@@ -768,7 +564,6 @@ Explanatory: Genre (factor)
 <div class="columns">
 <div class="column">
 <p><strong>Steps for (Approximate) Distribution:</strong></p>
-<div>
 <ol type="1">
 <li><p>Decide on a sample size, <span class="math inline">\(n\)</span>.</p></li>
 <li><p>Randomly select a sample of size <span class="math inline">\(n\)</span> from the population.</p></li>
@@ -776,7 +571,6 @@ Explanatory: Genre (factor)
 <li><p>Put the sample back in.</p></li>
 <li><p>Repeat Steps (2) - (4) many (1000+) times.</p></li>
 </ol>
-</div>
 </div><div class="column">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -792,15 +586,13 @@ Explanatory: Genre (factor)
 <section id="sampling-distribution-under-no-esp" class="slide level2">
 <h2>Sampling Distribution Under No ESP</h2>
 <p><strong>Steps for (Approximate) Distribution:</strong></p>
-<div>
 <ol type="1">
 <li><p>Decide on a sample size, <span class="math inline">\(n\)</span>.</p></li>
 <li><p>Randomly select a sample of size <span class="math inline">\(n\)</span> from the population.</p></li>
 </ol>
-</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">library</span>(mosaic)</span>
-<span id="cb18-2"><a></a><span class="fu">rflip</span>(<span class="at">n =</span> <span class="dv">329</span>, <span class="at">prob =</span> <span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">library</span>(mosaic)</span>
+<span id="cb18-2"><a></a><span class="fu">rflip</span>(<span class="at">n =</span> <span class="dv">329</span>, <span class="at">prob =</span> <span class="fl">0.25</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Flipping 329 coins [ Prob(Heads) = 0.25 ] ...
@@ -822,1030 +614,1026 @@ Number of Heads: 87 [Proportion Heads: 0.264437689969605]</code></pre>
 </section>
 <section id="sampling-distribution-under-no-esp-1" class="slide level2">
 <h2>Sampling Distribution Under No ESP</h2>
-<div>
 <ol start="3" type="1">
 <li>Compute the sample statistic.</li>
 </ol>
-</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">rflip</span>(<span class="at">n =</span> <span class="dv">329</span>, <span class="at">prob =</span> <span class="fl">0.25</span>, <span class="at">summarize =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">rflip</span>(<span class="at">n =</span> <span class="dv">329</span>, <span class="at">prob =</span> <span class="fl">0.25</span>, <span class="at">summarize =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    n heads tails prob
 1 329    84   245 0.25</code></pre>
 </div>
 </div>
 <div class="fragment">
-<div>
 <ol start="4" type="1">
 <li><p>Put the sample back in.</p></li>
 <li><p>Repeat Steps (2) - (4) many (1000+) times.</p></li>
 </ol>
-</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>guess_sampling_dist <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">rflip</span>(<span class="at">n =</span> <span class="dv">329</span>, <span class="at">prob =</span> <span class="fl">0.25</span>)</span>
-<span id="cb22-2"><a></a>guess_sampling_dist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>guess_sampling_dist <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">rflip</span>(<span class="at">n =</span> <span class="dv">329</span>, <span class="at">prob =</span> <span class="fl">0.25</span>)</span>
+<span id="cb22-2"><a></a>guess_sampling_dist</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       n heads tails      prop
 1    329    69   260 0.2097264
-2    329    71   258 0.2158055
-3    329    87   242 0.2644377
-4    329    79   250 0.2401216
-5    329    88   241 0.2674772
-6    329    86   243 0.2613982
-7    329    81   248 0.2462006
+2    329    69   260 0.2097264
+3    329    69   260 0.2097264
+4    329    69   260 0.2097264
+5    329    69   260 0.2097264
+6    329    69   260 0.2097264
+7    329    69   260 0.2097264
 8    329    69   260 0.2097264
-9    329    77   252 0.2340426
-10   329    75   254 0.2279635
-11   329    89   240 0.2705167
-12   329    84   245 0.2553191
-13   329    85   244 0.2583587
-14   329    81   248 0.2462006
-15   329    87   242 0.2644377
-16   329    99   230 0.3009119
-17   329    83   246 0.2522796
-18   329    76   253 0.2310030
-19   329    91   238 0.2765957
-20   329    86   243 0.2613982
-21   329    85   244 0.2583587
-22   329    78   251 0.2370821
-23   329    83   246 0.2522796
-24   329    91   238 0.2765957
-25   329    91   238 0.2765957
-26   329    89   240 0.2705167
-27   329    82   247 0.2492401
-28   329    80   249 0.2431611
-29   329    74   255 0.2249240
-30   329    93   236 0.2826748
-31   329    77   252 0.2340426
-32   329    80   249 0.2431611
-33   329    86   243 0.2613982
-34   329    84   245 0.2553191
-35   329    85   244 0.2583587
-36   329    89   240 0.2705167
-37   329    71   258 0.2158055
-38   329    81   248 0.2462006
-39   329    82   247 0.2492401
-40   329    77   252 0.2340426
-41   329    76   253 0.2310030
-42   329    72   257 0.2188450
-43   329    79   250 0.2401216
-44   329    84   245 0.2553191
-45   329    66   263 0.2006079
-46   329    88   241 0.2674772
-47   329    84   245 0.2553191
-48   329    82   247 0.2492401
-49   329    98   231 0.2978723
-50   329    71   258 0.2158055
-51   329    82   247 0.2492401
-52   329    79   250 0.2401216
-53   329    83   246 0.2522796
-54   329    79   250 0.2401216
-55   329    82   247 0.2492401
-56   329    82   247 0.2492401
+9    329    69   260 0.2097264
+10   329    69   260 0.2097264
+11   329    69   260 0.2097264
+12   329    69   260 0.2097264
+13   329    69   260 0.2097264
+14   329    69   260 0.2097264
+15   329    69   260 0.2097264
+16   329    69   260 0.2097264
+17   329    69   260 0.2097264
+18   329    69   260 0.2097264
+19   329    69   260 0.2097264
+20   329    69   260 0.2097264
+21   329    69   260 0.2097264
+22   329    69   260 0.2097264
+23   329    69   260 0.2097264
+24   329    69   260 0.2097264
+25   329    69   260 0.2097264
+26   329    69   260 0.2097264
+27   329    69   260 0.2097264
+28   329    69   260 0.2097264
+29   329    69   260 0.2097264
+30   329    69   260 0.2097264
+31   329    69   260 0.2097264
+32   329    69   260 0.2097264
+33   329    69   260 0.2097264
+34   329    69   260 0.2097264
+35   329    69   260 0.2097264
+36   329    69   260 0.2097264
+37   329    69   260 0.2097264
+38   329    69   260 0.2097264
+39   329    69   260 0.2097264
+40   329    69   260 0.2097264
+41   329    69   260 0.2097264
+42   329    69   260 0.2097264
+43   329    69   260 0.2097264
+44   329    69   260 0.2097264
+45   329    69   260 0.2097264
+46   329    69   260 0.2097264
+47   329    69   260 0.2097264
+48   329    69   260 0.2097264
+49   329    69   260 0.2097264
+50   329    69   260 0.2097264
+51   329    69   260 0.2097264
+52   329    69   260 0.2097264
+53   329    69   260 0.2097264
+54   329    69   260 0.2097264
+55   329    69   260 0.2097264
+56   329    69   260 0.2097264
 57   329    69   260 0.2097264
-58   329    66   263 0.2006079
-59   329    84   245 0.2553191
-60   329    93   236 0.2826748
-61   329    89   240 0.2705167
-62   329    88   241 0.2674772
-63   329    79   250 0.2401216
-64   329    75   254 0.2279635
-65   329    96   233 0.2917933
-66   329    88   241 0.2674772
-67   329    90   239 0.2735562
-68   329    82   247 0.2492401
-69   329    70   259 0.2127660
-70   329    92   237 0.2796353
-71   329    83   246 0.2522796
-72   329    85   244 0.2583587
-73   329    84   245 0.2553191
-74   329    99   230 0.3009119
-75   329    82   247 0.2492401
-76   329    80   249 0.2431611
-77   329    89   240 0.2705167
-78   329    92   237 0.2796353
-79   329    77   252 0.2340426
-80   329    78   251 0.2370821
-81   329    84   245 0.2553191
-82   329    93   236 0.2826748
-83   329    84   245 0.2553191
-84   329    89   240 0.2705167
-85   329   100   229 0.3039514
-86   329    81   248 0.2462006
-87   329    84   245 0.2553191
-88   329    85   244 0.2583587
-89   329    82   247 0.2492401
-90   329    90   239 0.2735562
-91   329    87   242 0.2644377
-92   329    82   247 0.2492401
-93   329    75   254 0.2279635
-94   329    85   244 0.2583587
-95   329    85   244 0.2583587
-96   329    98   231 0.2978723
-97   329    83   246 0.2522796
-98   329    94   235 0.2857143
-99   329    77   252 0.2340426
-100  329    89   240 0.2705167
-101  329    74   255 0.2249240
-102  329    78   251 0.2370821
-103  329    74   255 0.2249240
-104  329    92   237 0.2796353
-105  329    87   242 0.2644377
-106  329    77   252 0.2340426
-107  329    88   241 0.2674772
-108  329    77   252 0.2340426
-109  329    80   249 0.2431611
-110  329    75   254 0.2279635
-111  329    84   245 0.2553191
-112  329   100   229 0.3039514
-113  329    74   255 0.2249240
-114  329   101   228 0.3069909
-115  329    76   253 0.2310030
-116  329    68   261 0.2066869
-117  329    89   240 0.2705167
-118  329    70   259 0.2127660
-119  329    85   244 0.2583587
-120  329    89   240 0.2705167
-121  329    90   239 0.2735562
-122  329    84   245 0.2553191
-123  329    84   245 0.2553191
-124  329    75   254 0.2279635
-125  329    89   240 0.2705167
-126  329    77   252 0.2340426
-127  329    72   257 0.2188450
-128  329    96   233 0.2917933
-129  329    84   245 0.2553191
-130  329    89   240 0.2705167
-131  329    80   249 0.2431611
-132  329    87   242 0.2644377
-133  329    87   242 0.2644377
-134  329    70   259 0.2127660
-135  329    77   252 0.2340426
-136  329    87   242 0.2644377
+58   329    69   260 0.2097264
+59   329    69   260 0.2097264
+60   329    69   260 0.2097264
+61   329    69   260 0.2097264
+62   329    69   260 0.2097264
+63   329    69   260 0.2097264
+64   329    69   260 0.2097264
+65   329    69   260 0.2097264
+66   329    69   260 0.2097264
+67   329    69   260 0.2097264
+68   329    69   260 0.2097264
+69   329    69   260 0.2097264
+70   329    69   260 0.2097264
+71   329    69   260 0.2097264
+72   329    69   260 0.2097264
+73   329    69   260 0.2097264
+74   329    69   260 0.2097264
+75   329    69   260 0.2097264
+76   329    69   260 0.2097264
+77   329    69   260 0.2097264
+78   329    69   260 0.2097264
+79   329    69   260 0.2097264
+80   329    69   260 0.2097264
+81   329    69   260 0.2097264
+82   329    69   260 0.2097264
+83   329    69   260 0.2097264
+84   329    69   260 0.2097264
+85   329    69   260 0.2097264
+86   329    69   260 0.2097264
+87   329    69   260 0.2097264
+88   329    69   260 0.2097264
+89   329    69   260 0.2097264
+90   329    69   260 0.2097264
+91   329    69   260 0.2097264
+92   329    69   260 0.2097264
+93   329    69   260 0.2097264
+94   329    69   260 0.2097264
+95   329    69   260 0.2097264
+96   329    69   260 0.2097264
+97   329    69   260 0.2097264
+98   329    69   260 0.2097264
+99   329    69   260 0.2097264
+100  329    69   260 0.2097264
+101  329    69   260 0.2097264
+102  329    69   260 0.2097264
+103  329    69   260 0.2097264
+104  329    69   260 0.2097264
+105  329    69   260 0.2097264
+106  329    69   260 0.2097264
+107  329    69   260 0.2097264
+108  329    69   260 0.2097264
+109  329    69   260 0.2097264
+110  329    69   260 0.2097264
+111  329    69   260 0.2097264
+112  329    69   260 0.2097264
+113  329    69   260 0.2097264
+114  329    69   260 0.2097264
+115  329    69   260 0.2097264
+116  329    69   260 0.2097264
+117  329    69   260 0.2097264
+118  329    69   260 0.2097264
+119  329    69   260 0.2097264
+120  329    69   260 0.2097264
+121  329    69   260 0.2097264
+122  329    69   260 0.2097264
+123  329    69   260 0.2097264
+124  329    69   260 0.2097264
+125  329    69   260 0.2097264
+126  329    69   260 0.2097264
+127  329    69   260 0.2097264
+128  329    69   260 0.2097264
+129  329    69   260 0.2097264
+130  329    69   260 0.2097264
+131  329    69   260 0.2097264
+132  329    69   260 0.2097264
+133  329    69   260 0.2097264
+134  329    69   260 0.2097264
+135  329    69   260 0.2097264
+136  329    69   260 0.2097264
 137  329    69   260 0.2097264
-138  329    63   266 0.1914894
-139  329    74   255 0.2249240
-140  329    87   242 0.2644377
-141  329    86   243 0.2613982
-142  329    77   252 0.2340426
-143  329    92   237 0.2796353
-144  329    87   242 0.2644377
-145  329    95   234 0.2887538
-146  329    74   255 0.2249240
-147  329    91   238 0.2765957
-148  329    96   233 0.2917933
-149  329    73   256 0.2218845
-150  329    83   246 0.2522796
-151  329    87   242 0.2644377
-152  329    94   235 0.2857143
-153  329    89   240 0.2705167
-154  329    73   256 0.2218845
-155  329    74   255 0.2249240
-156  329    85   244 0.2583587
-157  329    81   248 0.2462006
-158  329    71   258 0.2158055
-159  329    96   233 0.2917933
-160  329    82   247 0.2492401
-161  329    89   240 0.2705167
-162  329    83   246 0.2522796
-163  329    80   249 0.2431611
-164  329    76   253 0.2310030
-165  329    79   250 0.2401216
-166  329    85   244 0.2583587
-167  329    61   268 0.1854103
-168  329    91   238 0.2765957
-169  329   102   227 0.3100304
+138  329    69   260 0.2097264
+139  329    69   260 0.2097264
+140  329    69   260 0.2097264
+141  329    69   260 0.2097264
+142  329    69   260 0.2097264
+143  329    69   260 0.2097264
+144  329    69   260 0.2097264
+145  329    69   260 0.2097264
+146  329    69   260 0.2097264
+147  329    69   260 0.2097264
+148  329    69   260 0.2097264
+149  329    69   260 0.2097264
+150  329    69   260 0.2097264
+151  329    69   260 0.2097264
+152  329    69   260 0.2097264
+153  329    69   260 0.2097264
+154  329    69   260 0.2097264
+155  329    69   260 0.2097264
+156  329    69   260 0.2097264
+157  329    69   260 0.2097264
+158  329    69   260 0.2097264
+159  329    69   260 0.2097264
+160  329    69   260 0.2097264
+161  329    69   260 0.2097264
+162  329    69   260 0.2097264
+163  329    69   260 0.2097264
+164  329    69   260 0.2097264
+165  329    69   260 0.2097264
+166  329    69   260 0.2097264
+167  329    69   260 0.2097264
+168  329    69   260 0.2097264
+169  329    69   260 0.2097264
 170  329    69   260 0.2097264
-171  329    86   243 0.2613982
-172  329    87   242 0.2644377
-173  329    89   240 0.2705167
-174  329    86   243 0.2613982
-175  329    81   248 0.2462006
-176  329    78   251 0.2370821
-177  329    84   245 0.2553191
-178  329    90   239 0.2735562
-179  329    66   263 0.2006079
-180  329    73   256 0.2218845
-181  329    81   248 0.2462006
-182  329    91   238 0.2765957
-183  329    75   254 0.2279635
-184  329    75   254 0.2279635
-185  329    87   242 0.2644377
-186  329    89   240 0.2705167
-187  329    82   247 0.2492401
-188  329    83   246 0.2522796
-189  329    75   254 0.2279635
-190  329    82   247 0.2492401
-191  329    65   264 0.1975684
-192  329    78   251 0.2370821
-193  329    83   246 0.2522796
-194  329    90   239 0.2735562
-195  329    85   244 0.2583587
-196  329    63   266 0.1914894
-197  329    85   244 0.2583587
-198  329    76   253 0.2310030
-199  329    74   255 0.2249240
-200  329    89   240 0.2705167
-201  329    94   235 0.2857143
-202  329    83   246 0.2522796
-203  329    87   242 0.2644377
-204  329    92   237 0.2796353
-205  329    84   245 0.2553191
-206  329    83   246 0.2522796
-207  329    89   240 0.2705167
-208  329    81   248 0.2462006
-209  329    99   230 0.3009119
-210  329    85   244 0.2583587
-211  329    78   251 0.2370821
-212  329    93   236 0.2826748
-213  329    80   249 0.2431611
-214  329    78   251 0.2370821
-215  329    74   255 0.2249240
-216  329    94   235 0.2857143
-217  329    90   239 0.2735562
-218  329    89   240 0.2705167
-219  329    72   257 0.2188450
-220  329    88   241 0.2674772
-221  329    79   250 0.2401216
-222  329    86   243 0.2613982
-223  329    79   250 0.2401216
-224  329    90   239 0.2735562
-225  329    87   242 0.2644377
-226  329    85   244 0.2583587
-227  329    76   253 0.2310030
-228  329    90   239 0.2735562
-229  329    92   237 0.2796353
-230  329    85   244 0.2583587
-231  329    76   253 0.2310030
-232  329    75   254 0.2279635
-233  329    90   239 0.2735562
-234  329    89   240 0.2705167
-235  329    82   247 0.2492401
-236  329    76   253 0.2310030
-237  329    74   255 0.2249240
-238  329    86   243 0.2613982
-239  329    74   255 0.2249240
-240  329    75   254 0.2279635
-241  329    74   255 0.2249240
-242  329    86   243 0.2613982
-243  329    78   251 0.2370821
-244  329    73   256 0.2218845
-245  329    96   233 0.2917933
-246  329    82   247 0.2492401
-247  329    72   257 0.2188450
-248  329    71   258 0.2158055
-249  329    93   236 0.2826748
-250  329    85   244 0.2583587
-251  329    90   239 0.2735562
-252  329    77   252 0.2340426
-253  329    89   240 0.2705167
-254  329    77   252 0.2340426
-255  329    90   239 0.2735562
-256  329    76   253 0.2310030
-257  329    74   255 0.2249240
-258  329    86   243 0.2613982
-259  329    78   251 0.2370821
-260  329    78   251 0.2370821
-261  329    74   255 0.2249240
-262  329    88   241 0.2674772
-263  329    83   246 0.2522796
-264  329    87   242 0.2644377
-265  329    83   246 0.2522796
-266  329    95   234 0.2887538
-267  329    85   244 0.2583587
-268  329    80   249 0.2431611
-269  329    79   250 0.2401216
-270  329    70   259 0.2127660
-271  329    82   247 0.2492401
-272  329    95   234 0.2887538
-273  329    95   234 0.2887538
-274  329    80   249 0.2431611
-275  329    87   242 0.2644377
-276  329    93   236 0.2826748
-277  329    63   266 0.1914894
-278  329    97   232 0.2948328
-279  329    76   253 0.2310030
-280  329    75   254 0.2279635
-281  329    70   259 0.2127660
-282  329    96   233 0.2917933
-283  329    73   256 0.2218845
-284  329    83   246 0.2522796
-285  329    84   245 0.2553191
-286  329    73   256 0.2218845
-287  329   102   227 0.3100304
-288  329    86   243 0.2613982
-289  329    78   251 0.2370821
-290  329    79   250 0.2401216
-291  329    81   248 0.2462006
-292  329    83   246 0.2522796
-293  329    90   239 0.2735562
-294  329    81   248 0.2462006
-295  329    71   258 0.2158055
-296  329    93   236 0.2826748
-297  329    71   258 0.2158055
-298  329    71   258 0.2158055
-299  329    97   232 0.2948328
-300  329    91   238 0.2765957
-301  329    95   234 0.2887538
-302  329    83   246 0.2522796
-303  329    86   243 0.2613982
-304  329    82   247 0.2492401
-305  329    71   258 0.2158055
-306  329    87   242 0.2644377
-307  329    67   262 0.2036474
-308  329    81   248 0.2462006
-309  329    84   245 0.2553191
-310  329    81   248 0.2462006
-311  329    86   243 0.2613982
-312  329    83   246 0.2522796
-313  329    80   249 0.2431611
-314  329    66   263 0.2006079
-315  329    70   259 0.2127660
-316  329    83   246 0.2522796
-317  329    64   265 0.1945289
-318  329    80   249 0.2431611
-319  329    73   256 0.2218845
-320  329    81   248 0.2462006
-321  329    87   242 0.2644377
-322  329    68   261 0.2066869
-323  329    80   249 0.2431611
-324  329    89   240 0.2705167
-325  329    87   242 0.2644377
-326  329    79   250 0.2401216
-327  329    70   259 0.2127660
-328  329    81   248 0.2462006
-329  329    84   245 0.2553191
-330  329    68   261 0.2066869
-331  329   100   229 0.3039514
-332  329    82   247 0.2492401
-333  329    81   248 0.2462006
-334  329    86   243 0.2613982
-335  329    86   243 0.2613982
-336  329    93   236 0.2826748
-337  329    76   253 0.2310030
-338  329    77   252 0.2340426
-339  329    83   246 0.2522796
-340  329    85   244 0.2583587
-341  329    85   244 0.2583587
-342  329    88   241 0.2674772
-343  329    85   244 0.2583587
-344  329    85   244 0.2583587
-345  329    68   261 0.2066869
-346  329    81   248 0.2462006
-347  329    84   245 0.2553191
-348  329    72   257 0.2188450
-349  329    91   238 0.2765957
-350  329    80   249 0.2431611
-351  329    75   254 0.2279635
-352  329    77   252 0.2340426
-353  329    82   247 0.2492401
-354  329    84   245 0.2553191
-355  329    71   258 0.2158055
-356  329    89   240 0.2705167
-357  329    99   230 0.3009119
-358  329   107   222 0.3252280
-359  329    88   241 0.2674772
-360  329    85   244 0.2583587
-361  329    86   243 0.2613982
-362  329    80   249 0.2431611
-363  329    79   250 0.2401216
-364  329    89   240 0.2705167
-365  329    79   250 0.2401216
-366  329    77   252 0.2340426
-367  329    79   250 0.2401216
-368  329    83   246 0.2522796
-369  329    78   251 0.2370821
-370  329    83   246 0.2522796
-371  329    88   241 0.2674772
-372  329    76   253 0.2310030
-373  329    78   251 0.2370821
-374  329    67   262 0.2036474
+171  329    69   260 0.2097264
+172  329    69   260 0.2097264
+173  329    69   260 0.2097264
+174  329    69   260 0.2097264
+175  329    69   260 0.2097264
+176  329    69   260 0.2097264
+177  329    69   260 0.2097264
+178  329    69   260 0.2097264
+179  329    69   260 0.2097264
+180  329    69   260 0.2097264
+181  329    69   260 0.2097264
+182  329    69   260 0.2097264
+183  329    69   260 0.2097264
+184  329    69   260 0.2097264
+185  329    69   260 0.2097264
+186  329    69   260 0.2097264
+187  329    69   260 0.2097264
+188  329    69   260 0.2097264
+189  329    69   260 0.2097264
+190  329    69   260 0.2097264
+191  329    69   260 0.2097264
+192  329    69   260 0.2097264
+193  329    69   260 0.2097264
+194  329    69   260 0.2097264
+195  329    69   260 0.2097264
+196  329    69   260 0.2097264
+197  329    69   260 0.2097264
+198  329    69   260 0.2097264
+199  329    69   260 0.2097264
+200  329    69   260 0.2097264
+201  329    69   260 0.2097264
+202  329    69   260 0.2097264
+203  329    69   260 0.2097264
+204  329    69   260 0.2097264
+205  329    69   260 0.2097264
+206  329    69   260 0.2097264
+207  329    69   260 0.2097264
+208  329    69   260 0.2097264
+209  329    69   260 0.2097264
+210  329    69   260 0.2097264
+211  329    69   260 0.2097264
+212  329    69   260 0.2097264
+213  329    69   260 0.2097264
+214  329    69   260 0.2097264
+215  329    69   260 0.2097264
+216  329    69   260 0.2097264
+217  329    69   260 0.2097264
+218  329    69   260 0.2097264
+219  329    69   260 0.2097264
+220  329    69   260 0.2097264
+221  329    69   260 0.2097264
+222  329    69   260 0.2097264
+223  329    69   260 0.2097264
+224  329    69   260 0.2097264
+225  329    69   260 0.2097264
+226  329    69   260 0.2097264
+227  329    69   260 0.2097264
+228  329    69   260 0.2097264
+229  329    69   260 0.2097264
+230  329    69   260 0.2097264
+231  329    69   260 0.2097264
+232  329    69   260 0.2097264
+233  329    69   260 0.2097264
+234  329    69   260 0.2097264
+235  329    69   260 0.2097264
+236  329    69   260 0.2097264
+237  329    69   260 0.2097264
+238  329    69   260 0.2097264
+239  329    69   260 0.2097264
+240  329    69   260 0.2097264
+241  329    69   260 0.2097264
+242  329    69   260 0.2097264
+243  329    69   260 0.2097264
+244  329    69   260 0.2097264
+245  329    69   260 0.2097264
+246  329    69   260 0.2097264
+247  329    69   260 0.2097264
+248  329    69   260 0.2097264
+249  329    69   260 0.2097264
+250  329    69   260 0.2097264
+251  329    69   260 0.2097264
+252  329    69   260 0.2097264
+253  329    69   260 0.2097264
+254  329    69   260 0.2097264
+255  329    69   260 0.2097264
+256  329    69   260 0.2097264
+257  329    69   260 0.2097264
+258  329    69   260 0.2097264
+259  329    69   260 0.2097264
+260  329    69   260 0.2097264
+261  329    69   260 0.2097264
+262  329    69   260 0.2097264
+263  329    69   260 0.2097264
+264  329    69   260 0.2097264
+265  329    69   260 0.2097264
+266  329    69   260 0.2097264
+267  329    69   260 0.2097264
+268  329    69   260 0.2097264
+269  329    69   260 0.2097264
+270  329    69   260 0.2097264
+271  329    69   260 0.2097264
+272  329    69   260 0.2097264
+273  329    69   260 0.2097264
+274  329    69   260 0.2097264
+275  329    69   260 0.2097264
+276  329    69   260 0.2097264
+277  329    69   260 0.2097264
+278  329    69   260 0.2097264
+279  329    69   260 0.2097264
+280  329    69   260 0.2097264
+281  329    69   260 0.2097264
+282  329    69   260 0.2097264
+283  329    69   260 0.2097264
+284  329    69   260 0.2097264
+285  329    69   260 0.2097264
+286  329    69   260 0.2097264
+287  329    69   260 0.2097264
+288  329    69   260 0.2097264
+289  329    69   260 0.2097264
+290  329    69   260 0.2097264
+291  329    69   260 0.2097264
+292  329    69   260 0.2097264
+293  329    69   260 0.2097264
+294  329    69   260 0.2097264
+295  329    69   260 0.2097264
+296  329    69   260 0.2097264
+297  329    69   260 0.2097264
+298  329    69   260 0.2097264
+299  329    69   260 0.2097264
+300  329    69   260 0.2097264
+301  329    69   260 0.2097264
+302  329    69   260 0.2097264
+303  329    69   260 0.2097264
+304  329    69   260 0.2097264
+305  329    69   260 0.2097264
+306  329    69   260 0.2097264
+307  329    69   260 0.2097264
+308  329    69   260 0.2097264
+309  329    69   260 0.2097264
+310  329    69   260 0.2097264
+311  329    69   260 0.2097264
+312  329    69   260 0.2097264
+313  329    69   260 0.2097264
+314  329    69   260 0.2097264
+315  329    69   260 0.2097264
+316  329    69   260 0.2097264
+317  329    69   260 0.2097264
+318  329    69   260 0.2097264
+319  329    69   260 0.2097264
+320  329    69   260 0.2097264
+321  329    69   260 0.2097264
+322  329    69   260 0.2097264
+323  329    69   260 0.2097264
+324  329    69   260 0.2097264
+325  329    69   260 0.2097264
+326  329    69   260 0.2097264
+327  329    69   260 0.2097264
+328  329    69   260 0.2097264
+329  329    69   260 0.2097264
+330  329    69   260 0.2097264
+331  329    69   260 0.2097264
+332  329    69   260 0.2097264
+333  329    69   260 0.2097264
+334  329    69   260 0.2097264
+335  329    69   260 0.2097264
+336  329    69   260 0.2097264
+337  329    69   260 0.2097264
+338  329    69   260 0.2097264
+339  329    69   260 0.2097264
+340  329    69   260 0.2097264
+341  329    69   260 0.2097264
+342  329    69   260 0.2097264
+343  329    69   260 0.2097264
+344  329    69   260 0.2097264
+345  329    69   260 0.2097264
+346  329    69   260 0.2097264
+347  329    69   260 0.2097264
+348  329    69   260 0.2097264
+349  329    69   260 0.2097264
+350  329    69   260 0.2097264
+351  329    69   260 0.2097264
+352  329    69   260 0.2097264
+353  329    69   260 0.2097264
+354  329    69   260 0.2097264
+355  329    69   260 0.2097264
+356  329    69   260 0.2097264
+357  329    69   260 0.2097264
+358  329    69   260 0.2097264
+359  329    69   260 0.2097264
+360  329    69   260 0.2097264
+361  329    69   260 0.2097264
+362  329    69   260 0.2097264
+363  329    69   260 0.2097264
+364  329    69   260 0.2097264
+365  329    69   260 0.2097264
+366  329    69   260 0.2097264
+367  329    69   260 0.2097264
+368  329    69   260 0.2097264
+369  329    69   260 0.2097264
+370  329    69   260 0.2097264
+371  329    69   260 0.2097264
+372  329    69   260 0.2097264
+373  329    69   260 0.2097264
+374  329    69   260 0.2097264
 375  329    69   260 0.2097264
-376  329    80   249 0.2431611
-377  329    88   241 0.2674772
-378  329    90   239 0.2735562
-379  329    94   235 0.2857143
+376  329    69   260 0.2097264
+377  329    69   260 0.2097264
+378  329    69   260 0.2097264
+379  329    69   260 0.2097264
 380  329    69   260 0.2097264
-381  329    87   242 0.2644377
-382  329    85   244 0.2583587
-383  329    97   232 0.2948328
-384  329    79   250 0.2401216
-385  329    83   246 0.2522796
-386  329    86   243 0.2613982
-387  329    66   263 0.2006079
-388  329    75   254 0.2279635
-389  329    74   255 0.2249240
-390  329    67   262 0.2036474
-391  329    84   245 0.2553191
-392  329    80   249 0.2431611
-393  329    67   262 0.2036474
-394  329    82   247 0.2492401
-395  329    75   254 0.2279635
-396  329    82   247 0.2492401
-397  329    83   246 0.2522796
-398  329    88   241 0.2674772
-399  329    80   249 0.2431611
-400  329    86   243 0.2613982
-401  329    74   255 0.2249240
-402  329    84   245 0.2553191
-403  329    81   248 0.2462006
-404  329    78   251 0.2370821
-405  329    77   252 0.2340426
-406  329    85   244 0.2583587
-407  329    73   256 0.2218845
-408  329    86   243 0.2613982
-409  329    92   237 0.2796353
-410  329    80   249 0.2431611
-411  329    79   250 0.2401216
-412  329    84   245 0.2553191
-413  329    64   265 0.1945289
-414  329    85   244 0.2583587
-415  329    79   250 0.2401216
-416  329    98   231 0.2978723
-417  329    89   240 0.2705167
-418  329    81   248 0.2462006
-419  329    93   236 0.2826748
-420  329    89   240 0.2705167
-421  329    82   247 0.2492401
-422  329    67   262 0.2036474
-423  329    88   241 0.2674772
-424  329    82   247 0.2492401
-425  329    85   244 0.2583587
-426  329    87   242 0.2644377
-427  329    76   253 0.2310030
-428  329    88   241 0.2674772
-429  329    84   245 0.2553191
-430  329    87   242 0.2644377
-431  329    99   230 0.3009119
-432  329    80   249 0.2431611
-433  329    98   231 0.2978723
-434  329    82   247 0.2492401
-435  329    71   258 0.2158055
-436  329    77   252 0.2340426
-437  329    78   251 0.2370821
-438  329    88   241 0.2674772
-439  329    78   251 0.2370821
-440  329    88   241 0.2674772
-441  329    78   251 0.2370821
-442  329    70   259 0.2127660
-443  329    78   251 0.2370821
-444  329    73   256 0.2218845
-445  329    76   253 0.2310030
-446  329    86   243 0.2613982
-447  329    79   250 0.2401216
-448  329    82   247 0.2492401
-449  329    92   237 0.2796353
-450  329    72   257 0.2188450
-451  329    78   251 0.2370821
-452  329    81   248 0.2462006
-453  329    70   259 0.2127660
-454  329    89   240 0.2705167
-455  329    84   245 0.2553191
-456  329    82   247 0.2492401
-457  329    84   245 0.2553191
-458  329    97   232 0.2948328
-459  329    72   257 0.2188450
-460  329    88   241 0.2674772
-461  329    80   249 0.2431611
-462  329    85   244 0.2583587
-463  329    71   258 0.2158055
-464  329    72   257 0.2188450
+381  329    69   260 0.2097264
+382  329    69   260 0.2097264
+383  329    69   260 0.2097264
+384  329    69   260 0.2097264
+385  329    69   260 0.2097264
+386  329    69   260 0.2097264
+387  329    69   260 0.2097264
+388  329    69   260 0.2097264
+389  329    69   260 0.2097264
+390  329    69   260 0.2097264
+391  329    69   260 0.2097264
+392  329    69   260 0.2097264
+393  329    69   260 0.2097264
+394  329    69   260 0.2097264
+395  329    69   260 0.2097264
+396  329    69   260 0.2097264
+397  329    69   260 0.2097264
+398  329    69   260 0.2097264
+399  329    69   260 0.2097264
+400  329    69   260 0.2097264
+401  329    69   260 0.2097264
+402  329    69   260 0.2097264
+403  329    69   260 0.2097264
+404  329    69   260 0.2097264
+405  329    69   260 0.2097264
+406  329    69   260 0.2097264
+407  329    69   260 0.2097264
+408  329    69   260 0.2097264
+409  329    69   260 0.2097264
+410  329    69   260 0.2097264
+411  329    69   260 0.2097264
+412  329    69   260 0.2097264
+413  329    69   260 0.2097264
+414  329    69   260 0.2097264
+415  329    69   260 0.2097264
+416  329    69   260 0.2097264
+417  329    69   260 0.2097264
+418  329    69   260 0.2097264
+419  329    69   260 0.2097264
+420  329    69   260 0.2097264
+421  329    69   260 0.2097264
+422  329    69   260 0.2097264
+423  329    69   260 0.2097264
+424  329    69   260 0.2097264
+425  329    69   260 0.2097264
+426  329    69   260 0.2097264
+427  329    69   260 0.2097264
+428  329    69   260 0.2097264
+429  329    69   260 0.2097264
+430  329    69   260 0.2097264
+431  329    69   260 0.2097264
+432  329    69   260 0.2097264
+433  329    69   260 0.2097264
+434  329    69   260 0.2097264
+435  329    69   260 0.2097264
+436  329    69   260 0.2097264
+437  329    69   260 0.2097264
+438  329    69   260 0.2097264
+439  329    69   260 0.2097264
+440  329    69   260 0.2097264
+441  329    69   260 0.2097264
+442  329    69   260 0.2097264
+443  329    69   260 0.2097264
+444  329    69   260 0.2097264
+445  329    69   260 0.2097264
+446  329    69   260 0.2097264
+447  329    69   260 0.2097264
+448  329    69   260 0.2097264
+449  329    69   260 0.2097264
+450  329    69   260 0.2097264
+451  329    69   260 0.2097264
+452  329    69   260 0.2097264
+453  329    69   260 0.2097264
+454  329    69   260 0.2097264
+455  329    69   260 0.2097264
+456  329    69   260 0.2097264
+457  329    69   260 0.2097264
+458  329    69   260 0.2097264
+459  329    69   260 0.2097264
+460  329    69   260 0.2097264
+461  329    69   260 0.2097264
+462  329    69   260 0.2097264
+463  329    69   260 0.2097264
+464  329    69   260 0.2097264
 465  329    69   260 0.2097264
-466  329    79   250 0.2401216
-467  329    80   249 0.2431611
-468  329    86   243 0.2613982
-469  329    68   261 0.2066869
-470  329    81   248 0.2462006
-471  329    84   245 0.2553191
-472  329    74   255 0.2249240
-473  329    80   249 0.2431611
-474  329    81   248 0.2462006
-475  329    91   238 0.2765957
-476  329    74   255 0.2249240
+466  329    69   260 0.2097264
+467  329    69   260 0.2097264
+468  329    69   260 0.2097264
+469  329    69   260 0.2097264
+470  329    69   260 0.2097264
+471  329    69   260 0.2097264
+472  329    69   260 0.2097264
+473  329    69   260 0.2097264
+474  329    69   260 0.2097264
+475  329    69   260 0.2097264
+476  329    69   260 0.2097264
 477  329    69   260 0.2097264
-478  329    84   245 0.2553191
-479  329    76   253 0.2310030
-480  329    88   241 0.2674772
-481  329    85   244 0.2583587
-482  329    76   253 0.2310030
-483  329    96   233 0.2917933
-484  329    77   252 0.2340426
-485  329    86   243 0.2613982
+478  329    69   260 0.2097264
+479  329    69   260 0.2097264
+480  329    69   260 0.2097264
+481  329    69   260 0.2097264
+482  329    69   260 0.2097264
+483  329    69   260 0.2097264
+484  329    69   260 0.2097264
+485  329    69   260 0.2097264
 486  329    69   260 0.2097264
-487  329    71   258 0.2158055
-488  329    85   244 0.2583587
-489  329    92   237 0.2796353
-490  329    70   259 0.2127660
-491  329    83   246 0.2522796
-492  329    82   247 0.2492401
-493  329    82   247 0.2492401
-494  329    80   249 0.2431611
-495  329    88   241 0.2674772
-496  329    92   237 0.2796353
-497  329    84   245 0.2553191
-498  329    75   254 0.2279635
-499  329    70   259 0.2127660
-500  329    78   251 0.2370821
-501  329    93   236 0.2826748
-502  329    83   246 0.2522796
-503  329    85   244 0.2583587
-504  329    76   253 0.2310030
-505  329    71   258 0.2158055
-506  329    77   252 0.2340426
-507  329    85   244 0.2583587
-508  329    86   243 0.2613982
-509  329    79   250 0.2401216
-510  329    84   245 0.2553191
-511  329    95   234 0.2887538
-512  329    87   242 0.2644377
-513  329    79   250 0.2401216
-514  329    82   247 0.2492401
-515  329    84   245 0.2553191
-516  329    94   235 0.2857143
-517  329    91   238 0.2765957
-518  329    89   240 0.2705167
-519  329    76   253 0.2310030
-520  329    93   236 0.2826748
-521  329    82   247 0.2492401
-522  329    87   242 0.2644377
-523  329    74   255 0.2249240
-524  329    87   242 0.2644377
-525  329    91   238 0.2765957
-526  329    85   244 0.2583587
-527  329    87   242 0.2644377
-528  329    80   249 0.2431611
-529  329    91   238 0.2765957
-530  329    77   252 0.2340426
-531  329    92   237 0.2796353
-532  329    72   257 0.2188450
-533  329    72   257 0.2188450
-534  329    67   262 0.2036474
-535  329    91   238 0.2765957
-536  329    84   245 0.2553191
-537  329    82   247 0.2492401
-538  329    87   242 0.2644377
-539  329    72   257 0.2188450
-540  329    95   234 0.2887538
+487  329    69   260 0.2097264
+488  329    69   260 0.2097264
+489  329    69   260 0.2097264
+490  329    69   260 0.2097264
+491  329    69   260 0.2097264
+492  329    69   260 0.2097264
+493  329    69   260 0.2097264
+494  329    69   260 0.2097264
+495  329    69   260 0.2097264
+496  329    69   260 0.2097264
+497  329    69   260 0.2097264
+498  329    69   260 0.2097264
+499  329    69   260 0.2097264
+500  329    69   260 0.2097264
+501  329    69   260 0.2097264
+502  329    69   260 0.2097264
+503  329    69   260 0.2097264
+504  329    69   260 0.2097264
+505  329    69   260 0.2097264
+506  329    69   260 0.2097264
+507  329    69   260 0.2097264
+508  329    69   260 0.2097264
+509  329    69   260 0.2097264
+510  329    69   260 0.2097264
+511  329    69   260 0.2097264
+512  329    69   260 0.2097264
+513  329    69   260 0.2097264
+514  329    69   260 0.2097264
+515  329    69   260 0.2097264
+516  329    69   260 0.2097264
+517  329    69   260 0.2097264
+518  329    69   260 0.2097264
+519  329    69   260 0.2097264
+520  329    69   260 0.2097264
+521  329    69   260 0.2097264
+522  329    69   260 0.2097264
+523  329    69   260 0.2097264
+524  329    69   260 0.2097264
+525  329    69   260 0.2097264
+526  329    69   260 0.2097264
+527  329    69   260 0.2097264
+528  329    69   260 0.2097264
+529  329    69   260 0.2097264
+530  329    69   260 0.2097264
+531  329    69   260 0.2097264
+532  329    69   260 0.2097264
+533  329    69   260 0.2097264
+534  329    69   260 0.2097264
+535  329    69   260 0.2097264
+536  329    69   260 0.2097264
+537  329    69   260 0.2097264
+538  329    69   260 0.2097264
+539  329    69   260 0.2097264
+540  329    69   260 0.2097264
 541  329    69   260 0.2097264
-542  329    93   236 0.2826748
-543  329    84   245 0.2553191
-544  329    68   261 0.2066869
-545  329    97   232 0.2948328
-546  329    95   234 0.2887538
-547  329    83   246 0.2522796
-548  329    73   256 0.2218845
-549  329    83   246 0.2522796
-550  329    89   240 0.2705167
-551  329    71   258 0.2158055
-552  329    94   235 0.2857143
-553  329    83   246 0.2522796
-554  329    89   240 0.2705167
-555  329    80   249 0.2431611
-556  329    88   241 0.2674772
-557  329    83   246 0.2522796
-558  329    76   253 0.2310030
-559  329    74   255 0.2249240
-560  329    70   259 0.2127660
-561  329    68   261 0.2066869
-562  329    94   235 0.2857143
-563  329    85   244 0.2583587
-564  329    82   247 0.2492401
-565  329    85   244 0.2583587
-566  329    76   253 0.2310030
-567  329    68   261 0.2066869
-568  329    85   244 0.2583587
-569  329    89   240 0.2705167
-570  329    80   249 0.2431611
-571  329    88   241 0.2674772
-572  329    81   248 0.2462006
-573  329   101   228 0.3069909
-574  329    91   238 0.2765957
-575  329    88   241 0.2674772
-576  329    81   248 0.2462006
-577  329    77   252 0.2340426
-578  329    91   238 0.2765957
-579  329    74   255 0.2249240
-580  329    84   245 0.2553191
-581  329    80   249 0.2431611
-582  329    90   239 0.2735562
-583  329    95   234 0.2887538
-584  329    79   250 0.2401216
-585  329    70   259 0.2127660
-586  329    74   255 0.2249240
-587  329    78   251 0.2370821
-588  329    79   250 0.2401216
-589  329    84   245 0.2553191
-590  329    80   249 0.2431611
-591  329    80   249 0.2431611
-592  329    90   239 0.2735562
-593  329    81   248 0.2462006
-594  329    99   230 0.3009119
-595  329    79   250 0.2401216
-596  329    72   257 0.2188450
-597  329    75   254 0.2279635
-598  329    82   247 0.2492401
+542  329    69   260 0.2097264
+543  329    69   260 0.2097264
+544  329    69   260 0.2097264
+545  329    69   260 0.2097264
+546  329    69   260 0.2097264
+547  329    69   260 0.2097264
+548  329    69   260 0.2097264
+549  329    69   260 0.2097264
+550  329    69   260 0.2097264
+551  329    69   260 0.2097264
+552  329    69   260 0.2097264
+553  329    69   260 0.2097264
+554  329    69   260 0.2097264
+555  329    69   260 0.2097264
+556  329    69   260 0.2097264
+557  329    69   260 0.2097264
+558  329    69   260 0.2097264
+559  329    69   260 0.2097264
+560  329    69   260 0.2097264
+561  329    69   260 0.2097264
+562  329    69   260 0.2097264
+563  329    69   260 0.2097264
+564  329    69   260 0.2097264
+565  329    69   260 0.2097264
+566  329    69   260 0.2097264
+567  329    69   260 0.2097264
+568  329    69   260 0.2097264
+569  329    69   260 0.2097264
+570  329    69   260 0.2097264
+571  329    69   260 0.2097264
+572  329    69   260 0.2097264
+573  329    69   260 0.2097264
+574  329    69   260 0.2097264
+575  329    69   260 0.2097264
+576  329    69   260 0.2097264
+577  329    69   260 0.2097264
+578  329    69   260 0.2097264
+579  329    69   260 0.2097264
+580  329    69   260 0.2097264
+581  329    69   260 0.2097264
+582  329    69   260 0.2097264
+583  329    69   260 0.2097264
+584  329    69   260 0.2097264
+585  329    69   260 0.2097264
+586  329    69   260 0.2097264
+587  329    69   260 0.2097264
+588  329    69   260 0.2097264
+589  329    69   260 0.2097264
+590  329    69   260 0.2097264
+591  329    69   260 0.2097264
+592  329    69   260 0.2097264
+593  329    69   260 0.2097264
+594  329    69   260 0.2097264
+595  329    69   260 0.2097264
+596  329    69   260 0.2097264
+597  329    69   260 0.2097264
+598  329    69   260 0.2097264
 599  329    69   260 0.2097264
-600  329    85   244 0.2583587
-601  329    90   239 0.2735562
-602  329    86   243 0.2613982
-603  329    63   266 0.1914894
-604  329    84   245 0.2553191
-605  329    98   231 0.2978723
-606  329    88   241 0.2674772
-607  329    80   249 0.2431611
-608  329    95   234 0.2887538
-609  329    83   246 0.2522796
-610  329    83   246 0.2522796
-611  329    76   253 0.2310030
-612  329    83   246 0.2522796
-613  329    86   243 0.2613982
-614  329    75   254 0.2279635
-615  329    82   247 0.2492401
-616  329    80   249 0.2431611
-617  329    74   255 0.2249240
-618  329    96   233 0.2917933
-619  329    88   241 0.2674772
-620  329    68   261 0.2066869
-621  329    78   251 0.2370821
-622  329    88   241 0.2674772
-623  329    83   246 0.2522796
-624  329    98   231 0.2978723
-625  329    77   252 0.2340426
-626  329    82   247 0.2492401
-627  329    97   232 0.2948328
-628  329    78   251 0.2370821
-629  329    85   244 0.2583587
-630  329    91   238 0.2765957
-631  329    79   250 0.2401216
-632  329    78   251 0.2370821
-633  329    75   254 0.2279635
-634  329    61   268 0.1854103
-635  329    79   250 0.2401216
-636  329    85   244 0.2583587
-637  329    79   250 0.2401216
-638  329    78   251 0.2370821
-639  329    85   244 0.2583587
-640  329    70   259 0.2127660
-641  329    87   242 0.2644377
-642  329    80   249 0.2431611
-643  329    77   252 0.2340426
-644  329    80   249 0.2431611
-645  329    89   240 0.2705167
-646  329    86   243 0.2613982
-647  329    92   237 0.2796353
-648  329    86   243 0.2613982
-649  329    68   261 0.2066869
-650  329    91   238 0.2765957
-651  329    77   252 0.2340426
-652  329    83   246 0.2522796
-653  329    76   253 0.2310030
-654  329    80   249 0.2431611
-655  329    86   243 0.2613982
-656  329    78   251 0.2370821
-657  329    86   243 0.2613982
-658  329    84   245 0.2553191
-659  329    84   245 0.2553191
-660  329    80   249 0.2431611
-661  329    84   245 0.2553191
-662  329    74   255 0.2249240
-663  329    79   250 0.2401216
-664  329    79   250 0.2401216
-665  329    67   262 0.2036474
-666  329    77   252 0.2340426
-667  329    70   259 0.2127660
-668  329    84   245 0.2553191
-669  329    72   257 0.2188450
-670  329    85   244 0.2583587
-671  329    79   250 0.2401216
-672  329    79   250 0.2401216
-673  329    95   234 0.2887538
-674  329    80   249 0.2431611
-675  329    78   251 0.2370821
-676  329    78   251 0.2370821
-677  329    70   259 0.2127660
-678  329    84   245 0.2553191
-679  329    88   241 0.2674772
-680  329    93   236 0.2826748
-681  329    77   252 0.2340426
-682  329    84   245 0.2553191
-683  329    84   245 0.2553191
-684  329    85   244 0.2583587
-685  329    83   246 0.2522796
-686  329    88   241 0.2674772
-687  329    75   254 0.2279635
-688  329    96   233 0.2917933
-689  329    88   241 0.2674772
-690  329    88   241 0.2674772
-691  329    88   241 0.2674772
-692  329    83   246 0.2522796
-693  329    88   241 0.2674772
-694  329    88   241 0.2674772
-695  329    71   258 0.2158055
-696  329    87   242 0.2644377
-697  329    87   242 0.2644377
-698  329    72   257 0.2188450
-699  329    78   251 0.2370821
-700  329    83   246 0.2522796
-701  329    93   236 0.2826748
-702  329    80   249 0.2431611
-703  329    80   249 0.2431611
-704  329    79   250 0.2401216
-705  329    94   235 0.2857143
-706  329    85   244 0.2583587
-707  329    85   244 0.2583587
-708  329    89   240 0.2705167
-709  329    78   251 0.2370821
-710  329    88   241 0.2674772
-711  329    81   248 0.2462006
-712  329    80   249 0.2431611
-713  329    92   237 0.2796353
-714  329    89   240 0.2705167
-715  329    93   236 0.2826748
-716  329    87   242 0.2644377
-717  329    84   245 0.2553191
-718  329   106   223 0.3221884
-719  329    84   245 0.2553191
-720  329    85   244 0.2583587
-721  329    78   251 0.2370821
-722  329    75   254 0.2279635
-723  329    83   246 0.2522796
-724  329    96   233 0.2917933
-725  329    77   252 0.2340426
-726  329    76   253 0.2310030
-727  329    65   264 0.1975684
-728  329    82   247 0.2492401
-729  329    75   254 0.2279635
-730  329    65   264 0.1975684
-731  329    92   237 0.2796353
-732  329    86   243 0.2613982
-733  329    82   247 0.2492401
-734  329    92   237 0.2796353
-735  329    70   259 0.2127660
-736  329    94   235 0.2857143
-737  329    79   250 0.2401216
+600  329    69   260 0.2097264
+601  329    69   260 0.2097264
+602  329    69   260 0.2097264
+603  329    69   260 0.2097264
+604  329    69   260 0.2097264
+605  329    69   260 0.2097264
+606  329    69   260 0.2097264
+607  329    69   260 0.2097264
+608  329    69   260 0.2097264
+609  329    69   260 0.2097264
+610  329    69   260 0.2097264
+611  329    69   260 0.2097264
+612  329    69   260 0.2097264
+613  329    69   260 0.2097264
+614  329    69   260 0.2097264
+615  329    69   260 0.2097264
+616  329    69   260 0.2097264
+617  329    69   260 0.2097264
+618  329    69   260 0.2097264
+619  329    69   260 0.2097264
+620  329    69   260 0.2097264
+621  329    69   260 0.2097264
+622  329    69   260 0.2097264
+623  329    69   260 0.2097264
+624  329    69   260 0.2097264
+625  329    69   260 0.2097264
+626  329    69   260 0.2097264
+627  329    69   260 0.2097264
+628  329    69   260 0.2097264
+629  329    69   260 0.2097264
+630  329    69   260 0.2097264
+631  329    69   260 0.2097264
+632  329    69   260 0.2097264
+633  329    69   260 0.2097264
+634  329    69   260 0.2097264
+635  329    69   260 0.2097264
+636  329    69   260 0.2097264
+637  329    69   260 0.2097264
+638  329    69   260 0.2097264
+639  329    69   260 0.2097264
+640  329    69   260 0.2097264
+641  329    69   260 0.2097264
+642  329    69   260 0.2097264
+643  329    69   260 0.2097264
+644  329    69   260 0.2097264
+645  329    69   260 0.2097264
+646  329    69   260 0.2097264
+647  329    69   260 0.2097264
+648  329    69   260 0.2097264
+649  329    69   260 0.2097264
+650  329    69   260 0.2097264
+651  329    69   260 0.2097264
+652  329    69   260 0.2097264
+653  329    69   260 0.2097264
+654  329    69   260 0.2097264
+655  329    69   260 0.2097264
+656  329    69   260 0.2097264
+657  329    69   260 0.2097264
+658  329    69   260 0.2097264
+659  329    69   260 0.2097264
+660  329    69   260 0.2097264
+661  329    69   260 0.2097264
+662  329    69   260 0.2097264
+663  329    69   260 0.2097264
+664  329    69   260 0.2097264
+665  329    69   260 0.2097264
+666  329    69   260 0.2097264
+667  329    69   260 0.2097264
+668  329    69   260 0.2097264
+669  329    69   260 0.2097264
+670  329    69   260 0.2097264
+671  329    69   260 0.2097264
+672  329    69   260 0.2097264
+673  329    69   260 0.2097264
+674  329    69   260 0.2097264
+675  329    69   260 0.2097264
+676  329    69   260 0.2097264
+677  329    69   260 0.2097264
+678  329    69   260 0.2097264
+679  329    69   260 0.2097264
+680  329    69   260 0.2097264
+681  329    69   260 0.2097264
+682  329    69   260 0.2097264
+683  329    69   260 0.2097264
+684  329    69   260 0.2097264
+685  329    69   260 0.2097264
+686  329    69   260 0.2097264
+687  329    69   260 0.2097264
+688  329    69   260 0.2097264
+689  329    69   260 0.2097264
+690  329    69   260 0.2097264
+691  329    69   260 0.2097264
+692  329    69   260 0.2097264
+693  329    69   260 0.2097264
+694  329    69   260 0.2097264
+695  329    69   260 0.2097264
+696  329    69   260 0.2097264
+697  329    69   260 0.2097264
+698  329    69   260 0.2097264
+699  329    69   260 0.2097264
+700  329    69   260 0.2097264
+701  329    69   260 0.2097264
+702  329    69   260 0.2097264
+703  329    69   260 0.2097264
+704  329    69   260 0.2097264
+705  329    69   260 0.2097264
+706  329    69   260 0.2097264
+707  329    69   260 0.2097264
+708  329    69   260 0.2097264
+709  329    69   260 0.2097264
+710  329    69   260 0.2097264
+711  329    69   260 0.2097264
+712  329    69   260 0.2097264
+713  329    69   260 0.2097264
+714  329    69   260 0.2097264
+715  329    69   260 0.2097264
+716  329    69   260 0.2097264
+717  329    69   260 0.2097264
+718  329    69   260 0.2097264
+719  329    69   260 0.2097264
+720  329    69   260 0.2097264
+721  329    69   260 0.2097264
+722  329    69   260 0.2097264
+723  329    69   260 0.2097264
+724  329    69   260 0.2097264
+725  329    69   260 0.2097264
+726  329    69   260 0.2097264
+727  329    69   260 0.2097264
+728  329    69   260 0.2097264
+729  329    69   260 0.2097264
+730  329    69   260 0.2097264
+731  329    69   260 0.2097264
+732  329    69   260 0.2097264
+733  329    69   260 0.2097264
+734  329    69   260 0.2097264
+735  329    69   260 0.2097264
+736  329    69   260 0.2097264
+737  329    69   260 0.2097264
 738  329    69   260 0.2097264
-739  329    82   247 0.2492401
-740  329    77   252 0.2340426
-741  329    77   252 0.2340426
-742  329    79   250 0.2401216
-743  329    74   255 0.2249240
-744  329    79   250 0.2401216
-745  329    77   252 0.2340426
-746  329    96   233 0.2917933
-747  329    88   241 0.2674772
-748  329    79   250 0.2401216
-749  329    87   242 0.2644377
-750  329    78   251 0.2370821
-751  329    72   257 0.2188450
-752  329    95   234 0.2887538
-753  329    70   259 0.2127660
-754  329    89   240 0.2705167
-755  329    78   251 0.2370821
-756  329    74   255 0.2249240
-757  329    80   249 0.2431611
-758  329    85   244 0.2583587
-759  329    77   252 0.2340426
-760  329    82   247 0.2492401
-761  329    91   238 0.2765957
-762  329    91   238 0.2765957
-763  329    81   248 0.2462006
-764  329    73   256 0.2218845
-765  329    90   239 0.2735562
-766  329    81   248 0.2462006
-767  329    85   244 0.2583587
-768  329    75   254 0.2279635
-769  329    91   238 0.2765957
-770  329    95   234 0.2887538
-771  329    83   246 0.2522796
-772  329    96   233 0.2917933
-773  329    91   238 0.2765957
-774  329    80   249 0.2431611
-775  329    80   249 0.2431611
-776  329    79   250 0.2401216
-777  329    77   252 0.2340426
-778  329    72   257 0.2188450
-779  329    95   234 0.2887538
-780  329    70   259 0.2127660
-781  329    94   235 0.2857143
-782  329    84   245 0.2553191
-783  329    70   259 0.2127660
-784  329    90   239 0.2735562
-785  329    79   250 0.2401216
-786  329    72   257 0.2188450
-787  329    81   248 0.2462006
-788  329    93   236 0.2826748
+739  329    69   260 0.2097264
+740  329    69   260 0.2097264
+741  329    69   260 0.2097264
+742  329    69   260 0.2097264
+743  329    69   260 0.2097264
+744  329    69   260 0.2097264
+745  329    69   260 0.2097264
+746  329    69   260 0.2097264
+747  329    69   260 0.2097264
+748  329    69   260 0.2097264
+749  329    69   260 0.2097264
+750  329    69   260 0.2097264
+751  329    69   260 0.2097264
+752  329    69   260 0.2097264
+753  329    69   260 0.2097264
+754  329    69   260 0.2097264
+755  329    69   260 0.2097264
+756  329    69   260 0.2097264
+757  329    69   260 0.2097264
+758  329    69   260 0.2097264
+759  329    69   260 0.2097264
+760  329    69   260 0.2097264
+761  329    69   260 0.2097264
+762  329    69   260 0.2097264
+763  329    69   260 0.2097264
+764  329    69   260 0.2097264
+765  329    69   260 0.2097264
+766  329    69   260 0.2097264
+767  329    69   260 0.2097264
+768  329    69   260 0.2097264
+769  329    69   260 0.2097264
+770  329    69   260 0.2097264
+771  329    69   260 0.2097264
+772  329    69   260 0.2097264
+773  329    69   260 0.2097264
+774  329    69   260 0.2097264
+775  329    69   260 0.2097264
+776  329    69   260 0.2097264
+777  329    69   260 0.2097264
+778  329    69   260 0.2097264
+779  329    69   260 0.2097264
+780  329    69   260 0.2097264
+781  329    69   260 0.2097264
+782  329    69   260 0.2097264
+783  329    69   260 0.2097264
+784  329    69   260 0.2097264
+785  329    69   260 0.2097264
+786  329    69   260 0.2097264
+787  329    69   260 0.2097264
+788  329    69   260 0.2097264
 789  329    69   260 0.2097264
-790  329    89   240 0.2705167
-791  329    79   250 0.2401216
-792  329    74   255 0.2249240
-793  329    79   250 0.2401216
-794  329    73   256 0.2218845
-795  329    84   245 0.2553191
-796  329    97   232 0.2948328
-797  329    91   238 0.2765957
-798  329    94   235 0.2857143
-799  329    77   252 0.2340426
-800  329    84   245 0.2553191
-801  329    89   240 0.2705167
-802  329    90   239 0.2735562
-803  329    78   251 0.2370821
-804  329    81   248 0.2462006
-805  329    74   255 0.2249240
-806  329    89   240 0.2705167
-807  329    89   240 0.2705167
-808  329    80   249 0.2431611
-809  329    73   256 0.2218845
-810  329    76   253 0.2310030
-811  329    84   245 0.2553191
-812  329    86   243 0.2613982
-813  329    87   242 0.2644377
-814  329    79   250 0.2401216
-815  329    65   264 0.1975684
-816  329    85   244 0.2583587
-817  329    79   250 0.2401216
-818  329    73   256 0.2218845
-819  329    87   242 0.2644377
-820  329   106   223 0.3221884
-821  329    92   237 0.2796353
-822  329    79   250 0.2401216
-823  329   100   229 0.3039514
-824  329    91   238 0.2765957
-825  329    88   241 0.2674772
-826  329    77   252 0.2340426
-827  329    70   259 0.2127660
-828  329    91   238 0.2765957
-829  329    90   239 0.2735562
-830  329    79   250 0.2401216
-831  329    83   246 0.2522796
-832  329    75   254 0.2279635
-833  329    65   264 0.1975684
-834  329    89   240 0.2705167
-835  329    86   243 0.2613982
-836  329    83   246 0.2522796
-837  329    88   241 0.2674772
-838  329    97   232 0.2948328
-839  329    85   244 0.2583587
-840  329    77   252 0.2340426
-841  329    91   238 0.2765957
-842  329    67   262 0.2036474
-843  329    66   263 0.2006079
-844  329    75   254 0.2279635
-845  329    80   249 0.2431611
-846  329    68   261 0.2066869
-847  329    85   244 0.2583587
-848  329    75   254 0.2279635
-849  329    97   232 0.2948328
-850  329    77   252 0.2340426
-851  329    96   233 0.2917933
-852  329    94   235 0.2857143
-853  329    84   245 0.2553191
-854  329    86   243 0.2613982
-855  329    86   243 0.2613982
-856  329    86   243 0.2613982
-857  329    81   248 0.2462006
-858  329    91   238 0.2765957
-859  329    83   246 0.2522796
-860  329    80   249 0.2431611
-861  329    88   241 0.2674772
-862  329    77   252 0.2340426
-863  329    68   261 0.2066869
-864  329    81   248 0.2462006
-865  329    93   236 0.2826748
-866  329    96   233 0.2917933
-867  329    78   251 0.2370821
-868  329    73   256 0.2218845
-869  329    82   247 0.2492401
-870  329    84   245 0.2553191
-871  329    93   236 0.2826748
-872  329    91   238 0.2765957
-873  329    82   247 0.2492401
-874  329    83   246 0.2522796
-875  329    92   237 0.2796353
-876  329    73   256 0.2218845
-877  329    71   258 0.2158055
-878  329    70   259 0.2127660
-879  329    72   257 0.2188450
-880  329    74   255 0.2249240
-881  329    90   239 0.2735562
-882  329    59   270 0.1793313
-883  329    82   247 0.2492401
-884  329    92   237 0.2796353
-885  329    95   234 0.2887538
-886  329    87   242 0.2644377
-887  329    95   234 0.2887538
-888  329    70   259 0.2127660
-889  329    94   235 0.2857143
-890  329    79   250 0.2401216
-891  329    97   232 0.2948328
-892  329    87   242 0.2644377
-893  329    85   244 0.2583587
-894  329    65   264 0.1975684
-895  329    77   252 0.2340426
-896  329    91   238 0.2765957
-897  329    84   245 0.2553191
-898  329    77   252 0.2340426
-899  329    91   238 0.2765957
-900  329    64   265 0.1945289
-901  329    91   238 0.2765957
-902  329    77   252 0.2340426
-903  329    87   242 0.2644377
-904  329    76   253 0.2310030
-905  329    84   245 0.2553191
-906  329    94   235 0.2857143
-907  329    85   244 0.2583587
-908  329    86   243 0.2613982
-909  329    67   262 0.2036474
-910  329    76   253 0.2310030
-911  329    79   250 0.2401216
-912  329    80   249 0.2431611
-913  329    85   244 0.2583587
-914  329    83   246 0.2522796
-915  329    97   232 0.2948328
-916  329    68   261 0.2066869
-917  329    95   234 0.2887538
-918  329    70   259 0.2127660
-919  329    68   261 0.2066869
-920  329    89   240 0.2705167
-921  329    88   241 0.2674772
-922  329    85   244 0.2583587
-923  329    91   238 0.2765957
-924  329    80   249 0.2431611
-925  329    78   251 0.2370821
-926  329    89   240 0.2705167
-927  329    80   249 0.2431611
-928  329    86   243 0.2613982
-929  329    88   241 0.2674772
-930  329    79   250 0.2401216
-931  329    74   255 0.2249240
-932  329   102   227 0.3100304
-933  329    86   243 0.2613982
-934  329    82   247 0.2492401
-935  329    77   252 0.2340426
-936  329    76   253 0.2310030
-937  329    89   240 0.2705167
-938  329    76   253 0.2310030
-939  329    79   250 0.2401216
-940  329    95   234 0.2887538
-941  329    96   233 0.2917933
-942  329    74   255 0.2249240
-943  329    80   249 0.2431611
-944  329    86   243 0.2613982
-945  329    82   247 0.2492401
-946  329    84   245 0.2553191
-947  329    76   253 0.2310030
-948  329    95   234 0.2887538
-949  329    78   251 0.2370821
-950  329    93   236 0.2826748
-951  329    82   247 0.2492401
-952  329    83   246 0.2522796
-953  329    77   252 0.2340426
-954  329    87   242 0.2644377
-955  329    80   249 0.2431611
-956  329    83   246 0.2522796
-957  329    85   244 0.2583587
-958  329    89   240 0.2705167
-959  329    80   249 0.2431611
-960  329    83   246 0.2522796
-961  329    82   247 0.2492401
-962  329    80   249 0.2431611
-963  329    85   244 0.2583587
-964  329    71   258 0.2158055
-965  329    99   230 0.3009119
-966  329    93   236 0.2826748
-967  329    89   240 0.2705167
-968  329    68   261 0.2066869
-969  329    90   239 0.2735562
-970  329    92   237 0.2796353
-971  329    81   248 0.2462006
-972  329    88   241 0.2674772
-973  329    97   232 0.2948328
-974  329    88   241 0.2674772
-975  329    85   244 0.2583587
-976  329    78   251 0.2370821
-977  329    81   248 0.2462006
-978  329    80   249 0.2431611
-979  329    71   258 0.2158055
-980  329    77   252 0.2340426
-981  329    87   242 0.2644377
-982  329    81   248 0.2462006
-983  329    79   250 0.2401216
-984  329    65   264 0.1975684
-985  329    71   258 0.2158055
-986  329    87   242 0.2644377
-987  329    71   258 0.2158055
-988  329    74   255 0.2249240
-989  329    83   246 0.2522796
-990  329    71   258 0.2158055
-991  329    86   243 0.2613982
-992  329    91   238 0.2765957
-993  329    83   246 0.2522796
-994  329    84   245 0.2553191
-995  329    89   240 0.2705167
-996  329    80   249 0.2431611
-997  329    79   250 0.2401216
-998  329    73   256 0.2218845
-999  329    81   248 0.2462006
-1000 329    80   249 0.2431611</code></pre>
+790  329    69   260 0.2097264
+791  329    69   260 0.2097264
+792  329    69   260 0.2097264
+793  329    69   260 0.2097264
+794  329    69   260 0.2097264
+795  329    69   260 0.2097264
+796  329    69   260 0.2097264
+797  329    69   260 0.2097264
+798  329    69   260 0.2097264
+799  329    69   260 0.2097264
+800  329    69   260 0.2097264
+801  329    69   260 0.2097264
+802  329    69   260 0.2097264
+803  329    69   260 0.2097264
+804  329    69   260 0.2097264
+805  329    69   260 0.2097264
+806  329    69   260 0.2097264
+807  329    69   260 0.2097264
+808  329    69   260 0.2097264
+809  329    69   260 0.2097264
+810  329    69   260 0.2097264
+811  329    69   260 0.2097264
+812  329    69   260 0.2097264
+813  329    69   260 0.2097264
+814  329    69   260 0.2097264
+815  329    69   260 0.2097264
+816  329    69   260 0.2097264
+817  329    69   260 0.2097264
+818  329    69   260 0.2097264
+819  329    69   260 0.2097264
+820  329    69   260 0.2097264
+821  329    69   260 0.2097264
+822  329    69   260 0.2097264
+823  329    69   260 0.2097264
+824  329    69   260 0.2097264
+825  329    69   260 0.2097264
+826  329    69   260 0.2097264
+827  329    69   260 0.2097264
+828  329    69   260 0.2097264
+829  329    69   260 0.2097264
+830  329    69   260 0.2097264
+831  329    69   260 0.2097264
+832  329    69   260 0.2097264
+833  329    69   260 0.2097264
+834  329    69   260 0.2097264
+835  329    69   260 0.2097264
+836  329    69   260 0.2097264
+837  329    69   260 0.2097264
+838  329    69   260 0.2097264
+839  329    69   260 0.2097264
+840  329    69   260 0.2097264
+841  329    69   260 0.2097264
+842  329    69   260 0.2097264
+843  329    69   260 0.2097264
+844  329    69   260 0.2097264
+845  329    69   260 0.2097264
+846  329    69   260 0.2097264
+847  329    69   260 0.2097264
+848  329    69   260 0.2097264
+849  329    69   260 0.2097264
+850  329    69   260 0.2097264
+851  329    69   260 0.2097264
+852  329    69   260 0.2097264
+853  329    69   260 0.2097264
+854  329    69   260 0.2097264
+855  329    69   260 0.2097264
+856  329    69   260 0.2097264
+857  329    69   260 0.2097264
+858  329    69   260 0.2097264
+859  329    69   260 0.2097264
+860  329    69   260 0.2097264
+861  329    69   260 0.2097264
+862  329    69   260 0.2097264
+863  329    69   260 0.2097264
+864  329    69   260 0.2097264
+865  329    69   260 0.2097264
+866  329    69   260 0.2097264
+867  329    69   260 0.2097264
+868  329    69   260 0.2097264
+869  329    69   260 0.2097264
+870  329    69   260 0.2097264
+871  329    69   260 0.2097264
+872  329    69   260 0.2097264
+873  329    69   260 0.2097264
+874  329    69   260 0.2097264
+875  329    69   260 0.2097264
+876  329    69   260 0.2097264
+877  329    69   260 0.2097264
+878  329    69   260 0.2097264
+879  329    69   260 0.2097264
+880  329    69   260 0.2097264
+881  329    69   260 0.2097264
+882  329    69   260 0.2097264
+883  329    69   260 0.2097264
+884  329    69   260 0.2097264
+885  329    69   260 0.2097264
+886  329    69   260 0.2097264
+887  329    69   260 0.2097264
+888  329    69   260 0.2097264
+889  329    69   260 0.2097264
+890  329    69   260 0.2097264
+891  329    69   260 0.2097264
+892  329    69   260 0.2097264
+893  329    69   260 0.2097264
+894  329    69   260 0.2097264
+895  329    69   260 0.2097264
+896  329    69   260 0.2097264
+897  329    69   260 0.2097264
+898  329    69   260 0.2097264
+899  329    69   260 0.2097264
+900  329    69   260 0.2097264
+901  329    69   260 0.2097264
+902  329    69   260 0.2097264
+903  329    69   260 0.2097264
+904  329    69   260 0.2097264
+905  329    69   260 0.2097264
+906  329    69   260 0.2097264
+907  329    69   260 0.2097264
+908  329    69   260 0.2097264
+909  329    69   260 0.2097264
+910  329    69   260 0.2097264
+911  329    69   260 0.2097264
+912  329    69   260 0.2097264
+913  329    69   260 0.2097264
+914  329    69   260 0.2097264
+915  329    69   260 0.2097264
+916  329    69   260 0.2097264
+917  329    69   260 0.2097264
+918  329    69   260 0.2097264
+919  329    69   260 0.2097264
+920  329    69   260 0.2097264
+921  329    69   260 0.2097264
+922  329    69   260 0.2097264
+923  329    69   260 0.2097264
+924  329    69   260 0.2097264
+925  329    69   260 0.2097264
+926  329    69   260 0.2097264
+927  329    69   260 0.2097264
+928  329    69   260 0.2097264
+929  329    69   260 0.2097264
+930  329    69   260 0.2097264
+931  329    69   260 0.2097264
+932  329    69   260 0.2097264
+933  329    69   260 0.2097264
+934  329    69   260 0.2097264
+935  329    69   260 0.2097264
+936  329    69   260 0.2097264
+937  329    69   260 0.2097264
+938  329    69   260 0.2097264
+939  329    69   260 0.2097264
+940  329    69   260 0.2097264
+941  329    69   260 0.2097264
+942  329    69   260 0.2097264
+943  329    69   260 0.2097264
+944  329    69   260 0.2097264
+945  329    69   260 0.2097264
+946  329    69   260 0.2097264
+947  329    69   260 0.2097264
+948  329    69   260 0.2097264
+949  329    69   260 0.2097264
+950  329    69   260 0.2097264
+951  329    69   260 0.2097264
+952  329    69   260 0.2097264
+953  329    69   260 0.2097264
+954  329    69   260 0.2097264
+955  329    69   260 0.2097264
+956  329    69   260 0.2097264
+957  329    69   260 0.2097264
+958  329    69   260 0.2097264
+959  329    69   260 0.2097264
+960  329    69   260 0.2097264
+961  329    69   260 0.2097264
+962  329    69   260 0.2097264
+963  329    69   260 0.2097264
+964  329    69   260 0.2097264
+965  329    69   260 0.2097264
+966  329    69   260 0.2097264
+967  329    69   260 0.2097264
+968  329    69   260 0.2097264
+969  329    69   260 0.2097264
+970  329    69   260 0.2097264
+971  329    69   260 0.2097264
+972  329    69   260 0.2097264
+973  329    69   260 0.2097264
+974  329    69   260 0.2097264
+975  329    69   260 0.2097264
+976  329    69   260 0.2097264
+977  329    69   260 0.2097264
+978  329    69   260 0.2097264
+979  329    69   260 0.2097264
+980  329    69   260 0.2097264
+981  329    69   260 0.2097264
+982  329    69   260 0.2097264
+983  329    69   260 0.2097264
+984  329    69   260 0.2097264
+985  329    69   260 0.2097264
+986  329    69   260 0.2097264
+987  329    69   260 0.2097264
+988  329    69   260 0.2097264
+989  329    69   260 0.2097264
+990  329    69   260 0.2097264
+991  329    69   260 0.2097264
+992  329    69   260 0.2097264
+993  329    69   260 0.2097264
+994  329    69   260 0.2097264
+995  329    69   260 0.2097264
+996  329    69   260 0.2097264
+997  329    69   260 0.2097264
+998  329    69   260 0.2097264
+999  329    69   260 0.2097264
+1000 329    69   260 0.2097264</code></pre>
 </div>
 </div>
 </div>
@@ -1854,10 +1642,10 @@ Number of Heads: 87 [Proportion Heads: 0.264437689969605]</code></pre>
 <h2>Sampling Distribution Under No ESP</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> guess_sampling_dist,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> guess_sampling_dist,</span>
 <span id="cb24-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> prop)) <span class="sc">+</span></span>
 <span id="cb24-3"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">"white"</span>,</span>
-<span id="cb24-4"><a></a>                 <span class="at">bins =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-4"><a></a>                 <span class="at">bins =</span> <span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1871,24 +1659,22 @@ Number of Heads: 87 [Proportion Heads: 0.264437689969605]</code></pre>
 </section>
 <section id="sampling-distribution-under-no-esp-3" class="slide level2 smaller">
 <h2>Sampling Distribution Under No ESP</h2>
-<div>
 <ul>
 <li>How do the study results compare to the sampling distribution under no ESP?
 <ul>
 <li>How unusual is it to guess correctly 106 out of 329 times if ESP doesn’t exist?</li>
 </ul></li>
 </ul>
-</div>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>p_hat <span class="ot">&lt;-</span> <span class="dv">106</span><span class="sc">/</span><span class="dv">329</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>p_hat <span class="ot">&lt;-</span> <span class="dv">106</span><span class="sc">/</span><span class="dv">329</span></span>
 <span id="cb25-2"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> guess_sampling_dist,</span>
 <span id="cb25-3"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> prop)) <span class="sc">+</span></span>
 <span id="cb25-4"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">"white"</span>,</span>
 <span id="cb25-5"><a></a>                 <span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
 <span id="cb25-6"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> p_hat,</span>
 <span id="cb25-7"><a></a>             <span class="at">color =</span> <span class="st">"orange"</span>,</span>
-<span id="cb25-8"><a></a>             <span class="at">size =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-8"><a></a>             <span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1907,7 +1693,6 @@ Number of Heads: 87 [Proportion Heads: 0.264437689969605]</code></pre>
 <div class="columns">
 <div class="column">
 <p>In pairs:</p>
-<div>
 <ul>
 <li><p>Decide who is going to be the sender and who is going to be the receiver.</p></li>
 <li><p><strong>Sender:</strong> Think of one of these images.</p></li>
@@ -1915,7 +1700,6 @@ Number of Heads: 87 [Proportion Heads: 0.264437689969605]</code></pre>
 <li><p>Now switch roles and do it again!</p></li>
 <li><p>Once you have both played each role, each person should add a tally mark on the chalkboard.</p></li>
 </ul>
-</div>
 </div><div class="column">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -1932,11 +1716,11 @@ Number of Heads: 87 [Proportion Heads: 0.264437689969605]</code></pre>
 <h2>Do Bucknellians Have ESP?</h2>
 <p>What do we need to modify in the code to answer the question?</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>guess_sampling_dist <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">rflip</span>(<span class="at">n =</span> <span class="dv">119</span>, <span class="at">prob =</span> <span class="fl">0.25</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>guess_sampling_dist <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">rflip</span>(<span class="at">n =</span> <span class="dv">119</span>, <span class="at">prob =</span> <span class="fl">0.25</span>)</span>
 <span id="cb26-2"><a></a>p_hat <span class="ot">&lt;-</span> <span class="dv">42</span><span class="sc">/</span><span class="dv">119</span></span>
 <span id="cb26-3"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> guess_sampling_dist, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> prop)) <span class="sc">+</span></span>
 <span id="cb26-4"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">"white"</span>, <span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
-<span id="cb26-5"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> p_hat, <span class="at">color =</span> <span class="st">"orange"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-5"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> p_hat, <span class="at">color =</span> <span class="st">"orange"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section class="slide level2">
@@ -2046,7 +1830,6 @@ Number of Heads: 87 [Proportion Heads: 0.264437689969605]</code></pre>
 <section class="slide level2">
 
 <h3 id="lets-take-a-step-back-from-our-last-statement">Let’s Take a Step Back from Our Last Statement…</h3>
-<div>
 <ul>
 <li><p>Two important words in data analysis:</p>
 <ul>
@@ -2054,7 +1837,6 @@ Number of Heads: 87 [Proportion Heads: 0.264437689969605]</code></pre>
 <li>Replicability</li>
 </ul></li>
 </ul>
-</div>
 <ul>
 <li class="fragment"><p><strong>Reproducibility</strong>: If I give you the raw data and my write-up, you will get to the exact same final numbers that I did.</p></li>
 <li class="fragment"><p>By using <code>Quarto</code> Documents, we are learning a <strong>reproducible</strong> workflow.</p></li>
@@ -2076,23 +1858,21 @@ Number of Heads: 87 [Proportion Heads: 0.264437689969605]</code></pre>
 </section>
 <section id="reminders" class="slide level2">
 <h2>Reminders:</h2>
-<div>
 <ul>
 <li>Map making in <code>R</code> workshop: Part of the Sustainability Symposium
 <ul>
 <li>Th, March 26, 2:30 - 3:50pm, Taylor 210</li>
 </ul></li>
 </ul>
-</div>
 
-<div class="quarto-auto-generated-content">
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
 
 </div>
-</div>
-</section>
-    </div>
-  </div>
+</div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="site_libs/revealjs/dist/reveal.js"></script>
@@ -2122,8 +1902,9 @@ Number of Heads: 87 [Proportion Heads: 0.264437689969605]</code></pre>
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
+'jumpToSlide': true,
 'pdfMaxPagesPerSlide': 1,
-'menu': {"side":"right","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true,"numbers":true},
+'menu': {"side":"right","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true,"numbers":true},
 'chalkboard': {"buttons":true},
 'smaller': false,
  
@@ -2343,192 +2124,173 @@ Number of Heads: 87 [Proportion Heads: 0.264437689969605]</code></pre>
     </script>
 
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
           }
+          return false;
         }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
           }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
           for (const childEl of codeEl.children) {
             if (isCodeAnnotation(childEl)) {
               childEl.remove();
             }
           }
           return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        // For code content inside modals, clipBoardJS needs to be initialized with a container option
-        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/mcconvil\.github\.io\/data100s26");
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/mcconvil\.github\.io\/data100s26");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
             }
           }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
           }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
           }
-        } else {
-          return undefined;
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
         }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
-              }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>
